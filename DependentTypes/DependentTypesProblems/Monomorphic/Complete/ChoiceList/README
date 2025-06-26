@@ -1,0 +1,13 @@
+A collection of choice problems in the context of fixed-length lists. Provided is a short
+explanation of each problem:
+
+dchoice_list_empty.p:
+Defines the predicate empty and shows that choosing the empty list satisfies the predicate.
+
+dchoice_list_nonempty.p:
+As above, but the inverse case of choosing a non-empty list to establish that it doesn't
+fulfill the empty-predicate.
+
+dchoice_list_hd.p:
+Introduces the unfailing head function on fixed length lists of length >= 1 and states that the
+head of a list with first element 0 is 0.

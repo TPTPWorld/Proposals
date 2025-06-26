@@ -1,0 +1,90 @@
+fof(pel24,conjecture,
+    ? [X] : ( p(X) & r(X) ) ).
+
+fof(pel24_1,axiom,
+    ~ ? [X] : ( s(X) & q(X) ) ).
+
+fof(pel24_2,axiom,
+    ! [X] : ( p(X) => ( q(X) | r(X) ) ) ).
+
+fof(pel24_3a,axiom,
+    ? [X] : p(X) ).
+
+fof(pel24_4a,axiom,
+    ! [X] : ( q(X) => s(X) ) ).
+
+fof(pel24_n,negated_conjecture,
+    ~ ? [X] : ( p(X) & r(X) ),
+    inference(negate,[status(cth)],[pel24]) ).
+
+cnf(p1,plain,
+    ( ~ p(X) | ~ r(X) ),
+    inference(clausify,[status(thm)],[pel24_n]) ).
+
+cnf(p2,plain,
+    ( ~ s(X) | ~ q(X) ),
+    inference(clausify,[status(thm)],[pel24_1]) ).
+
+cnf(p3,plain,
+    p(a),
+    inference(clausify,[status(esa),new_symbols(skolem,[a]),skolemized(X)],[pel24_3a]) ).
+
+cnf(p4,plain,
+    ( ~ q(X) | s(X) ),
+    inference(clausify,[status(thm)],[pel24_4a]) ).
+
+cnf(p5,plain,
+    ( ~ p(X) | q(X) | r(X) ),
+    inference(clausify,[status(thm)],[pel24_2]) ).
+
+cnf(p6,plain,
+    ( ~ p(a) | ~ r(a) ),
+    inference(extension,[status(thm),path([])],
+        [inference(instantiate,[status(thm),bind(X,$fot(a))],[p1])]) ).
+    
+cnf(p7,plain,
+    p(a),
+    inference(extension,[status(thm),path([p6:1])],[p3]) ).
+
+cnf(p8,plain,
+    $false,
+    inference(reduction,[status(thm),path([p7:1,p6:1])],[p7:1,p6:1]) ).
+
+cnf(p9,plain,
+    ( ~ p(a) | q(a) | r(a) ),
+    inference(extension,[status(thm),path([p6:2])],
+        [inference(instantiate,[status(thm),bind(X,$fot(a))],[p5])])).
+
+cnf(p10,plain,
+    $false,
+    inference(reduction,[status(thm),path([p9:3,p6:2])],[p6:2,p9:3]) ).
+
+cnf(p11,plain,
+    p(a),
+    inference(extension,[status(thm),path([p9:1,p6:2])],[p3]) ).
+
+cnf(p12,plain,
+    $false,
+    inference(reduction,[status(thm),path([p11:1,p9:1,p6:2])],[p11:1,p9:1]) ).
+
+cnf(p13,plain,
+    ( ~ s(a) | ~ q(a) ),
+    inference(extension,[status(thm),path([p9:2,p6:2])],
+        [inference(instantiate,[status(thm),bind(X,$fot(a))],[p2])]) ).
+
+cnf(p14,plain,
+    $false,
+    inference(reduction,[status(thm),path([p13:2,p9:2,p6:2])],[p13:2,p9:2]) ).
+
+cnf(p15,plain,
+    ( ~ q(a) | s(a) ),
+    inference(extension,[status(thm),path([p13:1,p9:2,p6:2])],
+        [inference(instantiate,[status(thm),bind(X,$fot(a))],[p4])]) ).
+
+cnf(p16,plain,
+    $false,
+    inference(reduction,[status(thm),path([p15:2,p13:1,p9:2,p6:2])],[p15:2,p13:1]) ).
+
+cnf(p17,plain,
+    $false,
+    inference(reduction,[status(thm),path([p15:1,p13:1,p9:2,p6:2])],[p15:1,p9:2]) ).

@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<TITLE> Include File Name Space Hierarchy </TITLE>
+</HEAD>
+<BODY ALIGN=JUSTIFY>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">Include File Name Space Hierarchy</H1>
+
+by 
+<A href="">Tobias Gleißner</A>
+<A href="https://www.alexandersteen.de">Alex Steen</A>,
+<A href="http://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>,
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Motivation </H2>
+
+Tobias' interests are combining ontologies (which make heavy use of namespacing) and 
+(nonclassical) logics in general but also specifically in legal reasoning. 
+He believes that we somehow need predefined domain terminology and some background knowledge about 
+the terminology which is easy to handle like OWL in Protégé for bringing more automated reasoning 
+into industry.
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Proposal </H2>
+<UL>
+<LI> <TT>include</TT> directives get an optional third argument that names the space for
+     the formulae in the included file.
+<LI> The second argument that lists the formulae to be included from the file can
+     be a (possibly empty) list or a <TT>*</TT> to mean "all formulae".
+<LI> As before, an included file can include another file, and now can give a
+     name for that (sub)space.
+<LI> If a hierarchy of spaces in included, the symbols in the hierarchy have the
+     hierarchy of space names prepended, separated by <TT>|||</TT>.
+<LI> In proofs, the formula names have the hierarchy of space names prepended, 
+     separated by <TT>|||</TT>.
+</UL>
+
+For example:
+<P>
+---- <TT>MyProblem.p</TT> ----
+<PRE>
+include('TopSpace.ax',*,top).
+include('BtmSpace.ax',[],useless).  %----Just to show you can import nothing
+fof(an,axiom,p(a)).
+fof(an,conjecture,p(a) & 'top|||q'(b) & 'top|||btm|||r'(c)).
+</PRE>
+
+---- <TT>TopSpace.ax</TT> ----
+<PRE>
+include('BtmSpace.ax',[r],btm).
+fof(an,axiom,! [X] : ( q(X) => 'btm|||r'(X) ) ).
+</PRE>
+
+---- <TT>BtmSpace.ax</TT> ----
+<PRE>
+fof(an,axiom,! [X] : ~q(X)).
+fof(another,axiom, r(c)).
+</PRE>
+
+---- <TT>Refutation.txt</TT> ---
+<PRE>
+fof(1,negated_conjecture,~p(a) | ~'top|||q'(b) | ~'top|||btm|||r'(c)).
+fof(2,plain,$false,
+    inference(magic,[status(thm)],[an,'top|||an','btm|||another'])).
+</PRE>
+
+<P>
+It is easy to preprocess a hierarchical include into a regular TPTP file using ''ed flat 
+names, so that existing tools don't have be radically changed. 
+In contrast, adding a new form of symbol with a <TT>|||</TT> separated structure would cause 
+a lot of work for system developers ... if they don't do it then you have nothing.
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

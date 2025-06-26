@@ -1,0 +1,80 @@
+% SZS status Satisfiable for NTF_Finite-Finite
+% SZS output start FiniteModel for NTF_Finite-Finite
+tff(declare_$i,type,$i:$tType).
+tff(declare_$i1,type,fmb_$i_1:$i).
+tff(finite_domain,axiom,
+      ! [X:$i] : (
+         X = fmb_$i_1
+      ) ).
+
+tff(declare_bool,type,$o:$tType).
+tff(declare_bool1,type,$false:$o).
+tff(declare_bool2,type,$true:$o).
+tff(finite_domain,axiom,
+      ! [X:$o] : (
+         X = $false | X = $true
+      ) ).
+
+tff(distinct_domain,axiom,
+         $false != $true
+).
+
+tff('declare_$world',type,'$world':$tType).
+tff('declare_$world1',type,'$local_world':'$world').
+tff(finite_domain,axiom,
+      ! [X:'$world'] : (
+         X = '$local_world'
+      ) ).
+
+tff(declare_fruit,type,fruit:$tType).
+tff(declare_fruit1,type,apple:fruit).
+tff(finite_domain,axiom,
+      ! [X:fruit] : (
+         X = apple
+      ) ).
+
+tff(declare_d_fruit,type,d_fruit:$tType).
+tff(declare_d_fruit1,type,d_apple:d_fruit).
+tff(finite_domain,axiom,
+      ! [X:d_fruit] : (
+         X = d_apple
+      ) ).
+
+tff(declare_banana,type,banana:fruit).
+tff(banana_definition,axiom,banana = apple).
+tff(declare_w2,type,w2:'$world').
+tff(w2_definition,axiom,w2 = '$local_world').
+tff(declare_d_banana,type,d_banana:d_fruit).
+tff(d_banana_definition,axiom,d_banana = d_apple).
+tff(declare_d2fruit,type,d2fruit: d_fruit > fruit).
+tff(function_d2fruit,axiom,
+           d2fruit(d_apple) = apple
+
+).
+
+tff('declare_$accessible_world',type,'$accessible_world': '$world' * '$world' > $o ).
+tff('predicate_$accessible_world',axiom,
+%         '$accessible_world'('$local_world','$local_world') undefined in model
+
+).
+
+tff('declare_$in_world',type,'$in_world': '$world' * $o > $o ).
+tff('predicate_$in_world',axiom,
+%         '$in_world'('$local_world',$false) undefined in model
+%         '$in_world'('$local_world',$true) undefined in model
+
+).
+
+tff(declare_healthy,type,healthy: fruit > $o ).
+tff(predicate_healthy,axiom,
+           healthy(apple)
+
+).
+
+tff(declare_rotten,type,rotten: fruit > $o ).
+tff(predicate_rotten,axiom,
+           ~rotten(apple)
+
+).
+
+% SZS output end FiniteModel for NTF_Finite-Finite

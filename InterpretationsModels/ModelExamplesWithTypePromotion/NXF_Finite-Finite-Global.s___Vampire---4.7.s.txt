@@ -1,0 +1,100 @@
+% SZS status Satisfiable for NTF_Finite-Finite-Local
+% SZS output start FiniteModel for NTF_Finite-Finite-Local
+tff(declare_$i,type,$i:$tType).
+tff(declare_$i1,type,fmb_$i_1:$i).
+tff(finite_domain,axiom,
+      ! [X:$i] : (
+         X = fmb_$i_1
+      ) ).
+
+tff(declare_bool,type,$o:$tType).
+tff(declare_bool1,type,$false:$o).
+tff(declare_bool2,type,$true:$o).
+tff(finite_domain,axiom,
+      ! [X:$o] : (
+         X = $false | X = $true
+      ) ).
+
+tff(distinct_domain,axiom,
+         $false != $true
+).
+
+tff('declare_$world',type,'$world':$tType).
+tff('declare_$world1',type,'$local_world':'$world').
+tff(finite_domain,axiom,
+      ! [X:'$world'] : (
+         X = '$local_world'
+      ) ).
+
+tff(declare_person,type,person:$tType).
+tff(declare_person1,type,alex:person).
+tff(finite_domain,axiom,
+      ! [X:person] : (
+         X = alex
+      ) ).
+
+tff(declare_product,type,product:$tType).
+tff(declare_product1,type,leo:product).
+tff(finite_domain,axiom,
+      ! [X:product] : (
+         X = leo
+      ) ).
+
+tff(declare_d_person,type,d_person:$tType).
+tff(declare_d_person1,type,d_alex:d_person).
+tff(finite_domain,axiom,
+      ! [X:d_person] : (
+         X = d_alex
+      ) ).
+
+tff(declare_d_product,type,d_product:$tType).
+tff(declare_d_product1,type,d_leo:d_product).
+tff(finite_domain,axiom,
+      ! [X:d_product] : (
+         X = d_leo
+      ) ).
+
+tff(declare_chris,type,chris:person).
+tff(chris_definition,axiom,chris = alex).
+tff(declare_w2,type,w2:'$world').
+tff(w2_definition,axiom,w2 = '$local_world').
+tff(declare_d_chris,type,d_chris:d_person).
+tff(d_chris_definition,axiom,d_chris = d_alex).
+tff(declare_d2person,type,d2person: d_person > person).
+tff(function_d2person,axiom,
+           d2person(d_alex) = alex
+
+).
+
+tff(declare_d2product,type,d2product: d_product > product).
+tff(function_d2product,axiom,
+           d2product(d_leo) = leo
+
+).
+
+tff('declare_$accessible_world',type,'$accessible_world': '$world' * '$world' > $o ).
+tff('predicate_$accessible_world',axiom,
+%         '$accessible_world'('$local_world','$local_world') undefined in model
+
+).
+
+tff('declare_$in_world',type,'$in_world': '$world' * $o > $o ).
+tff('predicate_$in_world',axiom,
+%         '$in_world'('$local_world',$false) undefined in model
+%         '$in_world'('$local_world',$true) undefined in model
+
+).
+
+tff(declare_work_hard,type,work_hard: person * product > $o ).
+tff(predicate_work_hard,axiom,
+           work_hard(alex,leo)
+
+).
+
+tff(declare_gets_rich,type,gets_rich: person > $o ).
+tff(predicate_gets_rich,axiom,
+           ~gets_rich(alex)
+
+).
+
+% SZS output end FiniteModel for NTF_Finite-Finite-Local

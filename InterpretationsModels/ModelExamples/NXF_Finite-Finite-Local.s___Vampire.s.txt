@@ -1,0 +1,39 @@
+% SZS status Satisfiable for NXF_Finite-Finite-Local
+% SZS output start Saturation.
+cnf(u12,axiom,
+    '$local_world' = X0).
+
+cnf(u15,axiom,
+    w2 = '$local_world').
+
+cnf(u93,axiom,
+    X1 != X2 | X1 = X3 | X0 = X3 | X0 = X2 | '$local_world' = X2).
+
+cnf(u219,axiom,
+    X0 != X1 | X2 = X3 | X1 = X3 | X0 = X2 | X0 = X4 | '$local_world' = X4).
+
+cnf(u164,axiom,
+    X0 != X1 | X0 = X2 | '$local_world' = X2 | '$local_world' = X1).
+
+cnf(u401,axiom,
+    X0 = X1).
+
+cnf(u7,axiom,
+    w2 = X6 | '$local_world' = X6).
+
+cnf(u161,axiom,
+    '$local_world' != X1 | X0 = X2 | X1 = X2 | '$local_world' = X0).
+
+cnf(u19,axiom,
+    X0 = X1 | X1 = X2 | X0 = X2 | X0 = X3 | '$local_world' = X3).
+
+cnf(u8,axiom,
+    X0 = X1 | '$local_world' = X1 | '$local_world' = X0).
+
+cnf(u47,axiom,
+    X0 = X1 | X2 = X3 | X3 = X4 | X2 = X4 | X1 = X2 | X5 = X6 | X6 = X7 | X5 = X7 | X0 = X5).
+
+cnf(u48,axiom,
+    X0 = X1 | X2 = X3 | X3 = X4 | X2 = X4 | X1 = X2 | X0 = X5 | '$local_world' = X5).
+
+% SZS output end Saturation.

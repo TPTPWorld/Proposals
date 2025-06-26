@@ -1,0 +1,565 @@
+% SZS status Theorem for TFF_Integer.s
+% SZS output start Proof for TFF_Integer.s
+tff(type_def_5, type, person: $tType).
+tff(func_def_0, type, bob: person).
+tff(func_def_1, type, child_of: (person) > person).
+tff(func_def_2, type, int2person: ($int) > person).
+tff(func_def_7, type, sK0: person).
+tff(func_def_8, type, sK1: person).
+tff(func_def_9, type, sK2: person).
+tff(func_def_10, type, sK3: person).
+tff(func_def_11, type, sK4: person).
+tff(func_def_12, type, sK5: person).
+tff(func_def_13, type, sK6: person).
+tff(func_def_14, type, sK7: (person) > $int).
+tff(pred_def_1, type, is_descendant: (person * person) > $o).
+tff(f2424,plain,(
+  $false),
+  inference(avatar_smt_refutation,[],[f56,f60,f64,f65,f69,f70,f74,f126,f131,f253,f262,f272,f282,f322,f326,f389,f394,f1871,f1875,f2078,f2080,f2130,f2134,f2356,f2360,f2362,f2366,f2400,f2402,f2406,f2407,f2412,f2423])).
+tff(f2423,plain,(
+  spl8_27 | ~spl8_26),
+  inference(avatar_split_clause,[],[f2419,f2410,f2421])).
+tff(f2421,plain,(
+  spl8_27 <=> $less(sK7(sK5),sK7(sK5))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_27])])).
+tff(f2410,plain,(
+  spl8_26 <=> is_descendant(sK5,sK5)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_26])])).
+tff(f2419,plain,(
+  $less(sK7(sK5),sK7(sK5)) | ~spl8_26),
+  inference(resolution,[],[f2411,f354])).
+tff(f354,plain,(
+  ( ! [X6 : person,X7 : person] : (~is_descendant(X7,X6) | $less(sK7(X7),sK7(X6))) )),
+  inference(superposition,[],[f138,f35])).
+tff(f35,plain,(
+  ( ! [X5 : person] : (int2person(sK7(X5)) = X5) )),
+  inference(cnf_transformation,[],[f28])).
+tff(f28,plain,(
+  ! [X0 : $int,X1 : $int] : ((is_descendant(int2person(X0),int2person(X1)) | ~$less(X0,X1)) & ($less(X0,X1) | ~is_descendant(int2person(X0),int2person(X1)))) & ! [X2 : $int] : child_of(int2person(X2)) = int2person($sum(X2,1)) & bob = int2person(0) & ! [X3 : $int,X4 : $int] : (X3 = X4 | int2person(X3) != int2person(X4)) & ! [X5 : person] : int2person(sK7(X5)) = X5),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK7])],[f26,f27])).
+tff(f27,plain,(
+  ! [X5 : person] : (? [X6 : $int] : int2person(X6) = X5 => int2person(sK7(X5)) = X5)),
+  introduced(choice_axiom,[])).
+tff(f26,plain,(
+  ! [X0 : $int,X1 : $int] : ((is_descendant(int2person(X0),int2person(X1)) | ~$less(X0,X1)) & ($less(X0,X1) | ~is_descendant(int2person(X0),int2person(X1)))) & ! [X2 : $int] : child_of(int2person(X2)) = int2person($sum(X2,1)) & bob = int2person(0) & ! [X3 : $int,X4 : $int] : (X3 = X4 | int2person(X3) != int2person(X4)) & ! [X5 : person] : ? [X6 : $int] : int2person(X6) = X5),
+  inference(nnf_transformation,[],[f20])).
+tff(f20,plain,(
+  ! [X0 : $int,X1 : $int] : (is_descendant(int2person(X0),int2person(X1)) <=> $less(X0,X1)) & ! [X2 : $int] : child_of(int2person(X2)) = int2person($sum(X2,1)) & bob = int2person(0) & ! [X3 : $int,X4 : $int] : (X3 = X4 | int2person(X3) != int2person(X4)) & ! [X5 : person] : ? [X6 : $int] : int2person(X6) = X5),
+  inference(ennf_transformation,[],[f17])).
+tff(f17,plain,(
+  ! [X0 : $int,X1 : $int] : (is_descendant(int2person(X0),int2person(X1)) <=> $less(X0,X1)) & ! [X2 : $int] : child_of(int2person(X2)) = int2person($sum(X2,1)) & bob = int2person(0) & ! [X3 : $int,X4 : $int] : (int2person(X3) = int2person(X4) => X3 = X4) & ! [X5 : person] : ? [X6 : $int] : int2person(X6) = X5),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ! [X4 : $int,X5 : $int] : (is_descendant(int2person(X4),int2person(X5)) <=> $less(X4,X5)) & ! [X1 : $int] : child_of(int2person(X1)) = int2person($sum(X1,1)) & bob = int2person(0) & ! [X2 : $int,X3 : $int] : (int2person(X2) = int2person(X3) => X2 = X3) & ! [X0 : person] : ? [X1 : $int] : int2person(X1) = X0),
+  file('TFF_Integer.s.p',people)).
+tff(f138,plain,(
+  ( ! [X2 : $int,X1 : person] : (~is_descendant(X1,int2person(X2)) | $less(sK7(X1),X2)) )),
+  inference(superposition,[],[f39,f35])).
+tff(f39,plain,(
+  ( ! [X0 : $int,X1 : $int] : (~is_descendant(int2person(X0),int2person(X1)) | $less(X0,X1)) )),
+  inference(cnf_transformation,[],[f28])).
+tff(f2411,plain,(
+  is_descendant(sK5,sK5) | ~spl8_26),
+  inference(avatar_component_clause,[],[f2410])).
+tff(f2412,plain,(
+  spl8_26 | ~spl8_1 | ~spl8_4),
+  inference(avatar_split_clause,[],[f2408,f58,f48,f2410])).
+tff(f48,plain,(
+  spl8_1 <=> sK5 = sK6),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_1])])).
+tff(f58,plain,(
+  spl8_4 <=> is_descendant(sK5,sK6)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_4])])).
+tff(f2408,plain,(
+  is_descendant(sK5,sK5) | (~spl8_1 | ~spl8_4)),
+  inference(backward_demodulation,[],[f59,f49])).
+tff(f49,plain,(
+  sK5 = sK6 | ~spl8_1),
+  inference(avatar_component_clause,[],[f48])).
+tff(f59,plain,(
+  is_descendant(sK5,sK6) | ~spl8_4),
+  inference(avatar_component_clause,[],[f58])).
+tff(f2407,plain,(
+  spl8_25 | spl8_17 | spl8_20),
+  inference(avatar_split_clause,[],[f2201,f2128,f1869,f2404])).
+tff(f2404,plain,(
+  spl8_25 <=> sK7(sK2) = sK7(sK3)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_25])])).
+tff(f1869,plain,(
+  spl8_17 <=> $less(sK7(sK2),sK7(sK3))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_17])])).
+tff(f2128,plain,(
+  spl8_20 <=> $less(sK7(sK3),sK7(sK2))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_20])])).
+tff(f2201,plain,(
+  $less(sK7(sK2),sK7(sK3)) | sK7(sK2) = sK7(sK3) | spl8_20),
+  inference(resolution,[],[f2129,f11])).
+tff(f11,plain,(
+  ( ! [X0 : $int,X1 : $int] : ($less(X1,X0) | $less(X0,X1) | X0 = X1) )),
+  introduced(theory_axiom_148,[])).
+tff(f2129,plain,(
+  ~$less(sK7(sK3),sK7(sK2)) | spl8_20),
+  inference(avatar_component_clause,[],[f2128])).
+tff(f2406,plain,(
+  spl8_25 | spl8_17 | spl8_20),
+  inference(avatar_split_clause,[],[f2202,f2128,f1869,f2404])).
+tff(f2202,plain,(
+  $less(sK7(sK2),sK7(sK3)) | sK7(sK2) = sK7(sK3) | spl8_20),
+  inference(resolution,[],[f2129,f11])).
+tff(f2402,plain,(
+  spl8_2 | ~spl8_24),
+  inference(avatar_split_clause,[],[f2401,f2364,f51])).
+tff(f51,plain,(
+  spl8_2 <=> is_descendant(sK2,sK4)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_2])])).
+tff(f2364,plain,(
+  spl8_24 <=> $less(sK7(sK2),sK7(sK4))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_24])])).
+tff(f2401,plain,(
+  is_descendant(sK2,sK4) | ~spl8_24),
+  inference(forward_demodulation,[],[f2394,f35])).
+tff(f2394,plain,(
+  is_descendant(int2person(sK7(sK2)),sK4) | ~spl8_24),
+  inference(resolution,[],[f2365,f148])).
+tff(f148,plain,(
+  ( ! [X2 : $int,X1 : person] : (~$less(X2,sK7(X1)) | is_descendant(int2person(X2),X1)) )),
+  inference(superposition,[],[f40,f35])).
+tff(f40,plain,(
+  ( ! [X0 : $int,X1 : $int] : (is_descendant(int2person(X0),int2person(X1)) | ~$less(X0,X1)) )),
+  inference(cnf_transformation,[],[f28])).
+tff(f2365,plain,(
+  $less(sK7(sK2),sK7(sK4)) | ~spl8_24),
+  inference(avatar_component_clause,[],[f2364])).
+tff(f2400,plain,(
+  spl8_2 | ~spl8_24),
+  inference(avatar_split_clause,[],[f2398,f2364,f51])).
+tff(f2398,plain,(
+  is_descendant(sK2,sK4) | ~spl8_24),
+  inference(forward_demodulation,[],[f2393,f35])).
+tff(f2393,plain,(
+  is_descendant(sK2,int2person(sK7(sK4))) | ~spl8_24),
+  inference(resolution,[],[f2365,f145])).
+tff(f145,plain,(
+  ( ! [X2 : $int,X1 : person] : (~$less(sK7(X1),X2) | is_descendant(X1,int2person(X2))) )),
+  inference(superposition,[],[f40,f35])).
+tff(f2366,plain,(
+  spl8_24 | ~spl8_17 | ~spl8_18),
+  inference(avatar_split_clause,[],[f2351,f1873,f1869,f2364])).
+tff(f1873,plain,(
+  spl8_18 <=> $less(sK7(sK3),sK7(sK4))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_18])])).
+tff(f2351,plain,(
+  $less(sK7(sK2),sK7(sK4)) | (~spl8_17 | ~spl8_18)),
+  inference(resolution,[],[f1995,f1870])).
+tff(f1870,plain,(
+  $less(sK7(sK2),sK7(sK3)) | ~spl8_17),
+  inference(avatar_component_clause,[],[f1869])).
+tff(f1995,plain,(
+  ( ! [X2 : $int] : (~$less(X2,sK7(sK3)) | $less(X2,sK7(sK4))) ) | ~spl8_18),
+  inference(resolution,[],[f1874,f10])).
+tff(f10,plain,(
+  ( ! [X2 : $int,X0 : $int,X1 : $int] : (~$less(X1,X2) | ~$less(X0,X1) | $less(X0,X2)) )),
+  introduced(theory_axiom_147,[])).
+tff(f1874,plain,(
+  $less(sK7(sK3),sK7(sK4)) | ~spl8_18),
+  inference(avatar_component_clause,[],[f1873])).
+tff(f2362,plain,(
+  spl8_23 | ~spl8_18),
+  inference(avatar_split_clause,[],[f2361,f1873,f2358])).
+tff(f2358,plain,(
+  spl8_23 <=> $less($sum(-1,sK7(sK3)),sK7(sK4))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_23])])).
+tff(f2361,plain,(
+  $less($sum(-1,sK7(sK3)),sK7(sK4)) | ~spl8_18),
+  inference(forward_demodulation,[],[f2346,f4])).
+tff(f4,plain,(
+  ( ! [X0 : $int,X1 : $int] : ($sum(X0,X1) = $sum(X1,X0)) )),
+  introduced(theory_axiom_139,[])).
+tff(f2346,plain,(
+  $less($sum(sK7(sK3),-1),sK7(sK4)) | ~spl8_18),
+  inference(resolution,[],[f1995,f459])).
+tff(f459,plain,(
+  ( ! [X0 : $int] : ($less($sum(X0,-1),X0)) )),
+  inference(superposition,[],[f433,f4])).
+tff(f433,plain,(
+  ( ! [X19 : $int] : ($less($sum(-1,X19),X19)) )),
+  inference(evaluation,[],[f431])).
+tff(f431,plain,(
+  ( ! [X19 : $int] : ($less($sum($uminus(1),X19),X19)) )),
+  inference(superposition,[],[f106,f233])).
+tff(f233,plain,(
+  ( ! [X2 : $int,X3 : $int] : ($sum(X2,$sum($uminus(X2),X3)) = X3) )),
+  inference(forward_demodulation,[],[f212,f79])).
+tff(f79,plain,(
+  ( ! [X0 : $int] : ($sum(0,X0) = X0) )),
+  inference(superposition,[],[f4,f6])).
+tff(f6,plain,(
+  ( ! [X0 : $int] : ($sum(X0,0) = X0) )),
+  introduced(theory_axiom_141,[])).
+tff(f212,plain,(
+  ( ! [X2 : $int,X3 : $int] : ($sum(X2,$sum($uminus(X2),X3)) = $sum(0,X3)) )),
+  inference(superposition,[],[f5,f8])).
+tff(f8,plain,(
+  ( ! [X0 : $int] : (0 = $sum(X0,$uminus(X0))) )),
+  introduced(theory_axiom_144,[])).
+tff(f5,plain,(
+  ( ! [X2 : $int,X0 : $int,X1 : $int] : ($sum(X0,$sum(X1,X2)) = $sum($sum(X0,X1),X2)) )),
+  introduced(theory_axiom_140,[])).
+tff(f106,plain,(
+  ( ! [X0 : $int] : ($less(X0,$sum(1,X0))) )),
+  inference(superposition,[],[f87,f4])).
+tff(f87,plain,(
+  ( ! [X0 : $int] : ($less(X0,$sum(X0,1))) )),
+  inference(resolution,[],[f13,f9])).
+tff(f9,plain,(
+  ( ! [X0 : $int] : (~$less(X0,X0)) )),
+  introduced(theory_axiom_146,[])).
+tff(f13,plain,(
+  ( ! [X0 : $int,X1 : $int] : ($less(X1,$sum(X0,1)) | $less(X0,X1)) )),
+  introduced(theory_axiom_151,[])).
+tff(f2360,plain,(
+  spl8_23 | ~spl8_18),
+  inference(avatar_split_clause,[],[f2345,f1873,f2358])).
+tff(f2345,plain,(
+  $less($sum(-1,sK7(sK3)),sK7(sK4)) | ~spl8_18),
+  inference(resolution,[],[f1995,f433])).
+tff(f2356,plain,(
+  spl8_22 | ~spl8_18 | ~spl8_19),
+  inference(avatar_split_clause,[],[f2344,f2076,f1873,f2354])).
+tff(f2354,plain,(
+  spl8_22 <=> $less($sum(-1,sK7(sK2)),sK7(sK4))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_22])])).
+tff(f2076,plain,(
+  spl8_19 <=> $less($sum(-1,sK7(sK2)),sK7(sK3))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_19])])).
+tff(f2344,plain,(
+  $less($sum(-1,sK7(sK2)),sK7(sK4)) | (~spl8_18 | ~spl8_19)),
+  inference(resolution,[],[f1995,f2077])).
+tff(f2077,plain,(
+  $less($sum(-1,sK7(sK2)),sK7(sK3)) | ~spl8_19),
+  inference(avatar_component_clause,[],[f2076])).
+tff(f2134,plain,(
+  spl8_21 | ~spl8_19),
+  inference(avatar_split_clause,[],[f2123,f2076,f2132])).
+tff(f2132,plain,(
+  spl8_21 <=> is_descendant(int2person($sum(-1,sK7(sK2))),sK3)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_21])])).
+tff(f2123,plain,(
+  is_descendant(int2person($sum(-1,sK7(sK2))),sK3) | ~spl8_19),
+  inference(resolution,[],[f2077,f148])).
+tff(f2130,plain,(
+  ~spl8_20 | ~spl8_19),
+  inference(avatar_split_clause,[],[f2122,f2076,f2128])).
+tff(f2122,plain,(
+  ~$less(sK7(sK3),sK7(sK2)) | ~spl8_19),
+  inference(resolution,[],[f2077,f435])).
+tff(f435,plain,(
+  ( ! [X16 : $int,X15 : $int] : (~$less($sum(-1,X15),X16) | ~$less(X16,X15)) )),
+  inference(evaluation,[],[f429])).
+tff(f429,plain,(
+  ( ! [X16 : $int,X15 : $int] : (~$less(X16,X15) | ~$less($sum($uminus(1),X15),X16)) )),
+  inference(superposition,[],[f100,f233])).
+tff(f100,plain,(
+  ( ! [X0 : $int,X1 : $int] : (~$less(X1,$sum(1,X0)) | ~$less(X0,X1)) )),
+  inference(superposition,[],[f15,f4])).
+tff(f15,plain,(
+  ( ! [X0 : $int,X1 : $int] : (~$less(X1,$sum(X0,1)) | ~$less(X0,X1)) )),
+  introduced(theory_axiom_165,[])).
+tff(f2080,plain,(
+  spl8_19 | ~spl8_17),
+  inference(avatar_split_clause,[],[f2079,f1869,f2076])).
+tff(f2079,plain,(
+  $less($sum(-1,sK7(sK2)),sK7(sK3)) | ~spl8_17),
+  inference(forward_demodulation,[],[f2070,f4])).
+tff(f2070,plain,(
+  $less($sum(sK7(sK2),-1),sK7(sK3)) | ~spl8_17),
+  inference(resolution,[],[f1966,f459])).
+tff(f1966,plain,(
+  ( ! [X2 : $int] : (~$less(X2,sK7(sK2)) | $less(X2,sK7(sK3))) ) | ~spl8_17),
+  inference(resolution,[],[f1870,f10])).
+tff(f2078,plain,(
+  spl8_19 | ~spl8_17),
+  inference(avatar_split_clause,[],[f2069,f1869,f2076])).
+tff(f2069,plain,(
+  $less($sum(-1,sK7(sK2)),sK7(sK3)) | ~spl8_17),
+  inference(resolution,[],[f1966,f433])).
+tff(f1875,plain,(
+  spl8_18 | ~spl8_5),
+  inference(avatar_split_clause,[],[f1851,f62,f1873])).
+tff(f62,plain,(
+  spl8_5 <=> is_descendant(sK3,sK4)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_5])])).
+tff(f1851,plain,(
+  $less(sK7(sK3),sK7(sK4)) | ~spl8_5),
+  inference(resolution,[],[f354,f63])).
+tff(f63,plain,(
+  is_descendant(sK3,sK4) | ~spl8_5),
+  inference(avatar_component_clause,[],[f62])).
+tff(f1871,plain,(
+  spl8_17 | ~spl8_6),
+  inference(avatar_split_clause,[],[f1850,f67,f1869])).
+tff(f67,plain,(
+  spl8_6 <=> is_descendant(sK2,sK3)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_6])])).
+tff(f1850,plain,(
+  $less(sK7(sK2),sK7(sK3)) | ~spl8_6),
+  inference(resolution,[],[f354,f68])).
+tff(f68,plain,(
+  is_descendant(sK2,sK3) | ~spl8_6),
+  inference(avatar_component_clause,[],[f67])).
+tff(f394,plain,(
+  spl8_16 | ~spl8_8),
+  inference(avatar_split_clause,[],[f388,f124,f392])).
+tff(f392,plain,(
+  spl8_16 <=> is_descendant(int2person(-1),bob)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_16])])).
+tff(f124,plain,(
+  spl8_8 <=> bob = child_of(int2person(-1))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_8])])).
+tff(f388,plain,(
+  is_descendant(int2person(-1),bob) | ~spl8_8),
+  inference(superposition,[],[f382,f125])).
+tff(f125,plain,(
+  bob = child_of(int2person(-1)) | ~spl8_8),
+  inference(avatar_component_clause,[],[f124])).
+tff(f382,plain,(
+  ( ! [X8 : person] : (is_descendant(X8,child_of(X8))) )),
+  inference(forward_demodulation,[],[f381,f35])).
+tff(f381,plain,(
+  ( ! [X8 : person] : (is_descendant(X8,child_of(int2person(sK7(X8))))) )),
+  inference(forward_demodulation,[],[f372,f38])).
+tff(f38,plain,(
+  ( ! [X2 : $int] : (child_of(int2person(X2)) = int2person($sum(X2,1))) )),
+  inference(cnf_transformation,[],[f28])).
+tff(f372,plain,(
+  ( ! [X8 : person] : (is_descendant(X8,int2person($sum(sK7(X8),1)))) )),
+  inference(resolution,[],[f145,f87])).
+tff(f389,plain,(
+  spl8_3),
+  inference(avatar_contradiction_clause,[],[f387])).
+tff(f387,plain,(
+  $false | spl8_3),
+  inference(resolution,[],[f382,f55])).
+tff(f55,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | spl8_3),
+  inference(avatar_component_clause,[],[f54])).
+tff(f54,plain,(
+  spl8_3 <=> is_descendant(sK1,child_of(sK1))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_3])])).
+tff(f326,plain,(
+  spl8_15 | ~spl8_9),
+  inference(avatar_split_clause,[],[f317,f129,f324])).
+tff(f324,plain,(
+  spl8_15 <=> 1 = sK7(child_of(bob))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_15])])).
+tff(f129,plain,(
+  spl8_9 <=> int2person(1) = child_of(bob)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_9])])).
+tff(f317,plain,(
+  1 = sK7(child_of(bob)) | ~spl8_9),
+  inference(superposition,[],[f315,f130])).
+tff(f130,plain,(
+  int2person(1) = child_of(bob) | ~spl8_9),
+  inference(avatar_component_clause,[],[f129])).
+tff(f315,plain,(
+  ( ! [X0 : $int] : (sK7(int2person(X0)) = X0) )),
+  inference(equality_resolution,[],[f111])).
+tff(f111,plain,(
+  ( ! [X2 : $int,X1 : person] : (int2person(X2) != X1 | sK7(X1) = X2) )),
+  inference(superposition,[],[f36,f35])).
+tff(f36,plain,(
+  ( ! [X3 : $int,X4 : $int] : (int2person(X3) != int2person(X4) | X3 = X4) )),
+  inference(cnf_transformation,[],[f28])).
+tff(f322,plain,(
+  spl8_14 | ~spl8_7),
+  inference(avatar_split_clause,[],[f316,f72,f320])).
+tff(f320,plain,(
+  spl8_14 <=> 0 = sK7(bob)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_14])])).
+tff(f72,plain,(
+  spl8_7 <=> bob = int2person(0)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_7])])).
+tff(f316,plain,(
+  0 = sK7(bob) | ~spl8_7),
+  inference(superposition,[],[f315,f73])).
+tff(f73,plain,(
+  bob = int2person(0) | ~spl8_7),
+  inference(avatar_component_clause,[],[f72])).
+tff(f282,plain,(
+  spl8_13 | ~spl8_7 | ~spl8_9),
+  inference(avatar_split_clause,[],[f278,f129,f72,f280])).
+tff(f280,plain,(
+  spl8_13 <=> is_descendant(bob,child_of(bob))),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_13])])).
+tff(f278,plain,(
+  is_descendant(bob,child_of(bob)) | (~spl8_7 | ~spl8_9)),
+  inference(evaluation,[],[f275])).
+tff(f275,plain,(
+  is_descendant(bob,child_of(bob)) | ~$less(0,1) | (~spl8_7 | ~spl8_9)),
+  inference(superposition,[],[f144,f130])).
+tff(f144,plain,(
+  ( ! [X0 : $int] : (is_descendant(bob,int2person(X0)) | ~$less(0,X0)) ) | ~spl8_7),
+  inference(superposition,[],[f40,f73])).
+tff(f272,plain,(
+  ~spl8_12 | ~spl8_7 | ~spl8_9),
+  inference(avatar_split_clause,[],[f267,f129,f72,f270])).
+tff(f270,plain,(
+  spl8_12 <=> is_descendant(child_of(bob),bob)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_12])])).
+tff(f267,plain,(
+  ~is_descendant(child_of(bob),bob) | (~spl8_7 | ~spl8_9)),
+  inference(evaluation,[],[f264])).
+tff(f264,plain,(
+  ~is_descendant(child_of(bob),bob) | $less(1,0) | (~spl8_7 | ~spl8_9)),
+  inference(superposition,[],[f140,f130])).
+tff(f140,plain,(
+  ( ! [X0 : $int] : (~is_descendant(int2person(X0),bob) | $less(X0,0)) ) | ~spl8_7),
+  inference(superposition,[],[f39,f73])).
+tff(f262,plain,(
+  ~spl8_11 | ~spl8_7),
+  inference(avatar_split_clause,[],[f258,f72,f260])).
+tff(f260,plain,(
+  spl8_11 <=> is_descendant(bob,bob)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_11])])).
+tff(f258,plain,(
+  ~is_descendant(bob,bob) | ~spl8_7),
+  inference(evaluation,[],[f254])).
+tff(f254,plain,(
+  ~is_descendant(bob,bob) | $less(0,0) | ~spl8_7),
+  inference(superposition,[],[f137,f73])).
+tff(f137,plain,(
+  ( ! [X0 : $int] : (~is_descendant(bob,int2person(X0)) | $less(0,X0)) ) | ~spl8_7),
+  inference(superposition,[],[f39,f73])).
+tff(f253,plain,(
+  ~spl8_10 | ~spl8_7 | ~spl8_9),
+  inference(avatar_split_clause,[],[f249,f129,f72,f251])).
+tff(f251,plain,(
+  spl8_10 <=> bob = child_of(bob)),
+  introduced(avatar_definition,[new_symbols(naming,[spl8_10])])).
+tff(f249,plain,(
+  bob != child_of(bob) | (~spl8_7 | ~spl8_9)),
+  inference(evaluation,[],[f246])).
+tff(f246,plain,(
+  bob != child_of(bob) | 0 = 1 | (~spl8_7 | ~spl8_9)),
+  inference(superposition,[],[f110,f130])).
+tff(f110,plain,(
+  ( ! [X0 : $int] : (bob != int2person(X0) | 0 = X0) ) | ~spl8_7),
+  inference(superposition,[],[f36,f73])).
+tff(f131,plain,(
+  spl8_9 | ~spl8_7),
+  inference(avatar_split_clause,[],[f127,f72,f129])).
+tff(f127,plain,(
+  int2person(1) = child_of(bob) | ~spl8_7),
+  inference(forward_demodulation,[],[f118,f73])).
+tff(f118,plain,(
+  child_of(int2person(0)) = int2person(1)),
+  inference(superposition,[],[f38,f79])).
+tff(f126,plain,(
+  spl8_8 | ~spl8_7),
+  inference(avatar_split_clause,[],[f122,f72,f124])).
+tff(f122,plain,(
+  bob = child_of(int2person(-1)) | ~spl8_7),
+  inference(forward_demodulation,[],[f121,f73])).
+tff(f121,plain,(
+  int2person(0) = child_of(int2person(-1))),
+  inference(evaluation,[],[f117])).
+tff(f117,plain,(
+  int2person(0) = child_of(int2person($uminus(1)))),
+  inference(superposition,[],[f38,f75])).
+tff(f75,plain,(
+  ( ! [X0 : $int] : (0 = $sum($uminus(X0),X0)) )),
+  inference(superposition,[],[f8,f14])).
+tff(f14,plain,(
+  ( ! [X0 : $int] : ($uminus($uminus(X0)) = X0) )),
+  introduced(theory_axiom_152,[])).
+tff(f74,plain,(
+  spl8_7),
+  inference(avatar_split_clause,[],[f37,f72])).
+tff(f37,plain,(
+  bob = int2person(0)),
+  inference(cnf_transformation,[],[f28])).
+tff(f70,plain,(
+  spl8_4 | spl8_6 | ~spl8_3),
+  inference(avatar_split_clause,[],[f46,f54,f67,f58])).
+tff(f46,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | is_descendant(sK5,sK6)),
+  inference(equality_resolution,[],[f29])).
+tff(f29,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | is_descendant(sK5,sK6)) )),
+  inference(cnf_transformation,[],[f25])).
+tff(f25,plain,(
+  ! [X1 : person] : child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | (~is_descendant(sK2,sK4) & is_descendant(sK3,sK4) & is_descendant(sK2,sK3)) | (sK5 = sK6 & is_descendant(sK5,sK6))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK0,sK1,sK2,sK3,sK4,sK5,sK6])],[f19,f24,f23,f22,f21])).
+tff(f21,plain,(
+  ? [X0 : person] : ! [X1 : person] : child_of(X0) != X1 => ! [X1 : person] : child_of(sK0) != X1),
+  introduced(choice_axiom,[])).
+tff(f22,plain,(
+  ? [X2 : person] : ~is_descendant(X2,child_of(X2)) => ~is_descendant(sK1,child_of(sK1))),
+  introduced(choice_axiom,[])).
+tff(f23,plain,(
+  ? [X3 : person,X4 : person,X5 : person] : (~is_descendant(X3,X5) & is_descendant(X4,X5) & is_descendant(X3,X4)) => (~is_descendant(sK2,sK4) & is_descendant(sK3,sK4) & is_descendant(sK2,sK3))),
+  introduced(choice_axiom,[])).
+tff(f24,plain,(
+  ? [X6 : person,X7 : person] : (X6 = X7 & is_descendant(X6,X7)) => (sK5 = sK6 & is_descendant(sK5,sK6))),
+  introduced(choice_axiom,[])).
+tff(f19,plain,(
+  ? [X0 : person] : ! [X1 : person] : child_of(X0) != X1 | ? [X2 : person] : ~is_descendant(X2,child_of(X2)) | ? [X3 : person,X4 : person,X5 : person] : (~is_descendant(X3,X5) & is_descendant(X4,X5) & is_descendant(X3,X4)) | ? [X6 : person,X7 : person] : (X6 = X7 & is_descendant(X6,X7))),
+  inference(flattening,[],[f18])).
+tff(f18,plain,(
+  ? [X0 : person] : ! [X1 : person] : child_of(X0) != X1 | ? [X2 : person] : ~is_descendant(X2,child_of(X2)) | ? [X3 : person,X4 : person,X5 : person] : (~is_descendant(X3,X5) & (is_descendant(X4,X5) & is_descendant(X3,X4))) | ? [X6 : person,X7 : person] : (X6 = X7 & is_descendant(X6,X7))),
+  inference(ennf_transformation,[],[f16])).
+tff(f16,plain,(
+  ~(! [X0 : person] : ? [X1 : person] : child_of(X0) = X1 & ! [X2 : person] : is_descendant(X2,child_of(X2)) & ! [X3 : person,X4 : person,X5 : person] : ((is_descendant(X4,X5) & is_descendant(X3,X4)) => is_descendant(X3,X5)) & ! [X6 : person,X7 : person] : (is_descendant(X6,X7) => X6 != X7))),
+  inference(rectify,[],[f3])).
+tff(f3,negated_conjecture,(
+  ~(! [X0 : person] : ? [X6 : person] : child_of(X0) = X6 & ! [X0 : person] : is_descendant(X0,child_of(X0)) & ! [X4 : person,X6 : person,X7 : person] : ((is_descendant(X6,X7) & is_descendant(X4,X6)) => is_descendant(X4,X7)) & ! [X4 : person,X5 : person] : (is_descendant(X4,X5) => X4 != X5))),
+  inference(negated_conjecture,[],[f2])).
+tff(f2,conjecture,(
+  ! [X0 : person] : ? [X6 : person] : child_of(X0) = X6 & ! [X0 : person] : is_descendant(X0,child_of(X0)) & ! [X4 : person,X6 : person,X7 : person] : ((is_descendant(X6,X7) & is_descendant(X4,X6)) => is_descendant(X4,X7)) & ! [X4 : person,X5 : person] : (is_descendant(X4,X5) => X4 != X5)),
+  file('TFF_Integer.s.p',prove_formulae)).
+tff(f69,plain,(
+  spl8_1 | spl8_6 | ~spl8_3),
+  inference(avatar_split_clause,[],[f45,f54,f67,f48])).
+tff(f45,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | sK5 = sK6),
+  inference(equality_resolution,[],[f30])).
+tff(f30,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | sK5 = sK6) )),
+  inference(cnf_transformation,[],[f25])).
+tff(f65,plain,(
+  spl8_4 | spl8_5 | ~spl8_3),
+  inference(avatar_split_clause,[],[f44,f54,f62,f58])).
+tff(f44,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | is_descendant(sK5,sK6)),
+  inference(equality_resolution,[],[f31])).
+tff(f31,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | is_descendant(sK5,sK6)) )),
+  inference(cnf_transformation,[],[f25])).
+tff(f64,plain,(
+  spl8_1 | spl8_5 | ~spl8_3),
+  inference(avatar_split_clause,[],[f43,f54,f62,f48])).
+tff(f43,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | sK5 = sK6),
+  inference(equality_resolution,[],[f32])).
+tff(f32,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | sK5 = sK6) )),
+  inference(cnf_transformation,[],[f25])).
+tff(f60,plain,(
+  spl8_4 | ~spl8_2 | ~spl8_3),
+  inference(avatar_split_clause,[],[f42,f54,f51,f58])).
+tff(f42,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | is_descendant(sK5,sK6)),
+  inference(equality_resolution,[],[f33])).
+tff(f33,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | is_descendant(sK5,sK6)) )),
+  inference(cnf_transformation,[],[f25])).
+tff(f56,plain,(
+  spl8_1 | ~spl8_2 | ~spl8_3),
+  inference(avatar_split_clause,[],[f41,f54,f51,f48])).
+tff(f41,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | sK5 = sK6),
+  inference(equality_resolution,[],[f34])).
+tff(f34,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | sK5 = sK6) )),
+  inference(cnf_transformation,[],[f25])).
+% SZS output end Proof for TFF_Integer.s

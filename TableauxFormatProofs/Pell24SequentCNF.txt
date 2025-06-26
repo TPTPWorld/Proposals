@@ -1,0 +1,82 @@
+fof(pel24_1,axiom,
+    ~ ? [X] : ( s(X) & q(X) ) ).
+
+fof(pel24_2,axiom,
+    ! [X] : ( p(X) => ( q(X) | r(X) ) ) ).
+
+fof(pel24_3a,axiom,
+    ? [X] : p(X) ).
+
+fof(pel24_4a,axiom,
+    ! [X] : ( q(X) => s(X) ) ).
+
+%----Clausify pel24_1
+fof(p1a,plain,
+    ! [X] : ( ~ s(X) | ~ q(X) ),
+    inference(same_nnf,[status(thm)],[pel24_1]) ).
+
+cnf(p1, plain,
+    ( ~ s(X) | ~ q(X) ),
+    inference(forall_inst,[status(thm)],[p1a]) ).
+
+%----Clausify pel24_2
+fof(p2a, plain,
+    ! [X] : ( ~ p(X) | q(X) | r(X) ),
+    inference(same_nnf,[status(thm)],[pel24_2]) ).
+
+cnf(p2, plain,
+    ~ p(Y) | q(Y) | r(Y),
+    inference(forall_inst,[status(thm)],[p2a]) ).
+
+%----Clausify pel24_3a. "a" is the Skolem constant
+fof(a_defn,axiom,
+    ( a
+    = # [X] : p(X) ) ),
+    introduced(epsilon,[skolemized(X2),parent(a1)]) ).
+
+cnf(p3,plain,
+    p(a),
+    inference(epsilon_rule,[status(thm)],[pel24_3a,a_defn]) ).
+
+%----Clausify pel24_4a
+fof(p4a,plain,
+    ! [X] : ( ~ q(X) | s(X) ),
+    inference(same_nnf,[status(thm)],[pel24_4a]) ).
+
+cnf(p4,plain,
+    ~ q(X) | s(X),
+    inference(forall_inst,[status(thm)],[p4a]) ).
+
+%----Start "resolution" proof
+fof(p5,assumption,
+    [q(a)] --> [q(a)],
+    inference(hyp, [status(thm)], []) ).
+
+fof(p7,plain,
+    [q(a)] --> [s(a)],
+    inference(inst,[status(thm)],[inference(inst,[status(thm),bind(X,$fot(a))],[p4])]) ).
+
+fof(p9,plain,
+    [q(a)] --> [~ q(a)],
+    inference(resolution,[status(thm)],[p7,inference(inst,[status(thm),bind(X,$fot(a))],[p1])]) ).
+
+fof(p10,plain,    
+    ~ q(a),
+    inference(rightNot,[status(thm)],[p9]) ).
+
+fof(p12,plain,
+    q(a) | r(a),
+    inference(resolution,[status(thm)],[p3,inference(inst,[status(thm),bind(Y,$fot(a))],[p2])]) ).
+
+fof(p13,plain,
+    r(a),
+    inference(resolution,[status(thm)],[p12,p10]) ).
+
+fof(p14,plain,
+    p(a) & r(a),
+    inference(rightAnd,[status(thm)],[p3,p13]) ).
+
+fof(pel24,conjecture,
+    ? [X] : ( p(X) & r(X) ),
+    inference(rightExists,[status(thm)],[p14]) ).
+

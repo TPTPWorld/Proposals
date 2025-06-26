@@ -1,0 +1,405 @@
+% START OF SYSTEM OUTPUT
+Running first-order theorem proving
+Running: /exp/home/tptp/Systems/Vampire---4.8/vampire --input_syntax tptp --proof tptp --output_axiom_names on --mode portfolio --schedule file --schedule_file /exp/home/tptp/Systems/Vampire---4.8/quickGreedyProduceRating_steal_pow3.txt --cores 8 -m 12000 -t 30 /tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829
+% (6847)ott+1011_1:1_sil=2000:urr=on:i=33:sd=1:kws=inv_frequency:ss=axioms:sup=off_0 on Vampire---4 for (295ds/33Mi)
+% (6845)lrs+1011_461:32768_sil=16000:irw=on:sp=frequency:lsd=20:fd=preordered:nwc=10.0:s2agt=32:alpa=false:cond=fast:s2a=on:i=51:s2at=3.0:awrs=decay:awrsf=691:bd=off:nm=20:fsr=off:amm=sco:uhcvi=on:rawr=on_0 on Vampire---4 for (295ds/51Mi)
+% (6844)dis-1011_2:1_sil=2000:lsd=20:nwc=5.0:flr=on:mep=off:st=3.0:i=34:sd=1:ep=RS:ss=axioms_0 on Vampire---4 for (295ds/34Mi)
+% (6846)lrs+1011_1:1_sil=8000:sp=occurrence:nwc=10.0:i=78:ss=axioms:sgt=8_0 on Vampire---4 for (295ds/78Mi)
+% (6849)lrs+1002_1:16_to=lpo:sil=32000:sp=unary_frequency:sos=on:i=45:bd=off:ss=axioms_0 on Vampire---4 for (295ds/45Mi)
+% (6848)lrs+2_1:1_sil=16000:fde=none:sos=all:nwc=5.0:i=34:ep=RS:s2pl=on:lma=on:afp=100000_0 on Vampire---4 for (295ds/34Mi)
+% (6844)Refutation not found, incomplete strategy% (6844)------------------------------
+% (6844)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (6844)Termination reason: Refutation not found, incomplete strategy
+
+% (6844)Memory used [KB]: 991
+% (6844)Time elapsed: 0.003 s
+% (6844)Instructions burned: 3 (million)
+% (6844)------------------------------
+% (6844)------------------------------
+% (6849)Refutation not found, incomplete strategy% (6849)------------------------------
+% (6849)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (6849)Termination reason: Refutation not found, incomplete strategy
+
+% (6849)Memory used [KB]: 988
+% (6849)Time elapsed: 0.003 s
+% (6849)Instructions burned: 4 (million)
+% (6849)------------------------------
+% (6849)------------------------------
+% (6847)Refutation not found, incomplete strategy% (6847)------------------------------
+% (6847)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (6847)Termination reason: Refutation not found, incomplete strategy
+
+% (6847)Memory used [KB]: 1064
+% (6847)Time elapsed: 0.003 s
+% (6847)Instructions burned: 4 (million)
+% (6847)------------------------------
+% (6847)------------------------------
+% (6848)Refutation not found, incomplete strategy% (6848)------------------------------
+% (6848)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (6848)Termination reason: Refutation not found, incomplete strategy
+
+% (6848)Memory used [KB]: 991
+% (6848)Time elapsed: 0.005 s
+% (6848)Instructions burned: 3 (million)
+% (6848)------------------------------
+% (6848)------------------------------
+% (6850)lrs+21_1:5_sil=2000:sos=on:urr=on:newcnf=on:slsq=on:i=83:slsql=off:bd=off:nm=2:ss=axioms:st=1.5:sp=const_min:gsp=on:rawr=on_0 on Vampire---4 for (295ds/83Mi)
+% (6851)lrs-21_1:1_to=lpo:sil=2000:sp=frequency:sos=on:lma=on:i=56:sd=2:ss=axioms:ep=R_0 on Vampire---4 for (295ds/56Mi)
+% (6852)lrs+21_1:16_sil=2000:sp=occurrence:urr=on:flr=on:i=55:sd=1:nm=0:ins=3:ss=included:rawr=on:br=off_0 on Vampire---4 for (295ds/55Mi)
+% (6846)First to succeed.
+% (6853)dis+3_25:4_sil=16000:sos=all:erd=off:i=50:s2at=4.0:bd=off:nm=60:sup=off:cond=on:av=off:ins=2:nwc=10.0:etr=on:to=lpo:s2agt=20:fd=off:bsr=unit_only:slsq=on:slsqr=28,19:awrs=converge:awrsf=500:tgt=ground:bs=unit_only_0 on Vampire---4 for (295ds/50Mi)
+% (6851)Refutation not found, incomplete strategy% (6851)------------------------------
+% (6851)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (6851)Termination reason: Refutation not found, incomplete strategy
+
+% (6851)Memory used [KB]: 985
+% (6851)Time elapsed: 0.002 s
+% (6851)Instructions burned: 3 (million)
+% (6851)------------------------------
+% (6851)------------------------------
+% (6846)Refutation found. Thanks to Tanya!
+% SZS status Theorem for Vampire---4
+% SZS output start Proof for Vampire---4
+fof(f193,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[f90,f118,f138,f145,f163,f167,f180,f182,f192])).
+fof(f192,plain,(
+  ~spl4_3),
+  inference(avatar_contradiction_clause,[],[f187])).
+fof(f187,plain,(
+  $false | ~spl4_3),
+  inference(resolution,[],[f88,f76])).
+fof(f76,plain,(
+  ~human("a")),
+  inference(equality_resolution,[],[f49])).
+fof(f49,plain,(
+  ( ! [X0] : ("a" != X0 | ~human(X0)) )),
+  inference(cnf_transformation,[],[f28])).
+fof(f28,plain,(
+  ! [X0] : ((human(X0) | "a" = X0 | "f" = X0) & (("a" != X0 & "f" != X0) | ~human(X0)))),
+  inference(flattening,[],[f27])).
+fof(f27,plain,(
+  ! [X0] : ((human(X0) | ("a" = X0 | "f" = X0)) & (("a" != X0 & "f" != X0) | ~human(X0)))),
+  inference(nnf_transformation,[],[f2])).
+fof(f2,axiom,(
+  ! [X0] : (human(X0) <=> ("a" != X0 & "f" != X0))),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',human)).
+fof(f88,plain,(
+  ( ! [X1] : (human(X1)) ) | ~spl4_3),
+  inference(avatar_component_clause,[],[f87])).
+fof(f87,plain,(
+  spl4_3 <=> ! [X1] : human(X1)),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_3])])).
+fof(f182,plain,(
+  spl4_5),
+  inference(avatar_contradiction_clause,[],[f181])).
+fof(f181,plain,(
+  $false | spl4_5),
+  inference(subsumption_resolution,[],[f98,f57])).
+fof(f57,plain,(
+  ( ! [X0,X1] : (created_equal(X0,X1)) )),
+  inference(cnf_transformation,[],[f11])).
+fof(f11,plain,(
+  ! [X0,X1] : created_equal(X0,X1)),
+  inference(true_and_false_elimination,[],[f1])).
+fof(f1,axiom,(
+  ! [X0,X1] : (created_equal(X0,X1) <=> $true)),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',created_equal)).
+fof(f98,plain,(
+  ~created_equal(sK2,sK3) | spl4_5),
+  inference(avatar_component_clause,[],[f96])).
+fof(f96,plain,(
+  spl4_5 <=> created_equal(sK2,sK3)),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_5])])).
+fof(f180,plain,(
+  ~spl4_10),
+  inference(avatar_contradiction_clause,[],[f179])).
+fof(f179,plain,(
+  $false | ~spl4_10),
+  inference(subsumption_resolution,[],[f178,f56])).
+fof(f56,plain,(
+  "f" != "a"),
+  inference(cnf_transformation,[],[f9])).
+fof(f9,plain,(
+  "f" != "a" & "f" != "john" & "a" != "john" & "f" != "gotA" & "a" != "gotA" & "john" != "gotA"),
+  introduced(distinctness_axiom,[])).
+fof(f178,plain,(
+  "f" = "a" | ~spl4_10),
+  inference(backward_demodulation,[],[f66,f177])).
+fof(f177,plain,(
+  "f" = grade_of("gotA") | ~spl4_10),
+  inference(backward_demodulation,[],[f172,f176])).
+fof(f176,plain,(
+  "gotA" = sK1 | ~spl4_10),
+  inference(subsumption_resolution,[],[f171,f77])).
+fof(f77,plain,(
+  ~human("f")),
+  inference(equality_resolution,[],[f48])).
+fof(f48,plain,(
+  ( ! [X0] : ("f" != X0 | ~human(X0)) )),
+  inference(cnf_transformation,[],[f28])).
+fof(f171,plain,(
+  human("f") | "gotA" = sK1 | ~spl4_10),
+  inference(superposition,[],[f117,f67])).
+fof(f67,plain,(
+  ( ! [X1] : ("f" = grade_of(X1) | "gotA" = X1) )),
+  inference(equality_resolution,[],[f44])).
+fof(f44,plain,(
+  ( ! [X0,X1] : (grade_of(X1) = X0 | "gotA" = X1 | "f" != X0) )),
+  inference(cnf_transformation,[],[f25])).
+fof(f25,plain,(
+  ! [X0,X1] : ((grade_of(X1) = X0 | (("gotA" != X1 | "a" != X0) & ("gotA" = X1 | "f" != X0))) & (("gotA" = X1 & "a" = X0) | ("gotA" != X1 & "f" = X0) | grade_of(X1) != X0))),
+  inference(flattening,[],[f24])).
+fof(f24,plain,(
+  ! [X0,X1] : ((grade_of(X1) = X0 | (("gotA" != X1 | "a" != X0) & ("gotA" = X1 | "f" != X0))) & ((("gotA" = X1 & "a" = X0) | ("gotA" != X1 & "f" = X0)) | grade_of(X1) != X0))),
+  inference(nnf_transformation,[],[f4])).
+fof(f4,axiom,(
+  ! [X0,X1] : (grade_of(X1) = X0 <=> (("gotA" = X1 & "a" = X0) | ("gotA" != X1 & "f" = X0)))),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',grade_of)).
+fof(f117,plain,(
+  human(grade_of(sK1)) | ~spl4_10),
+  inference(avatar_component_clause,[],[f115])).
+fof(f115,plain,(
+  spl4_10 <=> human(grade_of(sK1))),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_10])])).
+fof(f172,plain,(
+  "f" = grade_of(sK1) | ~spl4_10),
+  inference(subsumption_resolution,[],[f170,f76])).
+fof(f170,plain,(
+  human("a") | "f" = grade_of(sK1) | ~spl4_10),
+  inference(superposition,[],[f117,f73])).
+fof(f73,plain,(
+  ( ! [X1] : ("a" = grade_of(X1) | "f" = grade_of(X1)) )),
+  inference(equality_resolution,[],[f40])).
+fof(f40,plain,(
+  ( ! [X0,X1] : ("a" = X0 | "f" = X0 | grade_of(X1) != X0) )),
+  inference(cnf_transformation,[],[f25])).
+fof(f66,plain,(
+  "a" = grade_of("gotA")),
+  inference(equality_resolution,[],[f65])).
+fof(f65,plain,(
+  ( ! [X0] : (grade_of("gotA") = X0 | "a" != X0) )),
+  inference(equality_resolution,[],[f45])).
+fof(f45,plain,(
+  ( ! [X0,X1] : (grade_of(X1) = X0 | "gotA" != X1 | "a" != X0) )),
+  inference(cnf_transformation,[],[f25])).
+fof(f167,plain,(
+  ~spl4_9),
+  inference(avatar_contradiction_clause,[],[f166])).
+fof(f166,plain,(
+  $false | ~spl4_9),
+  inference(subsumption_resolution,[],[f165,f56])).
+fof(f165,plain,(
+  "f" = "a" | ~spl4_9),
+  inference(forward_demodulation,[],[f164,f63])).
+fof(f63,plain,(
+  "f" = f),
+  inference(equality_resolution,[],[f39])).
+fof(f39,plain,(
+  ( ! [X0] : (f = X0 | "f" != X0) )),
+  inference(cnf_transformation,[],[f23])).
+fof(f23,plain,(
+  ! [X0] : ((f = X0 | "f" != X0) & ("f" = X0 | f != X0))),
+  inference(nnf_transformation,[],[f5])).
+fof(f5,axiom,(
+  ! [X0] : (f = X0 <=> "f" = X0)),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',f)).
+fof(f164,plain,(
+  "a" = f | ~spl4_9),
+  inference(forward_demodulation,[],[f113,f61])).
+fof(f61,plain,(
+  "a" = a),
+  inference(equality_resolution,[],[f37])).
+fof(f37,plain,(
+  ( ! [X0] : (a = X0 | "a" != X0) )),
+  inference(cnf_transformation,[],[f22])).
+fof(f22,plain,(
+  ! [X0] : ((a = X0 | "a" != X0) & ("a" = X0 | a != X0))),
+  inference(nnf_transformation,[],[f6])).
+fof(f6,axiom,(
+  ! [X0] : (a = X0 <=> "a" = X0)),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',a)).
+fof(f113,plain,(
+  f = a | ~spl4_9),
+  inference(avatar_component_clause,[],[f111])).
+fof(f111,plain,(
+  spl4_9 <=> f = a),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_9])])).
+fof(f163,plain,(
+  ~spl4_8),
+  inference(avatar_contradiction_clause,[],[f162])).
+fof(f162,plain,(
+  $false | ~spl4_8),
+  inference(subsumption_resolution,[],[f161,f53])).
+fof(f53,plain,(
+  "f" != "gotA"),
+  inference(cnf_transformation,[],[f9])).
+fof(f161,plain,(
+  "f" = "gotA" | ~spl4_8),
+  inference(subsumption_resolution,[],[f160,f52])).
+fof(f52,plain,(
+  "a" != "gotA"),
+  inference(cnf_transformation,[],[f9])).
+fof(f160,plain,(
+  "a" = "gotA" | "f" = "gotA" | ~spl4_8),
+  inference(trivial_inequality_removal,[],[f155])).
+fof(f155,plain,(
+  "a" != "a" | "a" = "gotA" | "f" = "gotA" | ~spl4_8),
+  inference(superposition,[],[f147,f66])).
+fof(f147,plain,(
+  ( ! [X0] : ("a" != grade_of(X0) | "a" = X0 | "f" = X0) ) | ~spl4_8),
+  inference(resolution,[],[f146,f50])).
+fof(f50,plain,(
+  ( ! [X0] : (human(X0) | "a" = X0 | "f" = X0) )),
+  inference(cnf_transformation,[],[f28])).
+fof(f146,plain,(
+  ( ! [X1] : (~human(X1) | "a" != grade_of(X1)) ) | ~spl4_8),
+  inference(forward_demodulation,[],[f109,f61])).
+fof(f109,plain,(
+  ( ! [X1] : (grade_of(X1) != a | ~human(X1)) ) | ~spl4_8),
+  inference(avatar_component_clause,[],[f108])).
+fof(f108,plain,(
+  spl4_8 <=> ! [X1] : (grade_of(X1) != a | ~human(X1))),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_8])])).
+fof(f145,plain,(
+  spl4_6),
+  inference(avatar_contradiction_clause,[],[f144])).
+fof(f144,plain,(
+  $false | spl4_6),
+  inference(subsumption_resolution,[],[f143,f131])).
+fof(f131,plain,(
+  "f" != john),
+  inference(superposition,[],[f55,f74])).
+fof(f74,plain,(
+  john = "john"),
+  inference(equality_resolution,[],[f47])).
+fof(f47,plain,(
+  ( ! [X0] : (john = X0 | "john" != X0) )),
+  inference(cnf_transformation,[],[f26])).
+fof(f26,plain,(
+  ! [X0] : ((john = X0 | "john" != X0) & ("john" = X0 | john != X0))),
+  inference(nnf_transformation,[],[f3])).
+fof(f3,axiom,(
+  ! [X0] : (john = X0 <=> "john" = X0)),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',john)).
+fof(f55,plain,(
+  "f" != "john"),
+  inference(cnf_transformation,[],[f9])).
+fof(f143,plain,(
+  "f" = john | spl4_6),
+  inference(subsumption_resolution,[],[f142,f132])).
+fof(f132,plain,(
+  "a" != john),
+  inference(superposition,[],[f54,f74])).
+fof(f54,plain,(
+  "a" != "john"),
+  inference(cnf_transformation,[],[f9])).
+fof(f142,plain,(
+  "a" = john | "f" = john | spl4_6),
+  inference(resolution,[],[f50,f102])).
+fof(f102,plain,(
+  ~human(john) | spl4_6),
+  inference(avatar_component_clause,[],[f100])).
+fof(f100,plain,(
+  spl4_6 <=> human(john)),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_6])])).
+fof(f138,plain,(
+  spl4_7),
+  inference(avatar_contradiction_clause,[],[f137])).
+fof(f137,plain,(
+  $false | spl4_7),
+  inference(subsumption_resolution,[],[f136,f129])).
+fof(f129,plain,(
+  john != "gotA"),
+  inference(forward_demodulation,[],[f51,f74])).
+fof(f51,plain,(
+  "john" != "gotA"),
+  inference(cnf_transformation,[],[f9])).
+fof(f136,plain,(
+  john = "gotA" | spl4_7),
+  inference(trivial_inequality_removal,[],[f134])).
+fof(f134,plain,(
+  "f" != "f" | john = "gotA" | spl4_7),
+  inference(superposition,[],[f130,f67])).
+fof(f130,plain,(
+  "f" != grade_of(john) | spl4_7),
+  inference(forward_demodulation,[],[f106,f63])).
+fof(f106,plain,(
+  f != grade_of(john) | spl4_7),
+  inference(avatar_component_clause,[],[f104])).
+fof(f104,plain,(
+  spl4_7 <=> f = grade_of(john)),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_7])])).
+fof(f118,plain,(
+  ~spl4_5 | ~spl4_6 | ~spl4_7 | spl4_8 | spl4_9 | spl4_10 | spl4_1),
+  inference(avatar_split_clause,[],[f35,f79,f115,f111,f108,f104,f100,f96])).
+fof(f79,plain,(
+  spl4_1 <=> sP0),
+  introduced(avatar_definition,[new_symbols(naming,[spl4_1])])).
+fof(f35,plain,(
+  ( ! [X1] : (sP0 | human(grade_of(sK1)) | f = a | grade_of(X1) != a | ~human(X1) | f != grade_of(john) | ~human(john) | ~created_equal(sK2,sK3)) )),
+  inference(cnf_transformation,[],[f21])).
+fof(f21,plain,(
+  sP0 | human(grade_of(sK1)) | f = a | ! [X1] : (grade_of(X1) != a | ~human(X1)) | f != grade_of(john) | ~human(john) | (~created_equal(sK2,sK3) & human(sK3) & human(sK2))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK1,sK2,sK3])],[f18,f20,f19])).
+fof(f19,plain,(
+  ? [X0] : human(grade_of(X0)) => human(grade_of(sK1))),
+  introduced(choice_axiom,[])).
+fof(f20,plain,(
+  ? [X2,X3] : (~created_equal(X2,X3) & human(X3) & human(X2)) => (~created_equal(sK2,sK3) & human(sK3) & human(sK2))),
+  introduced(choice_axiom,[])).
+fof(f18,plain,(
+  sP0 | ? [X0] : human(grade_of(X0)) | f = a | ! [X1] : (grade_of(X1) != a | ~human(X1)) | f != grade_of(john) | ~human(john) | ? [X2,X3] : (~created_equal(X2,X3) & human(X3) & human(X2))),
+  inference(rectify,[],[f15])).
+fof(f15,plain,(
+  sP0 | ? [X2] : human(grade_of(X2)) | f = a | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & human(X5) & human(X4))),
+  inference(definition_folding,[],[f13,f14])).
+fof(f14,plain,(
+  ! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) | ~sP0),
+  introduced(predicate_definition_introduction,[new_symbols(naming,[sP0])])).
+fof(f13,plain,(
+  ! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) | ? [X2] : human(grade_of(X2)) | f = a | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & human(X5) & human(X4))),
+  inference(flattening,[],[f12])).
+fof(f12,plain,(
+  ! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) | ? [X2] : human(grade_of(X2)) | f = a | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & (human(X5) & human(X4)))),
+  inference(ennf_transformation,[],[f10])).
+fof(f10,plain,(
+  ~(~! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) & ! [X2] : ~human(grade_of(X2)) & f != a & ? [X3] : (a = grade_of(X3) & human(X3)) & f = grade_of(john) & human(john) & ! [X4,X5] : ((human(X5) & human(X4)) => created_equal(X4,X5)))),
+  inference(rectify,[],[f8])).
+fof(f8,negated_conjecture,(
+  ~(~! [X2,X3] : ((created_equal(X2,X3) & human(X3) & human(X2)) <=> X2 = X3) & ! [X5] : ~human(grade_of(X5)) & f != a & ? [X4] : (a = grade_of(X4) & human(X4)) & f = grade_of(john) & human(john) & ! [X2,X3] : ((human(X3) & human(X2)) => created_equal(X2,X3)))),
+  inference(negated_conjecture,[],[f7])).
+fof(f7,conjecture,(
+  ~! [X2,X3] : ((created_equal(X2,X3) & human(X3) & human(X2)) <=> X2 = X3) & ! [X5] : ~human(grade_of(X5)) & f != a & ? [X4] : (a = grade_of(X4) & human(X4)) & f = grade_of(john) & human(john) & ! [X2,X3] : ((human(X3) & human(X2)) => created_equal(X2,X3))),
+  file('/tmp/tmp.Az1K2iIDYc/Vampire---4.8_6829',prove_formulae)).
+fof(f90,plain,(
+  ~spl4_1 | spl4_3),
+  inference(avatar_split_clause,[],[f60,f87,f79])).
+fof(f60,plain,(
+  ( ! [X1] : (human(X1) | ~sP0) )),
+  inference(equality_resolution,[],[f30])).
+fof(f30,plain,(
+  ( ! [X0,X1] : (human(X0) | X0 != X1 | ~sP0) )),
+  inference(cnf_transformation,[],[f17])).
+fof(f17,plain,(
+  ! [X0,X1] : (((created_equal(X0,X1) & human(X1) & human(X0)) | X0 != X1) & (X0 = X1 | ~created_equal(X0,X1) | ~human(X1) | ~human(X0))) | ~sP0),
+  inference(flattening,[],[f16])).
+fof(f16,plain,(
+  ! [X0,X1] : (((created_equal(X0,X1) & human(X1) & human(X0)) | X0 != X1) & (X0 = X1 | (~created_equal(X0,X1) | ~human(X1) | ~human(X0)))) | ~sP0),
+  inference(nnf_transformation,[],[f14])).
+% SZS output end Proof for Vampire---4
+% (6846)------------------------------
+% (6846)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (6846)Termination reason: Refutation
+
+% (6846)Memory used [KB]: 1083
+% (6846)Time elapsed: 0.007 s
+% (6846)Instructions burned: 8 (million)
+% (6846)------------------------------
+% (6846)------------------------------
+% (6843)Success in time 0.411 s
+% Vampire---4.8 exiting
+
+% END OF SYSTEM OUTPUT
+% RESULT: FOF_Formulae.s - Vampire---4.8 says Theorem - CPU = 0.08 WC = 0.50 
+% OUTPUT: FOF_Formulae.s - Vampire---4.8 says Refutation - CPU = 0.08 WC = 0.50 

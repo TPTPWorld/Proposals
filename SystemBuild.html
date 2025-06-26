@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<TITLE>The TPTP ATP System Building Conventions</TITLE>
+<style type="text/css">
+BODY {font-family:sans-serif;}
+A:link {color: blue; text-decoration: none}
+A:visited {color: red; text-decoration: none}
+</style>
+</HEAD>
+<BODY ALIGN="JUSTIFY">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">The TPTP ATP System Building Conventions</H1>
+
+by 
+<A href="https://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>
+and
+<A HREF="http://www4.in.tum.de/~schulz/Stephan_Schulz/Stephan_Schulz.html">Stephan Schulz</A>
+and
+Nik Sultana
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> Motivation </H3>
+
+Over the years of supporting ATP system development (the TSTP, SystemOnTPTP, CASC, etc.), I've 
+spent many hours compiling and installing ATP systems, and some of the build processes are 
+attriciously complex. 
+This proposal aims to set conventions that will make it easy to build ATP systems, which if 
+adopted will make life much better for ATP users.
+Commonly adopted conventions will allow users to follow the same pattern of activities when 
+installing multiple ATP systems.
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> Directory Layout </H3>
+
+The system must unpack into a single directory named after the system and the system version.
+The suggested format is the system name written in the normal camel-case that would be used in a 
+publication, followed by three hyphens and then the version number, e.g., <TT>Vampire---2.6</TT>, 
+<TT>iProver---0.99</TT>.
+This format allows for easy extraction of the two components (because only a crazy person would 
+have three hyphens as part of their system name or version number).
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> Build Commands </H3>
+
+The build sequence is one used by many open source software packages.
+<P>
+<TT>    ./configure </TT>&lt;options><BR>
+<TT>    make</TT><BR>
+<TT>    make install</TT>
+<P>
+<UL>
+<LI> <TT>configure</TT> configures the system to run on the current platform. 
+     This includes specifying where the executables, library files, and man pages (if any) will 
+     be installed, and provide system specific build parameters.
+     The minimal &lt;option>s that must be supported are:
+     <UL>
+     <LI> <TT>--help</TT> : 
+          Print this help.
+     <LI> <TT>--bindir=</TT>&lt;path> : 
+          Specify the directory for executables.
+     <LI> <TT>--libdir=</TT>&lt;path> : 
+          Specify the directory for library files that are needed for execution.
+     <LI> <TT>--exec-prefix=</TT>&lt;path> : 
+          Equivalent to <TT>--bindir=</TT>&lt;path><TT>/bin</TT>
+                        <TT>--libdir=</TT>&lt;path><TT>/lib</TT>.
+     <LI> <TT>--mandir=</TT>&lt;path> : 
+          Specify directory for the man pages.
+     <LI> <TT>--prefix=</TT>&lt;path> : 
+          Equivalent to <TT>--bindir=</TT>&lt;path><TT>/bin</TT>
+                        <TT>--libdir=</TT>&lt;path><TT>/lib</TT>
+                        <TT>--mandir=</TT>&lt;path><TT>/man</TT>.
+     </UL>
+     The default is equivalent to <TT>--prefix=/usr/local</TT>
+     <P>
+     Many ATP systems rely on the use of other ATP systems as external subsystems, e.g., some 
+     instantiation-based systems use an external propositional system, and some higher order 
+     systems delegate subproblems to first-order subsystems.
+     Other ATP systems rely on other external software, e.g., some systems need to know the 
+     location of a Prolog interpreter.
+     It is generally preferable to specify the location of such external software at run time, as 
+     command line parameters.
+     If the location of external software (executables, etc.) has to be known at build time, it 
+     is recommended that the location be specified by <TT>configure</TT> options of the form:
+     <UL>
+     <LI> <TT>--use-</TT>&lt;software><TT>=</TT>&lt;path>
+     </UL>
+     e.g., <TT>--use-eprover=/usr/local/bin/eprover</TT>, or
+     <TT>--use-prolog=/usr/bin/swipl</TT>.
+     In contrast, the use of resource files in home directories, environment variables, and other 
+     approaches that have a global impact on a user account, are discouraged.
+<P>
+<LI> <TT>make</TT> performs the build. 
+     This typically invokes a compiler, etc., but could even be a no-op for interpreted systems.
+<P>
+<LI> <TT>make install</TT> moves the executables, library files, and man pages into the specified 
+     directories. 
+     If these directories are not owned by the user, it may be necessary to execute this step as 
+     the superuser.
+</UL>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>
+<!-- Feedback
+
+Bjoern Pelzer
+for what it's worth, I see no problems with this and would not mind 
+adapting to it for the next CASC.
+
+Jens Otten
+the goal you want to achieve with this proposal sounds very reasonable
+to me. From my own and also Thomas experiences (ILTP/QMLTP) we know
+what a pain it can be to get some systems running (I am afraid this
+also includes leanCoP-ARDE, where you probably provided a lot of
+(or better: too much!) support for this year's CASC; I have never really
+tried to install it, so I really don't know; but it did sound complicated).
+
+I am not sure if would make the suggested routine a requirement. E.g.,
+for leanCoP the path and the options of the Prolog system call need to be
+specified; this needs to be done in the leanCoP shell script anyway. Hence,
+this only leaves the path of the prover to be specified (for most people
+the default should just work fine, i.e., prover and shell script are in the
+same directory). To add two more files to set this path is not really a
+lean solution.
+ 
+Anyway, you should be able to install every system within reasonable
+efforts. What about a requirement, such as, "Geoff should be able to run
+the installation routine within 2 minutes (excluding compiling times)".
+
+Damien Doligez
+I think the proposal is quite reasonable, and making your life
+easier is a worthy goal, especially considering it will benefit
+the users and the packagers as well.
+
+Mario Frank
+I support standardization. Thus, I like the proposal for system
+building satandards.
+
+But the option --libdir does not make sense for all ATP systems. Some
+do not use library files. Should the option be implemented nevertheless?
+
+Chris Benzmueller
+I discussed the proposal with Nik and we think that LEO-II can fulfill
+these requirements starting from the next release.
+
+-->

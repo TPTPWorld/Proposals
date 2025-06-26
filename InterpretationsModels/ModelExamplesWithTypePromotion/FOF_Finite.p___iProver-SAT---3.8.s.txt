@@ -1,0 +1,68 @@
+%------ Positive definition of equality_sorted 
+fof(lit_def_equality,axiom,
+    ! [X0_12,X0,X1] :
+      ( equality_sorted(X0_12,X0,X1)
+    <=> ( ( X0_12 = $i
+          & X0 = iProver_Domain_i_1
+          & X1 = iProver_Domain_i_1 )
+        | ( X0_12 = $i
+          & X0 = iProver_Domain_i_2
+          & X1 = iProver_Domain_i_2 ) ) ) ).
+
+%------ Positive definition of created_equal 
+fof(lit_def_created_equal,axiom,
+    ! [X0,X1] :
+      ( created_equal(X0,X1)
+    <=> $true ) ).
+
+%------ Positive definition of human 
+fof(lit_def_human,axiom,
+    ! [X0] :
+      ( human(X0)
+    <=> ( X0 != iProver_Domain_i_1
+        & X0 != iProver_Domain_i_2 ) ) ).
+
+%------ Positive definition of iProver_Flat_john 
+fof(lit_def_john,axiom,
+    ! [X0] :
+      ( iProver_Flat_john(X0)
+    <=> X0 = iProver_Domain_i_4 ) ).
+
+%------ Positive definition of iProver_Flat_grade_of 
+fof(lit_def_grade_of,axiom,
+    ! [X0,X1] :
+      ( iProver_Flat_grade_of(X0,X1)
+    <=> ( ( X0 = iProver_Domain_i_1
+          & X1 != iProver_Domain_i_3 )
+        | ( X0 = iProver_Domain_i_2
+          & X1 = iProver_Domain_i_3 ) ) ) ).
+
+%------ Positive definition of iProver_Flat_f 
+fof(lit_def_f,axiom,
+    ! [X0] :
+      ( iProver_Flat_f(X0)
+    <=> X0 = iProver_Domain_i_1 ) ).
+
+%------ Positive definition of iProver_Flat_a 
+fof(lit_def_a,axiom,
+    ! [X0] :
+      ( iProver_Flat_a(X0)
+    <=> X0 = iProver_Domain_i_2 ) ).
+
+%------ Positive definition of iProver_Flat_sK0 
+fof(lit_def_sk0,axiom,
+    ! [X0] :
+      ( iProver_Flat_sK0(X0)
+    <=> X0 = iProver_Domain_i_3 ) ).
+
+%------ Positive definition of iProver_Flat_sK1 
+fof(lit_def_sk1,axiom,
+    ! [X0] :
+      ( iProver_Flat_sK1(X0)
+    <=> X0 = iProver_Domain_i_1 ) ).
+
+%------ Positive definition of iProver_Flat_sK2 
+fof(lit_def_sK2,axiom,
+    ! [X0] :
+      ( iProver_Flat_sK2(X0)
+    <=> X0 = iProver_Domain_i_1 ) ).

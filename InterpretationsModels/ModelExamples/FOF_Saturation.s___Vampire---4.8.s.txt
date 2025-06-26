@@ -1,0 +1,66 @@
+% START OF SYSTEM OUTPUT
+Running first-order model finding
+Running: /exp/home/tptp/Systems/Vampire-SAT---4.8/vampire --mode casc_sat -m 16384 --cores 7 -t 30 /tmp/tmp.dXfNT2QXzP/Vampire---4.8_5176
+% (5189)Running in auto input_syntax mode. Trying TPTP
+% (5195)ott-10_8_av=off:bd=preordered:bs=on:fsd=off:fsr=off:fde=unused:irw=on:lcm=predicate:lma=on:nm=4:nwc=1.7:sp=frequency_522 on Vampire---4 for (299ds/0Mi)
+% (5191)fmb+10_1_bce=on:fmbdsb=on:fmbes=contour:fmbswr=3:fde=none:nm=0_793 on Vampire---4 for (299ds/0Mi)
+% (5193)fmb+10_1_bce=on:fmbsr=1.5:nm=32_533 on Vampire---4 for (299ds/0Mi)
+TRYING [1]
+TRYING [2]
+TRYING [3]
+% (5195)First to succeed.
+TRYING [4]
+Finite Model Found!
+% SZS status Satisfiable for Vampire---4
+% (5193)Also succeeded, but the first one will report.
+% SZS status Satisfiable for Vampire---4
+% (5195)# SZS output start Saturation.
+cnf(c_0_28,axiom,
+    human(john)).
+
+cnf(c_0_27,axiom,
+    human(esk3_0)).
+
+cnf(u15,axiom,
+    esk1_0 != esk2_0 | ~human(esk1_0)).
+
+cnf(c_0_18,axiom,
+    grade_of(john) = f).
+
+cnf(c_0_22,axiom,
+    human(esk2_0) | esk1_0 = esk2_0).
+
+cnf(c_0_24,axiom,
+    ~human(a)).
+
+cnf(c_0_23,axiom,
+    human(esk1_0) | esk1_0 = esk2_0).
+
+cnf(c_0_26,axiom,
+    a != f).
+
+cnf(c_0_25,axiom,
+    ~human(f)).
+
+cnf(c_0_17,axiom,
+    grade_of(esk3_0) = a).
+
+cnf(c_0_16,axiom,
+    ~human(grade_of(X0))).
+
+% (5195)# SZS output end Saturation.
+% (5195)------------------------------
+% (5195)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (5195)Termination reason: Satisfiable
+
+% (5195)Memory used [KB]: 740
+% (5195)Time elapsed: 0.002 s
+% (5195)Instructions burned: 2 (million)
+% (5195)------------------------------
+% (5195)------------------------------
+% (5189)Success in time 0.012 s
+% Vampire---4.8 exiting
+
+% END OF SYSTEM OUTPUT
+% RESULT: FOF_Saturation - Vampire-SAT---4.8 says Satisfiable - CPU = 0.01 WC = 0.07 
+% OUTPUT: FOF_Saturation - Vampire-SAT---4.8 says Saturation - CPU = 0.01 WC = 0.07 

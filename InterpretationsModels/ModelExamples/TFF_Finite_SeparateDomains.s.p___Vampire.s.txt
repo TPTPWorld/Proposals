@@ -1,0 +1,364 @@
+% SZS status Theorem for TFF_Finite_SeparateDomains.s
+% SZS output start Proof for TFF_Finite_SeparateDomains.s
+tff(type_def_5, type, human: $tType).
+tff(type_def_6, type, cat: $tType).
+tff(type_def_7, type, d_human: $tType).
+tff(type_def_8, type, d_cat: $tType).
+tff(func_def_0, type, jon: human).
+tff(func_def_1, type, garfield: cat).
+tff(func_def_2, type, arlene: cat).
+tff(func_def_3, type, nermal: cat).
+tff(func_def_4, type, loves: cat > cat).
+tff(func_def_5, type, d2human: d_human > human).
+tff(func_def_6, type, d2cat: d_cat > cat).
+tff(func_def_7, type, d_jon: d_human).
+tff(func_def_8, type, d_garfield: d_cat).
+tff(func_def_9, type, d_arlene: d_cat).
+tff(func_def_10, type, d_nermal: d_cat).
+tff(func_def_11, type, sK0: cat).
+tff(func_def_12, type, sK1: cat).
+tff(func_def_13, type, sK2: human).
+tff(func_def_14, type, sK3: cat > d_cat).
+tff(func_def_15, type, sK4: human > d_human).
+tff(func_def_16, type, sF5: cat).
+tff(pred_def_1, type, owns: (human * cat) > $o).
+tff(f422,plain,(
+  $false),
+  inference(subsumption_resolution,[],[f421,f52])).
+tff(f52,plain,(
+  ~owns(jon,nermal)),
+  inference(backward_demodulation,[],[f43,f28])).
+tff(f28,plain,(
+  jon = d2human(d_jon)),
+  inference(cnf_transformation,[],[f15])).
+tff(f15,plain,(
+  ~owns(d2human(d_jon),d2cat(d_nermal)) & ~owns(d2human(d_jon),d2cat(d_arlene)) & owns(d2human(d_jon),d2cat(d_garfield)) & d2cat(d_garfield) = loves(d2cat(d_nermal)) & d2cat(d_garfield) = loves(d2cat(d_arlene)) & d2cat(d_garfield) = loves(d2cat(d_garfield)) & nermal = d2cat(d_nermal) & arlene = d2cat(d_arlene) & garfield = d2cat(d_garfield) & jon = d2human(d_jon) & ! [X0 : d_cat,X1 : d_cat] : (X0 = X1 | d2cat(X0) != d2cat(X1)) & d_arlene != d_nermal & d_garfield != d_nermal & d_garfield != d_arlene & ! [X2 : d_cat] : (d_nermal = X2 | d_arlene = X2 | d_garfield = X2) & ! [X3 : cat] : d2cat(sK3(X3)) = X3 & ! [X5 : d_human,X6 : d_human] : (X5 = X6 | d2human(X5) != d2human(X6)) & ! [X7 : d_human] : d_jon = X7 & ! [X8 : human] : d2human(sK4(X8)) = X8),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK3,sK4])],[f8,f14,f13])).
+tff(f13,plain,(
+  ! [X3 : cat] : (? [X4 : d_cat] : d2cat(X4) = X3 => d2cat(sK3(X3)) = X3)),
+  introduced(choice_axiom,[])).
+tff(f14,plain,(
+  ! [X8 : human] : (? [X9 : d_human] : d2human(X9) = X8 => d2human(sK4(X8)) = X8)),
+  introduced(choice_axiom,[])).
+tff(f8,plain,(
+  ~owns(d2human(d_jon),d2cat(d_nermal)) & ~owns(d2human(d_jon),d2cat(d_arlene)) & owns(d2human(d_jon),d2cat(d_garfield)) & d2cat(d_garfield) = loves(d2cat(d_nermal)) & d2cat(d_garfield) = loves(d2cat(d_arlene)) & d2cat(d_garfield) = loves(d2cat(d_garfield)) & nermal = d2cat(d_nermal) & arlene = d2cat(d_arlene) & garfield = d2cat(d_garfield) & jon = d2human(d_jon) & ! [X0 : d_cat,X1 : d_cat] : (X0 = X1 | d2cat(X0) != d2cat(X1)) & d_arlene != d_nermal & d_garfield != d_nermal & d_garfield != d_arlene & ! [X2 : d_cat] : (d_nermal = X2 | d_arlene = X2 | d_garfield = X2) & ! [X3 : cat] : ? [X4 : d_cat] : d2cat(X4) = X3 & ! [X5 : d_human,X6 : d_human] : (X5 = X6 | d2human(X5) != d2human(X6)) & ! [X7 : d_human] : d_jon = X7 & ! [X8 : human] : ? [X9 : d_human] : d2human(X9) = X8),
+  inference(ennf_transformation,[],[f5])).
+tff(f5,plain,(
+  ~owns(d2human(d_jon),d2cat(d_nermal)) & ~owns(d2human(d_jon),d2cat(d_arlene)) & owns(d2human(d_jon),d2cat(d_garfield)) & d2cat(d_garfield) = loves(d2cat(d_nermal)) & d2cat(d_garfield) = loves(d2cat(d_arlene)) & d2cat(d_garfield) = loves(d2cat(d_garfield)) & nermal = d2cat(d_nermal) & arlene = d2cat(d_arlene) & garfield = d2cat(d_garfield) & jon = d2human(d_jon) & ! [X0 : d_cat,X1 : d_cat] : (d2cat(X0) = d2cat(X1) => X0 = X1) & d_arlene != d_nermal & d_garfield != d_nermal & d_garfield != d_arlene & ! [X2 : d_cat] : (d_nermal = X2 | d_arlene = X2 | d_garfield = X2) & ! [X3 : cat] : ? [X4 : d_cat] : d2cat(X4) = X3 & ! [X5 : d_human,X6 : d_human] : (d2human(X5) = d2human(X6) => X5 = X6) & ! [X7 : d_human] : d_jon = X7 & ! [X8 : human] : ? [X9 : d_human] : d2human(X9) = X8),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ~owns(d2human(d_jon),d2cat(d_nermal)) & ~owns(d2human(d_jon),d2cat(d_arlene)) & owns(d2human(d_jon),d2cat(d_garfield)) & d2cat(d_garfield) = loves(d2cat(d_nermal)) & d2cat(d_garfield) = loves(d2cat(d_arlene)) & d2cat(d_garfield) = loves(d2cat(d_garfield)) & nermal = d2cat(d_nermal) & arlene = d2cat(d_arlene) & garfield = d2cat(d_garfield) & jon = d2human(d_jon) & ! [X6 : d_cat,X7 : d_cat] : (d2cat(X6) = d2cat(X7) => X6 = X7) & d_arlene != d_nermal & d_garfield != d_nermal & d_garfield != d_arlene & ! [X5 : d_cat] : (d_nermal = X5 | d_arlene = X5 | d_garfield = X5) & ! [X4 : cat] : ? [X5 : d_cat] : d2cat(X5) = X4 & ! [X2 : d_human,X3 : d_human] : (d2human(X2) = d2human(X3) => X2 = X3) & ! [X1 : d_human] : d_jon = X1 & ! [X0 : human] : ? [X1 : d_human] : d2human(X1) = X0),
+  file('TFF_Finite_SeparateDomains.s.p',unknown)).
+tff(f43,plain,(
+  ~owns(d2human(d_jon),nermal)),
+  inference(backward_demodulation,[],[f37,f31])).
+tff(f31,plain,(
+  nermal = d2cat(d_nermal)),
+  inference(cnf_transformation,[],[f15])).
+tff(f37,plain,(
+  ~owns(d2human(d_jon),d2cat(d_nermal))),
+  inference(cnf_transformation,[],[f15])).
+tff(f421,plain,(
+  owns(jon,nermal)),
+  inference(subsumption_resolution,[],[f419,f119])).
+tff(f119,plain,(
+  arlene != nermal),
+  inference(subsumption_resolution,[],[f117,f26])).
+tff(f26,plain,(
+  d_arlene != d_nermal),
+  inference(cnf_transformation,[],[f15])).
+tff(f117,plain,(
+  arlene != nermal | d_arlene = d_nermal),
+  inference(superposition,[],[f78,f31])).
+tff(f78,plain,(
+  ( ! [X0 : d_cat] : (arlene != d2cat(X0) | d_arlene = X0) )),
+  inference(superposition,[],[f27,f30])).
+tff(f30,plain,(
+  arlene = d2cat(d_arlene)),
+  inference(cnf_transformation,[],[f15])).
+tff(f27,plain,(
+  ( ! [X0 : d_cat,X1 : d_cat] : (d2cat(X0) != d2cat(X1) | X0 = X1) )),
+  inference(cnf_transformation,[],[f15])).
+tff(f419,plain,(
+  arlene = nermal | owns(jon,nermal)),
+  inference(trivial_inequality_removal,[],[f416])).
+tff(f416,plain,(
+  garfield != garfield | arlene = nermal | owns(jon,nermal)),
+  inference(superposition,[],[f413,f47])).
+tff(f47,plain,(
+  garfield = loves(nermal)),
+  inference(backward_demodulation,[],[f42,f29])).
+tff(f29,plain,(
+  garfield = d2cat(d_garfield)),
+  inference(cnf_transformation,[],[f15])).
+tff(f42,plain,(
+  d2cat(d_garfield) = loves(nermal)),
+  inference(backward_demodulation,[],[f34,f31])).
+tff(f34,plain,(
+  d2cat(d_garfield) = loves(d2cat(d_nermal))),
+  inference(cnf_transformation,[],[f15])).
+tff(f413,plain,(
+  ( ! [X0 : cat] : (garfield != loves(X0) | arlene = X0 | owns(jon,X0)) )),
+  inference(subsumption_resolution,[],[f412,f114])).
+tff(f114,plain,(
+  garfield != arlene),
+  inference(subsumption_resolution,[],[f111,f24])).
+tff(f24,plain,(
+  d_garfield != d_arlene),
+  inference(cnf_transformation,[],[f15])).
+tff(f111,plain,(
+  garfield != arlene | d_garfield = d_arlene),
+  inference(superposition,[],[f77,f30])).
+tff(f77,plain,(
+  ( ! [X0 : d_cat] : (garfield != d2cat(X0) | d_garfield = X0) )),
+  inference(superposition,[],[f27,f29])).
+tff(f412,plain,(
+  ( ! [X0 : cat] : (garfield = arlene | arlene = X0 | garfield != loves(X0) | owns(jon,X0)) )),
+  inference(forward_demodulation,[],[f411,f381])).
+tff(f381,plain,(
+  garfield = sF5),
+  inference(duplicate_literal_removal,[],[f380])).
+tff(f380,plain,(
+  garfield = sF5 | garfield = sF5),
+  inference(forward_demodulation,[],[f376,f46])).
+tff(f46,plain,(
+  garfield = loves(arlene)),
+  inference(backward_demodulation,[],[f44,f29])).
+tff(f44,plain,(
+  d2cat(d_garfield) = loves(arlene)),
+  inference(backward_demodulation,[],[f33,f30])).
+tff(f33,plain,(
+  d2cat(d_garfield) = loves(d2cat(d_arlene))),
+  inference(cnf_transformation,[],[f15])).
+tff(f376,plain,(
+  sF5 = loves(arlene) | garfield = sF5),
+  inference(superposition,[],[f38,f321])).
+tff(f321,plain,(
+  arlene = sK0 | garfield = sF5),
+  inference(duplicate_literal_removal,[],[f320])).
+tff(f320,plain,(
+  garfield = sF5 | garfield = sF5 | arlene = sK0),
+  inference(forward_demodulation,[],[f315,f47])).
+tff(f315,plain,(
+  sF5 = loves(nermal) | garfield = sF5 | arlene = sK0),
+  inference(superposition,[],[f38,f240])).
+tff(f240,plain,(
+  nermal = sK0 | garfield = sF5 | arlene = sK0),
+  inference(forward_demodulation,[],[f239,f30])).
+tff(f239,plain,(
+  garfield = sF5 | nermal = sK0 | d2cat(d_arlene) = sK0),
+  inference(forward_demodulation,[],[f217,f48])).
+tff(f48,plain,(
+  garfield = loves(garfield)),
+  inference(backward_demodulation,[],[f32,f29])).
+tff(f32,plain,(
+  d2cat(d_garfield) = loves(d2cat(d_garfield))),
+  inference(cnf_transformation,[],[f15])).
+tff(f217,plain,(
+  sF5 = loves(garfield) | nermal = sK0 | d2cat(d_arlene) = sK0),
+  inference(superposition,[],[f38,f179])).
+tff(f179,plain,(
+  ( ! [X0 : cat] : (garfield = X0 | nermal = X0 | d2cat(d_arlene) = X0) )),
+  inference(superposition,[],[f22,f142])).
+tff(f142,plain,(
+  ( ! [X0 : cat] : (d_arlene = sK3(X0) | nermal = X0 | garfield = X0) )),
+  inference(forward_demodulation,[],[f139,f31])).
+tff(f139,plain,(
+  ( ! [X0 : cat] : (d2cat(d_nermal) = X0 | d_arlene = sK3(X0) | garfield = X0) )),
+  inference(superposition,[],[f22,f96])).
+tff(f96,plain,(
+  ( ! [X0 : cat] : (d_nermal = sK3(X0) | d_arlene = sK3(X0) | garfield = X0) )),
+  inference(forward_demodulation,[],[f93,f29])).
+tff(f93,plain,(
+  ( ! [X0 : cat] : (d2cat(d_garfield) = X0 | d_arlene = sK3(X0) | d_nermal = sK3(X0)) )),
+  inference(superposition,[],[f22,f23])).
+tff(f23,plain,(
+  ( ! [X2 : d_cat] : (d_garfield = X2 | d_arlene = X2 | d_nermal = X2) )),
+  inference(cnf_transformation,[],[f15])).
+tff(f22,plain,(
+  ( ! [X3 : cat] : (d2cat(sK3(X3)) = X3) )),
+  inference(cnf_transformation,[],[f15])).
+tff(f38,plain,(
+  loves(sK0) = sF5),
+  introduced(function_definition,[new_symbols(definition,[sF5])])).
+tff(f411,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5) )),
+  inference(subsumption_resolution,[],[f410,f396])).
+tff(f396,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,X0)) )),
+  inference(subsumption_resolution,[],[f395,f64])).
+tff(f64,plain,(
+  ( ! [X0 : human,X1 : human] : (X0 = X1) )),
+  inference(superposition,[],[f53,f53])).
+tff(f53,plain,(
+  ( ! [X8 : human] : (d2human(d_jon) = X8) )),
+  inference(forward_demodulation,[],[f19,f20])).
+tff(f20,plain,(
+  ( ! [X7 : d_human] : (d_jon = X7) )),
+  inference(cnf_transformation,[],[f15])).
+tff(f19,plain,(
+  ( ! [X8 : human] : (d2human(sK4(X8)) = X8) )),
+  inference(cnf_transformation,[],[f15])).
+tff(f395,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f394,f114])).
+tff(f394,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f393,f115])).
+tff(f115,plain,(
+  garfield != nermal),
+  inference(subsumption_resolution,[],[f112,f25])).
+tff(f25,plain,(
+  d_garfield != d_nermal),
+  inference(cnf_transformation,[],[f15])).
+tff(f112,plain,(
+  garfield != nermal | d_garfield = d_nermal),
+  inference(superposition,[],[f77,f31])).
+tff(f393,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f392,f119])).
+tff(f392,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f391,f50])).
+tff(f50,plain,(
+  owns(jon,garfield)),
+  inference(backward_demodulation,[],[f49,f28])).
+tff(f49,plain,(
+  owns(d2human(d_jon),garfield)),
+  inference(backward_demodulation,[],[f35,f29])).
+tff(f35,plain,(
+  owns(d2human(d_jon),d2cat(d_garfield))),
+  inference(cnf_transformation,[],[f15])).
+tff(f391,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f390,f51])).
+tff(f51,plain,(
+  ~owns(jon,arlene)),
+  inference(backward_demodulation,[],[f45,f28])).
+tff(f45,plain,(
+  ~owns(d2human(d_jon),arlene)),
+  inference(backward_demodulation,[],[f36,f30])).
+tff(f36,plain,(
+  ~owns(d2human(d_jon),d2cat(d_arlene))),
+  inference(cnf_transformation,[],[f15])).
+tff(f390,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(trivial_inequality_removal,[],[f383])).
+tff(f383,plain,(
+  ( ! [X0 : cat] : (garfield != garfield | nermal != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(backward_demodulation,[],[f39,f381])).
+tff(f39,plain,(
+  ( ! [X0 : cat] : (nermal != sK1 | arlene = X0 | garfield != loves(X0) | garfield != sF5 | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(definition_folding,[],[f18,f38])).
+tff(f18,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | nermal != sK1 | jon != sK2) )),
+  inference(cnf_transformation,[],[f12])).
+tff(f12,plain,(
+  ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0)) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | (nermal != sK1 & arlene != sK1 & garfield != sK1) | jon != sK2),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK0,sK1,sK2])],[f7,f11,f10,f9])).
+tff(f9,plain,(
+  ? [X1 : cat] : garfield != loves(X1) => garfield != loves(sK0)),
+  introduced(choice_axiom,[])).
+tff(f10,plain,(
+  ? [X2 : cat] : (nermal != X2 & arlene != X2 & garfield != X2) => (nermal != sK1 & arlene != sK1 & garfield != sK1)),
+  introduced(choice_axiom,[])).
+tff(f11,plain,(
+  ? [X3 : human] : jon != X3 => jon != sK2),
+  introduced(choice_axiom,[])).
+tff(f7,plain,(
+  ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0)) | ? [X1 : cat] : garfield != loves(X1) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | ? [X2 : cat] : (nermal != X2 & arlene != X2 & garfield != X2) | ? [X3 : human] : jon != X3),
+  inference(flattening,[],[f6])).
+tff(f6,plain,(
+  ! [X0 : cat] : (owns(jon,X0) | (arlene = X0 | garfield != loves(X0))) | ? [X1 : cat] : garfield != loves(X1) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | ? [X2 : cat] : (nermal != X2 & arlene != X2 & garfield != X2) | ? [X3 : human] : jon != X3),
+  inference(ennf_transformation,[],[f4])).
+tff(f4,plain,(
+  ~(~! [X0 : cat] : ((arlene != X0 & garfield = loves(X0)) => owns(jon,X0)) & ! [X1 : cat] : garfield = loves(X1) & ~owns(jon,arlene) & owns(jon,garfield) & arlene != nermal & garfield != nermal & garfield != arlene & ! [X2 : cat] : (nermal = X2 | arlene = X2 | garfield = X2) & ! [X3 : human] : jon = X3)),
+  inference(rectify,[],[f3])).
+tff(f3,negated_conjecture,(
+  ~(~! [X4 : cat] : ((arlene != X4 & garfield = loves(X4)) => owns(jon,X4)) & ! [X4 : cat] : garfield = loves(X4) & ~owns(jon,arlene) & owns(jon,garfield) & arlene != nermal & garfield != nermal & garfield != arlene & ! [X4 : cat] : (nermal = X4 | arlene = X4 | garfield = X4) & ! [X0 : human] : jon = X0)),
+  inference(negated_conjecture,[],[f2])).
+tff(f2,conjecture,(
+  ~! [X4 : cat] : ((arlene != X4 & garfield = loves(X4)) => owns(jon,X4)) & ! [X4 : cat] : garfield = loves(X4) & ~owns(jon,arlene) & owns(jon,garfield) & arlene != nermal & garfield != nermal & garfield != arlene & ! [X4 : cat] : (nermal = X4 | arlene = X4 | garfield = X4) & ! [X0 : human] : jon = X0),
+  file('TFF_Finite_SeparateDomains.s.p',unknown)).
+tff(f410,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | nermal = sK1) )),
+  inference(subsumption_resolution,[],[f409,f402])).
+tff(f402,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,X0)) )),
+  inference(subsumption_resolution,[],[f401,f64])).
+tff(f401,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f400,f114])).
+tff(f400,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f399,f115])).
+tff(f399,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f398,f119])).
+tff(f398,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f397,f50])).
+tff(f397,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(subsumption_resolution,[],[f389,f51])).
+tff(f389,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(trivial_inequality_removal,[],[f384])).
+tff(f384,plain,(
+  ( ! [X0 : cat] : (garfield != garfield | arlene != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(backward_demodulation,[],[f40,f381])).
+tff(f40,plain,(
+  ( ! [X0 : cat] : (arlene != sK1 | arlene = X0 | garfield != loves(X0) | garfield != sF5 | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | owns(jon,X0) | jon != sK2) )),
+  inference(definition_folding,[],[f17,f38])).
+tff(f17,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | arlene != sK1 | jon != sK2) )),
+  inference(cnf_transformation,[],[f12])).
+tff(f409,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | arlene = sK1 | nermal = sK1) )),
+  inference(subsumption_resolution,[],[f387,f115])).
+tff(f387,plain,(
+  ( ! [X0 : cat] : (garfield = nermal | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | arlene = sK1 | nermal = sK1) )),
+  inference(backward_demodulation,[],[f252,f381])).
+tff(f252,plain,(
+  ( ! [X0 : cat] : (nermal = sF5 | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | arlene = sK1 | nermal = sK1) )),
+  inference(forward_demodulation,[],[f251,f30])).
+tff(f251,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | nermal = sF5 | nermal = sK1 | d2cat(d_arlene) = sK1) )),
+  inference(trivial_inequality_removal,[],[f250])).
+tff(f250,plain,(
+  ( ! [X0 : cat] : (garfield != garfield | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | nermal = sF5 | nermal = sK1 | d2cat(d_arlene) = sK1) )),
+  inference(superposition,[],[f247,f179])).
+tff(f247,plain,(
+  ( ! [X0 : cat] : (garfield != sK1 | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = sF5 | nermal = sF5) )),
+  inference(forward_demodulation,[],[f246,f30])).
+tff(f246,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | garfield != sK1 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(subsumption_resolution,[],[f245,f64])).
+tff(f245,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(subsumption_resolution,[],[f244,f114])).
+tff(f244,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | garfield = arlene | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(subsumption_resolution,[],[f243,f115])).
+tff(f243,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(subsumption_resolution,[],[f242,f119])).
+tff(f242,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(subsumption_resolution,[],[f241,f50])).
+tff(f241,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(subsumption_resolution,[],[f223,f51])).
+tff(f223,plain,(
+  ( ! [X0 : cat] : (arlene = X0 | garfield != loves(X0) | owns(jon,X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(trivial_inequality_removal,[],[f220])).
+tff(f220,plain,(
+  ( ! [X0 : cat] : (garfield != garfield | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2 | nermal = sF5 | d2cat(d_arlene) = sF5) )),
+  inference(superposition,[],[f41,f179])).
+tff(f41,plain,(
+  ( ! [X0 : cat] : (garfield != sF5 | arlene = X0 | garfield != loves(X0) | owns(jon,X0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(definition_folding,[],[f16,f38])).
+tff(f16,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(cnf_transformation,[],[f12])).
+% SZS output end Proof for TFF_Finite_SeparateDomains.s

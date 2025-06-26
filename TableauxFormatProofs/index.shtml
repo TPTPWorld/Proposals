@@ -1,0 +1,235 @@
+<HTML>
+<HEAD>
+<TITLE> The TPTP Format for Clausal Tableaux Proofs </TITLE>
+</HEAD>
+<BODY ALIGN=JUSTIFY>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">The TPTP Format for Clausal Tableaux Proofs</H1>
+
+by 
+<A href="http://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>,
+<A href="https://www.cl.cam.ac.uk/~sbh11/">Sean Holden</A>,
+<A HREF="https://www.cst.cam.ac.uk/people/mb2412">Mantas Baksys</A>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Automated Theorem Proving </H2>
+
+Automated Theorem Proving (ATP) is concerned with the development and use of
+software that automates sound reasoning: the derivation of conclusions that follow inevitably
+from known facts.
+ATP is at the heart of many computational tasks, including sensitive tasks such as
+software/hardware verification and system security.
+ATP systems are often used as components of more complex Artificial Intelligence (AI) systems,
+which means that the impact of ATP extends into many facets of society.
+In many of these applications the use of ATP systems is mission critical, in the sense that
+incorrect results from ATP might have nasty consequences.
+Facing the demand for error-free results from ATP systems is the reality that ATP systems
+are complex pieces of software, implementing complex calculi with complex data structures and
+algorithms.
+Despite best intentions and efforts, incorrect results are possible.
+To counter incorrectness, an ATP system can be required to output a proof
+that serves as a certificate for the system's claim.
+To ensure that a proof is correct, proof verification can be required,
+which serves as a certification (but not a certificate) of the proof.
+<P>
+This website describes the (new) TPTP format for recording clausal tableau proofs.
+The format builds on the existing infrastructure of the TPTP World, in particular the TPTP format
+for recording derivations.
+An ATP system that outputs tableaux in this format is described.
+Existing TPTP World tools for verifying and viewing derivations can be directly extended to
+verify and view tableaux recorded in this new format.
+
+<P>
+<A NAME="Background">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Running Example </H2>
+
+<H3>Problem</H3>
+<PRE>
+<!--#include file="PaperFOF.p"-->
+</PRE>
+
+<H3>Clause Normal Form</H3>
+<PRE>
+<!--#include file="PaperCNF.p"-->
+</PRE>
+
+<H3>A Closed Tableau</H3>
+<P>
+The labels in square brackets identify the literals in the annotated formulae of the TPTP 
+the TPTP format for recording the tableau, show b elow.
+The dotted arrow shows the one reduction step, the solid rightward arrows point to the lemmas that
+are created, and the dashed arrows show where the lemmas are used.
+Note that lemmas can be used only below the parent node of where they are created.
+The tableau has the variables instantiated as they would be when the tableau is closed
+(but note that in general a tableau need not be ground).<BR>
+<IMG SRC="Tableau.png" WIDTH=50%>
+<P>
+
+<H3>TPTP Format Clausal Tableau</H3>
+<PRE>
+<!--#include file="PaperCNF.s"-->
+</PRE>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Clausal Tableau Proofs</H2>
+
+There were three primary requirements for the new format for a clausal tableau:
+<OL>
+<LI> Easy reconstruction of the tableau.
+<LI> Sufficient information for structural verification of the closed tableau.
+<LI> Sufficient information for semantic verification of the inference steps.
+</OL>
+Additional requirements are:
+<OL START="4">
+<LI> Concise and simple enough for a natural representation of proofs.
+<LI> Readable by humans as well as ATP tools.
+</OL>
+<P>
+The TPTP format recognizes six inference rules, which are described below.
+The inference record of each annotated formula records the name of the rule used, the SZS status
+of the inferred formula wrt its parents, the path from the root to the node above, and the
+inference parents.
+The SZS status and parent information makes it possible to use semantic verification of each
+inference, and the path information makes it easy to reconstruct the tableau.
+The point at which a variable becomes instantiated can optionally be recorded with a <TT>bind()</TT>
+record, e.g.,
+<PRE>
+cnf(t4,plain,              p(c) | ~ q(c),
+    inference(extension,[status(thm),path([t2:2,t1:1]),bind(X,c)],[c3]) ).
+</PRE>
+notes that the variable <TT>X</TT> in <TT>t2</TT> is bound to <TT>c</TT> (assuming
+variables have been renamed apart so that it is clear that the <TT>X</TT> is in <TT>t2</TT>).
+<P>
+<H3>The Inference Rules</H3>
+<STRONG><TT>start</TT>:</STRONG> The initial clause below the root node.
+For example, in the running example <TT>t1</TT> starts the tableau.
+The path to this point is recorded as <TT>[0:0]</TT>, indicating that the node above is the
+root node.
+The logical parent of <TT>t1</TT> is recorded as <TT>[c1]</TT>.
+The inference has status <TT>thm</TT>, i.e., <TT>t1</TT> is a logical consequence of its
+parent.
+<TT>start</TT> can be viewed as a special form of <TT>extension</TT>, described next.
+<P>
+<STRONG><TT>extension</TT>:</STRONG> The standard tableau extension rule.
+For example, in the running example <TT>t2</TT> extends from the first literal
+<TT>q(b)</TT> of <TT>t1</TT> to the 1st literal <TT>~q(b)</TT> of <TT>c2</TT>.
+The path to this point is recorded as <TT>[t1:1,0:0]</TT>.
+The logical parent of <TT>t2</TT> is recorded as <TT>[c2]</TT>.
+The inference has status <TT>thm</TT>, i.e., <TT>t2</TT> is a logical consequence of its parent.
+<P>
+<STRONG><TT>connection</TT>:</STRONG> Explicitly close the branch of the contradiction of an 
+extension.
+For example, in the running example <TT>t3</TT> closes the branch of the contradiction
+between <TT>q(b)</TT> and <TT>~q(b)</TT> in the extension to <TT>t2</TT>.
+The path to this point is recorded as <TT>[t2:1,t1:1,0:0]</TT>.
+The logical parents of <TT>t3</TT> are recorded as <TT>[t2:1,t1:1]</TT>, meaning the 1st
+literal of <TT>t2</TT> and the 1st literal of <TT>t1</TT>.
+The inference has status <TT>thm</TT>, i.e., <TT>t3</TT> is a logical consequence of its
+parents.
+<TT>connection</TT> can be viewed as a degenerate form of <TT>reduction</TT>, described next.
+<P>
+<STRONG><TT>reduction</TT>:</STRONG> The standard tableau reduction rule.
+For example, in the running example <TT>t8</TT> closes the branch of the contradiction
+between the 2nd literal <TT>~q(b)</TT> of <TT>t6</TT> and the 1st literal
+<TT>q(b)</TT> of <TT>t1</TT>.
+In the tableau of the running example this is denoted by the dotted arrow from <TT>q(b)</TT>
+to <TT>t8</TT>.
+The path to this point is recorded as <TT>[t6:2,t4:2,t2:2,t1:1,0:0]</TT>.
+The logical parents of <TT>t8</TT> are recorded as <TT>[t6:2,t1:1]</TT>, meaning the 2nd
+literal of <TT>t6</TT> and the 1st literal of <TT>t1</TT>.
+The inference has status <TT>thm</TT>, i.e., <TT>t8</TT> is a logical consequence of its
+parents.
+<P>
+<STRONG><TT>lemma</TT>:</STRONG> The creation of a unit lemma when a branch is closed.
+For example, in the running example <TT>l1</TT> is the lemma <TT>p(c)</TT> created
+when the branch rooted at <TT>t2:2</TT> is closed.
+The lemma is the negation of the 2nd literal <TT>~p(c)</TT> of <TT>t2</TT>.
+Note that the role of the annotated formula records it as a <TT>lemma</TT>.
+The path to this point is recorded as <TT>[t2:2,t1:1,0:0]</TT>.
+In the tableau of the running example this is denoted by the solid right arrow from 
+<TT>t2:2</TT> to <TT>l1</TT>.
+As the node <TT>t1:1</TT> is used in a reduction in closing the branch, the lemma is
+available only below <TT>t1:1</TT>, recorded as <TT>below(t1:1)</TT>.
+The logical parent of <TT>l1</TT> is recorded as <TT>[t2:2]</TT>, meaning the 2nd literal
+<TT>~p(c)</TT> of <TT>t2</TT>.
+The inference has status <TT>cth</TT>, i.e., the negation of <TT>l1</TT> is a logical
+consequence of its parent.
+<P>
+<STRONG><TT>lemma_extension</TT>:</STRONG> Use of a lemma to close a branch.
+For example, in the running example <TT>t11:1</TT> is the lemma <TT>l1</TT>,
+and <TT>t12</TT> is the <TT>connection</TT> that closes the branch down to <TT>t11:1</TT>.
+In the tableau of the running example this is denoted by the dashed arrow from <TT>l1</TT> to
+<TT>t11:1</TT>.
+The lemma <TT>l1</TT> can be used here because <TT>9:2</TT> is below <TT>t1:1</TT>.
+The path to this point is recorded as <TT>[t11:1,t9:2,t2:3,t1:1,0:0]</TT>.
+The logical parent of <TT>t11</TT> is recorded as <TT>[l1:1]</TT>, meaning the 1st literal
+<TT>p(c)</TT> of <TT>l1</TT>.
+The inference has status <TT>thm</TT>, i.e., <TT>t11:1</TT> is a logical consequence of its
+parent.
+<TT>lemma_extension</TT> can be viewed as a special form of <TT>extension</TT>.
+<P>
+Additional tableau inference rules, e.g., factorization (another view of lemma
+generation and use), non-unit lemma generation (also known as bottom-up lemma
+generation), lazy paramodulation (to deal with equality),
+etc., appear to be easily added to this format.
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>ATP Systems and Tools</H2>
+
+Connect++ is an ATP for first-order logic with equality, using the connection calculus to construct
+proofs.
+Connect++ implements most of the search methods and other heuristics developed for leanCoP
+versions&nbsp;2 and later, including restricted backtracking (and an alternative version of 
+backtracking restriction for extensions), iterative deepening by path length, various approaches 
+to start clause selection, definitional clause conversion, deterministic or random re-ordering, 
+and regularity testing.
+It also incorporates some further options such as miniscoping and polynomial-time unification.
+It accepts input in the TPTP <TT>cnf</TT> and <TT>fof</TT> formats.
+Connect++ incorporates a standard schedule similar to that of leanCoP, but also allows
+arbitrary schedules to be specified in a simple language.
+It produces certificates for proofs in a very simple format that
+can be verified internally, or output to a file and checked independently by a short Prolog
+program.
+From version 0.7.0 Connect++ can also produce closed tableau in the new TPTP format described in 
+this paper.
+Connect++ is implemented in C++ and freely available under the GNU General Public License (GPL)
+Version&nbsp;3.
+Download from <A HREF="https://www.cl.cam.ac.uk/~sbh11/connect++.html">
+<TT>www.cl.cam.ac.uk/~sbh11/connect++.html</TT></A>.
+<P>
+The extension of the GDV derivation verifier to verify tableau proofs required extending the 
+structural verification phase, and a minor change to inference verification.
+Leaf verification remains unchanged, and the rule-specific steps of derivation verification
+are naturally inapplicable.
+Structural verification of a tableau proof requires checking:
+<UL>
+<LI> All inference parents exist, in particular that the specified literals exist.
+<LI> The <TT>path</TT> records define an acyclic DAG, without contradictions in the paths.
+<LI> All paths start at the root <TT>0:0</TT> node.
+<LI> The tableau is closed, i.e., every branch ends at a <TT>$false</TT> formula.
+<LI> All <TT>lemma_extension</TT> steps use lemmas that are below the specified node in the 
+tableau.
+</UL>
+Semantic verification is essentially the same as for derivations, with the small additional need
+to extract the specified literals from inference parents.
+<P>
+The IDV derivation viewer has been adapted to display tableau proofs, as the Interactive
+Tableau Viewer (ITV).
+The figure below shows the ITV rendering of the tableau in Figure~\ref{ExampleTableau}.
+The root node is the top <TT>$true</TT> box.
+Nodes from <TT>extension</TT> steps are in green-bordered ovals, <TT>$false</TT> nodes from
+<TT>connection</TT> and <TT>reduction</TT> steps are in red-bordered <TT>$false</TT> boxes,
+lemmas created in <TT>lemma</TT> steps are in blue-bordered triangles, and lemmas used in
+<TT>lemma_extension</TT> steps are in green-bordered triangles.
+ITV is available online in SystemOnTSTP, available at 
+<A HREF="https://tptp.org/cgi-bin/SystemOnTSTP"><TT>tptp.org/cgi-bin/SystemOnTSTP</TT></A>.
+<P>
+<IMG SRC="PaperFOFITV.png" WIDTH=50%>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

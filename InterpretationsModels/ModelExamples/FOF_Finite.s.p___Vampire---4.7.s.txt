@@ -1,0 +1,408 @@
+% SZS status Theorem for FOF_Finite.s
+% SZS output start Proof for FOF_Finite.s
+fof(f411,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[f129,f131,f133,f144,f146,f151,f234,f248,f299,f310,f331,f334,f340,f357,f378,f382,f406,f410])).
+fof(f410,plain,(
+  spl3_3 | ~spl3_18 | ~spl3_21),
+  inference(avatar_contradiction_clause,[],[f409])).
+fof(f409,plain,(
+  $false | (spl3_3 | ~spl3_18 | ~spl3_21)),
+  inference(subsumption_resolution,[],[f408,f53])).
+fof(f53,plain,(
+  created_equal("john","john")),
+  inference(cnf_transformation,[],[f1])).
+fof(f1,axiom,(
+  created_equal("gotA","gotA") & created_equal("gotA","john") & ~created_equal("gotA","f") & ~created_equal("gotA","a") & created_equal("john","gotA") & created_equal("john","john") & ~created_equal("john","f") & ~created_equal("john","a") & ~created_equal("f","gotA") & ~created_equal("f","john") & ~created_equal("f","f") & ~created_equal("f","a") & ~created_equal("a","gotA") & ~created_equal("a","john") & ~created_equal("a","f") & ~created_equal("a","a") & human("gotA") & human("john") & ~human("f") & ~human("a") & "a" = grade_of("gotA") & "f" = grade_of("john") & "a" = grade_of("f") & "a" = grade_of("a") & "john" = john & "f" = f & "a" = a & ! [X0] : ("gotA" = X0 | "john" = X0 | "f" = X0 | "a" = X0)),
+  file('FOF_Finite.s.p',equality_lost)).
+fof(f408,plain,(
+  ~created_equal("john","john") | (spl3_3 | ~spl3_18 | ~spl3_21)),
+  inference(forward_demodulation,[],[f368,f280])).
+fof(f280,plain,(
+  "john" = sK1 | ~spl3_21),
+  inference(avatar_component_clause,[],[f278])).
+fof(f278,plain,(
+  spl3_21 <=> "john" = sK1),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_21])])).
+fof(f368,plain,(
+  ~created_equal(sK1,"john") | (spl3_3 | ~spl3_18)),
+  inference(backward_demodulation,[],[f97,f264])).
+fof(f264,plain,(
+  "john" = sK2 | ~spl3_18),
+  inference(avatar_component_clause,[],[f262])).
+fof(f262,plain,(
+  spl3_18 <=> "john" = sK2),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_18])])).
+fof(f97,plain,(
+  ~created_equal(sK1,sK2) | spl3_3),
+  inference(avatar_component_clause,[],[f95])).
+fof(f95,plain,(
+  spl3_3 <=> created_equal(sK1,sK2)),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_3])])).
+fof(f406,plain,(
+  spl3_3 | ~spl3_16 | ~spl3_21),
+  inference(avatar_contradiction_clause,[],[f405])).
+fof(f405,plain,(
+  $false | (spl3_3 | ~spl3_16 | ~spl3_21)),
+  inference(subsumption_resolution,[],[f404,f54])).
+fof(f54,plain,(
+  created_equal("john","gotA")),
+  inference(cnf_transformation,[],[f1])).
+fof(f404,plain,(
+  ~created_equal("john","gotA") | (spl3_3 | ~spl3_16 | ~spl3_21)),
+  inference(forward_demodulation,[],[f323,f280])).
+fof(f323,plain,(
+  ~created_equal(sK1,"gotA") | (spl3_3 | ~spl3_16)),
+  inference(backward_demodulation,[],[f97,f256])).
+fof(f256,plain,(
+  "gotA" = sK2 | ~spl3_16),
+  inference(avatar_component_clause,[],[f254])).
+fof(f254,plain,(
+  spl3_16 <=> "gotA" = sK2),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_16])])).
+fof(f382,plain,(
+  spl3_16 | spl3_18 | ~spl3_7 | spl3_17),
+  inference(avatar_split_clause,[],[f381,f258,f112,f262,f254])).
+fof(f112,plain,(
+  spl3_7 <=> human(sK2)),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_7])])).
+fof(f258,plain,(
+  spl3_17 <=> "f" = sK2),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_17])])).
+fof(f381,plain,(
+  "john" = sK2 | "gotA" = sK2 | (~spl3_7 | spl3_17)),
+  inference(subsumption_resolution,[],[f380,f259])).
+fof(f259,plain,(
+  "f" != sK2 | spl3_17),
+  inference(avatar_component_clause,[],[f258])).
+fof(f380,plain,(
+  "john" = sK2 | "f" = sK2 | "gotA" = sK2 | ~spl3_7),
+  inference(subsumption_resolution,[],[f379,f39])).
+fof(f39,plain,(
+  ~human("a")),
+  inference(cnf_transformation,[],[f1])).
+fof(f379,plain,(
+  human("a") | "john" = sK2 | "f" = sK2 | "gotA" = sK2 | ~spl3_7),
+  inference(superposition,[],[f114,f31])).
+fof(f31,plain,(
+  ( ! [X0] : ("a" = X0 | "john" = X0 | "f" = X0 | "gotA" = X0) )),
+  inference(cnf_transformation,[],[f1])).
+fof(f114,plain,(
+  human(sK2) | ~spl3_7),
+  inference(avatar_component_clause,[],[f112])).
+fof(f378,plain,(
+  spl3_3 | ~spl3_18 | ~spl3_19),
+  inference(avatar_contradiction_clause,[],[f377])).
+fof(f377,plain,(
+  $false | (spl3_3 | ~spl3_18 | ~spl3_19)),
+  inference(subsumption_resolution,[],[f376,f57])).
+fof(f57,plain,(
+  created_equal("gotA","john")),
+  inference(cnf_transformation,[],[f1])).
+fof(f376,plain,(
+  ~created_equal("gotA","john") | (spl3_3 | ~spl3_18 | ~spl3_19)),
+  inference(forward_demodulation,[],[f368,f272])).
+fof(f272,plain,(
+  "gotA" = sK1 | ~spl3_19),
+  inference(avatar_component_clause,[],[f270])).
+fof(f270,plain,(
+  spl3_19 <=> "gotA" = sK1),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_19])])).
+fof(f357,plain,(
+  ~spl3_7 | ~spl3_17),
+  inference(avatar_contradiction_clause,[],[f356])).
+fof(f356,plain,(
+  $false | (~spl3_7 | ~spl3_17)),
+  inference(subsumption_resolution,[],[f354,f40])).
+fof(f40,plain,(
+  ~human("f")),
+  inference(cnf_transformation,[],[f1])).
+fof(f354,plain,(
+  human("f") | (~spl3_7 | ~spl3_17)),
+  inference(backward_demodulation,[],[f114,f260])).
+fof(f260,plain,(
+  "f" = sK2 | ~spl3_17),
+  inference(avatar_component_clause,[],[f258])).
+fof(f340,plain,(
+  ~spl3_8 | ~spl3_20),
+  inference(avatar_contradiction_clause,[],[f339])).
+fof(f339,plain,(
+  $false | (~spl3_8 | ~spl3_20)),
+  inference(subsumption_resolution,[],[f337,f40])).
+fof(f337,plain,(
+  human("f") | (~spl3_8 | ~spl3_20)),
+  inference(backward_demodulation,[],[f120,f276])).
+fof(f276,plain,(
+  "f" = sK1 | ~spl3_20),
+  inference(avatar_component_clause,[],[f274])).
+fof(f274,plain,(
+  spl3_20 <=> "f" = sK1),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_20])])).
+fof(f120,plain,(
+  human(sK1) | ~spl3_8),
+  inference(avatar_component_clause,[],[f118])).
+fof(f118,plain,(
+  spl3_8 <=> human(sK1)),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_8])])).
+fof(f334,plain,(
+  spl3_19 | spl3_20 | spl3_21 | ~spl3_8),
+  inference(avatar_split_clause,[],[f333,f118,f278,f274,f270])).
+fof(f333,plain,(
+  "john" = sK1 | "f" = sK1 | "gotA" = sK1 | ~spl3_8),
+  inference(subsumption_resolution,[],[f332,f39])).
+fof(f332,plain,(
+  human("a") | "john" = sK1 | "f" = sK1 | "gotA" = sK1 | ~spl3_8),
+  inference(superposition,[],[f120,f31])).
+fof(f331,plain,(
+  spl3_3 | ~spl3_16 | ~spl3_19),
+  inference(avatar_contradiction_clause,[],[f330])).
+fof(f330,plain,(
+  $false | (spl3_3 | ~spl3_16 | ~spl3_19)),
+  inference(subsumption_resolution,[],[f329,f58])).
+fof(f58,plain,(
+  created_equal("gotA","gotA")),
+  inference(cnf_transformation,[],[f1])).
+fof(f329,plain,(
+  ~created_equal("gotA","gotA") | (spl3_3 | ~spl3_16 | ~spl3_19)),
+  inference(forward_demodulation,[],[f323,f272])).
+fof(f310,plain,(
+  ~spl3_1 | ~spl3_5 | ~spl3_15),
+  inference(avatar_contradiction_clause,[],[f309])).
+fof(f309,plain,(
+  $false | (~spl3_1 | ~spl3_5 | ~spl3_15)),
+  inference(subsumption_resolution,[],[f308,f40])).
+fof(f308,plain,(
+  human("f") | (~spl3_1 | ~spl3_5 | ~spl3_15)),
+  inference(forward_demodulation,[],[f305,f89])).
+fof(f89,plain,(
+  "f" = grade_of("john") | ~spl3_1),
+  inference(avatar_component_clause,[],[f88])).
+fof(f88,plain,(
+  spl3_1 <=> "f" = grade_of("john")),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_1])])).
+fof(f305,plain,(
+  human(grade_of("john")) | (~spl3_5 | ~spl3_15)),
+  inference(backward_demodulation,[],[f104,f228])).
+fof(f228,plain,(
+  "john" = sK0 | ~spl3_15),
+  inference(avatar_component_clause,[],[f226])).
+fof(f226,plain,(
+  spl3_15 <=> "john" = sK0),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_15])])).
+fof(f104,plain,(
+  human(grade_of(sK0)) | ~spl3_5),
+  inference(avatar_component_clause,[],[f102])).
+fof(f102,plain,(
+  spl3_5 <=> human(grade_of(sK0))),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_5])])).
+fof(f299,plain,(
+  spl3_13 | spl3_14 | spl3_15 | ~spl3_5),
+  inference(avatar_split_clause,[],[f298,f102,f226,f222,f218])).
+fof(f218,plain,(
+  spl3_13 <=> "gotA" = sK0),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_13])])).
+fof(f222,plain,(
+  spl3_14 <=> "f" = sK0),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_14])])).
+fof(f298,plain,(
+  "john" = sK0 | "f" = sK0 | "gotA" = sK0 | ~spl3_5),
+  inference(subsumption_resolution,[],[f297,f39])).
+fof(f297,plain,(
+  human("a") | "john" = sK0 | "f" = sK0 | "gotA" = sK0 | ~spl3_5),
+  inference(forward_demodulation,[],[f295,f35])).
+fof(f35,plain,(
+  "a" = grade_of("a")),
+  inference(cnf_transformation,[],[f1])).
+fof(f295,plain,(
+  human(grade_of("a")) | "john" = sK0 | "f" = sK0 | "gotA" = sK0 | ~spl3_5),
+  inference(superposition,[],[f104,f31])).
+fof(f248,plain,(
+  ~spl3_5 | ~spl3_14),
+  inference(avatar_contradiction_clause,[],[f247])).
+fof(f247,plain,(
+  $false | (~spl3_5 | ~spl3_14)),
+  inference(subsumption_resolution,[],[f246,f39])).
+fof(f246,plain,(
+  human("a") | (~spl3_5 | ~spl3_14)),
+  inference(forward_demodulation,[],[f244,f36])).
+fof(f36,plain,(
+  "a" = grade_of("f")),
+  inference(cnf_transformation,[],[f1])).
+fof(f244,plain,(
+  human(grade_of("f")) | (~spl3_5 | ~spl3_14)),
+  inference(backward_demodulation,[],[f104,f224])).
+fof(f224,plain,(
+  "f" = sK0 | ~spl3_14),
+  inference(avatar_component_clause,[],[f222])).
+fof(f234,plain,(
+  ~spl3_5 | ~spl3_13),
+  inference(avatar_contradiction_clause,[],[f233])).
+fof(f233,plain,(
+  $false | (~spl3_5 | ~spl3_13)),
+  inference(subsumption_resolution,[],[f232,f39])).
+fof(f232,plain,(
+  human("a") | (~spl3_5 | ~spl3_13)),
+  inference(forward_demodulation,[],[f230,f38])).
+fof(f38,plain,(
+  "a" = grade_of("gotA")),
+  inference(cnf_transformation,[],[f1])).
+fof(f230,plain,(
+  human(grade_of("gotA")) | (~spl3_5 | ~spl3_13)),
+  inference(backward_demodulation,[],[f104,f220])).
+fof(f220,plain,(
+  "gotA" = sK0 | ~spl3_13),
+  inference(avatar_component_clause,[],[f218])).
+fof(f151,plain,(
+  ~spl3_4),
+  inference(avatar_contradiction_clause,[],[f150])).
+fof(f150,plain,(
+  $false | ~spl3_4),
+  inference(subsumption_resolution,[],[f38,f148])).
+fof(f148,plain,(
+  "a" != grade_of("gotA") | ~spl3_4),
+  inference(resolution,[],[f100,f42])).
+fof(f42,plain,(
+  human("gotA")),
+  inference(cnf_transformation,[],[f1])).
+fof(f100,plain,(
+  ( ! [X3] : (~human(X3) | "a" != grade_of(X3)) ) | ~spl3_4),
+  inference(avatar_component_clause,[],[f99])).
+fof(f99,plain,(
+  spl3_4 <=> ! [X3] : ("a" != grade_of(X3) | ~human(X3))),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_4])])).
+fof(f146,plain,(
+  spl3_6),
+  inference(avatar_contradiction_clause,[],[f145])).
+fof(f145,plain,(
+  $false | spl3_6),
+  inference(subsumption_resolution,[],[f108,f41])).
+fof(f41,plain,(
+  human("john")),
+  inference(cnf_transformation,[],[f1])).
+fof(f108,plain,(
+  ~human("john") | spl3_6),
+  inference(avatar_component_clause,[],[f106])).
+fof(f106,plain,(
+  spl3_6 <=> human("john")),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_6])])).
+fof(f144,plain,(
+  spl3_1),
+  inference(avatar_contradiction_clause,[],[f143])).
+fof(f143,plain,(
+  $false | spl3_1),
+  inference(subsumption_resolution,[],[f37,f90])).
+fof(f90,plain,(
+  "f" != grade_of("john") | spl3_1),
+  inference(avatar_component_clause,[],[f88])).
+fof(f37,plain,(
+  "f" = grade_of("john")),
+  inference(cnf_transformation,[],[f1])).
+fof(f133,plain,(
+  spl3_5 | ~spl3_1 | spl3_8 | ~spl3_6 | spl3_4),
+  inference(avatar_split_clause,[],[f132,f99,f106,f118,f88,f102])).
+fof(f132,plain,(
+  ( ! [X3] : (~human(X3) | ~human("john") | human(sK1) | "f" != grade_of("john") | human(grade_of(sK0)) | "a" != grade_of(X3)) )),
+  inference(global_subsumption,[],[f126])).
+fof(f126,plain,(
+  ( ! [X3] : (~human("john") | "a" != grade_of(X3) | "f" != grade_of("john") | ~human(X3) | human(sK1) | human(grade_of(sK0))) )),
+  inference(global_subsumption,[],[f18,f83])).
+fof(f83,plain,(
+  ( ! [X3] : (human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | human(sK1)) )),
+  inference(condensation,[],[f76])).
+fof(f76,plain,(
+  ( ! [X3,X1] : (human(X1) | human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | human(sK1)) )),
+  inference(equality_resolution,[],[f64])).
+fof(f64,plain,(
+  ( ! [X3,X0,X1] : (human(X1) | X0 != X1 | human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | human(sK1)) )),
+  inference(definition_unfolding,[],[f25,f32,f33,f32,f33,f34,f34])).
+fof(f34,plain,(
+  "john" = john),
+  inference(cnf_transformation,[],[f1])).
+fof(f33,plain,(
+  "f" = f),
+  inference(cnf_transformation,[],[f1])).
+fof(f32,plain,(
+  "a" = a),
+  inference(cnf_transformation,[],[f1])).
+fof(f25,plain,(
+  ( ! [X3,X0,X1] : (human(X1) | X0 != X1 | human(grade_of(sK0)) | a = f | a != grade_of(X3) | ~human(X3) | f != grade_of(john) | ~human(john) | human(sK1)) )),
+  inference(cnf_transformation,[],[f12])).
+fof(f12,plain,(
+  ! [X0,X1] : (((created_equal(X0,X1) & human(X1) & human(X0)) | X0 != X1) & (X0 = X1 | ~created_equal(X0,X1) | ~human(X1) | ~human(X0))) | human(grade_of(sK0)) | a = f | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | (~created_equal(sK1,sK2) & human(sK2) & human(sK1))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK0,sK1,sK2])],[f9,f11,f10])).
+fof(f10,plain,(
+  ? [X2] : human(grade_of(X2)) => human(grade_of(sK0))),
+  introduced(choice_axiom,[])).
+fof(f11,plain,(
+  ? [X4,X5] : (~created_equal(X4,X5) & human(X5) & human(X4)) => (~created_equal(sK1,sK2) & human(sK2) & human(sK1))),
+  introduced(choice_axiom,[])).
+fof(f9,plain,(
+  ! [X0,X1] : (((created_equal(X0,X1) & human(X1) & human(X0)) | X0 != X1) & (X0 = X1 | ~created_equal(X0,X1) | ~human(X1) | ~human(X0))) | ? [X2] : human(grade_of(X2)) | a = f | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & human(X5) & human(X4))),
+  inference(flattening,[],[f8])).
+fof(f8,plain,(
+  ! [X0,X1] : (((created_equal(X0,X1) & human(X1) & human(X0)) | X0 != X1) & (X0 = X1 | (~created_equal(X0,X1) | ~human(X1) | ~human(X0)))) | ? [X2] : human(grade_of(X2)) | a = f | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & human(X5) & human(X4))),
+  inference(nnf_transformation,[],[f7])).
+fof(f7,plain,(
+  ! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) | ? [X2] : human(grade_of(X2)) | a = f | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & human(X5) & human(X4))),
+  inference(flattening,[],[f6])).
+fof(f6,plain,(
+  ! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) | ? [X2] : human(grade_of(X2)) | a = f | ! [X3] : (a != grade_of(X3) | ~human(X3)) | f != grade_of(john) | ~human(john) | ? [X4,X5] : (~created_equal(X4,X5) & (human(X5) & human(X4)))),
+  inference(ennf_transformation,[],[f5])).
+fof(f5,plain,(
+  ~(~! [X0,X1] : ((created_equal(X0,X1) & human(X1) & human(X0)) <=> X0 = X1) & ! [X2] : ~human(grade_of(X2)) & a != f & ? [X3] : (a = grade_of(X3) & human(X3)) & f = grade_of(john) & human(john) & ! [X4,X5] : ((human(X5) & human(X4)) => created_equal(X4,X5)))),
+  inference(rectify,[],[f3])).
+fof(f3,negated_conjecture,(
+  ~(~! [X1,X2] : ((created_equal(X1,X2) & human(X2) & human(X1)) <=> X1 = X2) & ! [X4] : ~human(grade_of(X4)) & a != f & ? [X3] : (a = grade_of(X3) & human(X3)) & f = grade_of(john) & human(john) & ! [X1,X2] : ((human(X2) & human(X1)) => created_equal(X1,X2)))),
+  inference(negated_conjecture,[],[f2])).
+fof(f2,conjecture,(
+  ~! [X1,X2] : ((created_equal(X1,X2) & human(X2) & human(X1)) <=> X1 = X2) & ! [X4] : ~human(grade_of(X4)) & a != f & ? [X3] : (a = grade_of(X3) & human(X3)) & f = grade_of(john) & human(john) & ! [X1,X2] : ((human(X2) & human(X1)) => created_equal(X1,X2))),
+  file('FOF_Finite.s.p',prove_formulae)).
+fof(f18,plain,(
+  "a" != "f"),
+  inference(cnf_transformation,[],[f4])).
+fof(f4,plain,(
+  "a" != "f" & "a" != "john" & "f" != "john" & "a" != "gotA" & "f" != "gotA" & "john" != "gotA"),
+  introduced(distinctness_axiom,[])).
+fof(f131,plain,(
+  ~spl3_6 | spl3_7 | spl3_5 | ~spl3_1 | spl3_4),
+  inference(avatar_split_clause,[],[f130,f99,f88,f102,f112,f106])).
+fof(f130,plain,(
+  ( ! [X3] : ("a" != grade_of(X3) | "f" != grade_of("john") | ~human(X3) | human(grade_of(sK0)) | human(sK2) | ~human("john")) )),
+  inference(global_subsumption,[],[f124])).
+fof(f124,plain,(
+  ( ! [X3] : (~human(X3) | ~human("john") | human(grade_of(sK0)) | "f" != grade_of("john") | "a" != grade_of(X3) | human(sK2)) )),
+  inference(global_subsumption,[],[f18,f84])).
+fof(f84,plain,(
+  ( ! [X3] : (human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | human(sK2)) )),
+  inference(condensation,[],[f75])).
+fof(f75,plain,(
+  ( ! [X3,X1] : (human(X1) | human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | human(sK2)) )),
+  inference(equality_resolution,[],[f63])).
+fof(f63,plain,(
+  ( ! [X3,X0,X1] : (human(X1) | X0 != X1 | human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | human(sK2)) )),
+  inference(definition_unfolding,[],[f26,f32,f33,f32,f33,f34,f34])).
+fof(f26,plain,(
+  ( ! [X3,X0,X1] : (human(X1) | X0 != X1 | human(grade_of(sK0)) | a = f | a != grade_of(X3) | ~human(X3) | f != grade_of(john) | ~human(john) | human(sK2)) )),
+  inference(cnf_transformation,[],[f12])).
+fof(f129,plain,(
+  ~spl3_6 | ~spl3_1 | ~spl3_3 | spl3_5 | spl3_4),
+  inference(avatar_split_clause,[],[f128,f99,f102,f95,f88,f106])).
+fof(f128,plain,(
+  ( ! [X3] : ("a" != grade_of(X3) | human(grade_of(sK0)) | ~created_equal(sK1,sK2) | "f" != grade_of("john") | ~human("john") | ~human(X3)) )),
+  inference(global_subsumption,[],[f122])).
+fof(f122,plain,(
+  ( ! [X3] : ("a" != grade_of(X3) | ~created_equal(sK1,sK2) | ~human(X3) | human(grade_of(sK0)) | ~human("john") | "f" != grade_of("john")) )),
+  inference(global_subsumption,[],[f18,f85])).
+fof(f85,plain,(
+  ( ! [X3] : (human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | ~created_equal(sK1,sK2)) )),
+  inference(condensation,[],[f74])).
+fof(f74,plain,(
+  ( ! [X3,X1] : (human(X1) | human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | ~created_equal(sK1,sK2)) )),
+  inference(equality_resolution,[],[f62])).
+fof(f62,plain,(
+  ( ! [X3,X0,X1] : (human(X1) | X0 != X1 | human(grade_of(sK0)) | "a" = "f" | "a" != grade_of(X3) | ~human(X3) | "f" != grade_of("john") | ~human("john") | ~created_equal(sK1,sK2)) )),
+  inference(definition_unfolding,[],[f27,f32,f33,f32,f33,f34,f34])).
+fof(f27,plain,(
+  ( ! [X3,X0,X1] : (human(X1) | X0 != X1 | human(grade_of(sK0)) | a = f | a != grade_of(X3) | ~human(X3) | f != grade_of(john) | ~human(john) | ~created_equal(sK1,sK2)) )),
+  inference(cnf_transformation,[],[f12])).
+% SZS output end Proof for FOF_Finite.s

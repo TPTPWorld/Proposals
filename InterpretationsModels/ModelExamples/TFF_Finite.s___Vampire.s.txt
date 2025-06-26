@@ -1,0 +1,191 @@
+% SZS status Satisfiable for TFF_Finite
+% SZS output start FiniteModel for TFF_Finite
+tff('declare_$i1',type,'fmb_$i_1':$i).
+tff('finite_domain_$i',axiom,
+      ! [X:$i] : (
+         X = 'fmb_$i_1'
+      ) ).
+
+tff(declare_human,type,human:$tType).
+tff(declare_human1,type,jon:human).
+tff(declare_human2,type,fmb_human_2:human).
+tff(declare_human3,type,fmb_human_3:human).
+tff(declare_human4,type,fmb_human_4:human).
+tff(declare_human5,type,fmb_human_5:human).
+tff(declare_human6,type,fmb_human_6:human).
+tff(declare_human7,type,fmb_human_7:human).
+tff(declare_human8,type,fmb_human_8:human).
+tff(declare_human9,type,fmb_human_9:human).
+tff(declare_human10,type,fmb_human_10:human).
+tff(finite_domain_human,axiom,
+      ! [X:human] : (
+         X = jon | X = fmb_human_2 | X = fmb_human_3 | X = fmb_human_4 | X = fmb_human_5 | 
+         X = fmb_human_6 | X = fmb_human_7 | X = fmb_human_8 | X = fmb_human_9 | X = fmb_human_10
+      ) ).
+
+tff(distinct_domain_human,axiom,
+         jon != fmb_human_2 & jon != fmb_human_3 & jon != fmb_human_4 & jon != fmb_human_5 & jon != fmb_human_6 & 
+         jon != fmb_human_7 & jon != fmb_human_8 & jon != fmb_human_9 & jon != fmb_human_10 & fmb_human_2 != fmb_human_3 & 
+         fmb_human_2 != fmb_human_4 & fmb_human_2 != fmb_human_5 & fmb_human_2 != fmb_human_6 & fmb_human_2 != fmb_human_7 & fmb_human_2 != fmb_human_8 & 
+         fmb_human_2 != fmb_human_9 & fmb_human_2 != fmb_human_10 & fmb_human_3 != fmb_human_4 & fmb_human_3 != fmb_human_5 & fmb_human_3 != fmb_human_6 & 
+         fmb_human_3 != fmb_human_7 & fmb_human_3 != fmb_human_8 & fmb_human_3 != fmb_human_9 & fmb_human_3 != fmb_human_10 & fmb_human_4 != fmb_human_5 & 
+         fmb_human_4 != fmb_human_6 & fmb_human_4 != fmb_human_7 & fmb_human_4 != fmb_human_8 & fmb_human_4 != fmb_human_9 & fmb_human_4 != fmb_human_10 & 
+         fmb_human_5 != fmb_human_6 & fmb_human_5 != fmb_human_7 & fmb_human_5 != fmb_human_8 & fmb_human_5 != fmb_human_9 & fmb_human_5 != fmb_human_10 & 
+         fmb_human_6 != fmb_human_7 & fmb_human_6 != fmb_human_8 & fmb_human_6 != fmb_human_9 & fmb_human_6 != fmb_human_10 & fmb_human_7 != fmb_human_8 & 
+         fmb_human_7 != fmb_human_9 & fmb_human_7 != fmb_human_10 & fmb_human_8 != fmb_human_9 & fmb_human_8 != fmb_human_10 & fmb_human_9 != fmb_human_10
+).
+
+tff(declare_cat,type,cat:$tType).
+tff(declare_cat1,type,garfield:cat).
+tff(declare_cat2,type,arlene:cat).
+tff(declare_cat3,type,nermal:cat).
+tff(declare_cat4,type,garfield:cat).
+tff(declare_cat5,type,fmb_cat_5:cat).
+tff(declare_cat6,type,garfield:cat).
+tff(declare_cat7,type,garfield:cat).
+tff(declare_cat8,type,garfield:cat).
+tff(declare_cat9,type,garfield:cat).
+tff(declare_cat10,type,fmb_cat_10:cat).
+tff(finite_domain_cat,axiom,
+      ! [X:cat] : (
+         X = garfield | X = arlene | X = nermal | X = garfield | X = fmb_cat_5 | 
+         X = garfield | X = garfield | X = garfield | X = garfield | X = fmb_cat_10
+      ) ).
+
+tff(distinct_domain_cat,axiom,
+         garfield != arlene & garfield != nermal & garfield != garfield & garfield != fmb_cat_5 & garfield != garfield & 
+         garfield != garfield & garfield != garfield & garfield != garfield & garfield != fmb_cat_10 & arlene != nermal & 
+         arlene != garfield & arlene != fmb_cat_5 & arlene != garfield & arlene != garfield & arlene != garfield & 
+         arlene != garfield & arlene != fmb_cat_10 & nermal != garfield & nermal != fmb_cat_5 & nermal != garfield & 
+         nermal != garfield & nermal != garfield & nermal != garfield & nermal != fmb_cat_10 & garfield != fmb_cat_5 & 
+         garfield != garfield & garfield != garfield & garfield != garfield & garfield != garfield & garfield != fmb_cat_10 & 
+         fmb_cat_5 != garfield & fmb_cat_5 != garfield & fmb_cat_5 != garfield & fmb_cat_5 != garfield & fmb_cat_5 != fmb_cat_10 & 
+         garfield != garfield & garfield != garfield & garfield != garfield & garfield != fmb_cat_10 & garfield != garfield & 
+         garfield != garfield & garfield != fmb_cat_10 & garfield != garfield & garfield != fmb_cat_10 & garfield != fmb_cat_10
+).
+
+tff(declare_arlene,type,arlene:cat).
+tff(arlene_definition,axiom,arlene = garfield).
+tff(declare_nermal,type,nermal:cat).
+tff(nermal_definition,axiom,nermal = garfield).
+tff(declare_loves,type,loves: (cat) > cat).
+tff(function_loves,axiom,
+           loves(garfield) = garfield
+         & loves(arlene) = garfield
+         & loves(nermal) = garfield
+%         loves(garfield) undefined in model
+%         loves(fmb_cat_5) undefined in model
+%         loves(garfield) undefined in model
+%         loves(garfield) undefined in model
+%         loves(garfield) undefined in model
+%         loves(garfield) undefined in model
+%         loves(fmb_cat_10) undefined in model
+
+).
+
+tff(declare_owns,type,owns: (human * cat) > $o).
+tff(predicate_owns,axiom,
+           owns(jon,garfield)
+         & ~owns(jon,arlene)
+         & ~owns(jon,nermal)
+%         owns(jon,garfield) undefined in model
+%         owns(jon,fmb_cat_5) undefined in model
+%         owns(jon,garfield) undefined in model
+%         owns(jon,garfield) undefined in model
+%         owns(jon,garfield) undefined in model
+%         owns(jon,garfield) undefined in model
+%         owns(jon,fmb_cat_10) undefined in model
+         & ~owns(fmb_human_2,garfield)
+         & ~owns(fmb_human_2,arlene)
+         & ~owns(fmb_human_2,nermal)
+%         owns(fmb_human_2,garfield) undefined in model
+%         owns(fmb_human_2,fmb_cat_5) undefined in model
+%         owns(fmb_human_2,garfield) undefined in model
+%         owns(fmb_human_2,garfield) undefined in model
+%         owns(fmb_human_2,garfield) undefined in model
+%         owns(fmb_human_2,garfield) undefined in model
+%         owns(fmb_human_2,fmb_cat_10) undefined in model
+%         owns(fmb_human_3,garfield) undefined in model
+%         owns(fmb_human_3,arlene) undefined in model
+%         owns(fmb_human_3,nermal) undefined in model
+%         owns(fmb_human_3,garfield) undefined in model
+%         owns(fmb_human_3,fmb_cat_5) undefined in model
+%         owns(fmb_human_3,garfield) undefined in model
+%         owns(fmb_human_3,garfield) undefined in model
+%         owns(fmb_human_3,garfield) undefined in model
+%         owns(fmb_human_3,garfield) undefined in model
+%         owns(fmb_human_3,fmb_cat_10) undefined in model
+%         owns(fmb_human_4,garfield) undefined in model
+%         owns(fmb_human_4,arlene) undefined in model
+%         owns(fmb_human_4,nermal) undefined in model
+%         owns(fmb_human_4,garfield) undefined in model
+%         owns(fmb_human_4,fmb_cat_5) undefined in model
+%         owns(fmb_human_4,garfield) undefined in model
+%         owns(fmb_human_4,garfield) undefined in model
+%         owns(fmb_human_4,garfield) undefined in model
+%         owns(fmb_human_4,garfield) undefined in model
+%         owns(fmb_human_4,fmb_cat_10) undefined in model
+%         owns(fmb_human_5,garfield) undefined in model
+%         owns(fmb_human_5,arlene) undefined in model
+%         owns(fmb_human_5,nermal) undefined in model
+%         owns(fmb_human_5,garfield) undefined in model
+%         owns(fmb_human_5,fmb_cat_5) undefined in model
+%         owns(fmb_human_5,garfield) undefined in model
+%         owns(fmb_human_5,garfield) undefined in model
+%         owns(fmb_human_5,garfield) undefined in model
+%         owns(fmb_human_5,garfield) undefined in model
+%         owns(fmb_human_5,fmb_cat_10) undefined in model
+%         owns(fmb_human_6,garfield) undefined in model
+%         owns(fmb_human_6,arlene) undefined in model
+%         owns(fmb_human_6,nermal) undefined in model
+%         owns(fmb_human_6,garfield) undefined in model
+%         owns(fmb_human_6,fmb_cat_5) undefined in model
+%         owns(fmb_human_6,garfield) undefined in model
+%         owns(fmb_human_6,garfield) undefined in model
+%         owns(fmb_human_6,garfield) undefined in model
+%         owns(fmb_human_6,garfield) undefined in model
+%         owns(fmb_human_6,fmb_cat_10) undefined in model
+%         owns(fmb_human_7,garfield) undefined in model
+%         owns(fmb_human_7,arlene) undefined in model
+%         owns(fmb_human_7,nermal) undefined in model
+%         owns(fmb_human_7,garfield) undefined in model
+%         owns(fmb_human_7,fmb_cat_5) undefined in model
+%         owns(fmb_human_7,garfield) undefined in model
+%         owns(fmb_human_7,garfield) undefined in model
+%         owns(fmb_human_7,garfield) undefined in model
+%         owns(fmb_human_7,garfield) undefined in model
+%         owns(fmb_human_7,fmb_cat_10) undefined in model
+%         owns(fmb_human_8,garfield) undefined in model
+%         owns(fmb_human_8,arlene) undefined in model
+%         owns(fmb_human_8,nermal) undefined in model
+%         owns(fmb_human_8,garfield) undefined in model
+%         owns(fmb_human_8,fmb_cat_5) undefined in model
+%         owns(fmb_human_8,garfield) undefined in model
+%         owns(fmb_human_8,garfield) undefined in model
+%         owns(fmb_human_8,garfield) undefined in model
+%         owns(fmb_human_8,garfield) undefined in model
+%         owns(fmb_human_8,fmb_cat_10) undefined in model
+%         owns(fmb_human_9,garfield) undefined in model
+%         owns(fmb_human_9,arlene) undefined in model
+%         owns(fmb_human_9,nermal) undefined in model
+%         owns(fmb_human_9,garfield) undefined in model
+%         owns(fmb_human_9,fmb_cat_5) undefined in model
+%         owns(fmb_human_9,garfield) undefined in model
+%         owns(fmb_human_9,garfield) undefined in model
+%         owns(fmb_human_9,garfield) undefined in model
+%         owns(fmb_human_9,garfield) undefined in model
+%         owns(fmb_human_9,fmb_cat_10) undefined in model
+%         owns(fmb_human_10,garfield) undefined in model
+%         owns(fmb_human_10,arlene) undefined in model
+%         owns(fmb_human_10,nermal) undefined in model
+%         owns(fmb_human_10,garfield) undefined in model
+%         owns(fmb_human_10,fmb_cat_5) undefined in model
+%         owns(fmb_human_10,garfield) undefined in model
+%         owns(fmb_human_10,garfield) undefined in model
+%         owns(fmb_human_10,garfield) undefined in model
+%         owns(fmb_human_10,garfield) undefined in model
+%         owns(fmb_human_10,fmb_cat_10) undefined in model
+
+).
+
+% SZS output end FiniteModel for TFF_Finite

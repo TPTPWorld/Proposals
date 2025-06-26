@@ -1,0 +1,256 @@
+% SZS status Theorem for TFF_Peano.s
+% SZS output start Proof for TFF_Peano.s
+tff(type_def_5, type, person: $tType).
+tff(type_def_6, type, peano: $tType).
+tff(func_def_0, type, bob: person).
+tff(func_def_1, type, child_of: person > person).
+tff(func_def_2, type, zero: peano).
+tff(func_def_3, type, s: peano > peano).
+tff(func_def_4, type, peano2person: peano > person).
+tff(func_def_5, type, sK0: person).
+tff(func_def_6, type, sK1: person).
+tff(func_def_7, type, sK2: person).
+tff(func_def_8, type, sK3: person).
+tff(func_def_9, type, sK4: person).
+tff(func_def_10, type, sK5: person).
+tff(func_def_11, type, sK6: person).
+tff(func_def_12, type, sK7: peano > peano).
+tff(func_def_13, type, sK8: person > peano).
+tff(func_def_14, type, sF9: person).
+tff(pred_def_1, type, is_descendant: (person * person) > $o).
+tff(pred_def_2, type, peano_less: (peano * peano) > $o).
+tff(f3793,plain,(
+  $false),
+  inference(subsumption_resolution,[],[f3792,f3724])).
+tff(f3724,plain,(
+  ~is_descendant(sK2,sK4)),
+  inference(subsumption_resolution,[],[f3723,f90])).
+tff(f90,plain,(
+  is_descendant(sK1,sF9)),
+  inference(superposition,[],[f81,f42])).
+tff(f42,plain,(
+  child_of(sK1) = sF9),
+  introduced(function_definition,[new_symbols(definition,[sF9])])).
+tff(f81,plain,(
+  ( ! [X0 : person] : (is_descendant(X0,child_of(X0))) )),
+  inference(forward_demodulation,[],[f74,f50])).
+tff(f50,plain,(
+  ( ! [X0 : person] : (child_of(X0) = peano2person(s(sK8(X0)))) )),
+  inference(superposition,[],[f32,f25])).
+tff(f25,plain,(
+  ( ! [X10 : person] : (peano2person(sK8(X10)) = X10) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f18,plain,(
+  ! [X0 : peano,X1 : peano] : ((is_descendant(peano2person(X0),peano2person(X1)) | ~peano_less(X0,X1)) & (peano_less(X0,X1) | ~is_descendant(peano2person(X0),peano2person(X1)))) & ! [X2 : peano] : child_of(peano2person(X2)) = peano2person(s(X2)) & bob = peano2person(zero) & ! [X3 : peano,X4 : peano,X5 : peano] : ((X3 != X4 | ~peano_less(X3,X4)) & (peano_less(X3,X5) | ~peano_less(X4,X5) | ~peano_less(X3,X4)) & peano_less(X3,s(X3))) & ! [X6 : peano,X7 : peano] : (X6 = X7 | peano2person(X6) != peano2person(X7)) & ! [X8 : peano] : (s(sK7(X8)) = X8 | zero = X8) & ! [X10 : person] : peano2person(sK8(X10)) = X10),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK7,sK8])],[f15,f17,f16])).
+tff(f16,plain,(
+  ! [X8 : peano] : (? [X9 : peano] : s(X9) = X8 => s(sK7(X8)) = X8)),
+  introduced(choice_axiom,[])).
+tff(f17,plain,(
+  ! [X10 : person] : (? [X11 : peano] : peano2person(X11) = X10 => peano2person(sK8(X10)) = X10)),
+  introduced(choice_axiom,[])).
+tff(f15,plain,(
+  ! [X0 : peano,X1 : peano] : ((is_descendant(peano2person(X0),peano2person(X1)) | ~peano_less(X0,X1)) & (peano_less(X0,X1) | ~is_descendant(peano2person(X0),peano2person(X1)))) & ! [X2 : peano] : child_of(peano2person(X2)) = peano2person(s(X2)) & bob = peano2person(zero) & ! [X3 : peano,X4 : peano,X5 : peano] : ((X3 != X4 | ~peano_less(X3,X4)) & (peano_less(X3,X5) | ~peano_less(X4,X5) | ~peano_less(X3,X4)) & peano_less(X3,s(X3))) & ! [X6 : peano,X7 : peano] : (X6 = X7 | peano2person(X6) != peano2person(X7)) & ! [X8 : peano] : (? [X9 : peano] : s(X9) = X8 | zero = X8) & ! [X10 : person] : ? [X11 : peano] : peano2person(X11) = X10),
+  inference(nnf_transformation,[],[f9])).
+tff(f9,plain,(
+  ! [X0 : peano,X1 : peano] : (is_descendant(peano2person(X0),peano2person(X1)) <=> peano_less(X0,X1)) & ! [X2 : peano] : child_of(peano2person(X2)) = peano2person(s(X2)) & bob = peano2person(zero) & ! [X3 : peano,X4 : peano,X5 : peano] : ((X3 != X4 | ~peano_less(X3,X4)) & (peano_less(X3,X5) | ~peano_less(X4,X5) | ~peano_less(X3,X4)) & peano_less(X3,s(X3))) & ! [X6 : peano,X7 : peano] : (X6 = X7 | peano2person(X6) != peano2person(X7)) & ! [X8 : peano] : (? [X9 : peano] : s(X9) = X8 | zero = X8) & ! [X10 : person] : ? [X11 : peano] : peano2person(X11) = X10),
+  inference(flattening,[],[f8])).
+tff(f8,plain,(
+  ! [X0 : peano,X1 : peano] : (is_descendant(peano2person(X0),peano2person(X1)) <=> peano_less(X0,X1)) & ! [X2 : peano] : child_of(peano2person(X2)) = peano2person(s(X2)) & bob = peano2person(zero) & ! [X3 : peano,X4 : peano,X5 : peano] : ((X3 != X4 | ~peano_less(X3,X4)) & (peano_less(X3,X5) | (~peano_less(X4,X5) | ~peano_less(X3,X4))) & peano_less(X3,s(X3))) & ! [X6 : peano,X7 : peano] : (X6 = X7 | peano2person(X6) != peano2person(X7)) & ! [X8 : peano] : (? [X9 : peano] : s(X9) = X8 | zero = X8) & ! [X10 : person] : ? [X11 : peano] : peano2person(X11) = X10),
+  inference(ennf_transformation,[],[f5])).
+tff(f5,plain,(
+  ! [X0 : peano,X1 : peano] : (is_descendant(peano2person(X0),peano2person(X1)) <=> peano_less(X0,X1)) & ! [X2 : peano] : child_of(peano2person(X2)) = peano2person(s(X2)) & bob = peano2person(zero) & ! [X3 : peano,X4 : peano,X5 : peano] : ((peano_less(X3,X4) => X3 != X4) & ((peano_less(X4,X5) & peano_less(X3,X4)) => peano_less(X3,X5)) & peano_less(X3,s(X3))) & ! [X6 : peano,X7 : peano] : (peano2person(X6) = peano2person(X7) => X6 = X7) & ! [X8 : peano] : (? [X9 : peano] : s(X9) = X8 | zero = X8) & ! [X10 : person] : ? [X11 : peano] : peano2person(X11) = X10),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ! [X5 : peano,X6 : peano] : (is_descendant(peano2person(X5),peano2person(X6)) <=> peano_less(X5,X6)) & ! [X1 : peano] : child_of(peano2person(X1)) = peano2person(s(X1)) & bob = peano2person(zero) & ! [X2 : peano,X3 : peano,X4 : peano] : ((peano_less(X2,X3) => X2 != X3) & ((peano_less(X3,X4) & peano_less(X2,X3)) => peano_less(X2,X4)) & peano_less(X2,s(X2))) & ! [X2 : peano,X3 : peano] : (peano2person(X2) = peano2person(X3) => X2 = X3) & ! [X1 : peano] : (? [X0 : peano] : s(X0) = X1 | zero = X1) & ! [X0 : person] : ? [X1 : peano] : peano2person(X1) = X0),
+  file('TFF_Peano.s.p',unknown)).
+tff(f32,plain,(
+  ( ! [X2 : peano] : (child_of(peano2person(X2)) = peano2person(s(X2))) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f74,plain,(
+  ( ! [X0 : person] : (is_descendant(X0,peano2person(s(sK8(X0))))) )),
+  inference(superposition,[],[f68,f25])).
+tff(f68,plain,(
+  ( ! [X0 : peano] : (is_descendant(peano2person(X0),peano2person(s(X0)))) )),
+  inference(resolution,[],[f34,f28])).
+tff(f28,plain,(
+  ( ! [X3 : peano] : (peano_less(X3,s(X3))) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f34,plain,(
+  ( ! [X0 : peano,X1 : peano] : (~peano_less(X0,X1) | is_descendant(peano2person(X0),peano2person(X1))) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f3723,plain,(
+  ~is_descendant(sK2,sK4) | ~is_descendant(sK1,sF9)),
+  inference(subsumption_resolution,[],[f3714,f65])).
+tff(f65,plain,(
+  ( ! [X0 : person] : (~is_descendant(X0,X0)) )),
+  inference(superposition,[],[f63,f25])).
+tff(f63,plain,(
+  ( ! [X0 : peano] : (~is_descendant(peano2person(X0),peano2person(X0))) )),
+  inference(resolution,[],[f33,f41])).
+tff(f41,plain,(
+  ( ! [X4 : peano] : (~peano_less(X4,X4)) )),
+  inference(equality_resolution,[],[f30])).
+tff(f30,plain,(
+  ( ! [X3 : peano,X4 : peano] : (X3 != X4 | ~peano_less(X3,X4)) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f33,plain,(
+  ( ! [X0 : peano,X1 : peano] : (peano_less(X0,X1) | ~is_descendant(peano2person(X0),peano2person(X1))) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f3714,plain,(
+  is_descendant(sK5,sK5) | ~is_descendant(sK2,sK4) | ~is_descendant(sK1,sF9)),
+  inference(backward_demodulation,[],[f44,f3713])).
+tff(f3713,plain,(
+  sK5 = sK6),
+  inference(subsumption_resolution,[],[f3712,f90])).
+tff(f3712,plain,(
+  sK5 = sK6 | ~is_descendant(sK1,sF9)),
+  inference(duplicate_literal_removal,[],[f3709])).
+tff(f3709,plain,(
+  sK5 = sK6 | ~is_descendant(sK1,sF9) | sK5 = sK6),
+  inference(resolution,[],[f3688,f43])).
+tff(f43,plain,(
+  ~is_descendant(sK2,sK4) | ~is_descendant(sK1,sF9) | sK5 = sK6),
+  inference(definition_folding,[],[f35,f42])).
+tff(f35,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | sK5 = sK6),
+  inference(equality_resolution,[],[f24])).
+tff(f24,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | sK5 = sK6) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f14,plain,(
+  ! [X1 : person] : child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | (~is_descendant(sK2,sK4) & is_descendant(sK3,sK4) & is_descendant(sK2,sK3)) | (sK5 = sK6 & is_descendant(sK5,sK6))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK0,sK1,sK2,sK3,sK4,sK5,sK6])],[f7,f13,f12,f11,f10])).
+tff(f10,plain,(
+  ? [X0 : person] : ! [X1 : person] : child_of(X0) != X1 => ! [X1 : person] : child_of(sK0) != X1),
+  introduced(choice_axiom,[])).
+tff(f11,plain,(
+  ? [X2 : person] : ~is_descendant(X2,child_of(X2)) => ~is_descendant(sK1,child_of(sK1))),
+  introduced(choice_axiom,[])).
+tff(f12,plain,(
+  ? [X3 : person,X4 : person,X5 : person] : (~is_descendant(X3,X5) & is_descendant(X4,X5) & is_descendant(X3,X4)) => (~is_descendant(sK2,sK4) & is_descendant(sK3,sK4) & is_descendant(sK2,sK3))),
+  introduced(choice_axiom,[])).
+tff(f13,plain,(
+  ? [X6 : person,X7 : person] : (X6 = X7 & is_descendant(X6,X7)) => (sK5 = sK6 & is_descendant(sK5,sK6))),
+  introduced(choice_axiom,[])).
+tff(f7,plain,(
+  ? [X0 : person] : ! [X1 : person] : child_of(X0) != X1 | ? [X2 : person] : ~is_descendant(X2,child_of(X2)) | ? [X3 : person,X4 : person,X5 : person] : (~is_descendant(X3,X5) & is_descendant(X4,X5) & is_descendant(X3,X4)) | ? [X6 : person,X7 : person] : (X6 = X7 & is_descendant(X6,X7))),
+  inference(flattening,[],[f6])).
+tff(f6,plain,(
+  ? [X0 : person] : ! [X1 : person] : child_of(X0) != X1 | ? [X2 : person] : ~is_descendant(X2,child_of(X2)) | ? [X3 : person,X4 : person,X5 : person] : (~is_descendant(X3,X5) & (is_descendant(X4,X5) & is_descendant(X3,X4))) | ? [X6 : person,X7 : person] : (X6 = X7 & is_descendant(X6,X7))),
+  inference(ennf_transformation,[],[f4])).
+tff(f4,plain,(
+  ~(! [X0 : person] : ? [X1 : person] : child_of(X0) = X1 & ! [X2 : person] : is_descendant(X2,child_of(X2)) & ! [X3 : person,X4 : person,X5 : person] : ((is_descendant(X4,X5) & is_descendant(X3,X4)) => is_descendant(X3,X5)) & ! [X6 : person,X7 : person] : (is_descendant(X6,X7) => X6 != X7))),
+  inference(rectify,[],[f3])).
+tff(f3,negated_conjecture,(
+  ~(! [X0 : person] : ? [X7 : person] : child_of(X0) = X7 & ! [X0 : person] : is_descendant(X0,child_of(X0)) & ! [X5 : person,X7 : person,X8 : person] : ((is_descendant(X7,X8) & is_descendant(X5,X7)) => is_descendant(X5,X8)) & ! [X5 : person,X6 : person] : (is_descendant(X5,X6) => X5 != X6))),
+  inference(negated_conjecture,[],[f2])).
+tff(f2,conjecture,(
+  ! [X0 : person] : ? [X7 : person] : child_of(X0) = X7 & ! [X0 : person] : is_descendant(X0,child_of(X0)) & ! [X5 : person,X7 : person,X8 : person] : ((is_descendant(X7,X8) & is_descendant(X5,X7)) => is_descendant(X5,X8)) & ! [X5 : person,X6 : person] : (is_descendant(X5,X6) => X5 != X6)),
+  file('TFF_Peano.s.p',unknown)).
+tff(f3688,plain,(
+  is_descendant(sK2,sK4) | sK5 = sK6),
+  inference(subsumption_resolution,[],[f3687,f90])).
+tff(f3687,plain,(
+  is_descendant(sK2,sK4) | sK5 = sK6 | ~is_descendant(sK1,sF9)),
+  inference(duplicate_literal_removal,[],[f3686])).
+tff(f3686,plain,(
+  is_descendant(sK2,sK4) | sK5 = sK6 | ~is_descendant(sK1,sF9) | sK5 = sK6),
+  inference(resolution,[],[f3633,f47])).
+tff(f47,plain,(
+  is_descendant(sK2,sK3) | ~is_descendant(sK1,sF9) | sK5 = sK6),
+  inference(definition_folding,[],[f39,f42])).
+tff(f39,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | sK5 = sK6),
+  inference(equality_resolution,[],[f20])).
+tff(f20,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | sK5 = sK6) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f3633,plain,(
+  ( ! [X0 : person] : (~is_descendant(X0,sK3) | is_descendant(X0,sK4) | sK5 = sK6) )),
+  inference(subsumption_resolution,[],[f3628,f90])).
+tff(f3628,plain,(
+  ( ! [X0 : person] : (is_descendant(X0,sK4) | ~is_descendant(X0,sK3) | ~is_descendant(sK1,sF9) | sK5 = sK6) )),
+  inference(resolution,[],[f3428,f45])).
+tff(f45,plain,(
+  is_descendant(sK3,sK4) | ~is_descendant(sK1,sF9) | sK5 = sK6),
+  inference(definition_folding,[],[f37,f42])).
+tff(f37,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | sK5 = sK6),
+  inference(equality_resolution,[],[f22])).
+tff(f22,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | sK5 = sK6) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f3428,plain,(
+  ( ! [X2 : person,X0 : person,X1 : person] : (~is_descendant(X2,X1) | is_descendant(X0,X1) | ~is_descendant(X0,X2)) )),
+  inference(superposition,[],[f1662,f25])).
+tff(f1662,plain,(
+  ( ! [X2 : peano,X0 : person,X1 : person] : (is_descendant(peano2person(X2),X0) | ~is_descendant(X1,X0) | ~is_descendant(peano2person(X2),X1)) )),
+  inference(superposition,[],[f822,f25])).
+tff(f822,plain,(
+  ( ! [X2 : peano,X0 : person,X1 : peano] : (~is_descendant(X0,peano2person(X1)) | is_descendant(peano2person(X2),peano2person(X1)) | ~is_descendant(peano2person(X2),X0)) )),
+  inference(superposition,[],[f278,f25])).
+tff(f278,plain,(
+  ( ! [X2 : peano,X0 : peano,X1 : peano] : (~is_descendant(peano2person(X2),peano2person(X1)) | is_descendant(peano2person(X0),peano2person(X1)) | ~is_descendant(peano2person(X0),peano2person(X2))) )),
+  inference(resolution,[],[f105,f33])).
+tff(f105,plain,(
+  ( ! [X2 : peano,X0 : peano,X1 : peano] : (~peano_less(X0,X1) | is_descendant(peano2person(X0),peano2person(X2)) | ~is_descendant(peano2person(X1),peano2person(X2))) )),
+  inference(resolution,[],[f72,f33])).
+tff(f72,plain,(
+  ( ! [X2 : peano,X0 : peano,X1 : peano] : (~peano_less(X0,X1) | ~peano_less(X2,X0) | is_descendant(peano2person(X2),peano2person(X1))) )),
+  inference(resolution,[],[f29,f34])).
+tff(f29,plain,(
+  ( ! [X3 : peano,X4 : peano,X5 : peano] : (peano_less(X3,X5) | ~peano_less(X4,X5) | ~peano_less(X3,X4)) )),
+  inference(cnf_transformation,[],[f18])).
+tff(f44,plain,(
+  is_descendant(sK5,sK6) | ~is_descendant(sK2,sK4) | ~is_descendant(sK1,sF9)),
+  inference(definition_folding,[],[f36,f42])).
+tff(f36,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | is_descendant(sK5,sK6)),
+  inference(equality_resolution,[],[f23])).
+tff(f23,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | ~is_descendant(sK2,sK4) | is_descendant(sK5,sK6)) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f3792,plain,(
+  is_descendant(sK2,sK4)),
+  inference(resolution,[],[f3729,f3728])).
+tff(f3728,plain,(
+  is_descendant(sK2,sK3)),
+  inference(subsumption_resolution,[],[f3727,f90])).
+tff(f3727,plain,(
+  is_descendant(sK2,sK3) | ~is_descendant(sK1,sF9)),
+  inference(subsumption_resolution,[],[f3716,f65])).
+tff(f3716,plain,(
+  is_descendant(sK5,sK5) | is_descendant(sK2,sK3) | ~is_descendant(sK1,sF9)),
+  inference(backward_demodulation,[],[f48,f3713])).
+tff(f48,plain,(
+  is_descendant(sK5,sK6) | is_descendant(sK2,sK3) | ~is_descendant(sK1,sF9)),
+  inference(definition_folding,[],[f40,f42])).
+tff(f40,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | is_descendant(sK5,sK6)),
+  inference(equality_resolution,[],[f19])).
+tff(f19,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK2,sK3) | is_descendant(sK5,sK6)) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f3729,plain,(
+  ( ! [X0 : person] : (~is_descendant(X0,sK3) | is_descendant(X0,sK4)) )),
+  inference(resolution,[],[f3726,f3428])).
+tff(f3726,plain,(
+  is_descendant(sK3,sK4)),
+  inference(subsumption_resolution,[],[f3725,f90])).
+tff(f3725,plain,(
+  is_descendant(sK3,sK4) | ~is_descendant(sK1,sF9)),
+  inference(subsumption_resolution,[],[f3715,f65])).
+tff(f3715,plain,(
+  is_descendant(sK5,sK5) | is_descendant(sK3,sK4) | ~is_descendant(sK1,sF9)),
+  inference(backward_demodulation,[],[f46,f3713])).
+tff(f46,plain,(
+  is_descendant(sK5,sK6) | is_descendant(sK3,sK4) | ~is_descendant(sK1,sF9)),
+  inference(definition_folding,[],[f38,f42])).
+tff(f38,plain,(
+  ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | is_descendant(sK5,sK6)),
+  inference(equality_resolution,[],[f21])).
+tff(f21,plain,(
+  ( ! [X1 : person] : (child_of(sK0) != X1 | ~is_descendant(sK1,child_of(sK1)) | is_descendant(sK3,sK4) | is_descendant(sK5,sK6)) )),
+  inference(cnf_transformation,[],[f14])).
+% SZS output end Proof for TFF_Peano.s

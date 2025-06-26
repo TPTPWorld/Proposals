@@ -1,0 +1,471 @@
+<HTML>
+<HEAD>
+<TITLE> TFF Proof </TITLE>
+</HEAD>
+<!-- -------------------------------------------------------------------------------------- -->
+<SCRIPT type="text/javascript">
+function hideshow(obj) {
+    var elem = document.getElementById(obj);
+    if (elem.style.display == 'block') {
+        elem.style.display = 'none';
+    } else if (elem.style.display == 'none') {
+        elem.style.display = 'block';
+    } else {
+        elem.style.display = 'none';
+    }
+}
+</SCRIPT>
+<!-- -------------------------------------------------------------------------------------- -->
+<BODY ALIGN=JUSTIFY>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+Let ...
+<UL>
+<LI> &Sigma; be a typed first-order logic language, consisting of ...
+     <UL>
+     <LI> T<SUB>&Sigma;</SUB> - A set of types
+     <LI> V<SUB>&Sigma;</SUB> - A set of variables with types from T<SUB>&Sigma;</SUB>
+     <LI> F<SUB>&Sigma;</SUB> - A set of function symbols with signatures from T<SUB>&Sigma;</SUB>
+     <LI> P<SUB>&Sigma;</SUB> - A set of predicate symbols with signatures from T<SUB>&Sigma;</SUB>
+     </UL>
+<LI> &Phi; be a formula written in &Sigma;
+<LI> &Iota; be an interpretation for &Sigma;, consisting of ...
+     <UL>
+     <LI> T<SUB>&Iota;</SUB> - A set of domain types, one for each t &isin; T<SUB>&Sigma;</SUB><BR>
+          <UL>
+          <LI> Let T<SUB>&Iota;&rarr;&Sigma;</SUB> be the <EM>type mapping</EM> from
+               T<SUB>&Iota;</SUB> &rarr; T<SUB>&Sigma;</SUB> in correspondence to the above.
+          <LI> Let T<SUB>&Sigma;&rarr;&Iota;</SUB> be the inverse mapping from
+               T<SUB>&Sigma;</SUB> &rarr; T<SUB>&Iota;</SUB>
+          </UL>
+     <LI> D<SUB>&Iota;(<EM>t</EM>)</SUB> - Sets of domain elements, one for each 
+          <EM>t</EM> &isin; T<SUB>&Iota;</SUB>
+     <LI> F<SUB>&Iota;</SUB> - For each element <EM>f</EM> of F<SUB>&Sigma;</SUB> 
+          with signature <EM>s</EM> and arity <EM>n</EM>, a mapping 
+          <EM>f<SUP>*</SUP></EM>(D<SUB>&Iota;</SUB><SUP>n</SUP>) &rarr; D<SUB>&Iota;</SUB>
+          that respects <EM>s</EM> according to T<SUB>&Sigma;&rarr;&Iota;</SUB>
+     <LI> R<SUB>&Iota;</SUB> - For each element <EM>p</EM> of P<SUB>&Sigma;</SUB> 
+          with signature <EM>s</EM> and arity <EM>n</EM>, a mapping 
+          <EM>p<SUP>*</SUP></EM>(D<SUB>&Iota;</SUB><SUP>n</SUP>) &rarr; 
+          {<EM>TRUE</EM>,<EM>FALSE</EM>}
+          that respects <EM>s</EM> according to T<SUB>&Sigma;&rarr;&Iota;</SUB>
+     </UL>
+     &Iota; can be a <EM>partial</EM> interpretation of &Sigma;, but must be enough to 
+     interpret &Phi;.
+</UL>
+<A HREF="" onClick="hideshow('SigmaIPhi');return false;">Click for example</A>
+<SPAN ID="SigmaIPhi" style="display:none">
+<UL>
+<LI> &Sigma; ...
+     <UL>
+     <LI> T<SUB>&Sigma;</SUB> = {<TT>man</TT>, <TT>grade</TT>}
+     <LI> V<SUB>&Sigma;</SUB> = {Words starting uppercase}
+     <LI> F<SUB>&Sigma;</SUB> = {<TT>john</TT>/0:<TT>man</TT>, <TT>a</TT>/0:<TT>grade</TT>,
+                                 <TT>f</TT>/0:<TT>grade</TT>, 
+                                 <TT>grade_of</TT>/1:(<TT>man</TT>)&rarr;<TT>grade</TT>}
+     <LI> P<SUB>&Sigma;</SUB> = {<TT>created_equal</TT>/2:(<TT>man</TT>*<TT>man</TT>)&rarr;<TT>$o</TT>}
+     </UL>
+<LI> &Iota; ...
+     <UL>
+     <LI> T<SUB>&Iota;</SUB> = {man_emoji, grade_emoji}
+          <UL>
+          <LI> T<SUB>&Iota;&rarr;&Sigma;</SUB> = 
+               {man_emoji&rarr;<TT>man</TT>, grade_emoji&rarr;<TT>grade</TT>}
+          <LI> T<SUB>&Sigma;&rarr;&Iota;</SUB> = 
+               {<TT>man</TT>&rarr;man_emoji, <TT>grade</TT>&rarr;grade_emoji}
+          </UL>
+     <LI> D<SUB>&Iota;(man_emoji)</SUB> = {&#128512;, &#128546;} <BR>
+          D<SUB>&Iota;(grade_emoji)</SUB> = {&#127942;, &#128169;}
+     <LI> F<SUB>&Iota;</SUB> = {
+               <TT>john<SUP>*</SUP></TT> &rarr; &#128546;,
+               <TT>a<SUP>*</SUP></TT> &rarr; &#127942;,
+               <TT>f<SUP>*</SUP></TT> &rarr; &#128169;,
+               <TT>grade_of<SUP>*</SUP>(&#128512;)</TT> &rarr; &#127942;,
+               <TT>grade_of<SUP>*</SUP>(&#128546;)</TT> &rarr; &#128169;}
+     <LI> R<SUB>&Iota;</SUB> = {
+               <TT>created_equal<SUP>*</SUP>(&#128512;,&#128512;)</TT> &rarr; <EM>TRUE</EM>,
+               <TT>created_equal<SUP>*</SUP>(&#128512;,&#128546;)</TT> &rarr; <EM>TRUE</EM>,
+               <TT>created_equal<SUP>*</SUP>(&#128546;,&#128512;)</TT> &rarr; <EM>TRUE</EM>,
+               <TT>created_equal<SUP>*</SUP>(&#128546;,&#128546;)</TT> &rarr; <EM>TRUE</EM>}
+     </UL>
+<LI> &Phi; ... 
+     <UL>
+     <LI> &exist; <EM>H:man : grade_of(H) = a</EM>
+     </UL>
+</UL>
+</SPAN>
+<P>
+In the TPTP World an infinite interpretation &Iota; is represented by an interpretation formulae 
+&phi;<SUB>&Iota;</SUB>.
+<UL>
+<LI> Let T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> be a set of domain types, one for each 
+     t &isin; T<SUB>&Iota;</SUB><BR>
+     <UL>
+     <LI> Let T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Iota;</SUB> be the <EM>type mapping</EM> from
+          T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> &rarr; T<SUB>&Iota;</SUB> in correspondence to 
+          the above.
+     <LI> Let T<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB>(t)</SUB> be the inverse mapping from
+          T<SUB>&Iota;</SUB> &rarr; T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB>
+     <LI> Let T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Sigma;</SUB> be the <EM>type mapping</EM> from
+          T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> &rarr; T<SUB>&Sigma;</SUB> =
+          T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Iota;</SUB> &ordm; T<SUB>&Iota;&rarr;&Sigma;</SUB>
+     <LI> Let T<SUB>&Sigma;&rarr;&phi;<SUB>&Iota;</SUB>(t)</SUB> be the inverse mapping from
+          T<SUB>&Sigma;</SUB> &rarr; T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> =
+          T<SUB>&Sigma;&rarr;&Iota;</SUB> &ordm; T<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB>(t)</SUB>
+     </UL>
+<LI> Let D<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> be sets of fresh terms of type
+     <EM>t</EM> &isin; T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB>, containing one term for each
+     <EM>d<SUB>i</SUB></EM> &isin; D<SUB>&Iota;(T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Iota;</SUB>(t))</SUB>.
+     <UL>
+     <LI> Let T<SUB>&phi;<SUB>&Iota;</SUB>(t)&uarr;&Sigma;</SUB> be <EM>type promotion</EM> 
+          bijections from
+          D<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> &rarr; &Theta;(<EM>t</EM>), where
+          &Theta;(<EM>t</EM>) is set of terms of type 
+          T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Sigma;</SUB>(t)),
+          for each <E>t</EM> &isin; T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB>
+     </UL>
+<!--
+     <UL>
+     <LI> The <EM>d<SUB>i</SUB></EM> can be TPTP <TT>"distinct objects"</TT> which implies their 
+          inequality.
+     <LI> Otherwise the <EM>d<SUB>i</SUB></EM> can be constants, and their inequality must be 
+          explicitly added as a conjunction of inequality atoms 
+          <EM>d<SUB>i</SUB></EM>&nbsp;<TT>!=</TT>&nbsp;<EM>d<SUB>j</SUB></EM> for all 
+          <EM>i &ne; j</EM>.
+     </UL>
+-->
+<LI> Let D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB>(t)</SUB> be mappings from 
+     D<SUB>&Iota;(t)</SUB> &rarr; D<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB>, for each
+     <EM>t</EM> &isin; T<SUB>&Iota;</SUB>, in correspondence to the above.
+<LI> Let D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;&Iota;(t)</SUB> be the inverse mappings from 
+     D<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> &rarr; D<SUB>&Iota;(t)</SUB>, for each
+     <EM>t</EM> &isin;T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB>
+</UL>
+<A HREF="" onClick="hideshow('DomainIota');return false;">Click for example</A>
+<SPAN ID="DomainIota" style="display:none">
+<UL>
+<LI> T<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> = {<TT>d_man</TT>, <TT>d_grade</TT>}
+     <UL>
+     <LI> T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Iota;</SUB> = 
+          {<TT>d_man</TT> &rarr; <TT>man_emoji</TT>, <TT>d_grade</TT> &rarr; <TT>grade_emoji</TT>}
+     <LI> T<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB>(t)</SUB> =
+          {<TT>man_emoji</TT> &rarr; <TT>d_man</TT>, <TT>grade_emoji</TT> &rarr; <TT>d_grade</TT>}
+     <LI> T<SUB>&phi;<SUB>&Iota;</SUB>(t)&rarr;&Sigma;</SUB> =
+          {<TT>d_man</TT> &rarr; <TT>man</TT>, <TT>d_grade</TT> &rarr; <TT>grade</TT>}
+     <LI> T<SUB>&Sigma;&rarr;&phi;<SUB>&Iota;</SUB>(t)</SUB> =
+          {<TT>man</TT> &rarr; <TT>d_man</TT>, <TT>grade</TT> &rarr; <TT>d_grade</TT>}
+     </UL>
+<LI> D<SUB>&phi;<SUB>&Iota;</SUB>(d_man)</SUB> = {<TT>d_john</TT>, <TT>d_gotA</TT>}<BR>
+     D<SUB>&phi;<SUB>&Iota;</SUB>(d_grade)</SUB> = {<TT>d_a</TT>, <TT>d_f</TT>}
+     <UL>
+     <LI> T<SUB>&phi;<SUB>&Iota;</SUB>(t)&uarr;&Sigma;</SUB>  = 
+          {<TT>d2man<SUB>d_man&uarr;man</SUB></TT>, <TT>d2grade<SUB>d_grade&uarr;grade</SUB></TT>}
+     <LI> <TT>d2man<SUB>d_man&uarr;man</SUB></TT> = {<TT>d_john</TT> &rarr; <TT>d2man(d_john)</TT>,
+          <TT>d_gotA</TT> &rarr; <TT>d2man(d_gotA)</TT>} <BR>
+          <TT>d2grade<SUB>d_grade&uarr;grade</SUB></TT> = 
+          {<TT>d_a</TT> &rarr; <TT>d2grade(d_a)</TT>, <TT>d_f</TT> &rarr; <TT>d2grade(d_f)</TT>}
+     <LI> &Theta;(<TT>d_man</TT>) = {<TT>d2man(d_john)</TT>, <TT>d2man(d_gotA)</TT>} <BR>
+          &Theta;(<TT>d_grade</TT>) = {<TT>d2grade(d_a)</TT>, <TT>d2grade(d_f)</TT>} <BR>
+     </UL>
+<LI> D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB>(d_man)</SUB> =
+     {&#128512; &rarr; <TT>d_gotA</TT>, &#128546; &rarr; <TT>john</TT>}<BR>
+     D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB>(d_grade)</SUB> =
+     {&#127942; &rarr; <TT>d_a</TT>, &#128169; &rarr; <TT>d_f</TT>}
+<LI> D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;&Iota;(d_man)</SUB> =
+     {<TT>d_gotA</TT> &rarr; &#128512;, <TT>john</TT> &rarr; &#128546;}<BR>
+     D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;&Iota;(d_grade)</SUB> =
+     {<TT>d_a</TT> &rarr; &#127942;, <TT>d_f</TT> &rarr; &#128169;}
+</UL>
+</SPAN>
+<P>
+Define the typed first-order logic language &Sigma;' for &phi;<SUB>&Iota;</SUB>,consisting of ...
+<UL>
+<LI> T<SUB>&Sigma;'</SUB> = T<SUB>&Sigma;</SUB> &cup; T<SUB>&phi;<SUB>&Iota;</SUB>(*)</SUB>
+<LI> V<SUB>&Sigma;'</SUB> = V<SUB>&Sigma;</SUB>
+<LI> F<SUB>&Sigma;'</SUB> = F<SUB>&Sigma;</SUB> &cup; D<SUB>&phi;<SUB>&Iota;</SUB>(*)</SUB>
+<LI> P<SUB>&Sigma;'</SUB> = P<SUB>&Sigma;</SUB>
+</UL>
+<A HREF="" onClick="hideshow('SigmaPrime');return false;">Click for example</A>
+<SPAN ID="SigmaPrime" style="display:none">
+<UL>
+<LI> T<SUB>&Sigma;'</SUB> = {<TT>man</TT>, <TT>grade</TT>, <TT>d_man</TT>, <TT>d_grade</TT>}
+<LI> V<SUB>&Sigma;'</SUB> = {Words starting uppercase}
+<LI> F<SUB>&Sigma;'</SUB> = {<TT>john</TT>/0:<TT>man</TT>, <TT>a</TT>/0:<TT>grade</TT>,
+                             <TT>f</TT>/0:<TT>grade</TT>,
+                             <TT>grade_of</TT>/1:(<TT>man</TT>)&rarr;<TT>grade</TT>,
+                             <TT>d_john</TT>/0:<TT>d_man</TT>, <TT>d_gotA</TT>/0:<TT>d_man</TT>,
+                             <TT>d_a</TT>/0:<TT>d_grade</TT>, <TT>d_f</TT>/0:<TT>d_grade</TT>}
+<LI> P<SUB>&Sigma;'</SUB> = {<TT>taller</TT>/2}
+</UL>
+</SPAN>
+<P>
+Let T<SUB>&phi;<SUB>&Iota;</SUB></SUB> be the type declarations for T<SUB>&Sigma;'</SUB>
+and T<SUB>&phi;<SUB>&Iota;</SUB>(*)&uarr;&Sigma;</SUB>
+These are given first in a TPTP format interpretation.
+An interpretation formula &phi;<SUB>&Iota;</SUB> is the conjunction of:
+<UL>
+<LI> Inj<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> -
+     &forall; <EM>V:t &exist; D:T<SUB>&Sigma;&rarr;&Iota;</SUB>(t) 
+     (V = T<SUB>&Iota;&uarr;&Sigma;(t)</SUB>(D))</EM>, 
+     for each <EM>t</EM> &isin; T<SUB>&Sigma;</SUB> <BR>
+     Sur<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> -
+     &forall; <EM>D1:t D2:t ((T<SUB>&Iota;&uarr;&Sigma;(t)</SUB>(D1) = T<SUB>&Iota;&uarr;&Sigma;(t)</SUB>(D2)) &Rightarrow; (D1 = D2))</EM>,
+     for each <EM>t</EM> &isin; T<SUB>&Sigma;</SUB> <BR>
+<LI> D<SUP>|</SUP><SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB> -
+     &forall; <EM>X:t (X = d<SUB>1</SUB> | ... | X = d<SUB>n</SUB>)</EM>,
+     for all <EM>d<SUB>i</SUB></EM> &isin; D<SUB>&phi;<SUB>&Iota;</SUB>(t)</SUB>,
+     for each <EM>t</EM> &isin; T<SUB>&Sigma;</SUB> <BR>
+<LI> F<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> -
+     The conjunction of
+     <EM>f</EM>(T<SUB>&Iota;&uarr;&Sigma;(*)</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) = 
+     T<SUB>&Iota;&uarr;&Sigma;(*)</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d</EM>)),
+     for each 
+     (<EM>f<SUP>*</SUP></EM>(D<SUB>&Iota;</SUB><SUP>n</SUP>) &rarr; D<SUB>&Iota;</SUB>) &isin; 
+     F<SUB>&Iota;</SUB>
+<LI> P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> -
+     The conjunction of
+     <EM>p</EM>(T<SUB>&Iota;&uarr;&Sigma;(t)</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))),
+     for each instance of
+     (<EM>p<SUP>*</SUP></EM>(D<SUB>&Iota;</SUB><SUP>n</SUP>) &rarr; <EM>TRUE</EM>) &isin;
+     P<SUB>&Iota;</SUB>, and
+     <TT>~</TT><EM>p</EM>(T<SUB>&Iota;&uarr;&Sigma;(t)</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))),
+     for each 
+     (<EM>p<SUP>*</SUP></EM>(D<SUB>&Iota;</SUB><SUP>n</SUP>) &rarr; <EM>FALSE</EM>) &isin;
+     P<SUB>&Iota;</SUB>
+</UL>
+<A HREF="" onClick="hideshow('PhiIota');return false;">Click for example</A>
+<SPAN ID="PhiIota" style="display:none">
+<UL>
+<LI> The type declarations are
+<PRE>tff(man_type,type,           man: $tType ).
+tff(grade_type,type,         grade: $tType ).
+tff(john_decl,type,          john: man ).
+tff(a_decl,type,             a: grade ).
+tff(f_decl,type,             f: grade ).
+tff(grade_of_decl,type,      grade_of: man > grade ).
+tff(created_equal_decl,type, created_equal: ( man * man ) > $o ).
+
+tff(d_man_type,type,         d_man: $tType).
+tff(d_grade_type,type,       d_grade: $tType).
+tff(d2man_decl,type,         d2man: d_man > man ).
+tff(d2grade_decl,type,       d2grade: d_grade > grade ).
+
+tff(d_john_decl,type,        d_john: d_man ).
+tff(d_gotA_decl,type,        d_gotA: d_man ).
+tff(d_a_decl,type,           d_a: d_grade ).
+tff(d_f_decl,type,           d_f: d_grade ).
+
+tff(equality_lost,interpretation,
+%----The domain for man is d_man
+    ( ( ! [M: man] : ? [DM: d_man] : M = d2man(DM)
+%----The d_man elements are d_john and d_gotA
+      & ! [DM: d_man] : ( DM = d_john | DM = d_gotA ) <!--      & $distinct(d_john,d_gotA)  -->
+%----The type-promoter is a bijection
+      & ! [DM1: d_man,DM2: d_man] :
+          ( d2man(DM1) = d2man(DM2) => DM1 = DM2 )
+%----The domain for grade is d_grade
+      & ! [G: grade] : ? [DG: d_grade] : G = d2grade(DG)
+%----The d_grade elements are d_a and d_f
+      & ! [DG: d_grade]: ( DG = d_a | DG = d_f ) <!--      & $distinct(d_a,d_f) -->
+%----The type-promoter is a bijection
+      & ! [DG1: d_grade,DG2: d_grade] :
+          ( d2grade(DG1) = d2grade(DG2) => DG1 = DG2 ) )
+%----Interpret terms via the type-promoted domain
+    & ( a = d2grade(d_a)
+      & f = d2grade(d_f)
+      & john = d2man(d_john)
+      & grade_of(d2man(d_john)) = d2grade(d_f)
+      & grade_of(d2man(d_gotA)) = d2grade(d_a) )
+%----Interpret atoms as true of false
+    & ( created_equal(d2man(d_john),d2man(d_john))
+      & created_equal(d2man(d_john),d2man(d_gotA))
+      & created_equal(d2man(d_gotA),d2man(d_john))
+      & created_equal(d2man(d_gotA),d2man(d_gotA)) )
+    ) ).</PRE>
+</UL>
+</SPAN>
+<P>
+Define the interpretation &Iota;' for &Sigma;', consisting of ...
+<UL>
+<LI> D<SUB>&Iota;'</SUB> = D<SUB>&Iota;</SUB>
+<LI> F<SUB>&Iota;'</SUB> = F<SUB>&Iota;</SUB> &cup;
+     D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>
+<LI> R<SUB>&Iota;'</SUB> = R<SUB>&Iota;</SUB>
+</UL>
+<A HREF="" onClick="hideshow('IotaPrime');return false;">Click for example</A>
+<SPAN ID="IotaPrime" style="display:none">
+<UL>
+<LI> D<SUB>&Iota;'</SUB> = {&#128512;, &#128378;}
+<LI> F<SUB>&Iota;'</SUB> = {
+     <TT>geoff<SUP>*</SUP></TT> &rarr; &#128512;,
+     <TT>brotherOf<SUP>*</SUP>(&#128512;)</TT> &rarr; &#128378;,
+     <TT>brotherOf<SUP>*</SUP>(&#128378;)</TT> &rarr; &#128512;,
+     <TT>"face"</TT> &rarr; &#128512;, <TT>"stickman"</TT> &rarr; &#128378;}
+<LI> R<SUB>&Iota;'</SUB> = {
+     <TT>taller<SUP>*</SUP>(&#128512;,&#128512;)</TT> &rarr; <EM>FALSE</EM>,
+     <TT>taller<SUP>*</SUP>(&#128512;,&#128378;)</TT> &rarr; <EM>FALSE</EM>,
+     <TT>taller<SUP>*</SUP>(&#128378;,&#128512;)</TT> &rarr; <EM>TRUE</EM>,
+     <TT>taller<SUP>*</SUP>(&#128378;,&#128378;)</TT> &rarr; <EM>FALSE</EM>}
+</UL>
+</SPAN>
+<P>
+<STRONG>Lemma 1</STRONG><BR>
+&Iota;' &vdash; &phi;<SUB>&Iota;</SUB>, or equivalently,
+&Iota;' &vdash; D<SUP>|</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>, and
+&Iota;' &vdash; F<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>, and
+&Iota;' &vdash; P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB><BR>
+<EM>Proof</EM>
+<UL>
+<LI> For each <EM>d'</EM> &isin; D<SUB>&Iota;'</SUB> 
+     <UL>
+     <LI> <TT>X = </TT>D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d'</EM>) is an element of 
+          the disjunction in D<SUP>|</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>,
+     <LI> With <TT>X</TT> set to <EM>d'</EM> <BR>
+          <EM>d'</EM> = D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d'</EM>) holds iff <BR>
+          F<SUB>&Iota;'</SUB>(<EM>d'</EM>) = F<SUB>&Iota;'</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d'</EM>)) iff <BR>
+          F<SUB>&Iota;'</SUB>(<EM>d'</EM>) = D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d'</EM>)) iff <BR>
+          <EM>d'</EM> = <EM>d'</EM><BR>
+     <LI> Thus an element of the disjunction in D<SUP>|</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> 
+          holds
+     </UL> 
+     So for all <EM>d'</EM> &isin; D<SUB>&Iota;'</SUB>, an element of the disjunction in
+     D<SUP>|</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> holds, i.e., 
+     &Iota;' &vdash; D<SUP>|</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>
+<LI> For each element
+     <EM>f</EM>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>)) =
+     D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d</EM>) of the conjunction
+     F<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>
+     <UL>
+     <LI> <EM>f</EM>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>)) =
+          D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d</EM>) holds iff <BR>
+          F<SUB>&Iota;'</SUB>(<EM>f</EM>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) =
+          F<SUB>&Iota;'</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d</EM>)) iff <BR>
+          <EM>f<SUP>*</SUP></EM>(F<SUB>&Iota;'</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) =
+          F<SUB>&Iota;'</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d</EM>)) iff <BR>
+          <EM>f<SUP>*</SUP></EM>(D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) =
+          D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d</EM>)) iff <BR>
+          <EM>f<SUP>*</SUP></EM>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>) = <EM>d</EM> <BR>
+          which holds from the definition of <EM>f<SUP>*</SUP></EM>
+     <LI> Thus every element of the conjunction F<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> 
+          holds
+     </UL>
+     So F<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> holds, i.e.,
+     &Iota;' &vdash; F<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>
+<LI> For each positive element
+     <EM>p</EM>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))
+     of the conjunction P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>
+     <UL>
+     <LI> <EM>p</EM>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>)) holds iff <BR>
+          P<SUB>&Iota;'</SUB>(<EM>p</EM>(F<SUB>&Iota;'</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) iff <BR>
+          <EM>p<SUP>*</SUP></EM>(F<SUB>&Iota;'</SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) iff <BR>
+          <EM>p<SUP>*</SUP></EM>(D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(D<SUB>&Iota;&rarr;&phi;<SUB>&Iota;</SUB></SUB>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>))) iff <BR>
+          <EM>p<SUP>*</SUP></EM>(<EM>d<SUB>i</SUB><SUP>n</SUP></EM>) &rarr; <EM>TRUE</EM><BR>
+          which holds from the definition of <EM>p<SUP>*</SUP></EM>
+     <LI> Thus every positive element of the conjunction 
+          P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> holds
+     <LI> Analogously, every negative element of the conjunction
+          P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> holds
+     </UL>
+     So P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB> holds, i.e.,
+     &Iota;' &vdash; P<SUP>&</SUP><SUB>&phi;<SUB>&Iota;</SUB></SUB>
+</UL>
+<A HREF="" onClick="hideshow('Lemma');return false;">Click for example</A>
+<SPAN ID="Lemma" style="display:none">
+<UL>
+<LI> For &#128512; &isin; {&#128512;, &#128378;}
+     <UL>
+     <LI> <TT>X = "face"</TT> is an element of the disjunction
+          <TT>(X = "face" | X = "stickman")</TT>
+     <LI> With <TT>X</TT> set to &#128512; <BR>
+          &#128512; = <TT>"face"</TT> holds iff <BR>
+          F<SUB>&Iota;'</SUB>(&#128512;) = F<SUB>&Iota;'</SUB>(<TT>"face"</TT>) iff <BR>
+          F<SUB>&Iota;'</SUB>(&#128512;) = D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(<TT>"face"</TT>) iff <BR>
+          &#128512; = &#128512;<BR>
+     <LI> Thus an element of <TT>(&#128512; = "face" | &#128512; = "stickman")</TT> holds
+     </UL>
+     Analogously for &#128378; &isin; {&#128512;, &#128378;}<BR>
+     So for all <EM>d'</EM> &isin; {&#128512;, &#128378;}, an element of the disjunction
+     <TT>(X = "face" | X = "stickman")</TT> holds, i.e.,<BR>
+     &Iota;' &vdash; <TT>! [X] : (X = "face" | X = "stickman")</TT>
+<P>
+<LI> For the element <TT>brotherOf("face") = "stickman"</TT> of the conjunction<BR>
+     <TT>(geoff = "face" & brotherOf("face") = "stickman" & brotherOf("stickman") = "face")</TT>
+     <UL>
+     <LI> <TT>brotherOf("face") = "stickman"</TT> holds iff <BR>
+          F<SUB>&Iota;'</SUB>(<TT>brotherOf("face")</TT>) = 
+          F<SUB>&Iota;'</SUB>(<TT>"stickman"</TT>) iff <BR>
+          <TT>brotherOf<SUP>*</SUP>(</TT>F<SUB>&Iota;'</SUB>(<TT>"face"</TT>)<TT>)</TT> =
+          F<SUB>&Iota;'</SUB>(<TT>"stickman"</TT>) iff <BR>
+          <TT>brotherOf<SUP>*</SUP>(</TT>D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(<TT>"face"</TT>)<TT>)</TT> =
+          D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(<TT>"stickman"</TT>) iff <BR>
+          <TT>brotherOf<SUP>*</SUP>(&#128512;)</TT> = &#128378; <BR>
+          which holds from the definition of <TT>brotherOf<SUP>*</SUP></TT>
+     <LI> Thus <TT>brotherOf("face") = "stickman"</TT> holds
+     <LI> Analogously for the other elements of <BR>
+          <TT>(geoff = "face" & brotherOf("face") = "stickman" & brotherOf("stickman") = "face")</TT>
+     </UL>
+     So <TT>(geoff = "face" & brotherOf("face") = "stickman" & brotherOf("stickman") = "face")</TT>
+     holds, i.e.,<BR>
+     &Iota;' &vdash; 
+     <TT>(geoff = "face" & brotherOf("face") = "stickman" & brotherOf("stickman") = "face")</TT>
+<P>
+<LI> For the element <TT>taller("stickman","face")</TT> of the conjunction<BR>
+     <TT>(~ taller("face","face") & ~ taller("face","stickman") & <BR>
+         taller("stickman","face") & ~ taller("stickman","stickman"))</TT>
+     <UL>
+     <LI> <TT>taller("stickman","face")</TT> holds iff <BR>
+          P<SUB>&Iota;'</SUB>(<TT>taller(</TT>F<SUB>&Iota;'</SUB>(<TT>"stickman","face"</TT>)<TT>)</TT>)
+          iff <BR>
+          <TT>taller<SUP>*</SUP>(</TT>F<SUB>&Iota;'</SUB>(<TT>"stickman","face"</TT>))
+          iff <BR>
+          <TT>taller<SUP>*</SUP>(</TT>D<SUB>&phi;<SUB>&Iota;</SUB>&rarr;<SUB>&Iota;</SUB></SUB>(<TT>"stickman","face"</TT>))
+          iff <BR>
+          <TT>taller<SUP>*</SUP>(&#128378;,&#128512;)</TT> <BR>
+          which holds from the definition of <TT>taller<SUP>*</SUP></TT>
+     <LI> Analogously for the other elements of <BR>
+          <TT>(~ taller("face","face") & ~ taller("face","stickman") & <BR>
+              taller("stickman","face") & ~ taller("stickman","stickman"))</TT>
+     </UL>
+     So <TT>(~ taller("face","face") & ~ taller("face","stickman") & <BR>
+            taller("stickman","face") & ~ taller("stickman","stickman"))</TT> holds, i.e.,<BR>
+     &Iota;' &vdash;
+     <TT>(~ taller("face","face") & ~ taller("face","stickman") & <BR>
+         taller("stickman","face") & ~ taller("stickman","stickman"))</TT>
+</UL>
+</SPAN>
+<P>
+<STRONG>Theorem</STRONG><BR>
+if &phi;<SUB>&Iota;</SUB> &vDash; &Phi; then &Iota; &vdash; &Phi;
+<BR><FONT SIZE=-2>(this is adequate for the verification task, but needs "iff" for the
+evaluation task)</FONT>
+<P>
+<EM>Proof</EM><BR>
+<UL>
+<LI> If &phi;<SUB>&Iota;</SUB> &vDash; &Phi; then &Iota;' &vdash; &Phi;<BR>
+     because every model of &phi;<SUB>&Iota;</SUB> is a model of &Phi;, and
+     &Iota;' is a model of &phi;<SUB>&Iota;</SUB> by the Lemma
+<LI> &Iota;' &vdash; &Phi; iff &Iota; &vdash; &Phi; <BR>
+     because &Phi; contains nothing from D<SUB>&phi;<SUB>&Iota;</SUB></SUB> and &Iota;' is 
+     the same as &Iota; wrt all other symbols.
+<LI> Thus if &phi;<SUB>&Iota;</SUB> &vDash; &Phi; then &Iota; &vdash; &Phi;
+</UL>
+<A HREF="" onClick="hideshow('Proof');return false;">Click for example</A>
+<SPAN ID="Proof" style="display:none">
+<UL>
+<LI> If &phi;<SUB>&Iota;</SUB> &vDash; <TT>taller(brotherOf(geoff),geoff)</TT> then
+     &Iota;' &vdash; <TT>taller(brotherOf(geoff),geoff)</TT> <BR>
+     because every model of &phi;<SUB>&Iota;</SUB> is a model of 
+     <TT>taller(brotherOf(geoff),geoff)</TT>, and &Iota;' is a model of &phi;<SUB>&Iota;</SUB>
+     by the Lemma.
+<LI> &Iota;' &vdash; <TT>taller(brotherOf(geoff),geoff)</TT> iff
+     &Iota; &vdash; <TT>taller(brotherOf(geoff),geoff)</TT> <BR>
+     because <TT>taller(brotherOf(geoff),geoff)</TT> contains nothing from
+     <TT>{"face", "stickman"}</TT>
+<LI> Thus if &phi;<SUB>&Iota;</SUB> &vDash; <TT>taller(brotherOf(geoff),geoff)</TT> then
+     &Iota; &vdash; <TT>taller(brotherOf(geoff),geoff)</TT>
+</UL>
+</SPAN>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

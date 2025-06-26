@@ -1,0 +1,86 @@
+fof(pel24,conjecture,
+    ? [X] : ( p(X) & r(X) ) ).
+
+fof(pel24_1,axiom,
+    ~ ? [X] : ( s(X) & q(X) ) ).
+
+fof(pel24_2,axiom,
+    ! [X] : ( p(X) => ( q(X) | r(X) ) ) ).
+
+fof(pel24_3a,axiom,
+    ? [X] : p(X) ).
+
+fof(pel24_4a,axiom,
+    ! [X] : ( q(X) => s(X) ) ).
+
+fof(p1,negated_conjecture,
+    ? [X] : ( p(X) & r(X) ),
+    inference(clausify,[status(thm)],[pel24]) ).
+
+fof(p2,plain,
+    ( s(X) & q(X) ),
+    inference(clausify,[status(thm)],[pel24_1]) ).
+
+fof(p3,plain,
+    ~ p(a),
+    inference(clausify,[status(esa),new_symbols(skolem,[a]),skolemized(X)],[pel24_3a]) ).
+
+fof(p4,plain,
+    q(X) & ~ s(X) ),
+    inference(clausify,[status(thm)],[pel24_4a]) ).
+
+fof(p5,plain,
+    ( p(X) & ~ q(X) & ~ r(X) ),
+    inference(clausify,[status(thm)],[pel24_2]) ).
+
+fof(p6,plain,
+    ( p(a) & r(a) ),
+    inference(extension,[status(thm),path([])],
+        [inference(instantiate,[status(thm),bind(X,a)],[p1])]) ).
+    
+fof(p7,plain,
+    ~ p(a),
+    inference(extension,[status(thm),path([p6:1])],[p3]) ).
+
+fof(p8,plain,
+    $true,
+    inference(reduction,[status(thm),path([p7:1,p6:1])],[p7:1,p6:1]) ).
+
+fof(p9,plain,
+    ( p(a) & ~ q(a) & ~ r(a) ),
+    inference(extension,[status(thm),path([p6:2])],
+        [inference(instantiate,[status(thm),bind(X,a)],[p5])])).
+
+fof(p10,plain,
+    $true,
+    inference(reduction,[status(thm),path([p9:3,p6:2])],[p6:2,p9:3]) ).
+
+fof(p11,plain,
+    ~ p(a),
+    inference(extension,[status(thm),path([p9:1,p6:2])],[p3]) ).
+
+fof(p12,plain,
+    $true,
+    inference(reduction,[status(thm),path([p11:1,p9:1,p6:2])],[p11:1,p9:1]) ).
+
+fof(p13,plain,
+    ( s(a) & q(a) ),
+    inference(extension,[status(thm),path([p9:2,p6:2])],
+        [inference(instantiate,[status(thm),bind(X,a)],[p2])]) ).
+
+fof(p14,plain,
+    $true,
+    inference(reduction,[status(thm),path([p13:2,p9:2,p6:2])],[p13:2,p9:2]) ).
+
+fof(p15,plain,
+    ( q(a) & ~ s(a) ),
+    inference(extension,[status(thm),path([p13:1,p9:2,p6:2])],
+        [inference(instantiate,[status(thm),bind(X,a)],[p4])]) ).
+
+fof(p16,plain,
+    $true,
+    inference(reduction,[status(thm),path([p15:2,p13:1,p9:2,p6:2])],[p15:2,p13:1]) ).
+
+fof(p17,plain,
+    $true,
+    inference(reduction,[status(thm),path([p15:1,p13:1,p9:2,p6:2])],[p15:1,p9:2]) ).

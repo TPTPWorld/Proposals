@@ -1,0 +1,462 @@
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32388)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32388)------------------------------
+% (32388)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32388)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32388)Termination reason: Unknown
+% (32388)Termination phase: Finite model building constraint generation
+
+% (32388)Memory used [KB]: 811
+% (32388)Time elapsed: 0.006 s
+% (32388)Instructions burned: 4 (million)
+% (32388)------------------------------
+% (32388)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa194fd 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32387)fmb+10_1:1_sil=256000:fmbes=contour:i=214858:bce=on_0 on NXF_Finite-Finite-Global for (300ds/214858Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32385)fmb+10_1:1_sil=256000:i=98885:tgt=full:fmbsr=1.3:fmbss=10_0 on NXF_Finite-Finite-Global for (300ds/98885Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32391)ott-4_1:1_sil=4000:sp=reverse_arity:lcm=predicate:newcnf=on:i=115:bce=on:fd=off:fs=off:fsr=off_0 on NXF_Finite-Finite-Global for (300ds/115Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32389)ott+21_1:1_sil=4000:i=104:fsd=on:fd=off:newcnf=on_0 on NXF_Finite-Finite-Global for (300ds/104Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [10,10,10,10]
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [1,1,1,1]
+TRYING [1,1,1,2]
+TRYING [2,1,1,2]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32387)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32387)------------------------------
+% (32387)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32387)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32387)Termination reason: Unknown
+% (32387)Termination phase: Finite model building constraint generation
+
+% (32387)Memory used [KB]: 806
+% (32387)Time elapsed: 0.006 s
+% (32387)Instructions burned: 10 (million)
+% (32387)------------------------------
+% (32387)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32385)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32385)------------------------------
+% (32385)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32385)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32385)Termination reason: Unknown
+% (32385)Termination phase: Finite model building constraint generation
+
+% (32385)Memory used [KB]: 1004
+% (32385)Time elapsed: 0.009 s
+% (32385)Instructions burned: 17 (million)
+% (32385)------------------------------
+% (32385)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32389)Instruction limit reached!
+% (32389)------------------------------
+% (32389)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32389)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32389)Termination reason: Time limit
+% (32389)Termination phase: Saturation
+
+% (32389)Memory used [KB]: 763
+% (32389)Time elapsed: 0.042 s
+% (32389)Instructions burned: 106 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32392)dis+11_1:3_bsr=unit_only:sil=2000:rp=on:newcnf=on:i=404:kws=precedence:lsd=100_0 on NXF_Finite-Finite-Global for (299ds/404Mi)
+% (32391)Instruction limit reached!
+% (32391)------------------------------
+% (32391)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32391)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32391)Termination reason: Time limit
+% (32391)Termination phase: Saturation
+
+% (32391)Memory used [KB]: 1505
+% (32391)Time elapsed: 0.049 s
+% (32391)Instructions burned: 116 (million)
+% (32390)Instruction limit reached!
+% (32390)------------------------------
+% (32390)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32393)ott-21_1:1_sil=4000:sp=const_frequency:i=175:fsr=off:fs=off:av=off_0 on NXF_Finite-Finite-Global for (299ds/175Mi)
+% (32390)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32390)Termination reason: Time limit
+% (32390)Termination phase: Saturation
+
+% (32390)Memory used [KB]: 1038
+% (32390)Time elapsed: 0.058 s
+% (32390)Instructions burned: 149 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32394)ott+33_1:1_to=lpo:sil=8000:sp=weighted_frequency:rp=on:i=270:nm=3:fsr=off:sac=on_0 on NXF_Finite-Finite-Global for (299ds/270Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32395)ott+4_1:1_sil=2000:i=900:bd=off:fsr=off_0 on NXF_Finite-Finite-Global for (299ds/900Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32396)fmb+10_1:1_sil=8000:fde=unused:fmbes=contour:i=7859:nm=2:fmbswr=0_0 on NXF_Finite-Finite-Global for (298ds/7859Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [3,10,6,4]
+TRYING [1,1,1,1]
+TRYING [1,1,1,2]
+TRYING [2,1,1,2]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32397)ott+11_1:2_anc=none:sil=2000:sp=const_max:spb=units:s2a=on:i=2145:s2at=5.0:awrs=converge:awrsf=170:rawr=on:gs=on:fsr=off_0 on NXF_Finite-Finite-Global for (298ds/2145Mi)
+% (32396)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32396)------------------------------
+% (32396)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32396)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32396)Termination reason: Unknown
+% (32396)Termination phase: Finite model building constraint generation
+
+% (32396)Memory used [KB]: 805
+% (32396)Time elapsed: 0.007 s
+% (32396)Instructions burned: 9 (million)
+% (32396)------------------------------
+% (32396)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32393)Instruction limit reached!
+% (32393)------------------------------
+% (32393)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32393)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32393)Termination reason: Time limit
+% (32393)Termination phase: Saturation
+
+% (32393)Memory used [KB]: 3281
+% (32393)Time elapsed: 0.058 s
+% (32393)Instructions burned: 175 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32398)ott-30_1:1024_sil=4000:alpa=true:newcnf=on:i=1187:bs=unit_only:ins=1:amm=off_0 on NXF_Finite-Finite-Global for (298ds/1187Mi)
+% (32394)Instruction limit reached!
+% (32394)------------------------------
+% (32394)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32394)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32394)Termination reason: Time limit
+% (32394)Termination phase: Saturation
+
+% (32394)Memory used [KB]: 961
+% (32394)Time elapsed: 0.079 s
+% (32394)Instructions burned: 270 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32399)fmb+10_1:1_sil=32000:i=23580:newcnf=on_0 on NXF_Finite-Finite-Global for (298ds/23580Mi)
+Detected minimum model sizes of [1,1]
+Detected maximum model sizes of [2,max]
+TRYING [1,1]
+TRYING [2,1]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32399)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32399)------------------------------
+% (32399)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32399)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32399)Termination reason: Unknown
+% (32399)Termination phase: Finite model building constraint generation
+
+% (32399)Memory used [KB]: 676
+% (32399)Time elapsed: 0.002 s
+% (32399)Instructions burned: 1 (million)
+% (32399)------------------------------
+% (32399)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa194fd 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32392)Instruction limit reached!
+% (32392)------------------------------
+% (32392)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32392)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32392)Termination reason: Time limit
+% (32392)Termination phase: Saturation
+
+% (32392)Memory used [KB]: 1519
+% (32392)Time elapsed: 0.114 s
+% (32392)Instructions burned: 407 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32400)fmb+10_1:1_sil=32000:fmbss=17:fmbsr=2.0:i=2892_0 on NXF_Finite-Finite-Global for (298ds/2892Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [17,17,17,17]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32400)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32400)------------------------------
+% (32400)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32400)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32400)Termination reason: Unknown
+% (32400)Termination phase: Finite model building constraint generation
+
+% (32400)Memory used [KB]: 1477
+% (32400)Time elapsed: 0.010 s
+% (32400)Instructions burned: 32 (million)
+% (32400)------------------------------
+% (32400)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32401)ott-10_1:1_sil=4000:i=1693_0 on NXF_Finite-Finite-Global for (298ds/1693Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32402)dis+21_1:1_sil=4000:gs=on:sac=on:newcnf=on:gsem=off:i=1735:gsaa=full_model:abs=on:anc=none_0 on NXF_Finite-Finite-Global for (297ds/1735Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32403)fmb+10_1:1_fmbas=expand:sil=128000:i=131798:nm=2:fmbksg=on:fmbss=4:fmbsr=1.77:rp=on_0 on NXF_Finite-Finite-Global for (297ds/131798Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [4,4,4,4]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32403)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32403)------------------------------
+% (32403)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32403)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32403)Termination reason: Unknown
+% (32403)Termination phase: Finite model building constraint generation
+
+% (32403)Memory used [KB]: 868
+% (32403)Time elapsed: 0.005 s
+% (32403)Instructions burned: 10 (million)
+% (32403)------------------------------
+% (32403)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32404)fmb+10_1:1_sil=16000:fmbss=16:i=3451:newcnf=on_0 on NXF_Finite-Finite-Global for (297ds/3451Mi)
+Detected minimum model sizes of [1,1]
+Detected maximum model sizes of [2,max]
+TRYING [16,16]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32404)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32404)------------------------------
+% (32404)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32404)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32404)Termination reason: Unknown
+% (32404)Termination phase: Finite model building constraint generation
+
+% (32404)Memory used [KB]: 743
+% (32404)Time elapsed: 0.003 s
+% (32404)Instructions burned: 3 (million)
+% (32404)------------------------------
+% (32404)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa194fd 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32405)ott+11_1:64_sil=4000:rp=on:i=3978:bd=off:fsr=off_0 on NXF_Finite-Finite-Global for (296ds/3978Mi)
+% (32395)Instruction limit reached!
+% (32395)------------------------------
+% (32395)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32395)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32395)Termination reason: Time limit
+% (32395)Termination phase: Saturation
+
+% (32395)Memory used [KB]: 2139
+% (32395)Time elapsed: 0.229 s
+% (32395)Instructions burned: 902 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32406)dis+35_1:64_to=lpo:sil=32000:sp=occurrence:urr=on:sac=on:i=33091:fsr=off_0 on NXF_Finite-Finite-Global for (296ds/33091Mi)
+% (32398)Instruction limit reached!
+% (32398)------------------------------
+% (32398)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32398)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32398)Termination reason: Time limit
+% (32398)Termination phase: Saturation
+
+% (32398)Memory used [KB]: 1872
+% (32398)Time elapsed: 0.274 s
+% (32398)Instructions burned: 1187 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32407)dis-4_1:1_sil=16000:sp=const_frequency:sac=on:newcnf=on:i=9564_0 on NXF_Finite-Finite-Global for (295ds/9564Mi)
+% (32401)Instruction limit reached!
+% (32401)------------------------------
+% (32401)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32401)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32401)Termination reason: Time limit
+% (32401)Termination phase: Saturation
+
+% (32401)Memory used [KB]: 2728
+% (32401)Time elapsed: 0.395 s
+% (32401)Instructions burned: 1694 (million)
+% (32402)Instruction limit reached!
+% (32402)------------------------------
+% (32402)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32402)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32402)Termination reason: Time limit
+% (32402)Termination phase: Saturation
+
+% (32402)Memory used [KB]: 2133
+% (32402)Time elapsed: 0.394 s
+% (32402)Instructions burned: 1738 (million)
+% (32397)Instruction limit reached!
+% (32397)------------------------------
+% (32397)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32397)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32397)Termination reason: Time limit
+% (32397)Termination phase: Saturation
+
+% (32397)Memory used [KB]: 4617
+% (32397)Time elapsed: 0.499 s
+% (32397)Instructions burned: 2145 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32408)fmb+10_1:1_sil=64000:i=50409:nm=2:gsp=on_0 on NXF_Finite-Finite-Global for (293ds/50409Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [1,1,1,1]
+TRYING [1,1,1,2]
+TRYING [2,1,1,2]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32408)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32408)------------------------------
+% (32408)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32408)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32408)Termination reason: Unknown
+% (32408)Termination phase: Finite model building constraint generation
+
+% (32408)Memory used [KB]: 805
+% (32408)Time elapsed: 0.004 s
+% (32408)Instructions burned: 9 (million)
+% (32408)------------------------------
+% (32408)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32409)dis+2_3:1_bsr=on:sil=64000:abs=on:i=10852:gsp=on:fs=off:fsr=off_0 on NXF_Finite-Finite-Global for (293ds/10852Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32410)dis+11_61:31_bsr=unit_only:sil=16000:sp=frequency:rp=on:newcnf=on:i=11327:uhcvi=on:rawr=on:abs=on:lsd=5:add=off_0 on NXF_Finite-Finite-Global for (293ds/11327Mi)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32411)fmb+10_1:1_fmbas=expand:sil=128000:i=17908:nm=2:fmbss=15:gsp=on_0 on NXF_Finite-Finite-Global for (293ds/17908Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [15,15,15,15]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32411)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32411)------------------------------
+% (32411)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32411)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32411)Termination reason: Unknown
+% (32411)Termination phase: Finite model building constraint generation
+
+% (32411)Memory used [KB]: 1360
+% (32411)Time elapsed: 0.008 s
+% (32411)Instructions burned: 27 (million)
+% (32411)------------------------------
+% (32411)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32412)dis+11_1:1_anc=all:sil=64000:rp=on:newcnf=on:i=22636:alpa=false:atotf=0.1:gs=on_0 on NXF_Finite-Finite-Global for (292ds/22636Mi)
+% (32405)Instruction limit reached!
+% (32405)------------------------------
+% (32405)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32405)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32405)Termination reason: Time limit
+% (32405)Termination phase: Saturation
+
+% (32405)Memory used [KB]: 5243
+% (32405)Time elapsed: 0.902 s
+% (32405)Instructions burned: 3982 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32413)fmb+10_1:1_i=30223_0 on NXF_Finite-Finite-Global for (287ds/30223Mi)
+Detected minimum model sizes of [1,1,1,1]
+Detected maximum model sizes of [2,10,6,4]
+TRYING [1,1,1,1]
+TRYING [1,1,1,2]
+TRYING [2,1,1,2]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32413)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32413)------------------------------
+% (32413)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32413)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32413)Termination reason: Unknown
+% (32413)Termination phase: Finite model building constraint generation
+
+% (32413)Memory used [KB]: 805
+% (32413)Time elapsed: 0.005 s
+% (32413)Instructions burned: 9 (million)
+% (32413)------------------------------
+% (32413)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa15c89 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32414)ott+11_8:1_sil=64000:i=37350:fsr=off:bsr=unit_only:newcnf=on_0 on NXF_Finite-Finite-Global for (287ds/37350Mi)
+% (32407)Instruction limit reached!
+% (32407)------------------------------
+% (32407)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32407)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32407)Termination reason: Time limit
+% (32407)Termination phase: Saturation
+
+% (32407)Memory used [KB]: 2946
+% (32407)Time elapsed: 2.002 s
+% (32407)Instructions burned: 9568 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32415)dis-2_2:3_amm=sco:anc=none:bce=on:fsr=off:gsp=on:nm=16:nwc=1.2:nicw=on:sac=on:sp=weighted_frequency:i=80557_0 on NXF_Finite-Finite-Global for (274ds/80557Mi)
+% (32409)Instruction limit reached!
+% (32409)------------------------------
+% (32409)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32409)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32409)Termination reason: Time limit
+% (32409)Termination phase: Saturation
+
+% (32409)Memory used [KB]: 28152
+% (32409)Time elapsed: 2.355 s
+% (32409)Instructions burned: 10856 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32416)fmb+10_1:1_sil=128000:fmbss=21:newcnf=on:i=44200:gsp=on_0 on NXF_Finite-Finite-Global for (269ds/44200Mi)
+Detected minimum model sizes of [1,1]
+Detected maximum model sizes of [2,max]
+TRYING [21,21]
+Finite Model Found!
+% SZS status Satisfiable for NXF_Finite-Finite-Global
+% (32416)Aborted by signal SIGSEGV on NXF_Finite-Finite-Global.s
+% (32416)------------------------------
+% (32416)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32416)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32416)Termination reason: Unknown
+% (32416)Termination phase: Finite model building constraint generation
+
+% (32416)Memory used [KB]: 745
+% (32416)Time elapsed: 0.003 s
+% (32416)Instructions burned: 4 (million)
+% (32416)------------------------------
+% (32416)------------------------------
+Version : Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+call stack: 0x416001 0x1cd76a0 0x1cd5fa4 0x41c856 0x4193c6 0xa45fc5 0xa4c1bf 0xa4cf76 0xa4d5a0 0x769598 0x7693f1 0x4f70af 0xa0aff8 0xa194fd 0x1ceab70 0x489180 0x41f883
+(use '--traceback on' to get a human-readable stack trace)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32417)dis+2_11_add=large:afr=on:amm=off:bd=off:bce=on:fsd=off:fde=none:gs=on:gsaa=full_model:gsem=off:irw=on:msp=off:nm=4:nwc=1.3:sas=z3:sims=off:sac=on:sp=reverse_arity:i=55207_0 on NXF_Finite-Finite-Global for (269ds/55207Mi)
+% (32410)Instruction limit reached!
+% (32410)------------------------------
+% (32410)Version: Vampire 4.9 (commit 18c118a85 on 2024-06-08 21:14:20 +0100)
+% (32410)Linked with Z3 4.12.3.0 79bbbf76d0c123481c8ca05cd3a98939270074d3 z3-4.8.4-7980-g79bbbf76d
+% (32410)Termination reason: Time limit
+% (32410)Termination phase: Saturation
+
+% (32410)Memory used [KB]: 7748
+% (32410)Time elapsed: 2.424 s
+% (32410)Instructions burned: 11330 (million)
+% (32384)Running in auto input_syntax mode. Trying TPTP
+% (32418)dis+1_20_av=off:lcm=predicate:nm=2:nwc=2.0:i=81447_0 on NXF_Finite-Finite-Global for (268ds/81447Mi)
+% Vampire exiting
+
+% END OF SYSTEM OUTPUT
+RESULT: NXF_Finite-Finite-Global - Vampire-SAT---4.9 says Satisfiable - CPU = 0.05 WC = 0.13 
+OUTPUT: NXF_Finite-Finite-Global - Vampire-SAT---4.9 says Assurance - CPU = 0.05 WC = 0.13 

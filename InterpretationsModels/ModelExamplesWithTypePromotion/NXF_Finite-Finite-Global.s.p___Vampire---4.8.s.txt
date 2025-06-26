@@ -1,0 +1,359 @@
+Vampire---4.8   system information being retrieved
+Vampire---4.8's non-default parameters being retrieved
+Vampire---4.8's NXF_Finite-Finite-Global.s does not need preparation
+Vampire---4.8   being executed on NXF_Finite-Finite-Global.s using /exp/home/tptp/Systems/Vampire---4.8/run_vampire 'NXF_Finite-Finite-Global.s.p' 60 THM
+% START OF SYSTEM OUTPUT
+Running first-order theorem proving
+Running: /exp/home/tptp/Systems/Vampire---4.8/vampire_z3_rel_static_master_6827 --mode portfolio --schedule snake_tptp_uns -p tptp --output_axiom_names on -m 16384 --cores 7 -t 60 /tmp/tmp.MAyLcMhWba/Vampire---4.8_20622
+% (20636)Running in auto input_syntax mode. Trying TPTP
+% (20641)lrs+10_1:1024_nm=0:nwc=5.0:ss=axioms:i=13:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/13Mi)
+% (20641)Refutation not found, incomplete strategy% (20641)------------------------------
+% (20641)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20641)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20641)Termination reason: Refutation not found, incomplete strategy
+
+% (20641)Memory used [KB]: 1211
+% (20641)Time elapsed: 0.004 s
+% (20641)Instructions burned: 3 (million)
+% (20641)------------------------------
+% (20641)------------------------------
+% (20637)dis+1002_1:12_drc=off:fd=preordered:tgt=full:i=99978:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/99978Mi)
+% (20638)lrs+10_1:1_gsp=on:sd=1:sgt=32:sos=on:ss=axioms:i=13:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/13Mi)
+% (20642)dis+21_1:1_av=off:sos=on:sp=frequency:ss=included:to=lpo:i=15:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/15Mi)
+% (20638)Instruction limit reached!
+% (20638)------------------------------
+% (20638)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20638)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20638)Termination reason: Unknown
+% (20638)Termination phase: Saturation
+
+% (20638)Memory used [KB]: 1400
+% (20638)Time elapsed: 0.006 s
+% (20638)Instructions burned: 13 (million)
+% (20638)------------------------------
+% (20638)------------------------------
+% (20640)lrs+10_5:1_br=off:fde=none:nwc=3.0:sd=1:sgt=10:sos=on:ss=axioms:urr=on:i=51:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/51Mi)
+% (20642)Instruction limit reached!
+% (20642)------------------------------
+% (20642)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20642)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20642)Termination reason: Unknown
+% (20642)Termination phase: Saturation
+
+% (20642)Memory used [KB]: 1507
+% (20642)Time elapsed: 0.007 s
+% (20642)Instructions burned: 16 (million)
+% (20642)------------------------------
+% (20642)------------------------------
+% (20640)Refutation not found, incomplete strategy% (20640)------------------------------
+% (20640)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20640)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20640)Termination reason: Refutation not found, incomplete strategy
+
+% (20640)Memory used [KB]: 1470
+% (20640)Time elapsed: 0.036 s
+% (20640)Instructions burned: 13 (million)
+% (20640)------------------------------
+% (20640)------------------------------
+% (20639)dis+1002_1:1_aac=none:bd=off:sac=on:sos=on:spb=units:i=3:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/3Mi)
+% (20639)Instruction limit reached!
+% (20639)------------------------------
+% (20639)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20639)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20639)Termination reason: Unknown
+% (20639)Termination phase: Preprocessing 3
+
+% (20639)Memory used [KB]: 1266
+% (20639)Time elapsed: 0.003 s
+% (20639)Instructions burned: 4 (million)
+% (20639)------------------------------
+% (20639)------------------------------
+% (20643)dis+1010_1:50_awrs=decay:awrsf=128:nwc=10.0:s2pl=no:sp=frequency:ss=axioms:i=39:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/39Mi)
+% (20643)Refutation not found, incomplete strategy% (20643)------------------------------
+% (20643)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20643)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20643)Termination reason: Refutation not found, incomplete strategy
+
+% (20643)Memory used [KB]: 1211
+% (20643)Time elapsed: 0.038 s
+% (20643)Instructions burned: 4 (million)
+% (20643)------------------------------
+% (20643)------------------------------
+% (20645)dis+10_1:1_newcnf=on:sgt=8:sos=on:ss=axioms:to=lpo:urr=on:i=49:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/49Mi)
+% (20646)lrs+10_1:1_br=off:sos=on:ss=axioms:st=2.0:urr=on:i=33:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/33Mi)
+% (20647)lrs+10_1:1_ep=R:lcm=predicate:lma=on:sos=all:spb=goal:ss=included:i=12:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/12Mi)
+% (20646)Refutation not found, incomplete strategy% (20646)------------------------------
+% (20646)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20646)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20646)Termination reason: Refutation not found, incomplete strategy
+
+% (20646)Memory used [KB]: 1466
+% (20646)Time elapsed: 0.007 s
+% (20646)Instructions burned: 13 (million)
+% (20646)------------------------------
+% (20646)------------------------------
+% (20647)Instruction limit reached!
+% (20647)------------------------------
+% (20647)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20647)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20647)Termination reason: Unknown
+% (20647)Termination phase: Saturation
+
+% (20647)Memory used [KB]: 1420
+% (20647)Time elapsed: 0.005 s
+% (20647)Instructions burned: 13 (million)
+% (20647)------------------------------
+% (20647)------------------------------
+% (20645)First to succeed.
+% (20649)lrs+10_1:4_av=off:bs=unit_only:bsr=unit_only:ep=RS:s2a=on:sos=on:sp=frequency:to=lpo:i=16:si=on:rawr=on:rtra=on_0 on Vampire---4 for (599ds/16Mi)
+% (20645)Refutation found. Thanks to Tanya!
+% SZS status Theorem for Vampire---4
+% SZS output start Proof for Vampire---4
+tff(type_def_5, type, '$world': $tType).
+tff(type_def_6, type, person: $tType).
+tff(type_def_7, type, product: $tType).
+tff(type_def_8, type, d_person: $tType).
+tff(type_def_9, type, d_product: $tType).
+tff(func_def_0, type, '$local_world': '$world').
+tff(func_def_1, type, alex: person).
+tff(func_def_2, type, chris: person).
+tff(func_def_3, type, leo: product).
+tff(func_def_4, type, w1: '$world').
+tff(func_def_5, type, w2: '$world').
+tff(func_def_6, type, d2person: d_person > person).
+tff(func_def_7, type, d_alex: d_person).
+tff(func_def_8, type, d_chris: d_person).
+tff(func_def_9, type, d2product: d_product > product).
+tff(func_def_10, type, d_leo: d_product).
+tff(func_def_13, type, sK0: d_person).
+tff(func_def_14, type, sK1: d_product).
+tff(func_def_15, type, sK2: d_product).
+tff(func_def_16, type, sK3: d_product).
+tff(func_def_17, type, sK4: d_person).
+tff(func_def_18, type, sK5: d_person).
+tff(func_def_19, type, sK6: product).
+tff(func_def_20, type, sK7: person).
+tff(func_def_21, type, sK8: d_person).
+tff(func_def_22, type, sK9: d_product).
+tff(func_def_23, type, sK10: d_person).
+tff(func_def_24, type, sK11: d_person).
+tff(func_def_25, type, sK12: d_product).
+tff(func_def_26, type, sK13: d_product).
+tff(func_def_27, type, sK14: person).
+tff(func_def_28, type, sK15: d_person).
+tff(func_def_29, type, sK16: d_person).
+tff(func_def_30, type, sK17: d_person).
+tff(func_def_31, type, sK18: d_person).
+tff(func_def_32, type, sK19: product).
+tff(func_def_33, type, sK20: d_product).
+tff(func_def_34, type, sK21: d_product).
+tff(func_def_35, type, sK22: product > d_product).
+tff(func_def_36, type, sK23: person > d_person).
+tff(func_def_37, type, sK24: person > d_person).
+tff(func_def_38, type, sK26: product > d_product).
+tff(func_def_39, type, sK27: ('$world' * $o) > '$world').
+tff(func_def_40, type, sK30: ('$world' * $o) > '$world').
+tff(func_def_41, type, sK32: '$world').
+tff(func_def_42, type, sK35: '$world' > person).
+tff(func_def_43, type, sK36: '$world' > person).
+tff(func_def_44, type, sK37: '$world' > product).
+tff(pred_def_1, type, '$accessible_world': ('$world' * '$world') > $o).
+tff(pred_def_2, type, '$in_world': ('$world' * $o) > $o).
+tff(pred_def_3, type, '$necessary': ('$world' * $o) > $o).
+tff(pred_def_4, type, '$possible': ('$world' * $o) > $o).
+tff(pred_def_5, type, work_hard: (person * product) > $o).
+tff(pred_def_6, type, gets_rich: person > $o).
+tff(pred_def_7, type, sP25: product > $o).
+tff(pred_def_8, type, sK28: '$world' > $o).
+tff(pred_def_9, type, sP29: $o > $o).
+tff(pred_def_10, type, sK31: '$world' > $o).
+tff(pred_def_11, type, sP33: ($o * '$world') > $o).
+tff(pred_def_12, type, sP34: $o > $o).
+tff(f774,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[f596,f657,f686,f705,f767])).
+tff(f767,plain,(
+  ~spl38_10),
+  inference(avatar_contradiction_clause,[],[f766])).
+tff(f766,plain,(
+  $false | ~spl38_10),
+  inference(subsumption_resolution,[],[f749,f111])).
+tff(f111,plain,(
+  ( ! [X0 : '$world'] : ('$necessary'(X0,$true)) )),
+  inference(cnf_transformation,[],[f16])).
+tff(f16,plain,(
+  ! [X1 : $o,X0 : '$world'] : (! [X2 : '$world'] : (~'$accessible_world'(X0,X2) | ! [X3 : $o] : (~X3 | X1 | ~'$in_world'(X2,X3))) <=> '$necessary'(X0,X1))),
+  inference(flattening,[],[f15])).
+tff(f15,plain,(
+  ! [X1 : $o,X0 : '$world'] : (! [X2 : '$world'] : (! [X3 : $o] : ((X1 | ~X3) | ~'$in_world'(X2,X3)) | ~'$accessible_world'(X0,X2)) <=> '$necessary'(X0,X1))),
+  inference(ennf_transformation,[],[f10])).
+tff(f10,plain,(
+  ! [X1 : $o,X0 : '$world'] : (! [X2 : '$world'] : ('$accessible_world'(X0,X2) => ! [X3 : $o] : ('$in_world'(X2,X3) => (X3 => X1))) <=> '$necessary'(X0,X1))),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ! [X0 : '$world',X1 : $o] : (! [X2 : '$world'] : ('$accessible_world'(X0,X2) => ! [X3 : $o] : ('$in_world'(X2,X3) => (X3 => X1))) <=> '$necessary'(X0,X1))),
+  file('/tmp/tmp.MAyLcMhWba/Vampire---4.8_20622',necessary_defn)).
+tff(f749,plain,(
+  ~'$necessary'('$local_world',$true) | ~spl38_10),
+  inference(resolution,[],[f256,f103])).
+tff(f103,plain,(
+  ( ! [X1 : '$world'] : (~'$possible'(X1,$false) | ~'$necessary'(X1,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f13,plain,(
+  ! [X0,X1 : '$world'] : ((~'$necessary'(X1,X0) <=> '$possible'(X1,~X0)) & ('$necessary'(X1,~X0) <=> ~'$possible'(X1,X0)))),
+  inference(ennf_transformation,[],[f11])).
+tff(f11,plain,(
+  ! [X1 : '$world',X0] : (('$necessary'(X1,~X0) <=> ~'$possible'(X1,X0)) & (~'$necessary'(X1,X0) <=> '$possible'(X1,~X0)))),
+  inference(rectify,[],[f3])).
+tff(f3,axiom,(
+  ! [X1 : $o,X4 : '$world'] : ((~'$necessary'(X4,X1) <=> '$possible'(X4,~X1)) & ('$necessary'(X4,~X1) <=> ~'$possible'(X4,X1)))),
+  file('/tmp/tmp.MAyLcMhWba/Vampire---4.8_20622',duality)).
+tff(f256,plain,(
+  '$possible'('$local_world',$false) | ~spl38_10),
+  inference(avatar_component_clause,[],[f254])).
+tff(f254,plain,(
+  spl38_10 <=> '$possible'('$local_world',$false)),
+  introduced(avatar_definition,[new_symbols(naming,[spl38_10])])).
+tff(f705,plain,(
+  spl38_10 | ~spl38_1),
+  inference(avatar_split_clause,[],[f695,f217,f254])).
+tff(f217,plain,(
+  spl38_1 <=> '$in_world'('$local_world',$false)),
+  introduced(avatar_definition,[new_symbols(naming,[spl38_1])])).
+tff(f695,plain,(
+  '$possible'('$local_world',$false) | ~spl38_1),
+  inference(unit_resulting_resolution,[],[f137,f78,f218,f84])).
+tff(f84,plain,(
+  ( ! [X2 : '$world',X0 : '$world'] : (~'$in_world'(X2,$false) | '$possible'(X0,$false) | sP29($false) | ~'$accessible_world'(X0,X2)) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f14,plain,(
+  ! [X0 : '$world',X1 : $o] : (? [X2 : '$world'] : ('$accessible_world'(X0,X2) & ? [X3 : $o] : ('$in_world'(X2,X3) & (X1 | ~X3))) <=> '$possible'(X0,X1))),
+  inference(ennf_transformation,[],[f9])).
+tff(f9,plain,(
+  ! [X0 : '$world',X1 : $o] : (? [X2 : '$world'] : ('$accessible_world'(X0,X2) & ? [X3 : $o] : ((X3 => X1) & '$in_world'(X2,X3))) <=> '$possible'(X0,X1))),
+  inference(rectify,[],[f2])).
+tff(f2,axiom,(
+  ! [X0 : '$world',X1 : $o] : ('$possible'(X0,X1) <=> ? [X2 : '$world'] : ('$accessible_world'(X0,X2) & ? [X3 : $o] : ((X3 => X1) & '$in_world'(X2,X3))))),
+  file('/tmp/tmp.MAyLcMhWba/Vampire---4.8_20622',possible_defn)).
+tff(f218,plain,(
+  '$in_world'('$local_world',$false) | ~spl38_1),
+  inference(avatar_component_clause,[],[f217])).
+tff(f78,plain,(
+  ~sP29($false)),
+  inference(cnf_transformation,[],[f14])).
+tff(f137,plain,(
+  '$accessible_world'('$local_world','$local_world')),
+  inference(definition_unfolding,[],[f76,f73,f73])).
+tff(f73,plain,(
+  w2 = '$local_world'),
+  inference(cnf_transformation,[],[f17])).
+tff(f17,plain,(
+  '$accessible_world'(w2,w2) & ! [X0 : '$world'] : (w1 = X0 | w2 = X0) & '$accessible_world'(w1,w2) & '$in_world'(w2,work_hard(d2person(d_chris),d2product(d_leo)) & ? [X4 : d_product] : d_leo = X4 & ! [X1 : d_product] : d_leo = X1 & ! [X9 : product] : ? [X10 : d_product] : d2product(X10) = X9 & ? [X2 : d_person] : d_chris = X2 & alex = d2person(d_alex) & ! [X3 : d_person] : (d_alex = X3 | d_chris = X3) & chris = d2person(d_chris) & ! [X8 : d_person,X7 : d_person] : (d2person(X7) != d2person(X8) | X7 = X8) & ~gets_rich(d2person(d_alex)) & ! [X5 : person] : ? [X6 : d_person] : d2person(X6) = X5 & work_hard(d2person(d_alex),d2product(d_leo)) & ! [X12 : d_product,X11 : d_product] : (X11 = X12 | d2product(X12) != d2product(X11)) & d_alex != d_chris & ~gets_rich(d2person(d_chris)) & leo = d2product(d_leo) & ? [X13 : d_person] : d_alex = X13) & '$accessible_world'(w2,w1) & w2 = '$local_world' & '$in_world'(w1,! [X24 : d_person] : (d_alex = X24 | d_chris = X24) & alex = d2person(d_alex) & leo = d2product(d_leo) & work_hard(d2person(d_chris),d2product(d_leo)) & ? [X21 : d_product] : d_leo = X21 & work_hard(d2person(d_alex),d2product(d_leo)) & ? [X20 : d_person] : d_chris = X20 & gets_rich(d2person(d_chris)) & ! [X14 : person] : ? [X15 : d_person] : d2person(X15) = X14 & d_alex != d_chris & chris = d2person(d_chris) & ! [X18 : product] : ? [X19 : d_product] : d2product(X19) = X18 & ! [X16 : d_person,X17 : d_person] : (d2person(X16) != d2person(X17) | X16 = X17) & ! [X26 : d_product] : d_leo = X26 & gets_rich(d2person(d_alex)) & ! [X23 : d_product,X22 : d_product] : (d2product(X22) != d2product(X23) | X22 = X23) & ? [X25 : d_person] : d_alex = X25) & w1 != w2 & '$accessible_world'(w1,w1)),
+  inference(ennf_transformation,[],[f8])).
+tff(f8,plain,(
+  '$accessible_world'(w2,w2) & '$accessible_world'(w1,w2) & w1 != w2 & '$in_world'(w1,d_alex != d_chris & ! [X18 : product] : ? [X19 : d_product] : d2product(X19) = X18 & work_hard(d2person(d_chris),d2product(d_leo)) & leo = d2product(d_leo) & ! [X14 : person] : ? [X15 : d_person] : d2person(X15) = X14 & work_hard(d2person(d_alex),d2product(d_leo)) & ! [X22 : d_product,X23 : d_product] : (d2product(X22) = d2product(X23) => X22 = X23) & ! [X24 : d_person] : (d_alex = X24 | d_chris = X24) & gets_rich(d2person(d_alex)) & chris = d2person(d_chris) & ! [X16 : d_person,X17 : d_person] : (d2person(X16) = d2person(X17) => X16 = X17) & gets_rich(d2person(d_chris)) & ? [X25 : d_person] : d_alex = X25 & alex = d2person(d_alex) & ! [X26 : d_product] : d_leo = X26 & ? [X20 : d_person] : d_chris = X20 & ? [X21 : d_product] : d_leo = X21) & '$accessible_world'(w1,w1) & ! [X0 : '$world'] : (w1 = X0 | w2 = X0) & '$accessible_world'(w2,w1) & w2 = '$local_world' & '$in_world'(w2,! [X1 : d_product] : d_leo = X1 & ? [X13 : d_person] : d_alex = X13 & ! [X3 : d_person] : (d_alex = X3 | d_chris = X3) & ~gets_rich(d2person(d_alex)) & work_hard(d2person(d_alex),d2product(d_leo)) & alex = d2person(d_alex) & work_hard(d2person(d_chris),d2product(d_leo)) & ! [X5 : person] : ? [X6 : d_person] : d2person(X6) = X5 & leo = d2product(d_leo) & ! [X9 : product] : ? [X10 : d_product] : d2product(X10) = X9 & d_alex != d_chris & chris = d2person(d_chris) & ! [X8 : d_person,X7 : d_person] : (d2person(X7) = d2person(X8) => X7 = X8) & ? [X2 : d_person] : d_chris = X2 & ~gets_rich(d2person(d_chris)) & ? [X4 : d_product] : d_leo = X4 & ! [X11 : d_product,X12 : d_product] : (d2product(X12) = d2product(X11) => X11 = X12))),
+  inference(rectify,[],[f4])).
+tff(f4,axiom,(
+  ! [X4 : '$world'] : (w1 = X4 | w2 = X4) & '$accessible_world'(w1,w1) & w2 = '$local_world' & '$in_world'(w2,chris = d2person(d_chris) & d_alex != d_chris & ~gets_rich(d2person(d_alex)) & leo = d2product(d_leo) & ! [X6 : d_product] : d_leo = X6 & ? [X6 : d_person] : d_chris = X6 & ! [X6 : d_person] : (d_alex = X6 | d_chris = X6) & ? [X6 : d_product] : d_leo = X6 & ! [X5 : person] : ? [X6 : d_person] : d2person(X6) = X5 & ! [X8 : d_person,X7 : d_person] : (d2person(X7) = d2person(X8) => X7 = X8) & work_hard(d2person(d_chris),d2product(d_leo)) & ! [X5 : product] : ? [X6 : d_product] : d2product(X6) = X5 & ! [X7 : d_product,X8 : d_product] : (d2product(X7) = d2product(X8) => X7 = X8) & alex = d2person(d_alex) & ? [X6 : d_person] : d_alex = X6 & work_hard(d2person(d_alex),d2product(d_leo)) & ~gets_rich(d2person(d_chris))) & w1 != w2 & '$accessible_world'(w2,w1) & '$accessible_world'(w1,w2) & '$accessible_world'(w2,w2) & '$in_world'(w1,chris = d2person(d_chris) & ! [X5 : person] : ? [X6 : d_person] : d2person(X6) = X5 & gets_rich(d2person(d_chris)) & alex = d2person(d_alex) & ! [X7 : d_person,X8 : d_person] : (d2person(X7) = d2person(X8) => X7 = X8) & d_alex != d_chris & leo = d2product(d_leo) & ! [X5 : product] : ? [X6 : d_product] : d2product(X6) = X5 & ? [X6 : d_person] : d_chris = X6 & ? [X6 : d_product] : d_leo = X6 & work_hard(d2person(d_chris),d2product(d_leo)) & gets_rich(d2person(d_alex)) & ! [X7 : d_product,X8 : d_product] : (d2product(X7) = d2product(X8) => X7 = X8) & work_hard(d2person(d_alex),d2product(d_leo)) & ! [X6 : d_person] : (d_alex = X6 | d_chris = X6) & ? [X6 : d_person] : d_alex = X6 & ! [X6 : d_product] : d_leo = X6)),
+  file('/tmp/tmp.MAyLcMhWba/Vampire---4.8_20622',working_worlds)).
+tff(f76,plain,(
+  '$accessible_world'(w2,w2)),
+  inference(cnf_transformation,[],[f17])).
+tff(f686,plain,(
+  spl38_10 | ~spl38_17),
+  inference(avatar_split_clause,[],[f676,f343,f254])).
+tff(f343,plain,(
+  spl38_17 <=> '$in_world'(w1,$false)),
+  introduced(avatar_definition,[new_symbols(naming,[spl38_17])])).
+tff(f676,plain,(
+  '$possible'('$local_world',$false) | ~spl38_17),
+  inference(unit_resulting_resolution,[],[f139,f78,f345,f84])).
+tff(f345,plain,(
+  '$in_world'(w1,$false) | ~spl38_17),
+  inference(avatar_component_clause,[],[f343])).
+tff(f139,plain,(
+  '$accessible_world'('$local_world',w1)),
+  inference(definition_unfolding,[],[f74,f73])).
+tff(f74,plain,(
+  '$accessible_world'(w2,w1)),
+  inference(cnf_transformation,[],[f17])).
+tff(f657,plain,(
+  spl38_26 | spl38_17),
+  inference(avatar_split_clause,[],[f642,f343,f380])).
+tff(f380,plain,(
+  spl38_26 <=> gets_rich(d2person(d_chris))),
+  introduced(avatar_definition,[new_symbols(naming,[spl38_26])])).
+tff(f642,plain,(
+  gets_rich(d2person(d_chris)) | spl38_17),
+  inference(resolution,[],[f344,f64])).
+tff(f64,plain,(
+  '$in_world'(w1,$false) | gets_rich(d2person(d_chris))),
+  inference(cnf_transformation,[],[f17])).
+tff(f344,plain,(
+  ~'$in_world'(w1,$false) | spl38_17),
+  inference(avatar_component_clause,[],[f343])).
+tff(f596,plain,(
+  ~spl38_26 | spl38_1),
+  inference(avatar_split_clause,[],[f575,f217,f380])).
+tff(f575,plain,(
+  ~gets_rich(d2person(d_chris)) | spl38_1),
+  inference(unit_resulting_resolution,[],[f219,f152])).
+tff(f152,plain,(
+  ~gets_rich(d2person(d_chris)) | '$in_world'('$local_world',$false)),
+  inference(definition_unfolding,[],[f45,f73])).
+tff(f45,plain,(
+  ~gets_rich(d2person(d_chris)) | '$in_world'(w2,$false)),
+  inference(cnf_transformation,[],[f17])).
+tff(f219,plain,(
+  ~'$in_world'('$local_world',$false) | spl38_1),
+  inference(avatar_component_clause,[],[f217])).
+% SZS output end Proof for Vampire---4
+% (20645)------------------------------
+% (20645)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20645)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20645)Termination reason: Refutation
+
+% (20645)Memory used [KB]: 1590
+% (20645)Time elapsed: 0.038 s
+% (20645)Instructions burned: 34 (million)
+% (20645)------------------------------
+% (20645)------------------------------
+% (20636)Success in time 0.113 s
+terminate called after throwing an instance of 'Lib::SystemFailException'
+20636 Aborted by signal SIGABRT on /tmp/tmp.MAyLcMhWba/Vampire---4.8_20622
+% (20636)------------------------------
+% (20636)Version: Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+% (20636)Linked with Z3 4.12.2.0 e417f7d78509b2d0c9ebc911fee7632e6ef546b6 z3-4.8.4-7517-ge417f7d78
+% (20636)Termination reason: Unknown
+% (20636)Termination phase: Unknown
+
+% (20636)Memory used [KB]: 413
+% (20636)Time elapsed: 0.144 s
+% (20636)------------------------------
+% (20636)------------------------------
+Version : Vampire 4.8 (commit 4017145ee on 2023-10-05 17:46:18 +0200)
+???
+ ???
+  ???
+   ???
+    ???
+     ???
+      ???
+       ???
+        ???
+         ???
+          ???
+           ???
+            ???
+             ???
+              ???
+               ???
+                ???
+                 ???
+                  ???
+                   ???
+% Vampire---4.8 exiting
+
+% END OF SYSTEM OUTPUT
+RESULT: NXF_Finite-Finite-Global.s - Vampire---4.8 says Theorem - CPU = 0.04 WC = 0.16 
+OUTPUT: NXF_Finite-Finite-Global.s - Vampire---4.8 says Refutation - CPU = 0.04 WC = 0.16 

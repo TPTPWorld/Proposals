@@ -1,0 +1,869 @@
+<HTML>
+<HEAD>
+<TITLE>The TPTP Process Instruction Language</TITLE>
+<style type="text/css">
+BODY {font-family:sans-serif;}
+A:link {color: blue; text-decoration: none}
+A:visited {color: red; text-decoration: none}
+</style>
+</HEAD>
+<BODY ALIGN="JUSTIFY">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">The TPTP Process Instruction (TPI) Language</H1>
+
+by 
+<A href="http://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> The TPI Language </H3>
+
+The language used to express TPI commands has the same look-and-feel as the TPTP language used to 
+write logical formulae (only minor modifications need to be made to an existing parser for the TPTP 
+language in order to read TPI commands).
+The TPI language is used alongside the existing logical TPTP language forms (THF, TFF, FOF, CNF) 
+to provide command and control instructions for manipulating logical formulae in the context of 
+ATP systems.
+TPI command formulae can be input to an ATP system, or can be input to an interpreter that has no 
+reasoning capabilities and instead invokes external ATP systems.
+In either case a system that can process TPI commands is referred to as a <EM>TPI system</EM>, 
+i.e., an ATP system that can process TPI commands is a type of TPI system.
+<P>
+Input to a TPI system can contain both logical formulae and TPI command formulae.
+The two types of formulae are processed together, in the order they appear in the file.
+(This makes the order of the formulae relevant, which is counter to the TPTP principle that 
+formulae can be reordered, cut-and-pasted, merged, etc.
+However, TPI command formulae are non-logical, so this deviation from the principle seems 
+tolerable.)
+Logical formulae are processed and stored as usual, and command formulae are obeyed.
+<P>
+The logical formulae that have been processed and stored by a TPI system are initially in an 
+<EM>active</EM> state.
+Logical formulae can be "deactivated", placing them into an <EM>inactive</EM> state, so that they 
+do not appear to exist.
+Inactive formulae are not used in any processing.
+Inactive logical formulae can be "activated" so that they are again used in processing.
+In addition to being active or inactive, logical formulae also belong to one or more named 
+<EM>groups</EM>.
+All logical formulae belong to the group <TT>tpi</TT>, all premises (<TT>axiom</TT>s, 
+<TT>hypothesis</TT>s, <TT>definition</TT>s, <TT>lemma</TT>s, etc.) belong to the group 
+<TT>tpi_premises</TT>, all <TT>conjecture</TT>s and <TT>negated_conjecture</TT>s belong to the 
+group <TT>tpi_conjectures</TT>,
+and all logical formulae can belong to multiple other user-defined groups.
+The TPI language provides commands for manipulating groups of logical formulae.
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> TPI Command Formulae </H3>
+
+TPI uses a new TPTP language form, <TT>tpi</TT>. 
+TPI command formulae are structurally almost the same as the logical language forms:<BR>
+<TT>&nbsp;&nbsp;&nbsp;tpi(</TT><EM>Name</EM><TT>,</TT><EM>Command</EM><TT>,</TT><EM>CommandDetails</EM><TT>,</TT><EM>Source</EM><TT>,</TT><EM>UsefulInfo</EM><TT>).</TT><BR>
+An example of a TPI command formula is
+<PRE>
+    tpi(1,execute,'SZS_STATUS' = 'E---1.6/eprover --auto --cpu-limit=$getargv(0) --tstp-format $getgroups(tpi)').
+</PRE>
+<P>
+Using non-terminals from the <A HREF="http://tptp.org/TPTP/SyntaxBNF.html">TPTP syntax</A>,
+each <EM>Command</EM> is an <TT>&lt;atomic_word></TT>, and <EM>CommandDetails</EM> is either a 
+<TT>&lt;proposition></TT>, a
+<TT>&lt;defined_infix_formula></TT> in the form of an equality, or a
+<TT>&lt;fol_infix_unary>.</TT> in the form of an inequality.
+This use of existing TPTP syntax makes it easy to modify an existing parser
+for the TPTP language to read TPI commands.
+The <EM>Source</EM> and <EM>UsefulInfo</EM> are optional as usual.
+<P>
+In order for a command's <EM>CommandDetails</EM> to be parsed as a
+<TT>&lt;proposition></TT>, <TT>&lt;defined_infix_formula></TT>, or
+<TT>&lt;fol_infix_unary>.</TT>, it is often necessary to quote the whole 
+<EM>CommandDetails</EM> or the operands of the (in)equality.
+For example, the lefthand side of the equality that forms the
+<EM>CommandDetails</EM> of the example TPI command above is
+an environment variable that starts with an uppercase letter.
+It has to be quoted so that a TPTP parser does not interpret it as a logic
+variable.
+<P>
+TPI command formulae can use three new TPTP interpreted functors:
+<UL>
+<LI> <TT>$getargv(</TT><EM>Index</EM><TT>)</TT> -
+     Evaluates to the command line argument of the TPI system, with 
+     <EM>Index</EM> 0 referring to the argument after the name of the TPI
+     file being processed (this might be an indicator of <TT>stdin</TT>
+     or a regular file name).
+<LI> <TT>$getenv(</TT><EM>Name</EM><TT>)</TT> -
+     Evaluates to the value of the environment value <EM>Name</EM>.
+     If <EM>Name</EM> is not set it evaluates to an empty string.
+<LI> <TT>$getgroups(</TT><EM>Group name</EM><TT>,</TT><EM>Group name</EM><TT>,</TT><EM>Group name</EM> ... <TT>)</TT> -
+     Evaluates to the name of a temporary file containing all the active
+     logical formulae in the named groups.
+     If a formulae is in multiple of the groups, it appears in the file 
+     multiple times.
+</UL>
+<P>
+An example of TPI command formulae interleaved with logical formulae is:
+<PRE>
+    tpi(1,input,'Axioms/SET006+0.ax').
+    fof(thI14,conjecture,
+        ( ! [A] : equal_set(union(A,A),A) )).
+    tpi(2,execute,
+        'SZS_STATUS' = 'E---1.6/eprover --auto --cpu-limit=$getargv(0) --tstp-format $getgroups(tpi)').
+    tpi(3,write,'Status: ' & $getenv('SZS_STATUS')).
+    tpi(4,exit,exit(27)).
+</PRE>
+
+With those formulae in an input file named <TT>Simple.p</TT>, a TPI system
+would be invoked like this:
+<PRE>
+    my_tpi_system Simple.p 300
+</PRE>
+The first line reads in a file of axioms, after which a conjecture is
+provided.
+The third line invokes the ATP system E, with a 300s CPU time
+limit taken from the command line.
+The <A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=Documents&File=SZSOntology">SZS status</A> is stored in the environment
+variable <TT>SZS_STATUS</TT>.
+The fourth line writes that status to <TT>stdout</TT>,
+after which the last lines ends the processing.
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> The TPI Commands </H3>
+
+<DL>
+<DT> <TT>input</TT> 
+<DD> <EM>CommandDetails:</EM>
+     [<TT>&lt;group_name&gt; &lt;infix_equality></TT>] <TT>&lt;file_name></TT>
+     <P>
+     Action: Inputs the named file.
+             The logical formulae in the file are put in the named group
+             if one is specified (it's the same as putting a
+             <TT>start_group</TT> - <TT>end_group</TT> pair around the
+             <TT>input</TT> command without a group name - see below).
+             This has the same effect as a TPTP <TT>include</TT> directive.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,input,'/TPTP/Axioms/SET001-0.ax').</TT><BR>
+     <TT>tpi(2,input,some_axioms = '/TPTP/Axioms/SET001-0.ax').</TT><BR>
+<!--
+     Need to add <EM>UsefulInfo</EM> for name filters.
+-->
+
+<DT> <TT>output</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;file_name> [&lt;infix_equality&gt; &lt;group_name&gt;]</TT>
+     <P>
+     Action: The active logical formulae in the named group, or all logical
+             formulae if no group is specified, are output to the named file.
+             The file name can be <TT>stdout</TT>, with the obvious meaning.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,output,'OutputFile.txt').</TT><BR>
+     <TT>tpi(2,output,'OutputFile.txt' = some_axioms).</TT><BR>
+     <TT>tpi(3,output,stdout).</TT>
+
+<DT> <TT>deactivate</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;formula_name></TT>
+     <P>
+     Action: The named logical formula is deactivated.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,deactivate,left_identity).</TT>
+
+<DT> <TT>activate</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;formula_name></TT>
+     <P>
+     Action: The named logical formula is activated.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,activate,left_identity).</TT>
+
+<DT> <TT>set_role</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;formula_name> &lt;infix_equality> &lt;atomic_value></TT>
+     <P>
+     Action: Sets the role of the named logical formula to the atomic value,
+     which must be a valid TPTP formula role, e.g., <TT>axiom</TT>,
+     <TT>lemma</TT>, <TT>conjecture</TT>, etc.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,set_role,midpoint = lemma).</TT>
+
+<DT> <TT>delete</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;formula_name></TT>
+     <P>
+     Action: The named logical formula is deleted.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,delete,left_identity).</TT>
+
+<DT> <TT>start_group</TT> 
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;group_name></TT>
+     <P>
+     Action: 
+             Adds all subsequent logical formulae 
+             to the named group, until a corresponding <TT>end_group</TT> 
+             command is encountered.
+             Groups do not have to be contiguous in the input, i.e., there
+             can be multiple <TT>start_group</TT> - <TT>end_group</TT> pairs
+             with the same group name.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,start_group,some_axioms).</TT>
+
+<DT> <TT>end_group</TT> 
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;group_name></TT>
+     <P>
+     Action: Stops adding logical formulae to the named group.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,end_group,some_axioms).</TT>
+
+<DT> <TT>deactivate_group</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;group_name></TT>
+     <P>
+     Action: The logical formula in the named group are deactivated.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,deactivate_group,some_axioms).</TT>
+
+<DT> <TT>activate_group</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;group_name></TT>
+     <P>
+     Action: The logical formulae in the named group are activated.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,activate_group,some_axioms).</TT>
+
+<DT> <TT>delete_group</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;group_name></TT>
+     <P>
+     Action: The logical formulae in the named group are deleted.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,delete_group,some_axioms).</TT><BR>
+     <TT>tpi(2,delete_group,tpi).</TT><BR>
+
+<DT> <TT>setenv</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;environment_variable> &lt;infix_equality> &lt;atomic_value></TT>
+     <P>
+     Action: Sets the environment variable to the atomic value.
+             An expected use of environment variables is to pass values to
+             ATP systems run through <TT>execute</TT> commands - see below.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,setenv,'TPTP' = '/home/geoff/tptp/TPTP').</TT><BR>
+     <TT>tpi(2,setenv,'CPU_LIMIT' = 300).</TT>
+
+<DT> <TT>waitenv</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;environment_variables></TT>
+     <P>
+     Action: Waits for an environment variable to become set.
+             The <TT>&lt;environment_variables></TT> can be a single
+             environment variable, or a disjunction in which case the
+             TPI system waits for any one of them to become set.
+             A main use of <TT>waitenv</TT> is to coordinate with
+             <TT>execute_async</TT> commands - see below.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,waitenv,'ASYNC_SZS_STATUS').</TT><BR>
+     <TT>tpi(2,waitenv,'EP_SZS_STATUS' | 'VAMPIRE_SZS_STATUS').</TT>
+
+<DT> <TT>unsetenv</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;environment_variable></TT>
+     <P>
+     Action: Unsets the environment variable.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,unsetenv,'TPTP').</TT>
+
+<DT> <TT>mktemp</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;environment_variable></TT>
+     <P>
+     Action: Creates a new temporary file and places the name of the file
+             in the environment variable.
+             All temporary files created this way are deleted when a
+             <TT>clean</TT> command is executed.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,mktemp,'TEMP_FILENAME').</TT>
+
+<DT> <TT>set_logic</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;logic_specification></TT>
+     <P>
+     Action: Sets the logic/semantics within which the active logical formulae
+             should be processed.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,set_logic,qmltp([ml(a,modal_s4),ml(b,modal_d)])).</TT>
+<!--
+     Need to have a way for individual "users" to specify their logics 
+     for their systems.
+     The different status values for different logic semantics, e.g., in
+     <TT>SYN983^1</TT>, must be cleaned up as part of this effort.
+-->
+
+<DT> <TT>execute</TT>
+<DD> <EM>CommandDetails:</EM>
+     [<TT>&lt;environment_variable> &lt;infix_equality></TT>] <TT>self</TT> | <TT>&lt;command></TT>
+     <P>
+     Action: If the argument is <TT>self</TT> then the TPI system processes all
+             the active logical formulae using its own reasoning process.
+             Thus <TT>execute,self</TT> is meaningful only in the context of an
+             ATP system, which runs its reasoning process on all the active 
+             logical formulae.
+             If the argument is an <TT>&lt;command></TT> then any embedded 
+             <TT>$get</TT><EM>*</EM> terms are replaced by the corresponding 
+             values, and the resulting <TT>&lt;command></TT> is executed.
+             If the optional equation is provided, the SZS status from 
+             reasoning is placed into the environment variable.
+             The TPI system waits for the execution to complete.
+             <P>
+             For backward compatibility, a <TT>%s</TT> in an 
+             <TT>&lt;command></TT> is equivalent to 
+             <TT>$getgroups(tpi)</TT>.
+             Note that <TT>execute</TT> can be used to run arbitrary commands,
+             e.g., <TT>/bin/date</TT> to output the date and time.
+             <P>
+             When a TPI system is reading the top level file, i.e., not an
+             <TT>include</TT>d or <TT>input</TT> file, if it reaches the end of
+             the file without finding an <TT>exit</TT> command then an implicit
+             <TT>execute,self</TT> is performed.
+             Thus a conventional ATP system that is given a file of
+             logical formulae as its input, and runs its reasoning process
+             on the logical formulae after reading the complete file, is a
+             TPI system.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,execute,self).</TT><BR>
+     <TT>tpi(2,execute,'E---1.6/eprover --auto --tstp-format $getgroups(tpi)').</TT><BR>
+     <TT>tpi(3,execute,'SZS_STATUS' = 'E---1.6/eprover --auto --tstp-format --cpu-limit=$getenv(0) $getgroups(some_axioms,the_conjectures)').</TT><BR>
+     <TT>tpi(4,execute,'MutzaBall---1.0/gomutza -a $getgroups(some_axioms,more_axioms) -c $getgroups(the_conjectures) -t 300').</TT><BR>
+     <TT>tpi(5,execute,'/bin/date').</TT>
+
+<DT> <TT>execute_async</TT>
+<DD> <EM>CommandDetails:</EM>
+     [<TT>&lt;environment_variable> &lt;infix_equality></TT>] <TT>self</TT> | <TT>&lt;command></TT>
+     <P>
+     Action: Runs like <TT>execute</TT>, but processing of the current TPI file 
+             continues concurrently with the execution.
+             All processes created this way are terminated when a
+             <TT>clean</TT> command is executed.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,execute_async,'ASYNC_SZS_STATUS' = 'E---1.6/eprover --auto --tstp-format $getgroups(tpi)').</TT>
+     <P>
+
+<DT> <TT>filter</TT>
+<DD> <EM>CommandDetails:</EM>
+     [<TT>&lt;environment_variable> &lt;infix_equality></TT>] <TT>self</TT> | <TT>&lt;command></TT>
+     <P>
+     Action: Runs like <TT>execute</TT>, then deletes the groups specified 
+             by any <TT>$getgroups</TT> terms in the <TT>&lt;command></TT>
+             (like <TT>delete_group</TT>), and uses the output from the 
+             execution as <TT>input</TT>.
+             As such a <TT>filter</TT> is equivalent to a sequence such as:
+<PRE>
+    tpi(1,mktemp,'TEMP_FILENAME').
+    tpi(2,execute,'the_filter_command_details $getgroups(foo,blah) > $TEMP_FILENAME').
+    tpi(3,delete_group,foo).
+    tpi(4,delete_group,blah).
+    tpi(5,input,$getenv('TEMP_FILENAME')).</PRE>
+     Examples:<BR>
+     <TT>tpi(1,filter,self).</TT><BR>
+     <TT>tpi(2,filter,'SInE---1.8/sine --mode axiom_selection $getgroups(some_axioms)').</TT><BR>
+     <TT>tpi(3,filter,'SZS_STATUS' = 'E---1.6/eprover --sine=Auto --prune $getgroups(some_axioms)').</TT>
+     <P>
+
+<DT> <TT>generate</TT>
+<DD> <EM>CommandDetails:</EM>
+     [<TT>&lt;environment_variable> &lt;infix_equality></TT>] <TT>&lt;command></TT>
+     <P>
+     Action: Runs like <TT>execute</TT>, and uses the output from the 
+             execution as <TT>input</TT>.
+             Logical formulae can be passed to the generator to provide
+             context, using <TT>$getgroups</TT> terms.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,generate,'RandomProblemGenerator').</TT><BR>
+     <TT>tpi(2,generate,'SZS_STATUS' = 'LemmaGenerator --context=$getgroups(tpi)').</TT>
+
+<DT> <TT>assert</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;term> &lt;infix_equality> &lt;term></TT> |
+     <TT>&lt;term> &lt;infix_inequality> &lt;term></TT>
+     <P>
+     Action: Checks the equality or inequality.
+             The only <TT>&lt;term></TT>s allowed are 
+             <TT>&lt;atomic_word></TT>s, <TT>&lt;integer></TT>s, and 
+             <TT>$get</TT>* terms.
+             If the assertion fails a <TT>write,'Assertion failed: ' &</TT>
+             <EM>negated_assertion</EM> command, followed by an 
+             <TT>exit,exit(1)</TT> command are performed.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,assert,$getenv('SZS_STATUS') = 'Satisfiable').</TT>
+
+<DT> <TT>write</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>&lt;output_data></TT>
+     <P>
+     Action: Outputs the <TT>&lt;output_data></TT> to <TT>stdout</TT>.
+     The <TT>&lt;output_data></TT> can be atomic, or a conjunction in which
+     case each of the conjuncts is output.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,write,'--------------------').</TT><BR>
+     <TT>tpi(2,write,$getenv('SZS_STATUS')).</TT><BR>
+     <TT>tpi(3,write,'Conjecture status: ' & $getenv('SZS_STATUS')).</TT>
+
+<DT> <TT>clean</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>clean</TT>
+     <P>
+     Action: Any processes started with <TT>execute_async</TT> commands that
+             are still running are stopped.
+             Any files created with <TT>mktemp</TT> commands are deleted.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,clean,clean).</TT>
+
+<DT> <TT>exit</TT>
+<DD> <EM>CommandDetails:</EM>
+     <TT>exit</TT> | <TT>exit(&lt;integer_exit_code>)</TT>
+     <P>
+     Action: A <TT>clean</TT> command is executed, then the TPI system 
+             stops and exits.
+             If an <TT><integer_exit_code></TT> is provided this
+             is returned to the operating system as the exit status, otherwise
+             0 is returned.
+             When a TPI system is reading the top level file, i.e., not an
+             <TT>include</TT>d or <TT>input</TT> file, if it reaches the 
+             end of the file without finding an <TT>exit</TT> command then 
+             an implicit <TT>execute,self</TT> is performed.
+     <P>
+     Examples:<BR>
+     <TT>tpi(1,exit,exit).</TT><BR>
+     <TT>tpi(2,exit,exit(27)).</TT>
+</DL>
+
+<P>
+<!--
+========================================================================
+Subroutine command execute_range,start-end, e.g.,
+
+    tpi(1,input,'Axioms/SYN001+1.ax').
+    fof(another,axiom,q).
+    fof(a,conjecture,qq).
+    tpi(4,execute,self).
+    fof(yet_another,axiom,r).
+    tpi(6,execute_range,another-4).
+    tpi(7,exit,exit).
+========================================================================
+I had a few thoughts about the generic ATP control instructions that
+could be added to the TPI language, in the final part of your work
+for your MS. Once we have a full set you can then also do an evaluation
+of the ATP system under all combijations of values for the controls.
+So far ...
+
++ Use/don't use axiom selection
++ Search forward/backwards
++ Use DFS/BFS/heuristic/ratio search
++ Use KBO/LPO for equality
+
+In all cases we'd use the default configuration of the ATP system for
+each value of each option.
+========================================================================
+-->
+<HR><!------------------------------------------------------------------------>
+<H3> Example Applications </H3>
+
+The following is a simplest example, showing how axioms can be input and used with
+a conjecture by virtue of an implicit <TT>execute,self</TT>.
+Command 1 inputs the file of axioms, then another axiom and a conjecture 
+are provided, after which the TPI system (necessarily an ATP system)
+starts it's reasoning process by virtue of the implicit <TT>execute,self</TT>
+at the end of file.
+<PRE>
+    tpi(1,input,'Axioms/SYN001+1.ax').
+    fof(another,axiom,pp => qq).
+    fof(a,conjecture,qq).
+</PRE>
+
+<P>&nbsp;<P>
+The following example shows how some common core axioms (in <TT>SYN001+1.ax</TT>)
+can be loaded, then used in conjunction with different conjecture-specific
+axioms using explicit <TT>execute,self</TT>s.
+Command 1 inputs a file of axioms, after which command 2 starts a group 
+named <TT>try_these</TT>. 
+Another axiom and a conjecture are put into the group, which is ended by
+command 3.
+Command 4 starts the TPI system's (necessarily an ATP system) reasoning 
+process.
+After the execution is completed command 5 deletes the axiom and conjecture 
+in the group, and yet another axiom and another conjecture are provided.
+The axioms that were input from the file also remain.
+Command 6 starts the TPI system's reasoning process again. 
+When execution is completed command 7 stops the TPI system.
+<PRE>
+    tpi(1,input,'Axioms/SYN001+1.ax').
+    tpi(2,start_group,try_these).
+    fof(another,axiom,q).
+    fof(a,conjecture,qq).
+    tpi(3,end_group,try_these).
+    tpi(4,execute,self).
+    tpi(5,delete_group,try_these).
+    fof(yet_another,axiom,r).
+    fof(and_another,conjecture,rr).
+    tpi(6,execute,self).
+    tpi(7,exit,exit).
+</PRE>
+
+<P>&nbsp;<P>
+The following example shows how different groups of axioms can be used with a
+conjecture.
+Commands 1 and 2 start two groups of axioms.
+Command 3 loads the axioms that are unique to the old group, after which
+command 4 starts the group of new axioms.
+Command 5 loads axioms that are common to the old and new groups,
+command 6 ends the old group,
+command 7 loads axioms that are unique to the new group,
+and commands 8 and 9 end the groups.
+Command 10 loads another set of axioms, which are part of only the {\tt tpi}
+group.
+Commands 11 and 12 put the conjecture into a group.
+The next eight pairs of commands try prove the conjecture from various
+combinations of the axioms, and report the results.
+Commands 13 and 14 use just the old axioms,
+commands 15 and 16 use just the new axioms,
+commands 17 and 18 use both the old and new axioms,
+and finally commands 19 and 20 use all the available axioms.
+When execution is completed command 21 stops the TPI system.
+<PRE>
+    tpi(1,start_group,old_and_new_axioms).
+    tpi(2,start_group,old_axioms).
+    tpi(3,input,'Axioms/SYN001+1.ax').
+    tpi(4,start_group,new_axioms).
+    tpi(5,input,'Axioms/SYN001+2.ax').
+    tpi(6,end_group,old_axioms).
+    tpi(7,input,'Axioms/SYN002+1.ax').
+    tpi(8,end_group,new_axioms).
+    tpi(9,end_group,old_and_new_axioms).
+    tpi(10,input,'Axioms/SYN003+1.ax').
+    tpi(11,start_group,the_conjecture).
+    fof(a,conjecture,qq).
+    tpi(12,end_group,the_conjecture).
+    tpi(13,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(old_axioms,the_conjecture)').
+    tpi(14,write,'Conjecture status for old axioms:' & $getenv('SZS_STATUS')).
+    tpi(15,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(new_axioms,the_conjecture)').
+    tpi(16,write,'Conjecture status for replacement axioms:' & $getenv('SZS_STATUS')).
+    tpi(17,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(old_and_new_axioms,the_conjecture)').
+    tpi(18,write,'Conjecture status for old and new axioms:' & $getenv('SZS_STATUS')).
+    tpi(19,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(20,write,'Conjecture status for all axioms:' & $getenv('SZS_STATUS')).
+    tpi(21,exit,exit).
+</PRE>
+
+<P>&nbsp;<P>
+The following example shows how to check the axioms for satisfiability before
+making a proof attempt.
+Two axioms are provided, after which command 1 invokes the Paradox ATP
+system to establish that the axioms are satisfiable.
+Command 2 writes the SZS status returned by Paradox, and command 3 asserts
+that the status must be <TT>Satisfiable</TT> (it obviously is).
+A conjecture is then provided, and command 4 invokes the E ATP system to
+prove it's a theorem.
+Command 5 writes the SZS status returned by E, after which command 6 stops 
+the TPI system.
+<PRE>
+    fof(an,axiom,p).
+    fof(another,axiom,p => q).
+    tpi(1,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/Paradox---4.0/paradox --time 300 --tstp $getgroups(tpi)').
+    tpi(2,write,'Axiom status:' & $getenv('SZS_STATUS')).
+    tpi(3,assert,$getenv('SZS_STATUS') = 'Satisfiable').
+    fof(a,conjecture,q).
+    tpi(4,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(5,write,'Conjecture status:' & $getenv('SZS_STATUS')).
+    tpi(6,exit,exit).
+</PRE>
+
+<P>&nbsp;<P>
+The following example is a variant of the last one, with the axioms being
+checked for satisfiability in parallel with the proof attempt.
+Two axioms are provided, after which command 1 invokes the Paradox ATP
+system to run asynchronously to establish that the axioms are satisfiable.
+A conjecture is then provided, and command 2 invokes the E ATP system to
+prove it's a theorem.
+Command 3 makes the TPI system wait for Paradox to complete its execution,
+after which command 4 writes the SZS statuses returned by Paradox and E.
+Command 5 stops the TPI system.
+<PRE>
+    fof(an,axiom,p).
+    fof(another,axiom,p => q).
+    tpi(1,execute_async,
+        'ASYNC_SZS_STATUS' = '$TPTP_HOME/Systems/Paradox---4.0/paradox --time 300 --tstp $getgroups(tpi)').
+    fof(a,conjecture,q).
+    tpi(2,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(3,waitenv,'ASYNC_SZS_STATUS').
+    tpi(4,write,'Axioms status: ' & $getenv('ASYNC_SZS_STATUS') 
+         & ' Conjecture status: ' & $getenv('SZS_STATUS')).
+    tpi(5,exit,exit).
+</PRE>
+
+<!--
+<P>&nbsp;<P>
+The following example shows how attempt multiple conjectures with the same 
+axioms.
+A TPTP <TT>include</TT> directive is used to input a file of axioms, after 
+which a conjecture is provided.
+Command 1 invokes the E ATP system to prove it's a theorem, and command 2
+writes the SZS status returned by E.
+Command 3 deletes the conjecture, after which another conjecture is provided.
+Command 4 invoked E again to prove that this second conjecture is a theorem,
+and command 4 writes the SZS status returned by E.
+Command 6 stops the TPI system.
+<PRE>
+    include('Axioms/SET006+0.ax').
+    fof(thI14,conjecture,
+        ( ! [A] : equal_set(union(A,A),A) )).
+    tpi(1,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(2,write,'thI14 status:' & $getenv('SZS_STATUS')).
+    tpi(3,delete,thI14).
+    fof(thI06,conjecture,
+        ( ! [A,B] : equal_set(intersection(A,B),intersection(B,A)) )).
+    tpi(4,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(5,write,'thI06 status:' & $getenv('SZS_STATUS')).
+    tpi(6,exit,exit).
+</PRE>
+-->
+
+<P>&nbsp;<P>
+The following example shows how a proved conjecture can be used as a lemma for a
+subsequent conjecture.
+It also (somewhat redundantly) illustrates deactivation and activation
+of logical formulae.
+The first two axioms are loaded as a group. 
+The third axiom is not necessary for proving the subsequent conjecture,
+so it is deactivated before command 4 proves the conjecture from the 
+first two axioms.
+Commands 5 and 6 write and verify the result.
+Command 7 changes the role of the proved conjecture to a lemma (i.e., it
+can be used like an axiom), command 8 activates the necessary axiom,
+command 9 deactivates the first two axioms, and a new conjecture is loaded.
+Command 10 proves the new conjecture, and command 11 writes out the result.
+Command 12 stops the TPI system.
+<PRE>
+    tpi(1,start_group,about_a).
+    fof(a,axiom,a).
+    fof(ab,axiom,a=>b).
+    tpi(2,end_group,about_a).
+    fof(bc,axiom,b=>c).
+    tpi(3,deactivate,bc).
+    fof(b,conjecture,b).
+    tpi(4,execute,'SZS_STATUS' = 'E---1.8 300 $getgroups(tpi)').
+    tpi(5,write,'SZS_STATUS for b is ' & '$getenv(SZS_STATUS)').
+    tpi(6,assert,$getenv('SZS_STATUS') = 'Theorem').
+    tpi(7,set_role,b = lemma).
+    tpi(8,activate,bc).
+    tpi(9,deactivate_group,about_a).
+    fof(c,conjecture,c).
+    tpi(10,execute,'SZS_STATUS' = 'E---1.8 300 $getgroups(tpi)').
+    tpi(11,write,'SZS_STATUS for c is ' & '$getenv(SZS_STATUS)').
+    tpi(12,exit,exit).
+</PRE>
+
+<P>&nbsp;<P>
+The following example shows how the logical formulae can be filtered.
+Command 1 inputs a file containing a large theory problem, i.e., the file
+contains a conjecture and very many axioms of which only a few are necessary 
+for a proof.
+Command 2 inputs some extra axioms.
+Command 3 invokes the E ATP system asynchronously to try to prove the
+conjecture from all the axioms (the <TT>--satauto</TT> option supresses E's 
+internal axiom selection process).
+While E is running command 5 invokes the SInE system to select the axioms 
+from the <TT>lt_problem</TT> group that are expected to be necessary for a 
+proof, replacing the very many axioms in the group by the selected axioms 
+(the conjecture is also retained by SInE).
+The selected axioms and the conjecture are placed in the <TT>sine_problem</TT>
+group by commands 4 and 6.
+Command 7 outputs the selected axioms and conjecture to the file
+<TT>SInEProblem.p</TT>.
+Command 8 invokes the E ATP system to prove the conjecture from the selected
+axioms.
+Command 9 makes the TPI system wait for the first instance of E to complete 
+its execution, after which commands 10 and 11 write the SZS statuses returned 
+by E.
+Command 12 stops the TPI system.
+<PRE>
+    tpi(1,input,lt_problem = 'LTProblem.p').
+    tpi(2,input,'ExtraLTAxioms.ax').
+    tpi(3,execute_async,
+        'ASYNC_SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --satauto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(4,start_group,sine_problem).
+    tpi(5,filter,
+        '$TPTP_HOME/Systems/SInESelect---1.8/run_sine_select --mode axiom_selection $getgroups(lt_problem)').
+    tpi(6,end_group,sine_problem).
+    tpi(7,output,'SInEdProblem.p' = sine_problem).
+    tpi(8,execute,
+        'SZS_STATUS' = '$TPTP_HOME/Systems/E---1.6/eprover -s --satauto --cpu-limit=300 --tstp-format $getgroups(sine_problem)').
+    tpi(9,waitenv,'ASYNC_SZS_STATUS').
+    tpi(10,write,'Conjecture status with all axioms:' & $getenv('ASYNC_SZS_STATUS')).
+    tpi(11,write,'Conjecture status with selected axioms:' & $getenv('SZS_STATUS')).
+    tpi(12,exit,exit).
+</PRE>
+
+<P>&nbsp;<P>
+The following example shows how competition parallelism can be implemented.
+Command 1 inputs the problem.
+Commands 2 and 3 invoke the ATP systems asynchronously to try to prove the 
+theorem at the same time.
+Command 4 makes the TPI system wait for either of the ATP systems to complete
+their execution.
+Command 5 writes out the SZS statuses returned by the ATP systems - note that
+it is likely that only one of them will have returned a status.
+Command 6 stops the TPI system.
+This implementation relies on the TPI system stopping the second ATP system
+that might still be running when command 6 is executed.
+<PRE>
+    tpi(1,input,'Simple.p').
+    tpi(2,execute_async,'EP_SZS' = 'E---1.6/eprover -s --auto --cpu-limit=300 --tstp-format $getgroups(tpi)').
+    tpi(3,execute_async,'VAMPIRE_SZS' = 'Vampire---2.6/vampire_rel --proof tptp --output_axiom_names on --mode casc -t 300 $getgroups(tpi)').
+    tpi(4,waitenv,'EP_SZS' | 'VAMPIRE_SZS').
+    tpi(5,write,'EP_SZS = $getenv(EP_SZS)  VAMPIRE_SZS = $getenv(VAMPIRE_SZS)').
+    tpi(6,exit,exit).
+</PRE>
+
+<P>&nbsp;<P>
+The following example shows how to write a meta-prover.
+With the TPI commmands in a file named <TT>Meta.tpi</TT>, and the problem in a 
+file named <TT>Simple.p</TT>, a TPI system would be invoked like this:
+<PRE>
+    my_tpi_system Meta.tpi 'E---1.6/eprover --auto $getgroups(tpi)' Simple.p 
+</PRE>
+Command 1 inputs the file of formulae named on the command line, and command 2
+invokes the ATP system named on the command line.
+Command 3 writes the SZS status returned by the ATP system.
+Command 4 stops the TPI system.
+<PRE>
+    tpi(1,input,$getenv(1)).
+    tpi(2,execute,'SZS_VAR' = '$getargv(0)').
+    tpi(3,write,'The SZS status is' & $getenv('SZS_VAR')).
+    tpi(4,exit,exit).
+</PRE>
+
+<!--
+<P>&nbsp;<P>
+The following example shows how different logic semantics can be used for processing
+the same input file (as needed by Jens Otten for different modal logics).
+Command 1 inputs the problem file.
+Command 2 sets the logic to S4, and command 3 invokes the TPI system's
+reasoning process.
+Command 4 changes the logic to D, and command 5 invokes the reasoning
+process again.
+Command 6 stops the TPI system.
+<PRE>
+    tpi(1,input,'/the/problem/file').
+    tpi(2,set_logic,qmltp('S4')).
+    tpi(3,execute,self).
+    tpi(4,set_logic,qmltp('D')).
+    tpi(5,execute,self).
+    tpi(6,exit,exit).
+</PRE>
+-->
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H3> The TPI Interpreter </H3>
+
+The TPI Interpreter (TPII) is a full interpreter for the TPI command
+language, without any reasoning capability - it relies on use of the
+<TT>execute</TT> and <TT>execute_async</TT> commands to invoke external
+ATP systems.
+TPII is written in C, based on the JJParser library, and
+is distributed as part of the TPTP World.
+TPII is also available online in the 
+<A HREF="http://tptp.org/cgi-bin/SystemB4TPTP">SystemB4TPTP interface</A>.
+<P>
+As part of the TPTP World, the TPII is distributed alongside the
+SystemOnTPTP utility that hosts and executes ATP systems in a
+flexible way.
+TPII's <TT>execute</TT> and <TT>execute_async</TT> commands have been
+extended to support direct access to the SystemOnTPTP utility.
+If the ATP command starts with a system name in the form
+<EM>System</EM><TT>---</TT><EM>Version</EM> then that system will be executed by
+the SystemOnTPTP utility.
+The <EM>Version</EM> can be empty, in which case the latest version of the
+<EM>System</EM> will be used.
+The <EM>System</EM><TT>---</TT><EM>Version</EM> must be followed by an 
+integer CPU time limit, and a single <TT>$getgroups</TT> term to specify the
+formulae to be passed to the SystemOnTPTP utility.
+Some examples are:
+<PRE>
+    tpi(1,execute,'E---1.8 300 $getgroups(tpi)').
+    tpi(2,execute,'SZS_STATUS' = 'E--- $getargv(0) $getgroups(axioms,my_conjectures)').
+</PRE>
+
+This makes it easy to parameterize the competition parallelism example.
+With the TPI commands in a file named <TT>CompPar.tpi</TT>, TPII
+would be invoked with
+<PRE>
+    TPII CompPar.tpi E---1.6 Vampire---2.6 300 Simple.p
+</PRE>
+The TPI commands in <TT>CompPar.tpi</TT> would be changed to
+<PRE>
+    tpi(1,input,$getargv(3)).
+    tpi(2,execute_async,'SZS_RESULT_1' = '$getargv(0) $getargv(2)').
+    tpi(3,execute_async,'SZS_RESULT_2' = '$getargv(1) $getargv(2)').
+    tpi(4,waitenv,'SZS_RESULT_1' | 'SZS_RESULT_2').
+    tpi(5,write,'$getargv(0) SZS_RESULT = $getenv(SZS_RESULT_1) '
+              & '$getargv(1) SZS_RESULT = $getenv(SZS_RESULT_2)').
+    tpi(6,exit,exit).
+</PRE>
+
+Similarly, the meta-system can be parameterized, by invoking TPII with 
+the command line
+<PRE>
+    TPII Meta.tpi E---1.6 300 Simple.p
+</PRE>
+and the TPI commands in <TT>Meta.tpi</TT> changed to
+<PRE>
+    tpi(1,input,$getargv(2)).
+    tpi(2,execute,'SZS_VAR' = '$getargv(0) $getargv(1)').
+    tpi(3,write,'The SZS status is' & $getenv('SZS_VAR')).
+    tpi(4,exit,exit).
+</PRE>
+
+For <TT>execute</TT> and <TT>execute_async</TT> commands, TPII scans the
+ATP system's output for a line that contains the string "SZS status", which
+is the standard prefix for an SZS ontology result.
+The first time such a string is found the SZS status is expected to be
+the next word in that line.
+<P>
+TPII is minimally robust against ill-formed input, and exits
+if any errors are found.
+If there is an error then 1 is returned to the operating system as the exit
+status (so this should be avoided as a user exit code).
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

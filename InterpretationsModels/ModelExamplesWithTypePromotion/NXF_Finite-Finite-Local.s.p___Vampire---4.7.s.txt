@@ -1,0 +1,1147 @@
+% SZS status Theorem for NTF_Finite-Finite.s
+% SZS output start Proof for NTF_Finite-Finite.s
+tff(type_def_5, type, '$world': $tType).
+tff(type_def_6, type, fruit: $tType).
+tff(type_def_7, type, d_fruit: $tType).
+tff(func_def_0, type, '$local_world': '$world').
+tff(func_def_1, type, apple: fruit).
+tff(func_def_2, type, banana: fruit).
+tff(func_def_3, type, w1: '$world').
+tff(func_def_4, type, w2: '$world').
+tff(func_def_5, type, d2fruit: (d_fruit) > fruit).
+tff(func_def_6, type, d_apple: d_fruit).
+tff(func_def_7, type, d_banana: d_fruit).
+tff(func_def_8, type, sK0: '$world').
+tff(func_def_11, type, sK1: fruit).
+tff(func_def_12, type, sK2: fruit).
+tff(func_def_13, type, sK3: fruit).
+tff(func_def_14, type, sK4: d_fruit).
+tff(func_def_15, type, sK5: d_fruit).
+tff(func_def_16, type, sK6: d_fruit).
+tff(func_def_17, type, sK7: fruit).
+tff(func_def_18, type, sK8: d_fruit).
+tff(func_def_19, type, sK9: d_fruit).
+tff(func_def_20, type, sK10: d_fruit).
+tff(func_def_21, type, sK11: (fruit) > d_fruit).
+tff(func_def_22, type, sK12: (fruit) > d_fruit).
+tff(func_def_23, type, sK13: ('$world' * $o) > '$world').
+tff(func_def_24, type, sK15: ('$world' * $o) > '$world').
+tff(pred_def_1, type, '$accessible_world': ('$world' * '$world') > $o).
+tff(pred_def_2, type, '$in_world': ('$world' * $o) > $o).
+tff(pred_def_3, type, '$necessary': ('$world' * $o) > $o).
+tff(pred_def_4, type, '$possible': ('$world' * $o) > $o).
+tff(pred_def_5, type, healthy: (fruit) > $o).
+tff(pred_def_6, type, rotten: (fruit) > $o).
+tff(pred_def_7, type, sK14: ('$world') > $o).
+tff(pred_def_8, type, sK16: ('$world') > $o).
+tff(f2546,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[f150,f290,f332,f363,f385,f396,f419,f440,f480,f516,f549,f592,f613,f639,f664,f838,f842,f856,f915,f919,f974,f982,f999,f1019,f1068,f1104,f1168,f1182,f1240,f1248,f1263,f1323,f1416,f1481,f1537,f1638,f1665,f1797,f1955,f2205,f2303,f2309,f2319,f2324,f2332,f2338,f2508,f2545])).
+tff(f2545,plain,(
+  spl17_3 | ~spl17_31),
+  inference(avatar_contradiction_clause,[],[f2537])).
+tff(f2537,plain,(
+  $false | (spl17_3 | ~spl17_31)),
+  inference(unit_resulting_resolution,[],[f444,f829])).
+tff(f829,plain,(
+  d_apple = d_banana | ~spl17_31),
+  inference(avatar_component_clause,[],[f827])).
+tff(f827,plain,(
+  spl17_31 <=> d_apple = d_banana),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_31])])).
+tff(f444,plain,(
+  d_apple != d_banana | spl17_3),
+  inference(unit_resulting_resolution,[],[f243,f75])).
+tff(f75,plain,(
+  d_apple != d_banana | '$in_world'(w2,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f13,plain,(
+  '$in_world'(w2,~rotten(d2fruit(d_banana)) & ~rotten(d2fruit(d_apple)) & healthy(d2fruit(d_banana)) & healthy(d2fruit(d_apple)) & banana = d2fruit(d_banana) & apple = d2fruit(d_apple) & ! [X0 : d_fruit,X1 : d_fruit] : (X0 = X1 | d2fruit(X0) != d2fruit(X1)) & d_apple != d_banana & ! [X2 : d_fruit] : (d_banana = X2 | d_apple = X2) & ! [X3 : fruit] : ? [X4 : d_fruit] : d2fruit(X4) = X3) & '$in_world'(w1,rotten(d2fruit(d_banana)) & ~rotten(d2fruit(d_apple)) & healthy(d2fruit(d_banana)) & healthy(d2fruit(d_apple)) & banana = d2fruit(d_banana) & apple = d2fruit(d_apple) & ! [X5 : d_fruit,X6 : d_fruit] : (X5 = X6 | d2fruit(X5) != d2fruit(X6)) & d_apple != d_banana & ! [X7 : d_fruit] : (d_banana = X7 | d_apple = X7) & ! [X8 : fruit] : ? [X9 : d_fruit] : d2fruit(X9) = X8) & '$accessible_world'(w1,w2) & '$accessible_world'(w2,w2) & '$accessible_world'(w1,w1) & w1 = '$local_world' & ! [X10 : '$world'] : (w2 = X10 | w1 = X10)),
+  inference(ennf_transformation,[],[f8])).
+tff(f8,plain,(
+  '$in_world'(w2,~rotten(d2fruit(d_banana)) & ~rotten(d2fruit(d_apple)) & healthy(d2fruit(d_banana)) & healthy(d2fruit(d_apple)) & banana = d2fruit(d_banana) & apple = d2fruit(d_apple) & ! [X0 : d_fruit,X1 : d_fruit] : (d2fruit(X0) = d2fruit(X1) => X0 = X1) & d_apple != d_banana & ! [X2 : d_fruit] : (d_banana = X2 | d_apple = X2) & ! [X3 : fruit] : ? [X4 : d_fruit] : d2fruit(X4) = X3) & '$in_world'(w1,rotten(d2fruit(d_banana)) & ~rotten(d2fruit(d_apple)) & healthy(d2fruit(d_banana)) & healthy(d2fruit(d_apple)) & banana = d2fruit(d_banana) & apple = d2fruit(d_apple) & ! [X5 : d_fruit,X6 : d_fruit] : (d2fruit(X5) = d2fruit(X6) => X5 = X6) & d_apple != d_banana & ! [X7 : d_fruit] : (d_banana = X7 | d_apple = X7) & ! [X8 : fruit] : ? [X9 : d_fruit] : d2fruit(X9) = X8) & '$accessible_world'(w1,w2) & '$accessible_world'(w2,w2) & '$accessible_world'(w1,w1) & w1 = '$local_world' & ! [X10 : '$world'] : (w2 = X10 | w1 = X10)),
+  inference(rectify,[],[f4])).
+tff(f4,axiom,(
+  '$in_world'(w2,~rotten(d2fruit(d_banana)) & ~rotten(d2fruit(d_apple)) & healthy(d2fruit(d_banana)) & healthy(d2fruit(d_apple)) & banana = d2fruit(d_banana) & apple = d2fruit(d_apple) & ! [X6 : d_fruit,X7 : d_fruit] : (d2fruit(X6) = d2fruit(X7) => X6 = X7) & d_apple != d_banana & ! [X5 : d_fruit] : (d_banana = X5 | d_apple = X5) & ! [X1 : fruit] : ? [X5 : d_fruit] : d2fruit(X5) = X1) & '$in_world'(w1,rotten(d2fruit(d_banana)) & ~rotten(d2fruit(d_apple)) & healthy(d2fruit(d_banana)) & healthy(d2fruit(d_apple)) & banana = d2fruit(d_banana) & apple = d2fruit(d_apple) & ! [X6 : d_fruit,X7 : d_fruit] : (d2fruit(X6) = d2fruit(X7) => X6 = X7) & d_apple != d_banana & ! [X5 : d_fruit] : (d_banana = X5 | d_apple = X5) & ! [X1 : fruit] : ? [X5 : d_fruit] : d2fruit(X5) = X1) & '$accessible_world'(w1,w2) & '$accessible_world'(w2,w2) & '$accessible_world'(w1,w1) & w1 = '$local_world' & ! [X4 : '$world'] : (w2 = X4 | w1 = X4)),
+  file('NTF_Finite-Finite.s.p',fruity_worlds)).
+tff(f243,plain,(
+  ~'$in_world'(w2,$false) | spl17_3),
+  inference(avatar_component_clause,[],[f242])).
+tff(f242,plain,(
+  spl17_3 <=> '$in_world'(w2,$false)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_3])])).
+tff(f2508,plain,(
+  spl17_3 | ~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_19 | ~spl17_38),
+  inference(avatar_contradiction_clause,[],[f2507])).
+tff(f2507,plain,(
+  $false | (spl17_3 | ~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_19 | ~spl17_38)),
+  inference(trivial_inequality_removal,[],[f2506])).
+tff(f2506,plain,(
+  d2fruit(d_apple) != d2fruit(d_apple) | (spl17_3 | ~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_19 | ~spl17_38)),
+  inference(forward_demodulation,[],[f2499,f2358])).
+tff(f2358,plain,(
+  d_apple = d_banana | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_19 | ~spl17_38)),
+  inference(forward_demodulation,[],[f2348,f1947])).
+tff(f1947,plain,(
+  d_apple = sK12(apple) | (~spl17_10 | ~spl17_12 | ~spl17_38)),
+  inference(equality_resolution,[],[f1795])).
+tff(f1795,plain,(
+  ( ! [X0 : fruit] : (apple != X0 | d_apple = sK12(X0)) ) | (~spl17_10 | ~spl17_12 | ~spl17_38)),
+  inference(superposition,[],[f1433,f612])).
+tff(f612,plain,(
+  ( ! [X3 : fruit] : (d2fruit(sK12(X3)) = X3) ) | ~spl17_12),
+  inference(avatar_component_clause,[],[f611])).
+tff(f611,plain,(
+  spl17_12 <=> ! [X3 : fruit] : d2fruit(sK12(X3)) = X3),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_12])])).
+tff(f1433,plain,(
+  ( ! [X2 : d_fruit] : (apple != d2fruit(X2) | d_apple = X2) ) | (~spl17_10 | ~spl17_38)),
+  inference(superposition,[],[f1415,f479])).
+tff(f479,plain,(
+  apple = d2fruit(d_apple) | ~spl17_10),
+  inference(avatar_component_clause,[],[f477])).
+tff(f477,plain,(
+  spl17_10 <=> apple = d2fruit(d_apple)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_10])])).
+tff(f1415,plain,(
+  ( ! [X0 : d_fruit,X1 : d_fruit] : (d2fruit(X0) != d2fruit(X1) | X0 = X1) ) | ~spl17_38),
+  inference(avatar_component_clause,[],[f1414])).
+tff(f1414,plain,(
+  spl17_38 <=> ! [X0 : d_fruit,X1 : d_fruit] : (X0 = X1 | d2fruit(X0) != d2fruit(X1))),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_38])])).
+tff(f2348,plain,(
+  d_banana = sK12(apple) | (~spl17_11 | ~spl17_12 | ~spl17_19 | ~spl17_38)),
+  inference(backward_demodulation,[],[f1475,f2339])).
+tff(f2339,plain,(
+  apple = banana | (~spl17_11 | ~spl17_19)),
+  inference(backward_demodulation,[],[f515,f1071])).
+tff(f1071,plain,(
+  apple = d2fruit(d_banana) | (~spl17_11 | ~spl17_19)),
+  inference(backward_demodulation,[],[f515,f684])).
+tff(f684,plain,(
+  apple = banana | ~spl17_19),
+  inference(avatar_component_clause,[],[f682])).
+tff(f682,plain,(
+  spl17_19 <=> apple = banana),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_19])])).
+tff(f515,plain,(
+  banana = d2fruit(d_banana) | ~spl17_11),
+  inference(avatar_component_clause,[],[f513])).
+tff(f513,plain,(
+  spl17_11 <=> banana = d2fruit(d_banana)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_11])])).
+tff(f1475,plain,(
+  d_banana = sK12(banana) | (~spl17_11 | ~spl17_12 | ~spl17_38)),
+  inference(superposition,[],[f1430,f515])).
+tff(f1430,plain,(
+  ( ! [X0 : d_fruit] : (sK12(d2fruit(X0)) = X0) ) | (~spl17_12 | ~spl17_38)),
+  inference(unit_resulting_resolution,[],[f612,f1415])).
+tff(f2499,plain,(
+  d2fruit(d_apple) != d2fruit(d_banana) | (spl17_3 | ~spl17_38)),
+  inference(unit_resulting_resolution,[],[f444,f1415])).
+tff(f2338,plain,(
+  spl17_4 | ~spl17_5 | ~spl17_10),
+  inference(avatar_contradiction_clause,[],[f2335])).
+tff(f2335,plain,(
+  $false | (spl17_4 | ~spl17_5 | ~spl17_10)),
+  inference(unit_resulting_resolution,[],[f247,f593])).
+tff(f593,plain,(
+  healthy(apple) | (~spl17_5 | ~spl17_10)),
+  inference(backward_demodulation,[],[f289,f479])).
+tff(f289,plain,(
+  healthy(d2fruit(d_apple)) | ~spl17_5),
+  inference(avatar_component_clause,[],[f287])).
+tff(f287,plain,(
+  spl17_5 <=> healthy(d2fruit(d_apple))),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_5])])).
+tff(f247,plain,(
+  ~healthy(apple) | spl17_4),
+  inference(avatar_component_clause,[],[f246])).
+tff(f246,plain,(
+  spl17_4 <=> healthy(apple)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_4])])).
+tff(f2332,plain,(
+  ~spl17_6 | ~spl17_11 | spl17_29),
+  inference(avatar_contradiction_clause,[],[f2328])).
+tff(f2328,plain,(
+  $false | (~spl17_6 | ~spl17_11 | spl17_29)),
+  inference(unit_resulting_resolution,[],[f558,f822])).
+tff(f822,plain,(
+  ~healthy(banana) | spl17_29),
+  inference(avatar_component_clause,[],[f820])).
+tff(f820,plain,(
+  spl17_29 <=> healthy(banana)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_29])])).
+tff(f558,plain,(
+  healthy(banana) | (~spl17_6 | ~spl17_11)),
+  inference(backward_demodulation,[],[f331,f515])).
+tff(f331,plain,(
+  healthy(d2fruit(d_banana)) | ~spl17_6),
+  inference(avatar_component_clause,[],[f329])).
+tff(f329,plain,(
+  spl17_6 <=> healthy(d2fruit(d_banana))),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_6])])).
+tff(f2324,plain,(
+  ~spl17_1 | ~spl17_21),
+  inference(avatar_contradiction_clause,[],[f2320])).
+tff(f2320,plain,(
+  $false | (~spl17_1 | ~spl17_21)),
+  inference(unit_resulting_resolution,[],[f144,f2068])).
+tff(f2068,plain,(
+  ~'$in_world'('$local_world',$false) | (~spl17_1 | ~spl17_21)),
+  inference(backward_demodulation,[],[f1303,f2056])).
+tff(f2056,plain,(
+  '$local_world' = sK15('$local_world',$true) | (~spl17_1 | ~spl17_21)),
+  inference(unit_resulting_resolution,[],[f1302,f1962])).
+tff(f1962,plain,(
+  ( ! [X0 : '$world'] : ('$in_world'(X0,$true) | '$local_world' = X0) ) | ~spl17_21),
+  inference(superposition,[],[f691,f127])).
+tff(f127,plain,(
+  ( ! [X10 : '$world'] : (w2 = X10 | '$local_world' = X10) )),
+  inference(definition_unfolding,[],[f90,f91])).
+tff(f91,plain,(
+  w1 = '$local_world'),
+  inference(cnf_transformation,[],[f13])).
+tff(f90,plain,(
+  ( ! [X10 : '$world'] : (w1 = X10 | w2 = X10) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f691,plain,(
+  '$in_world'(w2,$true) | ~spl17_21),
+  inference(avatar_component_clause,[],[f690])).
+tff(f690,plain,(
+  spl17_21 <=> '$in_world'(w2,$true)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_21])])).
+tff(f1302,plain,(
+  ~'$in_world'(sK15('$local_world',$true),$true) | ~spl17_1),
+  inference(unit_resulting_resolution,[],[f272,f115])).
+tff(f115,plain,(
+  ( ! [X0 : '$world'] : ('$necessary'(X0,$true) | ~'$in_world'(sK15(X0,$true),$true)) )),
+  inference(cnf_transformation,[],[f16])).
+tff(f16,plain,(
+  ! [X0 : '$world',X1 : $o] : ('$necessary'(X0,X1) <=> ! [X2 : '$world'] : (? [X3 : $o] : ((X1 | ~X3) & '$in_world'(X2,X3)) | ~'$accessible_world'(X0,X2)))),
+  inference(ennf_transformation,[],[f11])).
+tff(f11,plain,(
+  ! [X0 : '$world',X1 : $o] : ('$necessary'(X0,X1) <=> ! [X2 : '$world'] : ('$accessible_world'(X0,X2) => ? [X3 : $o] : ((X3 => X1) & '$in_world'(X2,X3))))),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ! [X0 : '$world',X1 : $o] : ('$necessary'(X0,X1) <=> ! [X2 : '$world'] : ('$accessible_world'(X0,X2) => ? [X3 : $o] : ((X3 => X1) & '$in_world'(X2,X3))))),
+  file('NTF_Finite-Finite.s.p',necessary_defn)).
+tff(f272,plain,(
+  ~'$necessary'('$local_world',$true) | ~spl17_1),
+  inference(unit_resulting_resolution,[],[f267,f111])).
+tff(f111,plain,(
+  ( ! [X0 : '$world'] : (~'$possible'(X0,$false) | ~'$necessary'(X0,$true)) )),
+  inference(cnf_transformation,[],[f15])).
+tff(f15,plain,(
+  ! [X0 : '$world',X1 : $o] : ((~'$possible'(X0,X1) <=> '$necessary'(X0,~X1)) & (~'$necessary'(X0,X1) <=> '$possible'(X0,~X1)))),
+  inference(ennf_transformation,[],[f10])).
+tff(f10,plain,(
+  ! [X0 : '$world',X1 : $o] : ((~'$possible'(X0,X1) <=> '$necessary'(X0,~X1)) & (~'$necessary'(X0,X1) <=> '$possible'(X0,~X1)))),
+  inference(rectify,[],[f3])).
+tff(f3,axiom,(
+  ! [X4 : '$world',X1 : $o] : ((~'$possible'(X4,X1) <=> '$necessary'(X4,~X1)) & (~'$necessary'(X4,X1) <=> '$possible'(X4,~X1)))),
+  file('NTF_Finite-Finite.s.p',duality)).
+tff(f267,plain,(
+  '$possible'('$local_world',$false) | ~spl17_1),
+  inference(unit_resulting_resolution,[],[f126,f144,f98])).
+tff(f98,plain,(
+  ( ! [X3 : '$world',X0 : '$world'] : ('$possible'(X0,$false) | ~'$in_world'(X3,$false) | ~'$accessible_world'(X0,X3)) )),
+  inference(cnf_transformation,[],[f14])).
+tff(f14,plain,(
+  ! [X0 : '$world',X2 : $o] : ('$possible'(X0,X2) <=> ? [X3 : '$world'] : (? [X4 : $o] : ((X2 | ~X4) & '$in_world'(X3,X4)) & '$accessible_world'(X0,X3)))),
+  inference(ennf_transformation,[],[f9])).
+tff(f9,plain,(
+  ! [X0 : '$world',X2 : $o] : ('$possible'(X0,X2) <=> ? [X3 : '$world'] : (? [X4 : $o] : ((X4 => X2) & '$in_world'(X3,X4)) & '$accessible_world'(X0,X3)))),
+  inference(rectify,[],[f2])).
+tff(f2,axiom,(
+  ! [X0 : '$world',X1 : $o,X1 : $o] : ('$possible'(X0,X1) <=> ? [X2 : '$world'] : (? [X3 : $o] : ((X3 => X1) & '$in_world'(X2,X3)) & '$accessible_world'(X0,X2)))),
+  file('NTF_Finite-Finite.s.p',possible_defn)).
+tff(f126,plain,(
+  '$accessible_world'('$local_world','$local_world')),
+  inference(definition_unfolding,[],[f92,f91,f91])).
+tff(f92,plain,(
+  '$accessible_world'(w1,w1)),
+  inference(cnf_transformation,[],[f13])).
+tff(f1303,plain,(
+  ~'$in_world'(sK15('$local_world',$true),$false) | ~spl17_1),
+  inference(unit_resulting_resolution,[],[f272,f118])).
+tff(f118,plain,(
+  ( ! [X0 : '$world'] : ('$necessary'(X0,$true) | ~'$in_world'(sK15(X0,$true),$false)) )),
+  inference(cnf_transformation,[],[f16])).
+tff(f144,plain,(
+  '$in_world'('$local_world',$false) | ~spl17_1),
+  inference(avatar_component_clause,[],[f143])).
+tff(f143,plain,(
+  spl17_1 <=> '$in_world'('$local_world',$false)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_1])])).
+tff(f2319,plain,(
+  spl17_21 | spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_39 | ~spl17_40 | spl17_19 | ~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43),
+  inference(avatar_split_clause,[],[f2242,f1662,f1658,f513,f477,f682,f1530,f1527,f827,f246,f820,f816,f653,f690])).
+tff(f653,plain,(
+  spl17_15 <=> rotten(banana)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_15])])).
+tff(f816,plain,(
+  spl17_28 <=> rotten(apple)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_28])])).
+tff(f1527,plain,(
+  spl17_39 <=> ! [X4 : d_fruit] : d2fruit(X4) != sK7),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_39])])).
+tff(f1530,plain,(
+  spl17_40 <=> d_apple = sK8),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_40])])).
+tff(f1658,plain,(
+  spl17_42 <=> d_apple = sK10),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_42])])).
+tff(f1662,plain,(
+  spl17_43 <=> d_banana = sK9),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_43])])).
+tff(f2242,plain,(
+  ( ! [X4 : d_fruit] : (apple = banana | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43)),
+  inference(forward_demodulation,[],[f2241,f479])).
+tff(f2241,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = banana | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43)),
+  inference(forward_demodulation,[],[f2240,f515])).
+tff(f2240,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = d2fruit(d_banana) | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43)),
+  inference(forward_demodulation,[],[f2239,f1663])).
+tff(f1663,plain,(
+  d_banana = sK9 | ~spl17_43),
+  inference(avatar_component_clause,[],[f1662])).
+tff(f2239,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = d2fruit(sK9) | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42)),
+  inference(forward_demodulation,[],[f1267,f1660])).
+tff(f1660,plain,(
+  d_apple = sK10 | ~spl17_42),
+  inference(avatar_component_clause,[],[f1658])).
+tff(f1267,plain,(
+  ( ! [X4 : d_fruit] : (d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f1266])).
+tff(f1266,plain,(
+  ( ! [X4 : d_fruit] : (apple != apple | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(forward_demodulation,[],[f563,f479])).
+tff(f563,plain,(
+  ( ! [X4 : d_fruit] : (d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f555])).
+tff(f555,plain,(
+  ( ! [X4 : d_fruit] : (banana != banana | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f261,f515])).
+tff(f261,plain,(
+  ( ! [X4 : d_fruit] : (d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f260])).
+tff(f260,plain,(
+  ( ! [X4 : d_fruit] : (d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f65])).
+tff(f65,plain,(
+  ( ! [X4 : d_fruit] : (d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f2309,plain,(
+  spl17_7 | ~spl17_10 | ~spl17_28),
+  inference(avatar_contradiction_clause,[],[f2304])).
+tff(f2304,plain,(
+  $false | (spl17_7 | ~spl17_10 | ~spl17_28)),
+  inference(unit_resulting_resolution,[],[f594,f818])).
+tff(f818,plain,(
+  rotten(apple) | ~spl17_28),
+  inference(avatar_component_clause,[],[f816])).
+tff(f594,plain,(
+  ~rotten(apple) | (spl17_7 | ~spl17_10)),
+  inference(backward_demodulation,[],[f362,f479])).
+tff(f362,plain,(
+  ~rotten(d2fruit(d_apple)) | spl17_7),
+  inference(avatar_component_clause,[],[f360])).
+tff(f360,plain,(
+  spl17_7 <=> rotten(d2fruit(d_apple))),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_7])])).
+tff(f2303,plain,(
+  spl17_21 | spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_39 | spl17_19 | ~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40 | ~spl17_42 | ~spl17_43),
+  inference(avatar_split_clause,[],[f2252,f1662,f1658,f1530,f1414,f1321,f611,f513,f477,f682,f1527,f827,f246,f820,f816,f653,f690])).
+tff(f1321,plain,(
+  spl17_37 <=> ! [X2 : d_fruit] : (d_banana = X2 | d_apple = X2)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_37])])).
+tff(f2252,plain,(
+  ( ! [X4 : d_fruit] : (apple = banana | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40 | ~spl17_42 | ~spl17_43)),
+  inference(trivial_inequality_removal,[],[f2250])).
+tff(f2250,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != d_banana | apple = banana | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40 | ~spl17_42 | ~spl17_43)),
+  inference(backward_demodulation,[],[f2248,f2249])).
+tff(f2249,plain,(
+  d_banana = sK8 | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40)),
+  inference(forward_demodulation,[],[f2238,f1475])).
+tff(f2238,plain,(
+  sK8 = sK12(banana) | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40)),
+  inference(trivial_inequality_removal,[],[f1920])).
+tff(f1920,plain,(
+  d_apple != d_apple | sK8 = sK12(banana) | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40)),
+  inference(superposition,[],[f1532,f1473])).
+tff(f1473,plain,(
+  ( ! [X0 : d_fruit] : (d_apple = X0 | sK12(banana) = X0) ) | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38)),
+  inference(superposition,[],[f1430,f1339])).
+tff(f1339,plain,(
+  ( ! [X0 : d_fruit] : (banana = d2fruit(X0) | d_apple = X0) ) | (~spl17_11 | ~spl17_37)),
+  inference(superposition,[],[f515,f1322])).
+tff(f1322,plain,(
+  ( ! [X2 : d_fruit] : (d_banana = X2 | d_apple = X2) ) | ~spl17_37),
+  inference(avatar_component_clause,[],[f1321])).
+tff(f1532,plain,(
+  d_apple != sK8 | spl17_40),
+  inference(avatar_component_clause,[],[f1530])).
+tff(f2248,plain,(
+  ( ! [X4 : d_fruit] : (apple = banana | d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43)),
+  inference(forward_demodulation,[],[f2247,f479])).
+tff(f2247,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = banana | d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43)),
+  inference(forward_demodulation,[],[f2246,f515])).
+tff(f2246,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = d2fruit(d_banana) | d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42 | ~spl17_43)),
+  inference(forward_demodulation,[],[f2245,f1663])).
+tff(f2245,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = d2fruit(sK9) | d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_42)),
+  inference(forward_demodulation,[],[f1271,f1660])).
+tff(f1271,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f1270])).
+tff(f1270,plain,(
+  ( ! [X4 : d_fruit] : (apple != apple | d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(forward_demodulation,[],[f561,f479])).
+tff(f561,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f557])).
+tff(f557,plain,(
+  ( ! [X4 : d_fruit] : (banana != banana | d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f265,f515])).
+tff(f265,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f264])).
+tff(f264,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f63])).
+tff(f63,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f2205,plain,(
+  spl17_21 | spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_39 | spl17_19 | ~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | ~spl17_40 | spl17_41 | spl17_43),
+  inference(avatar_split_clause,[],[f2145,f1662,f1534,f1530,f1414,f1321,f611,f513,f477,f682,f1527,f827,f246,f820,f816,f653,f690])).
+tff(f1534,plain,(
+  spl17_41 <=> sK9 = sK10),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_41])])).
+tff(f2145,plain,(
+  ( ! [X4 : d_fruit] : (apple = banana | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | ~spl17_40 | spl17_41 | spl17_43)),
+  inference(trivial_inequality_removal,[],[f2144])).
+tff(f2144,plain,(
+  ( ! [X4 : d_fruit] : (d_apple != d_apple | apple = banana | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | ~spl17_40 | spl17_41 | spl17_43)),
+  inference(backward_demodulation,[],[f2136,f1531])).
+tff(f1531,plain,(
+  d_apple = sK8 | ~spl17_40),
+  inference(avatar_component_clause,[],[f1530])).
+tff(f2136,plain,(
+  ( ! [X4 : d_fruit] : (apple = banana | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f2135,f479])).
+tff(f2135,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = banana | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f2134,f515])).
+tff(f2134,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = d2fruit(d_banana) | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f2133,f1667])).
+tff(f1667,plain,(
+  d_apple = sK9 | (~spl17_37 | spl17_43)),
+  inference(unit_resulting_resolution,[],[f1664,f1322])).
+tff(f1664,plain,(
+  d_banana != sK9 | spl17_43),
+  inference(avatar_component_clause,[],[f1662])).
+tff(f2133,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_banana) = d2fruit(sK9) | d_apple != sK8 | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f1267,f1719])).
+tff(f1719,plain,(
+  d_banana = sK10 | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f1706,f1475])).
+tff(f1706,plain,(
+  sK10 = sK12(banana) | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(trivial_inequality_removal,[],[f1705])).
+tff(f1705,plain,(
+  d_apple != d_apple | sK10 = sK12(banana) | (~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_41 | spl17_43)),
+  inference(superposition,[],[f1676,f1473])).
+tff(f1676,plain,(
+  d_apple != sK10 | (~spl17_37 | spl17_41 | spl17_43)),
+  inference(backward_demodulation,[],[f1536,f1667])).
+tff(f1536,plain,(
+  sK9 != sK10 | spl17_41),
+  inference(avatar_component_clause,[],[f1534])).
+tff(f1955,plain,(
+  spl17_21 | spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_39 | spl17_19 | ~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40 | spl17_41 | spl17_43),
+  inference(avatar_split_clause,[],[f1800,f1662,f1534,f1530,f1414,f1321,f611,f513,f477,f682,f1527,f827,f246,f820,f816,f653,f690])).
+tff(f1800,plain,(
+  ( ! [X4 : d_fruit] : (apple = banana | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f1799,f515])).
+tff(f1799,plain,(
+  ( ! [X4 : d_fruit] : (apple = d2fruit(d_banana) | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_12 | ~spl17_37 | ~spl17_38 | spl17_40 | spl17_41 | spl17_43)),
+  inference(forward_demodulation,[],[f1686,f1719])).
+tff(f1686,plain,(
+  ( ! [X4 : d_fruit] : (apple = d2fruit(sK10) | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40 | spl17_43)),
+  inference(forward_demodulation,[],[f1677,f479])).
+tff(f1677,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(d_apple) = d2fruit(sK10) | d2fruit(X4) != sK7 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40 | spl17_43)),
+  inference(backward_demodulation,[],[f1551,f1667])).
+tff(f1551,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40)),
+  inference(trivial_inequality_removal,[],[f1547])).
+tff(f1547,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != d_banana | d2fruit(X4) != sK7 | d_apple = d_banana | d2fruit(sK9) = d2fruit(sK10) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40)),
+  inference(backward_demodulation,[],[f1271,f1540])).
+tff(f1540,plain,(
+  d_banana = sK8 | (~spl17_37 | spl17_40)),
+  inference(unit_resulting_resolution,[],[f1532,f1322])).
+tff(f1797,plain,(
+  ~spl17_12 | ~spl17_39),
+  inference(avatar_contradiction_clause,[],[f1790])).
+tff(f1790,plain,(
+  $false | (~spl17_12 | ~spl17_39)),
+  inference(unit_resulting_resolution,[],[f1528,f612])).
+tff(f1528,plain,(
+  ( ! [X4 : d_fruit] : (d2fruit(X4) != sK7) ) | ~spl17_39),
+  inference(avatar_component_clause,[],[f1527])).
+tff(f1665,plain,(
+  spl17_42 | ~spl17_43 | ~spl17_37 | spl17_41),
+  inference(avatar_split_clause,[],[f1641,f1534,f1321,f1662,f1658])).
+tff(f1641,plain,(
+  d_banana != sK9 | d_apple = sK10 | (~spl17_37 | spl17_41)),
+  inference(superposition,[],[f1536,f1322])).
+tff(f1638,plain,(
+  spl17_21 | spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_39 | spl17_31 | ~spl17_41 | ~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40),
+  inference(avatar_split_clause,[],[f1550,f1530,f1321,f513,f477,f1534,f827,f1527,f246,f820,f816,f653,f690])).
+tff(f1550,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_apple = d_banana | d2fruit(X4) != sK7 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40)),
+  inference(trivial_inequality_removal,[],[f1548])).
+tff(f1548,plain,(
+  ( ! [X4 : d_fruit] : (d_banana != d_banana | sK9 != sK10 | d_apple = d_banana | d2fruit(X4) != sK7 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_37 | spl17_40)),
+  inference(backward_demodulation,[],[f1269,f1540])).
+tff(f1269,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f1268])).
+tff(f1268,plain,(
+  ( ! [X4 : d_fruit] : (apple != apple | sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(forward_demodulation,[],[f562,f479])).
+tff(f562,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f556])).
+tff(f556,plain,(
+  ( ! [X4 : d_fruit] : (banana != banana | sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f263,f515])).
+tff(f263,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f262])).
+tff(f262,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f64])).
+tff(f64,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_banana != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1537,plain,(
+  spl17_21 | spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_39 | spl17_31 | ~spl17_40 | ~spl17_41 | ~spl17_10 | ~spl17_11),
+  inference(avatar_split_clause,[],[f1265,f513,f477,f1534,f1530,f827,f1527,f246,f820,f816,f653,f690])).
+tff(f1265,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f1264])).
+tff(f1264,plain,(
+  ( ! [X4 : d_fruit] : (apple != apple | sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(forward_demodulation,[],[f564,f479])).
+tff(f564,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f554])).
+tff(f554,plain,(
+  ( ! [X4 : d_fruit] : (banana != banana | sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f259,f515])).
+tff(f259,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | rotten(banana) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f258])).
+tff(f258,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(inner_rewriting,[],[f66])).
+tff(f66,plain,(
+  ( ! [X4 : d_fruit] : (sK9 != sK10 | d_apple != sK8 | d_apple = d_banana | d2fruit(X4) != sK7 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | rotten(d2fruit(d_banana)) | '$in_world'(w2,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1481,plain,(
+  spl17_38 | spl17_1),
+  inference(avatar_split_clause,[],[f141,f143,f1414])).
+tff(f141,plain,(
+  ( ! [X6 : d_fruit,X5 : d_fruit] : ('$in_world'('$local_world',$false) | X5 = X6 | d2fruit(X5) != d2fruit(X6)) )),
+  inference(definition_unfolding,[],[f68,f91])).
+tff(f68,plain,(
+  ( ! [X6 : d_fruit,X5 : d_fruit] : (d2fruit(X5) != d2fruit(X6) | X5 = X6 | '$in_world'(w1,$false)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1416,plain,(
+  spl17_38 | spl17_3),
+  inference(avatar_split_clause,[],[f62,f242,f1414])).
+tff(f62,plain,(
+  ( ! [X0 : d_fruit,X1 : d_fruit] : ('$in_world'(w2,$false) | X0 = X1 | d2fruit(X0) != d2fruit(X1)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1323,plain,(
+  spl17_37 | spl17_3),
+  inference(avatar_split_clause,[],[f67,f242,f1321])).
+tff(f67,plain,(
+  ( ! [X2 : d_fruit] : ('$in_world'(w2,$false) | d_banana = X2 | d_apple = X2) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1263,plain,(
+  spl17_8 | ~spl17_11 | ~spl17_15),
+  inference(avatar_contradiction_clause,[],[f1260])).
+tff(f1260,plain,(
+  $false | (spl17_8 | ~spl17_11 | ~spl17_15)),
+  inference(unit_resulting_resolution,[],[f654,f1258])).
+tff(f1258,plain,(
+  ~rotten(banana) | (spl17_8 | ~spl17_11)),
+  inference(forward_demodulation,[],[f384,f515])).
+tff(f384,plain,(
+  ~rotten(d2fruit(d_banana)) | spl17_8),
+  inference(avatar_component_clause,[],[f382])).
+tff(f382,plain,(
+  spl17_8 <=> rotten(d2fruit(d_banana))),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_8])])).
+tff(f654,plain,(
+  rotten(banana) | ~spl17_15),
+  inference(avatar_component_clause,[],[f653])).
+tff(f1248,plain,(
+  ~spl17_3 | ~spl17_16),
+  inference(avatar_contradiction_clause,[],[f1242])).
+tff(f1242,plain,(
+  $false | (~spl17_3 | ~spl17_16)),
+  inference(unit_resulting_resolution,[],[f755,f658])).
+tff(f658,plain,(
+  '$in_world'('$local_world',$true) | ~spl17_16),
+  inference(avatar_component_clause,[],[f657])).
+tff(f657,plain,(
+  spl17_16 <=> '$in_world'('$local_world',$true)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_16])])).
+tff(f755,plain,(
+  ~'$in_world'('$local_world',$true) | ~spl17_3),
+  inference(backward_demodulation,[],[f537,f732])).
+tff(f732,plain,(
+  '$local_world' = sK15(w2,$true) | ~spl17_3),
+  inference(unit_resulting_resolution,[],[f538,f495])).
+tff(f495,plain,(
+  ( ! [X0 : '$world'] : ('$in_world'(X0,$false) | '$local_world' = X0) ) | ~spl17_3),
+  inference(superposition,[],[f244,f127])).
+tff(f244,plain,(
+  '$in_world'(w2,$false) | ~spl17_3),
+  inference(avatar_component_clause,[],[f242])).
+tff(f538,plain,(
+  ~'$in_world'(sK15(w2,$true),$false) | ~spl17_3),
+  inference(unit_resulting_resolution,[],[f299,f118])).
+tff(f299,plain,(
+  ~'$necessary'(w2,$true) | ~spl17_3),
+  inference(unit_resulting_resolution,[],[f294,f111])).
+tff(f294,plain,(
+  '$possible'(w2,$false) | ~spl17_3),
+  inference(unit_resulting_resolution,[],[f93,f244,f98])).
+tff(f93,plain,(
+  '$accessible_world'(w2,w2)),
+  inference(cnf_transformation,[],[f13])).
+tff(f537,plain,(
+  ~'$in_world'(sK15(w2,$true),$true) | ~spl17_3),
+  inference(unit_resulting_resolution,[],[f299,f115])).
+tff(f1240,plain,(
+  spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_31),
+  inference(avatar_contradiction_clause,[],[f1237])).
+tff(f1237,plain,(
+  $false | (spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_31)),
+  inference(unit_resulting_resolution,[],[f231,f1227])).
+tff(f1227,plain,(
+  rotten(apple) | (spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_31)),
+  inference(backward_demodulation,[],[f232,f1225])).
+tff(f1225,plain,(
+  apple = banana | (~spl17_10 | ~spl17_11 | ~spl17_31)),
+  inference(forward_demodulation,[],[f1213,f479])).
+tff(f1213,plain,(
+  d2fruit(d_apple) = banana | (~spl17_11 | ~spl17_31)),
+  inference(backward_demodulation,[],[f515,f829])).
+tff(f232,plain,(
+  rotten(banana) | spl17_1),
+  inference(forward_demodulation,[],[f151,f155])).
+tff(f155,plain,(
+  banana = d2fruit(d_banana) | spl17_1),
+  inference(unit_resulting_resolution,[],[f145,f132])).
+tff(f132,plain,(
+  '$in_world'('$local_world',$false) | banana = d2fruit(d_banana)),
+  inference(definition_unfolding,[],[f85,f91])).
+tff(f85,plain,(
+  banana = d2fruit(d_banana) | '$in_world'(w1,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f145,plain,(
+  ~'$in_world'('$local_world',$false) | spl17_1),
+  inference(avatar_component_clause,[],[f143])).
+tff(f151,plain,(
+  rotten(d2fruit(d_banana)) | spl17_1),
+  inference(unit_resulting_resolution,[],[f145,f128])).
+tff(f128,plain,(
+  rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$false)),
+  inference(definition_unfolding,[],[f89,f91])).
+tff(f89,plain,(
+  rotten(d2fruit(d_banana)) | '$in_world'(w1,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f231,plain,(
+  ~rotten(apple) | spl17_1),
+  inference(forward_demodulation,[],[f152,f156])).
+tff(f156,plain,(
+  apple = d2fruit(d_apple) | spl17_1),
+  inference(unit_resulting_resolution,[],[f145,f133])).
+tff(f133,plain,(
+  '$in_world'('$local_world',$false) | apple = d2fruit(d_apple)),
+  inference(definition_unfolding,[],[f84,f91])).
+tff(f84,plain,(
+  apple = d2fruit(d_apple) | '$in_world'(w1,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f152,plain,(
+  ~rotten(d2fruit(d_apple)) | spl17_1),
+  inference(unit_resulting_resolution,[],[f145,f129])).
+tff(f129,plain,(
+  ~rotten(d2fruit(d_apple)) | '$in_world'('$local_world',$false)),
+  inference(definition_unfolding,[],[f88,f91])).
+tff(f88,plain,(
+  ~rotten(d2fruit(d_apple)) | '$in_world'(w1,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f1182,plain,(
+  spl17_1 | spl17_32 | spl17_36),
+  inference(avatar_contradiction_clause,[],[f1180])).
+tff(f1180,plain,(
+  $false | (spl17_1 | spl17_32 | spl17_36)),
+  inference(unit_resulting_resolution,[],[f914,f833,f487])).
+tff(f487,plain,(
+  ( ! [X2 : d_fruit] : (d_apple = X2 | d_banana = X2) ) | spl17_1),
+  inference(resolution,[],[f145,f136])).
+tff(f136,plain,(
+  ( ! [X7 : d_fruit] : ('$in_world'('$local_world',$false) | d_banana = X7 | d_apple = X7) )),
+  inference(definition_unfolding,[],[f73,f91])).
+tff(f73,plain,(
+  ( ! [X7 : d_fruit] : (d_apple = X7 | d_banana = X7 | '$in_world'(w1,$false)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f833,plain,(
+  d_banana != sK4 | spl17_32),
+  inference(avatar_component_clause,[],[f831])).
+tff(f831,plain,(
+  spl17_32 <=> d_banana = sK4),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_32])])).
+tff(f914,plain,(
+  d_apple != sK4 | spl17_36),
+  inference(avatar_component_clause,[],[f912])).
+tff(f912,plain,(
+  spl17_36 <=> d_apple = sK4),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_36])])).
+tff(f1168,plain,(
+  spl17_16 | ~spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_30 | spl17_31 | ~spl17_10 | ~spl17_11 | ~spl17_33 | ~spl17_36),
+  inference(avatar_split_clause,[],[f1135,f912,f835,f513,f477,f827,f824,f246,f820,f816,f653,f657])).
+tff(f824,plain,(
+  spl17_30 <=> ! [X9 : d_fruit] : d2fruit(X9) != sK3),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_30])])).
+tff(f835,plain,(
+  spl17_33 <=> sK5 = sK6),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_33])])).
+tff(f1135,plain,(
+  ( ! [X9 : d_fruit] : (d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_33 | ~spl17_36)),
+  inference(trivial_inequality_removal,[],[f1134])).
+tff(f1134,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK5 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_33 | ~spl17_36)),
+  inference(forward_demodulation,[],[f1106,f836])).
+tff(f836,plain,(
+  sK5 = sK6 | ~spl17_33),
+  inference(avatar_component_clause,[],[f835])).
+tff(f1106,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_36)),
+  inference(trivial_inequality_removal,[],[f1105])).
+tff(f1105,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != d_apple | sK5 != sK6 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_36)),
+  inference(forward_demodulation,[],[f603,f913])).
+tff(f913,plain,(
+  d_apple = sK4 | ~spl17_36),
+  inference(avatar_component_clause,[],[f912])).
+tff(f603,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f596])).
+tff(f596,plain,(
+  ( ! [X9 : d_fruit] : (apple != apple | sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(backward_demodulation,[],[f565,f479])).
+tff(f565,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f553])).
+tff(f553,plain,(
+  ( ! [X9 : d_fruit] : (banana != banana | sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f257,f515])).
+tff(f257,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f256])).
+tff(f256,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f137])).
+tff(f137,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_apple != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(definition_unfolding,[],[f72,f91])).
+tff(f72,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(X9) != sK3 | d_apple != sK4 | d_apple = d_banana | sK5 != sK6 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'(w1,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1104,plain,(
+  spl17_1 | ~spl17_19),
+  inference(avatar_contradiction_clause,[],[f1101])).
+tff(f1101,plain,(
+  $false | (spl17_1 | ~spl17_19)),
+  inference(unit_resulting_resolution,[],[f231,f1070])).
+tff(f1070,plain,(
+  rotten(apple) | (spl17_1 | ~spl17_19)),
+  inference(backward_demodulation,[],[f232,f684])).
+tff(f1068,plain,(
+  spl17_16 | ~spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_30 | spl17_19 | ~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35 | ~spl17_36),
+  inference(avatar_split_clause,[],[f1049,f912,f853,f849,f513,f477,f682,f824,f827,f246,f820,f816,f653,f657])).
+tff(f849,plain,(
+  spl17_34 <=> d_banana = sK6),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_34])])).
+tff(f853,plain,(
+  spl17_35 <=> d_apple = sK5),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_35])])).
+tff(f1049,plain,(
+  ( ! [X9 : d_fruit] : (apple = banana | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35 | ~spl17_36)),
+  inference(trivial_inequality_removal,[],[f1047])).
+tff(f1047,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != d_apple | apple = banana | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35 | ~spl17_36)),
+  inference(backward_demodulation,[],[f1046,f913])).
+tff(f1046,plain,(
+  ( ! [X9 : d_fruit] : (apple = banana | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35)),
+  inference(forward_demodulation,[],[f1045,f479])).
+tff(f1045,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_apple) = banana | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35)),
+  inference(forward_demodulation,[],[f1044,f515])).
+tff(f1044,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_apple) = d2fruit(d_banana) | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35)),
+  inference(forward_demodulation,[],[f1043,f854])).
+tff(f854,plain,(
+  d_apple = sK5 | ~spl17_35),
+  inference(avatar_component_clause,[],[f853])).
+tff(f1043,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_banana) = d2fruit(sK5) | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11 | ~spl17_34)),
+  inference(forward_demodulation,[],[f602,f851])).
+tff(f851,plain,(
+  d_banana = sK6 | ~spl17_34),
+  inference(avatar_component_clause,[],[f849])).
+tff(f602,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f597])).
+tff(f597,plain,(
+  ( ! [X9 : d_fruit] : (apple != apple | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(backward_demodulation,[],[f566,f479])).
+tff(f566,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f552])).
+tff(f552,plain,(
+  ( ! [X9 : d_fruit] : (banana != banana | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f255,f515])).
+tff(f255,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f254])).
+tff(f254,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f138])).
+tff(f138,plain,(
+  ( ! [X9 : d_fruit] : (d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(definition_unfolding,[],[f71,f91])).
+tff(f71,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(X9) != sK3 | d_apple != sK4 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'(w1,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f1019,plain,(
+  spl17_16 | ~spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_30 | spl17_19 | spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35 | spl17_36),
+  inference(avatar_split_clause,[],[f1012,f912,f853,f849,f513,f477,f143,f682,f824,f827,f246,f820,f816,f653,f657])).
+tff(f1012,plain,(
+  ( ! [X9 : d_fruit] : (apple = banana | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35 | spl17_36)),
+  inference(forward_demodulation,[],[f1011,f515])).
+tff(f1011,plain,(
+  ( ! [X9 : d_fruit] : (apple = d2fruit(d_banana) | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_34 | ~spl17_35 | spl17_36)),
+  inference(backward_demodulation,[],[f1008,f851])).
+tff(f1008,plain,(
+  ( ! [X9 : d_fruit] : (apple = d2fruit(sK6) | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_35 | spl17_36)),
+  inference(forward_demodulation,[],[f1004,f479])).
+tff(f1004,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_apple) = d2fruit(sK6) | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | ~spl17_35 | spl17_36)),
+  inference(backward_demodulation,[],[f1003,f854])).
+tff(f1003,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_36)),
+  inference(trivial_inequality_removal,[],[f1002])).
+tff(f1002,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != d_banana | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_36)),
+  inference(forward_demodulation,[],[f600,f921])).
+tff(f921,plain,(
+  d_banana = sK4 | (spl17_1 | spl17_36)),
+  inference(unit_resulting_resolution,[],[f145,f914,f136])).
+tff(f600,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f599])).
+tff(f599,plain,(
+  ( ! [X9 : d_fruit] : (apple != apple | d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(backward_demodulation,[],[f568,f479])).
+tff(f568,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f550])).
+tff(f550,plain,(
+  ( ! [X9 : d_fruit] : (banana != banana | d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f251,f515])).
+tff(f251,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f250])).
+tff(f250,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f140])).
+tff(f140,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(definition_unfolding,[],[f69,f91])).
+tff(f69,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(X9) != sK3 | d_banana != sK4 | d_apple = d_banana | d2fruit(sK5) = d2fruit(sK6) | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'(w1,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f999,plain,(
+  spl17_1 | ~spl17_28),
+  inference(avatar_contradiction_clause,[],[f995])).
+tff(f995,plain,(
+  $false | (spl17_1 | ~spl17_28)),
+  inference(unit_resulting_resolution,[],[f231,f818])).
+tff(f982,plain,(
+  ~spl17_13 | ~spl17_30),
+  inference(avatar_contradiction_clause,[],[f975])).
+tff(f975,plain,(
+  $false | (~spl17_13 | ~spl17_30)),
+  inference(unit_resulting_resolution,[],[f638,f825])).
+tff(f825,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(X9) != sK3) ) | ~spl17_30),
+  inference(avatar_component_clause,[],[f824])).
+tff(f638,plain,(
+  ( ! [X8 : fruit] : (d2fruit(sK11(X8)) = X8) ) | ~spl17_13),
+  inference(avatar_component_clause,[],[f637])).
+tff(f637,plain,(
+  spl17_13 <=> ! [X8 : fruit] : d2fruit(sK11(X8)) = X8),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_13])])).
+tff(f974,plain,(
+  spl17_16 | ~spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_30 | spl17_19 | spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35 | spl17_36),
+  inference(avatar_split_clause,[],[f930,f912,f853,f835,f513,f477,f143,f682,f824,f827,f246,f820,f816,f653,f657])).
+tff(f930,plain,(
+  ( ! [X9 : d_fruit] : (apple = banana | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35 | spl17_36)),
+  inference(trivial_inequality_removal,[],[f929])).
+tff(f929,plain,(
+  ( ! [X9 : d_fruit] : (d_banana != d_banana | apple = banana | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35 | spl17_36)),
+  inference(backward_demodulation,[],[f890,f921])).
+tff(f890,plain,(
+  ( ! [X9 : d_fruit] : (apple = banana | d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35)),
+  inference(forward_demodulation,[],[f887,f479])).
+tff(f887,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_apple) = banana | d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35)),
+  inference(backward_demodulation,[],[f872,f876])).
+tff(f876,plain,(
+  d_apple = sK6 | (spl17_1 | spl17_33 | spl17_35)),
+  inference(unit_resulting_resolution,[],[f145,f868,f136])).
+tff(f868,plain,(
+  d_banana != sK6 | (spl17_1 | spl17_33 | spl17_35)),
+  inference(backward_demodulation,[],[f837,f858])).
+tff(f858,plain,(
+  d_banana = sK5 | (spl17_1 | spl17_35)),
+  inference(unit_resulting_resolution,[],[f145,f855,f136])).
+tff(f855,plain,(
+  d_apple != sK5 | spl17_35),
+  inference(avatar_component_clause,[],[f853])).
+tff(f837,plain,(
+  sK5 != sK6 | spl17_33),
+  inference(avatar_component_clause,[],[f835])).
+tff(f872,plain,(
+  ( ! [X9 : d_fruit] : (banana = d2fruit(sK6) | d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_35)),
+  inference(forward_demodulation,[],[f865,f515])).
+tff(f865,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_banana) = d2fruit(sK6) | d_banana != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_35)),
+  inference(backward_demodulation,[],[f600,f858])).
+tff(f919,plain,(
+  spl17_1 | spl17_29),
+  inference(avatar_contradiction_clause,[],[f916])).
+tff(f916,plain,(
+  $false | (spl17_1 | spl17_29)),
+  inference(unit_resulting_resolution,[],[f230,f822])).
+tff(f230,plain,(
+  healthy(banana) | spl17_1),
+  inference(forward_demodulation,[],[f153,f155])).
+tff(f153,plain,(
+  healthy(d2fruit(d_banana)) | spl17_1),
+  inference(unit_resulting_resolution,[],[f145,f130])).
+tff(f130,plain,(
+  healthy(d2fruit(d_banana)) | '$in_world'('$local_world',$false)),
+  inference(definition_unfolding,[],[f87,f91])).
+tff(f87,plain,(
+  healthy(d2fruit(d_banana)) | '$in_world'(w1,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f915,plain,(
+  spl17_16 | ~spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_31 | spl17_30 | ~spl17_36 | spl17_19 | spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35),
+  inference(avatar_split_clause,[],[f889,f853,f835,f513,f477,f143,f682,f912,f824,f827,f246,f820,f816,f653,f657])).
+tff(f889,plain,(
+  ( ! [X9 : d_fruit] : (apple = banana | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35)),
+  inference(forward_demodulation,[],[f886,f479])).
+tff(f886,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_apple) = banana | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_33 | spl17_35)),
+  inference(backward_demodulation,[],[f873,f876])).
+tff(f873,plain,(
+  ( ! [X9 : d_fruit] : (banana = d2fruit(sK6) | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_35)),
+  inference(forward_demodulation,[],[f866,f515])).
+tff(f866,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(d_banana) = d2fruit(sK6) | d_apple != sK4 | d2fruit(X9) != sK3 | d_apple = d_banana | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (spl17_1 | ~spl17_10 | ~spl17_11 | spl17_35)),
+  inference(backward_demodulation,[],[f602,f858])).
+tff(f856,plain,(
+  spl17_34 | ~spl17_35 | spl17_1 | spl17_33),
+  inference(avatar_split_clause,[],[f845,f835,f143,f853,f849])).
+tff(f845,plain,(
+  d_apple != sK5 | d_banana = sK6 | (spl17_1 | spl17_33)),
+  inference(superposition,[],[f837,f487])).
+tff(f842,plain,(
+  spl17_1 | spl17_4),
+  inference(avatar_contradiction_clause,[],[f839])).
+tff(f839,plain,(
+  $false | (spl17_1 | spl17_4)),
+  inference(unit_resulting_resolution,[],[f229,f247])).
+tff(f229,plain,(
+  healthy(apple) | spl17_1),
+  inference(forward_demodulation,[],[f154,f156])).
+tff(f154,plain,(
+  healthy(d2fruit(d_apple)) | spl17_1),
+  inference(unit_resulting_resolution,[],[f145,f131])).
+tff(f131,plain,(
+  healthy(d2fruit(d_apple)) | '$in_world'('$local_world',$false)),
+  inference(definition_unfolding,[],[f86,f91])).
+tff(f86,plain,(
+  healthy(d2fruit(d_apple)) | '$in_world'(w1,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f838,plain,(
+  spl17_16 | ~spl17_15 | spl17_28 | ~spl17_29 | ~spl17_4 | spl17_30 | spl17_31 | ~spl17_32 | ~spl17_33 | ~spl17_10 | ~spl17_11),
+  inference(avatar_split_clause,[],[f601,f513,f477,f835,f831,f827,f824,f246,f820,f816,f653,f657])).
+tff(f601,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(trivial_inequality_removal,[],[f598])).
+tff(f598,plain,(
+  ( ! [X9 : d_fruit] : (apple != apple | sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | (~spl17_10 | ~spl17_11)),
+  inference(backward_demodulation,[],[f567,f479])).
+tff(f567,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(trivial_inequality_removal,[],[f551])).
+tff(f551,plain,(
+  ( ! [X9 : d_fruit] : (banana != banana | sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) ) | ~spl17_11),
+  inference(backward_demodulation,[],[f253,f515])).
+tff(f253,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(banana) | rotten(apple) | ~rotten(banana) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f252])).
+tff(f252,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(apple) | ~healthy(d2fruit(d_banana)) | rotten(apple) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(inner_rewriting,[],[f139])).
+tff(f139,plain,(
+  ( ! [X9 : d_fruit] : (sK5 != sK6 | d_banana != sK4 | d_apple = d_banana | d2fruit(X9) != sK3 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'('$local_world',$true)) )),
+  inference(definition_unfolding,[],[f70,f91])).
+tff(f70,plain,(
+  ( ! [X9 : d_fruit] : (d2fruit(X9) != sK3 | d_banana != sK4 | d_apple = d_banana | sK5 != sK6 | apple != d2fruit(d_apple) | banana != d2fruit(d_banana) | ~healthy(d2fruit(d_apple)) | ~healthy(d2fruit(d_banana)) | rotten(d2fruit(d_apple)) | ~rotten(d2fruit(d_banana)) | '$in_world'(w1,$true)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f664,plain,(
+  spl17_1 | spl17_15),
+  inference(avatar_contradiction_clause,[],[f661])).
+tff(f661,plain,(
+  $false | (spl17_1 | spl17_15)),
+  inference(unit_resulting_resolution,[],[f232,f655])).
+tff(f655,plain,(
+  ~rotten(banana) | spl17_15),
+  inference(avatar_component_clause,[],[f653])).
+tff(f639,plain,(
+  spl17_13 | spl17_1),
+  inference(avatar_split_clause,[],[f135,f143,f637])).
+tff(f135,plain,(
+  ( ! [X8 : fruit] : ('$in_world'('$local_world',$false) | d2fruit(sK11(X8)) = X8) )),
+  inference(definition_unfolding,[],[f82,f91])).
+tff(f82,plain,(
+  ( ! [X8 : fruit] : (d2fruit(sK11(X8)) = X8 | '$in_world'(w1,$false)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f613,plain,(
+  spl17_3 | spl17_12),
+  inference(avatar_split_clause,[],[f74,f611,f242])).
+tff(f74,plain,(
+  ( ! [X3 : fruit] : (d2fruit(sK12(X3)) = X3 | '$in_world'(w2,$false)) )),
+  inference(cnf_transformation,[],[f13])).
+tff(f592,plain,(
+  spl17_10 | spl17_1),
+  inference(avatar_split_clause,[],[f133,f143,f477])).
+tff(f549,plain,(
+  spl17_11 | spl17_1),
+  inference(avatar_split_clause,[],[f132,f143,f513])).
+tff(f516,plain,(
+  spl17_11 | spl17_3),
+  inference(avatar_split_clause,[],[f77,f242,f513])).
+tff(f77,plain,(
+  '$in_world'(w2,$false) | banana = d2fruit(d_banana)),
+  inference(cnf_transformation,[],[f13])).
+tff(f480,plain,(
+  spl17_10 | spl17_3),
+  inference(avatar_split_clause,[],[f76,f242,f477])).
+tff(f76,plain,(
+  '$in_world'(w2,$false) | apple = d2fruit(d_apple)),
+  inference(cnf_transformation,[],[f13])).
+tff(f440,plain,(
+  ~spl17_1 | spl17_2 | ~spl17_9),
+  inference(avatar_contradiction_clause,[],[f433])).
+tff(f433,plain,(
+  $false | (~spl17_1 | spl17_2 | ~spl17_9)),
+  inference(unit_resulting_resolution,[],[f144,f425])).
+tff(f425,plain,(
+  ~'$in_world'('$local_world',$false) | (spl17_2 | ~spl17_9)),
+  inference(backward_demodulation,[],[f149,f418])).
+tff(f418,plain,(
+  '$local_world' = sK0 | ~spl17_9),
+  inference(avatar_component_clause,[],[f416])).
+tff(f416,plain,(
+  spl17_9 <=> '$local_world' = sK0),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_9])])).
+tff(f149,plain,(
+  ~'$in_world'(sK0,$false) | spl17_2),
+  inference(avatar_component_clause,[],[f147])).
+tff(f147,plain,(
+  spl17_2 <=> '$in_world'(sK0,$false)),
+  introduced(avatar_definition,[new_symbols(naming,[spl17_2])])).
+tff(f419,plain,(
+  spl17_9 | ~spl17_3 | spl17_2),
+  inference(avatar_split_clause,[],[f270,f147,f242,f416])).
+tff(f270,plain,(
+  ~'$in_world'(w2,$false) | '$local_world' = sK0 | spl17_2),
+  inference(superposition,[],[f149,f127])).
+tff(f396,plain,(
+  spl17_1 | spl17_8),
+  inference(avatar_split_clause,[],[f128,f382,f143])).
+tff(f385,plain,(
+  spl17_3 | ~spl17_8),
+  inference(avatar_split_clause,[],[f81,f382,f242])).
+tff(f81,plain,(
+  ~rotten(d2fruit(d_banana)) | '$in_world'(w2,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f363,plain,(
+  spl17_3 | ~spl17_7),
+  inference(avatar_split_clause,[],[f80,f360,f242])).
+tff(f80,plain,(
+  ~rotten(d2fruit(d_apple)) | '$in_world'(w2,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f332,plain,(
+  spl17_3 | spl17_6),
+  inference(avatar_split_clause,[],[f79,f329,f242])).
+tff(f79,plain,(
+  healthy(d2fruit(d_banana)) | '$in_world'(w2,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f290,plain,(
+  spl17_3 | spl17_5),
+  inference(avatar_split_clause,[],[f78,f287,f242])).
+tff(f78,plain,(
+  healthy(d2fruit(d_apple)) | '$in_world'(w2,$false)),
+  inference(cnf_transformation,[],[f13])).
+tff(f150,plain,(
+  ~spl17_1 | ~spl17_2),
+  inference(avatar_split_clause,[],[f61,f147,f143])).
+tff(f61,plain,(
+  ~'$in_world'(sK0,$false) | ~'$in_world'('$local_world',$false)),
+  inference(cnf_transformation,[],[f12])).
+tff(f12,plain,(
+  ! [X0 : $o] : ((('$necessary'('$local_world',~rotten(banana) & healthy(apple)) | ~rotten(banana)) & X0) | ~'$in_world'('$local_world',X0)) | ? [X1 : '$world'] : ! [X2 : $o] : (((? [X3 : fruit] : ~'$possible'(X1,~rotten(X3)) | ? [X4 : fruit] : ~'$necessary'(X1,healthy(X4)) | apple = banana) & X2) | ~'$in_world'(X1,X2))),
+  inference(ennf_transformation,[],[f7])).
+tff(f7,plain,(
+  ~(? [X0 : $o] : ((X0 => (~'$necessary'('$local_world',~rotten(banana) & healthy(apple)) & rotten(banana))) & '$in_world'('$local_world',X0)) & ! [X1 : '$world'] : ? [X2 : $o] : ((X2 => (! [X3 : fruit] : '$possible'(X1,~rotten(X3)) & ! [X4 : fruit] : '$necessary'(X1,healthy(X4)) & apple != banana)) & '$in_world'(X1,X2)))),
+  inference(rectify,[],[f6])).
+tff(f6,negated_conjecture,(
+  ~(? [X8 : $o] : ((X8 => (~'$necessary'('$local_world',~rotten(banana) & healthy(apple)) & rotten(banana))) & '$in_world'('$local_world',X8)) & ! [X4 : '$world'] : ? [X8 : $o] : ((X8 => (! [X1 : fruit] : '$possible'(X4,~rotten(X1)) & ! [X1 : fruit] : '$necessary'(X4,healthy(X1)) & apple != banana)) & '$in_world'(X4,X8)))),
+  inference(negated_conjecture,[],[f5])).
+tff(f5,conjecture,(
+  ? [X8 : $o] : ((X8 => (~'$necessary'('$local_world',~rotten(banana) & healthy(apple)) & rotten(banana))) & '$in_world'('$local_world',X8)) & ! [X4 : '$world'] : ? [X8 : $o] : ((X8 => (! [X1 : fruit] : '$possible'(X4,~rotten(X1)) & ! [X1 : fruit] : '$necessary'(X4,healthy(X1)) & apple != banana)) & '$in_world'(X4,X8))),
+  file('NTF_Finite-Finite.s.p',prove_formulae)).
+% SZS output end Proof for NTF_Finite-Finite.s

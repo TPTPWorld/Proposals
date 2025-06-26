@@ -1,0 +1,303 @@
+% SZS status Theorem for TFF_Finite.s
+% SZS output start Proof for TFF_Finite.s
+tff(type_def_5, type, human: $tType).
+tff(type_def_6, type, cat: $tType).
+tff(func_def_0, type, jon: human).
+tff(func_def_1, type, garfield: cat).
+tff(func_def_2, type, arlene: cat).
+tff(func_def_3, type, nermal: cat).
+tff(func_def_4, type, loves: cat > cat).
+tff(func_def_5, type, d_jon: human).
+tff(func_def_6, type, d_garfield: cat).
+tff(func_def_7, type, d_arlene: cat).
+tff(func_def_8, type, d_nermal: cat).
+tff(func_def_9, type, sK0: cat).
+tff(func_def_10, type, sK1: cat).
+tff(func_def_11, type, sK2: human).
+tff(pred_def_1, type, owns: (human * cat) > $o).
+tff(f122,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[f56,f66,f76,f86,f89,f92,f97,f121])).
+tff(f121,plain,(
+  ~spl3_3),
+  inference(avatar_contradiction_clause,[],[f120])).
+tff(f120,plain,(
+  $false | ~spl3_3),
+  inference(subsumption_resolution,[],[f119,f36])).
+tff(f36,plain,(
+  arlene != nermal),
+  inference(definition_unfolding,[],[f19,f22,f23])).
+tff(f23,plain,(
+  d_nermal = nermal),
+  inference(cnf_transformation,[],[f5])).
+tff(f5,plain,(
+  ~owns(d_jon,d_nermal) & ~owns(d_jon,d_arlene) & owns(d_jon,d_garfield) & d_garfield = loves(d_nermal) & d_garfield = loves(d_arlene) & d_garfield = loves(d_garfield) & d_nermal = nermal & d_arlene = arlene & d_garfield = garfield & d_jon = jon & d_arlene != d_nermal & d_garfield != d_nermal & d_garfield != d_arlene & ! [X0 : cat] : (d_nermal = X0 | d_arlene = X0 | d_garfield = X0) & ! [X1 : human] : d_jon = X1),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ~owns(d_jon,d_nermal) & ~owns(d_jon,d_arlene) & owns(d_jon,d_garfield) & d_garfield = loves(d_nermal) & d_garfield = loves(d_arlene) & d_garfield = loves(d_garfield) & d_nermal = nermal & d_arlene = arlene & d_garfield = garfield & d_jon = jon & d_arlene != d_nermal & d_garfield != d_nermal & d_garfield != d_arlene & ! [X1 : cat] : (d_nermal = X1 | d_arlene = X1 | d_garfield = X1) & ! [X0 : human] : d_jon = X0),
+  file('TFF_Finite.s.p',unknown)).
+tff(f22,plain,(
+  d_arlene = arlene),
+  inference(cnf_transformation,[],[f5])).
+tff(f19,plain,(
+  d_arlene != d_nermal),
+  inference(cnf_transformation,[],[f5])).
+tff(f119,plain,(
+  arlene = nermal | ~spl3_3),
+  inference(subsumption_resolution,[],[f111,f30])).
+tff(f30,plain,(
+  ~owns(jon,nermal)),
+  inference(definition_unfolding,[],[f29,f20,f23])).
+tff(f20,plain,(
+  d_jon = jon),
+  inference(cnf_transformation,[],[f5])).
+tff(f29,plain,(
+  ~owns(d_jon,d_nermal)),
+  inference(cnf_transformation,[],[f5])).
+tff(f111,plain,(
+  owns(jon,nermal) | arlene = nermal | ~spl3_3),
+  inference(trivial_inequality_removal,[],[f107])).
+tff(f107,plain,(
+  garfield != garfield | owns(jon,nermal) | arlene = nermal | ~spl3_3),
+  inference(superposition,[],[f55,f33])).
+tff(f33,plain,(
+  garfield = loves(nermal)),
+  inference(definition_unfolding,[],[f26,f21,f23])).
+tff(f21,plain,(
+  d_garfield = garfield),
+  inference(cnf_transformation,[],[f5])).
+tff(f26,plain,(
+  d_garfield = loves(d_nermal)),
+  inference(cnf_transformation,[],[f5])).
+tff(f55,plain,(
+  ( ! [X0 : cat] : (garfield != loves(X0) | owns(jon,X0) | arlene = X0) ) | ~spl3_3),
+  inference(avatar_component_clause,[],[f54])).
+tff(f54,plain,(
+  spl3_3 <=> ! [X0 : cat] : (owns(jon,X0) | garfield != loves(X0) | arlene = X0)),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_3])])).
+tff(f97,plain,(
+  spl3_1 | spl3_4 | spl3_5),
+  inference(avatar_contradiction_clause,[],[f96])).
+tff(f96,plain,(
+  $false | (spl3_1 | spl3_4 | spl3_5)),
+  inference(subsumption_resolution,[],[f95,f75])).
+tff(f75,plain,(
+  garfield != sK1 | spl3_5),
+  inference(avatar_component_clause,[],[f74])).
+tff(f74,plain,(
+  spl3_5 <=> garfield = sK1),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_5])])).
+tff(f95,plain,(
+  garfield = sK1 | (spl3_1 | spl3_4)),
+  inference(subsumption_resolution,[],[f94,f65])).
+tff(f65,plain,(
+  arlene != sK1 | spl3_4),
+  inference(avatar_component_clause,[],[f64])).
+tff(f64,plain,(
+  spl3_4 <=> arlene = sK1),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_4])])).
+tff(f94,plain,(
+  arlene = sK1 | garfield = sK1 | spl3_1),
+  inference(trivial_inequality_removal,[],[f93])).
+tff(f93,plain,(
+  nermal != nermal | arlene = sK1 | garfield = sK1 | spl3_1),
+  inference(superposition,[],[f49,f39])).
+tff(f39,plain,(
+  ( ! [X0 : cat] : (nermal = X0 | arlene = X0 | garfield = X0) )),
+  inference(definition_unfolding,[],[f16,f23,f22,f21])).
+tff(f16,plain,(
+  ( ! [X0 : cat] : (d_nermal = X0 | d_arlene = X0 | d_garfield = X0) )),
+  inference(cnf_transformation,[],[f5])).
+tff(f49,plain,(
+  nermal != sK1 | spl3_1),
+  inference(avatar_component_clause,[],[f48])).
+tff(f48,plain,(
+  spl3_1 <=> nermal = sK1),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_1])])).
+tff(f92,plain,(
+  spl3_2 | ~spl3_7),
+  inference(avatar_contradiction_clause,[],[f91])).
+tff(f91,plain,(
+  $false | (spl3_2 | ~spl3_7)),
+  inference(subsumption_resolution,[],[f90,f34])).
+tff(f34,plain,(
+  garfield = loves(arlene)),
+  inference(definition_unfolding,[],[f25,f21,f22])).
+tff(f25,plain,(
+  d_garfield = loves(d_arlene)),
+  inference(cnf_transformation,[],[f5])).
+tff(f90,plain,(
+  garfield != loves(arlene) | (spl3_2 | ~spl3_7)),
+  inference(backward_demodulation,[],[f52,f85])).
+tff(f85,plain,(
+  arlene = sK0 | ~spl3_7),
+  inference(avatar_component_clause,[],[f84])).
+tff(f84,plain,(
+  spl3_7 <=> arlene = sK0),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_7])])).
+tff(f52,plain,(
+  garfield != loves(sK0) | spl3_2),
+  inference(avatar_component_clause,[],[f51])).
+tff(f51,plain,(
+  spl3_2 <=> garfield = loves(sK0)),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_2])])).
+tff(f89,plain,(
+  spl3_2 | ~spl3_6),
+  inference(avatar_contradiction_clause,[],[f88])).
+tff(f88,plain,(
+  $false | (spl3_2 | ~spl3_6)),
+  inference(subsumption_resolution,[],[f87,f35])).
+tff(f35,plain,(
+  garfield = loves(garfield)),
+  inference(definition_unfolding,[],[f24,f21,f21])).
+tff(f24,plain,(
+  d_garfield = loves(d_garfield)),
+  inference(cnf_transformation,[],[f5])).
+tff(f87,plain,(
+  garfield != loves(garfield) | (spl3_2 | ~spl3_6)),
+  inference(backward_demodulation,[],[f52,f82])).
+tff(f82,plain,(
+  garfield = sK0 | ~spl3_6),
+  inference(avatar_component_clause,[],[f81])).
+tff(f81,plain,(
+  spl3_6 <=> garfield = sK0),
+  introduced(avatar_definition,[new_symbols(naming,[spl3_6])])).
+tff(f86,plain,(
+  spl3_6 | spl3_7 | spl3_2),
+  inference(avatar_split_clause,[],[f79,f51,f84,f81])).
+tff(f79,plain,(
+  arlene = sK0 | garfield = sK0 | spl3_2),
+  inference(subsumption_resolution,[],[f77,f33])).
+tff(f77,plain,(
+  garfield != loves(nermal) | arlene = sK0 | garfield = sK0 | spl3_2),
+  inference(superposition,[],[f52,f39])).
+tff(f76,plain,(
+  ~spl3_5 | ~spl3_2 | spl3_3),
+  inference(avatar_split_clause,[],[f72,f54,f51,f74])).
+tff(f72,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield != sK1) )),
+  inference(subsumption_resolution,[],[f71,f40])).
+tff(f40,plain,(
+  ( ! [X1 : human] : (jon = X1) )),
+  inference(definition_unfolding,[],[f15,f20])).
+tff(f15,plain,(
+  ( ! [X1 : human] : (d_jon = X1) )),
+  inference(cnf_transformation,[],[f5])).
+tff(f71,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f70,f38])).
+tff(f38,plain,(
+  garfield != arlene),
+  inference(definition_unfolding,[],[f17,f21,f22])).
+tff(f17,plain,(
+  d_garfield != d_arlene),
+  inference(cnf_transformation,[],[f5])).
+tff(f70,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f69,f37])).
+tff(f37,plain,(
+  garfield != nermal),
+  inference(definition_unfolding,[],[f18,f21,f23])).
+tff(f18,plain,(
+  d_garfield != d_nermal),
+  inference(cnf_transformation,[],[f5])).
+tff(f69,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f68,f36])).
+tff(f68,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f67,f32])).
+tff(f32,plain,(
+  owns(jon,garfield)),
+  inference(definition_unfolding,[],[f27,f20,f21])).
+tff(f27,plain,(
+  owns(d_jon,d_garfield)),
+  inference(cnf_transformation,[],[f5])).
+tff(f67,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f12,f31])).
+tff(f31,plain,(
+  ~owns(jon,arlene)),
+  inference(definition_unfolding,[],[f28,f20,f22])).
+tff(f28,plain,(
+  ~owns(d_jon,d_arlene)),
+  inference(cnf_transformation,[],[f5])).
+tff(f12,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | garfield != sK1 | jon != sK2) )),
+  inference(cnf_transformation,[],[f11])).
+tff(f11,plain,(
+  ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0)) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | (nermal != sK1 & arlene != sK1 & garfield != sK1) | jon != sK2),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK0,sK1,sK2])],[f7,f10,f9,f8])).
+tff(f8,plain,(
+  ? [X1 : cat] : garfield != loves(X1) => garfield != loves(sK0)),
+  introduced(choice_axiom,[])).
+tff(f9,plain,(
+  ? [X2 : cat] : (nermal != X2 & arlene != X2 & garfield != X2) => (nermal != sK1 & arlene != sK1 & garfield != sK1)),
+  introduced(choice_axiom,[])).
+tff(f10,plain,(
+  ? [X3 : human] : jon != X3 => jon != sK2),
+  introduced(choice_axiom,[])).
+tff(f7,plain,(
+  ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0)) | ? [X1 : cat] : garfield != loves(X1) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | ? [X2 : cat] : (nermal != X2 & arlene != X2 & garfield != X2) | ? [X3 : human] : jon != X3),
+  inference(flattening,[],[f6])).
+tff(f6,plain,(
+  ! [X0 : cat] : (owns(jon,X0) | (arlene = X0 | garfield != loves(X0))) | ? [X1 : cat] : garfield != loves(X1) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | ? [X2 : cat] : (nermal != X2 & arlene != X2 & garfield != X2) | ? [X3 : human] : jon != X3),
+  inference(ennf_transformation,[],[f4])).
+tff(f4,plain,(
+  ~(~! [X0 : cat] : ((arlene != X0 & garfield = loves(X0)) => owns(jon,X0)) & ! [X1 : cat] : garfield = loves(X1) & ~owns(jon,arlene) & owns(jon,garfield) & arlene != nermal & garfield != nermal & garfield != arlene & ! [X2 : cat] : (nermal = X2 | arlene = X2 | garfield = X2) & ! [X3 : human] : jon = X3)),
+  inference(rectify,[],[f3])).
+tff(f3,negated_conjecture,(
+  ~(~! [X3 : cat] : ((arlene != X3 & garfield = loves(X3)) => owns(jon,X3)) & ! [X3 : cat] : garfield = loves(X3) & ~owns(jon,arlene) & owns(jon,garfield) & arlene != nermal & garfield != nermal & garfield != arlene & ! [X3 : cat] : (nermal = X3 | arlene = X3 | garfield = X3) & ! [X2 : human] : jon = X2)),
+  inference(negated_conjecture,[],[f2])).
+tff(f2,conjecture,(
+  ~! [X3 : cat] : ((arlene != X3 & garfield = loves(X3)) => owns(jon,X3)) & ! [X3 : cat] : garfield = loves(X3) & ~owns(jon,arlene) & owns(jon,garfield) & arlene != nermal & garfield != nermal & garfield != arlene & ! [X3 : cat] : (nermal = X3 | arlene = X3 | garfield = X3) & ! [X2 : human] : jon = X2),
+  file('TFF_Finite.s.p',unknown)).
+tff(f66,plain,(
+  ~spl3_4 | ~spl3_2 | spl3_3),
+  inference(avatar_split_clause,[],[f62,f54,f51,f64])).
+tff(f62,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | arlene != sK1) )),
+  inference(subsumption_resolution,[],[f61,f40])).
+tff(f61,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | arlene != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f60,f38])).
+tff(f60,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield = arlene | arlene != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f59,f37])).
+tff(f59,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield = nermal | garfield = arlene | arlene != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f58,f36])).
+tff(f58,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | arlene = nermal | garfield = nermal | garfield = arlene | arlene != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f57,f32])).
+tff(f57,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | arlene != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f13,f31])).
+tff(f13,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | arlene != sK1 | jon != sK2) )),
+  inference(cnf_transformation,[],[f11])).
+tff(f56,plain,(
+  ~spl3_1 | ~spl3_2 | spl3_3),
+  inference(avatar_split_clause,[],[f46,f54,f51,f48])).
+tff(f46,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | nermal != sK1) )),
+  inference(subsumption_resolution,[],[f45,f40])).
+tff(f45,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | nermal != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f44,f38])).
+tff(f44,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield = arlene | nermal != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f43,f37])).
+tff(f43,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | garfield = nermal | garfield = arlene | nermal != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f42,f36])).
+tff(f42,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | arlene = nermal | garfield = nermal | garfield = arlene | nermal != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f41,f32])).
+tff(f41,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | nermal != sK1 | jon != sK2) )),
+  inference(subsumption_resolution,[],[f14,f31])).
+tff(f14,plain,(
+  ( ! [X0 : cat] : (owns(jon,X0) | arlene = X0 | garfield != loves(X0) | garfield != loves(sK0) | owns(jon,arlene) | ~owns(jon,garfield) | arlene = nermal | garfield = nermal | garfield = arlene | nermal != sK1 | jon != sK2) )),
+  inference(cnf_transformation,[],[f11])).
+% SZS output end Proof for TFF_Finite.s

@@ -1,0 +1,15 @@
+A family of choice problems in the context of finite sets. They all establish the same
+conjecture instaniated for different cases: Given a function that, if available, returns an
+element different from the argument, it can be shown that this function has no fix point for
+sets above a certain size (that size of course being 1).
+For sets of size 1, we can no longer prove the conjecture, but the problem is still well-typed
+in the weak sense as it is non-empty. In the strong case, it is not even well-typed as we are
+not able to exhibit an element anymore.
+
+dchoice_no_fp_fin[N].p:
+The variable N correspondes to the size of the set. These variants of the problem include the
+full axiomatization of the problem.
+
+dhcoice_no_fp_fin[N]_min.p:
+As above, but the problem has fewer axioms. This results in finite sets of _at least_ size N as
+opposed to finite sets of _exactly_ size N as in the previous family of problems.

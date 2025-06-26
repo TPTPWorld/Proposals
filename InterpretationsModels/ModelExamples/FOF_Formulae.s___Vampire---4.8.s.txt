@@ -1,0 +1,101 @@
+% START OF SYSTEM OUTPUT
+Running first-order model finding
+Running: /exp/home/tptp/Systems/Vampire-SAT---4.8/vampire --mode casc_sat -m 16384 --cores 7 -t 30 /tmp/tmp.ov1Im3Gumi/Vampire---4.8_5717
+% (5730)Running in auto input_syntax mode. Trying TPTP
+% (5734)fmb+10_1_bce=on:fmbsr=1.5:nm=32_533 on Vampire---4 for (299ds/0Mi)
+% (5736)ott-10_8_av=off:bd=preordered:bs=on:fsd=off:fsr=off:fde=unused:irw=on:lcm=predicate:lma=on:nm=4:nwc=1.7:sp=frequency_522 on Vampire---4 for (299ds/0Mi)
+% (5732)fmb+10_1_bce=on:fmbdsb=on:fmbes=contour:fmbswr=3:fde=none:nm=0_793 on Vampire---4 for (299ds/0Mi)
+Detected minimum model sizes of [4]
+Detected maximum model sizes of [max]
+TRYING [4]
+Finite Model Found!
+% SZS status Satisfiable for Vampire---4
+% (5734)First to succeed.
+% (5736)Also succeeded, but the first one will report.
+Detected minimum model sizes of [4]
+Detected maximum model sizes of [max]
+TRYING [4]
+% SZS output start FiniteModel for Vampire---4
+tff(declare_$i,type,$i:$tType).
+tff(declare_$i1,type,"f":$i).
+tff(declare_$i2,type,"a":$i).
+tff(declare_$i3,type,john:$i).
+tff(declare_$i4,type,"gotA":$i).
+tff(finite_domain,axiom,
+      ! [X:$i] : (
+         X = "f" | X = "a" | X = john | X = "gotA"
+      ) ).
+
+tff(distinct_domain,axiom,
+         "f" != "a" & "f" != john & "f" != "gotA" & "a" != john & "a" != "gotA" & 
+         john != "gotA"
+).
+
+tff(declare_bool,type,$o:$tType).
+tff(declare_bool1,type,fmb_bool_1:$o).
+tff(finite_domain,axiom,
+      ! [X:$o] : (
+         X = fmb_bool_1
+      ) ).
+
+tff(declare_"john",type,"john":$i).
+tff("john"_definition,axiom,"john" = john).
+tff(declare_f,type,f:$i).
+tff(f_definition,axiom,f = "f").
+tff(declare_a,type,a:$i).
+tff(a_definition,axiom,a = "a").
+tff(declare_grade_of,type,grade_of: $i > $i).
+tff(function_grade_of,axiom,
+           grade_of("f") = "f"
+         & grade_of("a") = "f"
+         & grade_of(john) = "f"
+         & grade_of("gotA") = "a"
+
+).
+
+tff(declare_created_equal,type,created_equal: $i * $i > $o ).
+tff(predicate_created_equal,axiom,
+%         created_equal("f","f") undefined in model
+%         created_equal("f","a") undefined in model
+%         created_equal("f",john) undefined in model
+%         created_equal("f","gotA") undefined in model
+%         created_equal("a","f") undefined in model
+%         created_equal("a","a") undefined in model
+%         created_equal("a",john) undefined in model
+%         created_equal("a","gotA") undefined in model
+%         created_equal(john,"f") undefined in model
+%         created_equal(john,"a") undefined in model
+%         created_equal(john,john) undefined in model
+%         created_equal(john,"gotA") undefined in model
+%         created_equal("gotA","f") undefined in model
+%         created_equal("gotA","a") undefined in model
+%         created_equal("gotA",john) undefined in model
+%         created_equal("gotA","gotA") undefined in model
+
+).
+
+tff(declare_human,type,human: $i > $o ).
+tff(predicate_human,axiom,
+           ~human("f")
+         & ~human("a")
+         & human(john)
+         & human("gotA")
+
+).
+
+% SZS output end FiniteModel for Vampire---4
+% (5734)------------------------------
+% (5734)Version: Vampire 4.8 (commit 8e9376e55 on 2024-01-18 13:49:33 +0100)
+% (5734)Termination reason: Satisfiable
+
+% (5734)Memory used [KB]: 745
+% (5734)Time elapsed: 0.003 s
+% (5734)Instructions burned: 4 (million)
+% (5734)------------------------------
+% (5734)------------------------------
+% (5730)Success in time 0.012 s
+% Vampire---4.8 exiting
+
+% END OF SYSTEM OUTPUT
+% RESULT: FOF_Formulae - Vampire-SAT---4.8 says Satisfiable - CPU = 0.00 WC = 0.08 
+% OUTPUT: FOF_Formulae - Vampire-SAT---4.8 says FiniteModel - CPU = 0.00 WC = 0.08 

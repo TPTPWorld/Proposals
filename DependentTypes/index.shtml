@@ -1,0 +1,242 @@
+<HTML>
+<HEAD>
+<TITLE> Dependently Typed Higher-Order Logic </TITLE>
+</HEAD>
+<BODY ALIGN=JUSTIFY>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">Dependently Typed Higher-Order Logic</H1>
+
+by
+<A href="https://findanexpert.unimelb.edu.au/profile/1063018-cezary-kaliszyk">Cezary Kaliszyk</A>,
+Daniel Ranalter,
+<A href="http://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>.
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+
+Dependently typed higher-order logic (DHOL) is a extension of Church's higher-order logic (HOL)
+introduced by Rothgang et al.
+[<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=RRB23">RRB23</A>].
+It takes the widely supported HOL and equips it with dependent
+types, i.e., types that take term arguments. As such, it is a classical and extensional type
+theory, as opposed to the theory used in Rocq, Lean or others which rely on an intensional type
+theory. Notable exceptions to this trend are PVS and F*.
+While the extensionality of DHOL comes at the cost of making type checking an undecidable
+problem in general, the gain is also significant: Having judgmental and provable equality
+coincide is much closer to how mathematics is usually done in the context of Automated Theorem
+Proving. 
+Furthermore, the cost - which might seem steep at first glance - is mitigated by the ever 
+increasing performance of ATP systems and the fact that in many cases the proof obligations 
+resulting from type checking are simpler than the original conjecture.
+The inclusion of dependent types into the formalism allows the elegant definition of data
+structures like lists with fixed length, sets of a fixed finite size and others. Having
+constraints encoded on the level of types removes the need for lengthy and error prone guards
+in programming, and encodes additional, useful information for theorem proving.
+Types in DHOL are either fully applied base types, dependent function types, or classical
+booleans.
+A remark about the binary connectives: Due to type checking, binary connectives like AND and OR
+are no longer commutative. Consider as an example the statement
+<EM>a&nbsp;=<SUB>A</SUB>&nbsp;b&nbsp;&rArr;&nbsp;f&nbsp;a&nbsp;=<SUB>B(a)</SUB>&nbsp;f&nbsp;b</EM>.
+The well-formedness of the right-hand side requires the left hand side as premise, which breaks
+commutativity for the boolean connectives defined with &rArr;. While apparently disruptive, it is
+common practice to sacrifice commutativity for, e.g., short-circuit evaluation of boolean terms
+in programming languages.
+
+<H3> Translation of DHOL </H3>
+
+In order to take advantage of the proving power already available for regular HOL, Rothgang et
+al. define a dependency-erasure and thereby a translation from DHOL into regular HOL. They also
+prove that this translation is sound and complete for well-typed DHOL problems. Due to this
+result, and the implementation of the translation in the preprocessor of the Leo-III theorem
+prover, there existed reasoning support for DHOL, even before native DHOL reasoning was
+implemented into Lash by Niederhauser et al.
+[<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=NBK24">NBK24</A>].
+Information lost due to the erasure of term dependencies is captured in Partial Equivalence
+Relations (PERs) - symmetric and transitive relations on pairs of terms - with the idea that
+the relation is reflexive exactly for those terms that were previously of the same dependent type.
+While intuitively one might think unary predicates would be sufficient to specify subtypes for
+type guards, a binary equality relation becomes necessary when relating higher-order functions
+which are equal when guarded inputs are mapped to equal outputs.
+
+<H3> Type Checking </H3>
+
+Due to equality reflection, type checking for DHOL is in general undecidable.
+Nevertheless, problems need to be well-typed, not least of all because otherwise the translation
+outlined previously would not necessarily be sound.
+As such, type checking takes up a larger role compared to other logics in the TPTP.
+While performing the usual type checking procedure in DHOL, one eventually encounters obligations
+of the form
+<EM>a&nbsp;t<SUB>1</SUB>&nbsp;...&nbsp;t<SUB>n</SUB>&nbsp;&equiv;&nbsp;b&nbsp;u<SUB>1</SUB>&nbsp;...&nbsp;u<SUB>n</SUB></EM>,
+establishing equality of the dependent types <EM>a</EM>, <EM>b</EM> of arity <EM>n</EM> with
+<EM>t<SUB>1</SUB>&nbsp;...&nbsp;t<SUB>n</SUB>&nbsp;,&nbsp;u<SUB>1</SUB>&nbsp;...&nbsp;u<SUB>n</SUB></EM>
+being terms of appropriate type.
+At this point the type equality judgment is reflected into proving obligations, each establishing
+the equality of the corresponding term arguments.
+In cases where <EM>t<SUB>i</SUB></EM>, <EM>u<SUB>i</SUB></EM> are equal, the obligation can be
+dismissed directly by reflectivity.
+In general, however, this creates a number of new conjectures that need to be addressed by the
+theorem prover.
+This sometimes creates interesting situations, where problems need to include axioms not directly
+necessary for the conjecture itself, but for type checking the problem.
+The common example of fixed length lists is one such instance.
+Proving the associativity of append requires the inclusion of the defining equations of append
+as well as <TT>cons</TT>.
+To type check the problems it is additionally necessary to include axioms and defining equations
+that allow proving the associativity of addition on natural numbers.
+<P>
+The undecidability of type checking does incite finding compromises.
+One such compromise is "shallow type checking".
+When a problem file is shallowly checked, only the simply typed skeleton of the problem is
+considered, i.e., term arguments to types as well as dependent functions are ignored during the
+procedure.
+Consequently, it collapses to type checking as is done on non-dependently typed problems, and
+is decidable.
+<P>
+This form of type checking catches careless mistakes in the formulation of problems and
+provides a very basic check of issues usually caught in HOL problems.
+Matching the number of arguments to the arity of a function, and egregious type mismatches, are
+examples of errors that can be avoided by shallow type checking.
+This provides a valuable sanity check for users, especially considering the complexity that
+problems in DHOL forms can reach.
+
+<H3>Syntax of TPTP Dependently Typed Higher-order Form (DTF) </H3>
+
+The syntax of DTF requires next to no change to the already established TPTP language BNF.
+The TPTP language already defines the <TT>!&gt;</TT> binder for types.
+This is currently only used for polymorphism e.g.,
+<TT>cons&nbsp;:&nbsp;!>[A:&nbsp;$tType]:&nbsp;(A&nbsp;&gt;&nbsp;(list&nbsp;@&nbsp;A)&nbsp;&gt;&nbsp;(list&nbsp;@&nbsp;&nbsp;A))</TT>
+might be found as the type statement for a polymorphic cons operation.
+However, the TPTP language does not forbid to list terms in the types of such variable lists.
+This fact is used to unobtrusively extend TPTP with dependent types.
+A dependent type symbol declaration is written with <EM>m</EM> terms of <EM>n</EM> types as
+<TT>a:&nbsp;!&gt;[x1:A1,...,xm:An]&nbsp;:&nbsp;$tType</TT>, or alternatively
+<TT>a:&nbsp;A1&nbsp;&gt;&nbsp;...&nbsp;&gt;&nbsp;An&nbsp;&gt;&nbsp;$tType</TT>.&nbsp;
+Instantiations of such types use the application operator <TT>@</TT>, applying the terms to the
+dependent type: <TT>a&nbsp;@&nbsp;t1&nbsp;@&nbsp;...&nbsp;@&nbsp;tm</TT>.
+In polymorphic problems the variable list is prepended with their type variables, which may appear
+in the same binder.
+
+<H3> An Example Problem in DTF </H3>
+
+The following example formalizes the base case of the inductive proof that 
+append on fixed-length lists is associative.
+
+<PRE>
+%------------------------------------------------------------------------------
+%----The theory of natural numbers. Well-established and simply typed.
+thf(nat_type,type,
+    nat: $tType ).
+
+thf(zero_type,type,
+    zero: nat ).
+
+thf(suc_type,type,
+    suc: nat > nat ).
+
+thf(plus_type,type,
+    plus: nat > nat > nat ).
+
+thf(ax1,axiom,
+    ! [N: nat] :
+      ( ( plus @ zero @ N ) = N ) ).
+
+%----The second defining equation for 'plus' is not necessary in the base case.
+%----The associativity of plus is needed for type checking (and, in fact, only
+%----for type checking)
+thf(plus_assoc,axiom,
+    ! [M1: nat,M2: nat,M3: nat] :
+      ( ( plus @ M1 @ ( plus @ M2 @ M3 ) )
+      = ( plus @ ( plus @ M1 @ M2 ) @ M3 ) ) ).
+
+%----A type of arbitrary elements for our list.
+thf(elem_type,type,
+    elem: $tType ).
+
+%----Dependent types: the list type takes a nat typed term and returns a type
+thf(list_type,type,
+    list: nat > $tType ).
+
+%----'nil', the empty list, is specified to have length 0, encoding properties
+%----into types that would otherwise need definitions of a length function,
+%----additional axioms, etc.
+thf(nil_type,type,
+    nil: list @ zero ).
+
+%----The 'cons' operator is dependently typed, taking a nat corresponding to
+%----the length of the input vector. Note that this prevents any conjecture
+%----from trying to establish nil' as a result of cons, as this wouldn't
+%----type-check.
+thf(cons_type,type,
+    cons:
+      !>[N: nat] : ( elem > ( list @ N ) > ( list @ ( suc @ N ) ) ) ).
+
+%----'app' is also dependent, incorporating reasoning about plus into the type
+%----checking procedure.
+thf(app_type,type,
+    app:
+      !>[N: nat,M: nat] : 
+        ( ( list @ N ) > ( list @ M ) > ( list @ ( plus @ N @ M ) ) ) ).
+
+%----First (and for this conjecture, the only) defining equation of 'app'
+thf(ax3,axiom,
+    ! [N: nat,X: list @ N] :
+      ( ( app @ zero @ N @ nil @ X ) = X ) ).
+
+%----The conjecture: The base case of the induction proof. Note that this is
+%----part of a larger problem, broken up to make it easier.
+thf(list_app_assoc_base,conjecture,
+    ! [M2: nat,L2: list @ M2,M3: nat,L3: list @ M3] :
+      ( ( app @ zero @ ( plus @ M2 @ M3 ) @ nil @ ( app @ M2 @ M3 @ L2 @ L3 ) )
+      = ( app @ ( plus @ zero @ M2 ) @ M3 @ ( app @ zero @ M2 @ nil @ L2 ) @ L3 ) ) ).
+%------------------------------------------------------------------------------
+</PRE>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Problems </H2>
+
+<UL>
+<LI> The problems provided by Daniel and Cezary have been separated into three groups:
+     <UL>
+     <LI> Test problems designed to test particular aspects of reasoning with dependent types
+     <LI> Application problems, divided into:
+          <UL>
+          <LI> Monomorphic problems
+          <LI> Polymorphic problems
+          </UL>
+     </UL>
+     The monomorphic and polymorphic problems have each been split into:
+     <UL>
+     <LI> Complete problems
+     <LI> Lemmas that can be used to help solving complete problems
+     </UL>
+<LI> <A HREF="DependentTypesProblems/">Browse</A> the problems.
+<LI> <A HREF="DependentTypesProblems.tgz">Download</A> a <TT>.tgz</TT> of all the problems.
+<LI> <A HREF="DependentTypesResults.csv">Results from DLash and DT2H2X</A> as a <TT>.csv</TT>
+</UL>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> ATP Systems and Tools </H2>
+
+<UL>
+<LI> DLash 1.11
+     <UL>
+     <LI> As an ATP system
+     <LI> As a DTF type checker
+     <LI> Available in <A HREF="https://tptp.org/cgi-bin/SystemOnTPTP">SystemOnTPTP</A>
+     </UL>
+<LI> DT2H2X 1.8.4
+     <UL>
+     <LI> As an ATP system
+     <LI> As a DTF type checker
+     <LI> Available in <A HREF="https://tptp.org/cgi-bin/SystemOnTPTP">SystemOnTPTP</A>
+     </UL>
+<LI> TPTP Utils (by Alex Steen)
+     <UL>
+     <LI> As a translator to plain THF (still to have Daniel's modifications merged)
+     </UL>
+</UL>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

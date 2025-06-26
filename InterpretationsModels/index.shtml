@@ -1,0 +1,833 @@
+<HTML>
+<HEAD>
+<TITLE> Interpretation Representation and Model Verification </TITLE>
+</HEAD>
+<BODY ALIGN=JUSTIFY>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">Interpretation Representation and Model Verification</H1>
+
+by 
+<A href="http://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>,
+<A href="https://www.alexandersteen.de">Alex Steen</A>,
+<A HREF="https://www.uliege.be/cms/c_11399834/en/pascal-fontaine">Pascal Fontaine</A>,
+Jack McKeown
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Representation of Interpretations in the TPTP World </H2>
+
+<UL>
+<LI> <A HREF="#Background">Background</A>
+     <UL>
+     <LI> <A HREF="#WhatIsAnInterpretation">What is an Interpretation?</A>
+     <LI> <A HREF="#Use">Why is Model Finding Useful?</A>
+     <LI> <A HREF="#Representation">Representation of Interpretations</A>
+     <LI> <A HREF="#Properties">Properties of Different Representations</A>
+     </UL>
+<LI> Representation of <A HREF="#FOFFinite">FOF Finite interpretations</A>
+<LI> Representation of <A HREF="#FOFSaturation">FOF Saturation interpretations</A>
+<LI> Representation of <A HREF="#FOFFormulae">FOF Formulae interpretations</A>
+<LI> Representation of <A HREF="#TFFFinite">TFF Finite interpretations</A>
+<LI> Representation of <A HREF="#TXFFinite">TXF Finite interpretations</A>
+<LI> Representation of <A HREF="#THFFinite">THF Finite interpretations</A>
+<LI> Representation of <A HREF="#TFFInfinite">TFF Infinite interpretations</A>
+     <UL>
+     <LI> Representation of <A HREF="#TFFInfiniteUninterpreted">TFF Infinite interpretations using 
+          uninterpreted terms</A>
+     <LI> Representation of <A HREF="#TFFInfiniteDefined">TFF Infinite interpretations using 
+          defined terms</A>
+     <LI> Representation of <A HREF="#TFFMixed">TFF Mixed interpretations</A>
+     </UL>
+<LI> Representation of <A HREF="#KripkeInterpretations">Kripke interpretations</A>
+<LI> Representation of Finite-Finite Kripke interpretations
+     <UL>
+     <LI> Representation of <A HREF="#KripkeFiniteFiniteGlobal">Finite-Finite Kripke interpretations
+          with only global axioms</A>
+     <LI> Representation of <A HREF="#KripkeFiniteFiniteLocal">Finite-Finite Kripke interpretations
+          with global and local axioms</A>
+     </UL>
+<LI> Representation of <A HREF="#KripkeFiniteInfinite">Finite-Infinite Kripke interpretations</A>
+<LI> Representation of <A HREF="#KripkeInfiniteFinite">Infinite-Finite Kripke interpretations</A>
+<LI> Representation of <A HREF="#KripkeInfiniteInfinite">Infinite-Infinite Kripke interpretations</A>
+<!--
+<LI> <A HREF="#Visualization">Visualization</A> of interpretations
+<LI> <A HREF="#Verification">Verification</A> of models
+-->
+</UL>
+
+<P>
+<A NAME="Background">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Background </H2>
+
+<A NAME="WhatIsAnInterpretation">
+<H3>What is an Interpretation?</H3>
+<UL>
+<LI> An interpretation is an assignment of meaning to all the symbols of a formal language.
+     <UL>
+     <LI> An interpretation often (but not always) provides a way to determine the truth values 
+          of formulae in a language.
+     <LI> If a given interpretation assigns the value True to a formula, the interpretation is 
+          called a model of that formula.
+     <LI> There are other (than determining truth values) ways models can be useful, e.g., as 
+          described in Renate's email.
+     </UL>
+     Based on <A HREF="https://en.wikipedia.org/wiki/Interpretation_(logic)">Wikipedia</A>
+<LI> An ontology of interpretation forms
+     <UL>
+     <LI> Tarskian (for classical logics)
+          <UL>
+          <LI> Herbrand. From <A HREF="https://en.wikipedia.org/wiki/Herbrand_interpretation">
+               Wikipedia</A>
+               <UL>
+               <LI> Explicit mapping
+               <LI> Mapping induced by saturation
+               <LI> Mapping induced by formulae (ala iProver)
+               <LI> *** Herband equality interpretations fit in here
+               </UL>
+          <LI> Domain & Mapping
+               From <A HREF="https://en.wikipedia.org/wiki/Interpretation_(logic)#Interpretations_of_a_first-order_language">
+               Wikipedia</A>
+               <UL>
+               <LI> Finite domain
+               <LI> Infinite domain
+               </UL>
+          </UL>
+     <LI> Kripke (for non-classical logics)
+          <UL>
+          <LI> Details to be filled in here
+          </UL>
+     </UL>
+</UL>
+
+<A NAME="Use">
+<H3>Why is Model Finding Useful?</H3>
+<UL>
+<LI> Checking the consistency of an axiomatization. [Sutcliffe]
+<LI> Finding the countermodel for a conjecture [Claessen], in particular ...
+<LI> In fault finding applications, e.g., in software verification, a countermodel for a 
+     proof obligation points to the location of the fault. [Sutcliffe]
+<LI> Finding a solution to a problem that is coded as a model finding problem. [Claessen]
+<LI> In teaching it is really useful to inspecting outcomes of student's experiments. [Steen]
+</UL>
+
+Is there a need for model finding systems that:
+<OL>
+<LI> Give only a "yes", indicating that there is a model.
+     <UL>
+     <LI> In an (industrial) application where models indicate bugs, users would probably get 
+          very frustrated. [McCune]
+     <LI> Acceptable, but a model is preferred. [Claessen]
+     <LI> As part of a decision procedure, sat/unsat could be used as a yes/no subroutine.
+          I do use this for my I/O logic reasoner. [Steen]
+     </UL>
+<LI> Give only a "yes, finite", indicating that there is a finite model.
+<LI> Output a model in some form
+     <UL>
+     <LI> In the case of a countermodel for a conjecture, one would like to have some concrete 
+          representation of it to see why the theorem cannot be proved. [Claessen]
+     <LI> Sometimes it is very easy to find satisfiability (a saturation) with ordered resolution
+          even if there is a finite model. [Tammet]
+     <LI> Regardless of the cardinalities, applications that use ATP systems to find models 
+          typically need an explicit model with a domain and symbol mapping. [Sutcliffe]
+     </UL>
+<LI> Output a finite model in some form
+     <UL>
+     <LI> Finite models are used to evaluate other clauses. [McCune]
+     <LI> It's better to require the output of a finite model as this can be easily checked
+          by other systems. [Zhang]
+     <LI> It is not enough to know that there is a solution; one would like to know what 
+          the solution is. [Claessen]
+     </UL>
+</OL>
+
+<A NAME="Representation">
+<H3>Representation of Interpretations</H3>
+<UL>
+<LI> If the interpretation does not explicitly represent the mapping for a given symbol, then
+     all possible mappings are implied, i.e., it's a set of interpretations.
+     That might not be useful to users.
+<LI> Infinite domains are necessary as soon as the formula language contains any numbers on 
+     an infinite domain (not arithemetic modulo).
+<LI> Infinite domains are also necessary for other (non-numeric) applications, e.g., those that 
+     involve modeling time. 
+</UL>
+
+Types of interpretations include:
+<UL>
+<LI> Classical interpretations
+     <UL>
+     <LI> Interpretations with a finite domain, and the symbol interpretations.
+          These are called <EM>finite interpretations</EM>.
+          The finite domain can be:
+          <UL>
+          <LI> Explicitly enumerated.
+          <LI> The finite Herbrand Universe of a Herbrand interpretation.
+          </UL>
+     <LI> Interpretations with an infinite domain, and the symbol interpretations.
+          These are called <EM>infinite interpretations</EM>.
+          The infinite domain can be:
+          <UL>
+          <LI> Explicitly generated, e.g., Peano arithmetic terms.
+          <LI> Explicitly specified, e.g., the integers.
+          <LI> Algebraic numbers (real closed fields)
+          <LI> The infinite Herbrand Universe of a Herbrand interpretation.
+          <LI> One can explicitly state that it's infinite while leaving open how this is 
+               realized, e.g., "in all infinite domains, it holds that ..."
+          <LI> Any others?
+          </UL>
+     <LI> Saturations.
+          Saturations induce Herbrand interpretations.
+     <LI> Models that are nearly constant everywhere, as used in the SMT world for model-based 
+          quantifier instantiation.
+     <LI> Consistent sets of formulae represent families of interpretations. [Steen]
+     <LI> You can read off a satisfying assignment from a non-closable tableau, right? [Steen]
+     <LI> Any others?
+     </UL>
+<LI> Non-classical Kripke interpretations
+     <UL>
+     <LI> Kripke interpretations with a finite number of worlds.
+     <LI> Kripke interpretations with an infinite number of worlds.
+          Infinite worlds are necessary when there are, e.g., in alethic modal logic, an infinite 
+          number of possibilities; in temporal logics, R is serial (always has a successor) and 
+          non-circular etc., so there have to be infinitely many worlds (points in time). [Steen]
+     <LI> Within each world of a Kripke interpretation there is a classical interpretation,
+          with the options as above.
+     </UL>
+</UL>
+
+<A NAME="Properties">
+<H3>Properties of Different Representations</H3>
+
+<UL>
+<LI> A finite model with an enumerated domain, and the symbol interpretations.
+     <UL>
+     <LI> My experience suggests that one would prefer a finite model over a saturation. [Claessen]
+     <LI> A finite model can be abbreviated in some way, e.g., if a 30-ary predicate is true for 
+          all but three cases, it is enough to mention those 3 cases and a default case. 
+          A large predicate table can be expressed in terms of a few smaller ones, e.g.,
+          <TT>p(X,Y) := q(X) & r(Y)</TT>. [Claessen]
+     </UL>
+<LI> A definition of an infinite domain, and the symbol interpretations.
+     <UL>
+     <LI> The domain must be adequate for interpreting all formulae. [Sutcliffe]
+     <LI> I hope it will be OK to specify the interpretation for that subset of an infinite
+          domain that is used, for which the range coincides with the domain.
+          The subset is induced by interpretation of terms, first constants, then inductively 
+          by functions. But what if no constants ... add a new constant as done for the Herbrand
+          Universe in a Herbrand interpretation? [Sutcliffe]
+     <LI> There are uncountably many interpretations: whatever the language, it will be possible 
+          to represent only a small (negligible) subset of all models.
+     <LI> The only ATP systems I know of that can produce an explicit infinite domain model are 
+          Z3 (Pascal says) and cvc5 (I think!). [Sutcliffe]
+     </UL>
+<LI> A saturation.
+     <UL>
+     <LI> A saturation of a set of clauses, created with only logical consequence inferences and 
+          simple redundancy, induces the set of Herbrand models of the clauses.
+     <LI> A saturation not containing the empty clause induces at least one Herbrand model of 
+          the clauses.
+     <LI> An empty saturation induces all interpretations, all of which are Herbrand models of 
+          the clauses.
+     <LI> A saturation induces the same set of Herbrand interpretations as the clauses themselves.
+     </UL>
+<LI> Opinions about  saturations.
+     <UL>
+     <LI> Hardly a useful artifact. [Sutcliffe]
+     <LI> Saturations are pretty much impossible to interpret explicitly in a way that can be 
+          used constructively by users. [Sutcliffe]
+     <LI> A saturation is not a direct representation of a finite model. [Tammet]
+     <LI> A saturation tells you only that models exist, but very little about what they might 
+          look like. 
+          Take some equational axioms for a group plus a denial of commutativity; 
+          the typical saturation gives the complete set of reductions for free groups plus the 
+          denial of commutativity, which does help finding an example of a non-commutative group.
+          [McCune]
+     <LI> There are classes of problem (including problems where all models are infinite) in 
+          which saturation can tell you everything about the models. [McCune]
+     <LI> A saturated set of clauses at the end doesn't mean much for other systems. [Zhang]
+     <LI> I have never been able to make use of a saturated clause set. [Claessen]
+     <LI> The clauses of a saturation could in principle be used for checking whether some 
+          later presented finite part of an infinite model is OK. [Tammet]
+     <LI> In some sense the saturation does not differ very much from the original clause set: 
+          the saturation is also just a clause set, and is typically not a fixpoint for other 
+          search strategies. [Tammet]
+     <LI> Given a saturation and the system search control, it's sometimes possible to decide if a
+          ground atom is TRUE or FALSE. [Schulz]
+          In the general case you cannot even decide ground atoms. [Tammet]
+     <LI> There have been several attempts to improve the representation (Viennese ATP 
+          researchers (Leitsch, Baaz, Ferm&uuml;ller etc.), but the improvements are basically 
+          still the fixpoint set of clauses. [Tammet]
+     <LI> I have never read the proof of completeness of superposition but isn't it the case that 
+          a saturation allows to build a model? [Fontaine]
+     <LI> An email exchange with Joe Schoisswohl and Cezary Kaliszyk
+          <PRE>
+A Saturation (S) is a way of writing a Herbrand interpretation
+(HI) of input formulae (I). I learned that a HI consists of:
+
+Domain (D) = The Herbrand Universe (HU), and if the HU is empty add a new
+           constant.
+Function map (F) = Identity
+Predicate map (P) = Some way of saying which elements of the Herbrand
+           Base (HB) are true/false.
+
+So, simplistically, S can be represented in the TPTP format by providing
+the conjunction of the universally quantified formulae of S. Yeah, I know
+a saturation is modulo the ATP system's ordering, so it might not be
+possible to prove S |= I, but let's gloss over that for now. There might
+be a deeper issue: In the CNF context, S can contain symbols not in I
+(e.g., Skolems), and hence not part of the HU. So formally, S might not
+be an interpretation of I. What problems might arise? I'm thinking of an
+example like ...
+
+Axioms
+    ? [X] : p(X)
+HI
+    D = {a}
+    F = id
+    P = p(a) == true
+But ...
+    S = {p(sk)}
+
+Here p(sk) |= ? [X] : p(X). Are there any weird cases where things break?
+Can we say that an S that contains symbols not from the I really represents
+a HI of I? Or only a HI of CNF(I), then lean on equisatisfiability to prove
+that "if S |= I then HI |- I" where HI is somehow constructed from S?
+</PRE>
+     <LI> Useful email from Renate Schmidt
+          <PRE>
+>> During my talk yesterday you indicated that you have or know of ways that
+>> saturations can be useful. Can you point me at what to read, please (or
+>> just tell me the story!). Thanks.
+
+Saturations provide a very useful ways to study modal logics, description
+logics, fragments of FOL, any sets of formulas really. If the saturation is
+ground models can be read off. If they are not ground clauses can be read as
+rules or properties.
+What makes clauses hard to read is nested Skolem terms and clauses that are not
+obviously expressible as first-order formulas.
+
+If structural transformation is done as part of (the translation to FOL for
+non-classical logics and) clausification, and ordered resolution/superposition
+is used, then the saturation will often contain only flat clauses which do not
+contain any nested terms. This can't be generally guaranteed but if the right
+combinations of structural transformation and a refinement of resolution for a
+large number of decidable logics and solvable fragments the saturation will be
+flat (and finitely bounded) and thus readable and useful for gaining insight
+into the problem/the logic and the behaviour of inference.
+Much of the work in developing resolution decision procedures involves
+developing combinations of techniques so that the saturation is well-behaved
+(usually flat).
+
+>>> You may quote me. Please also cite
+>>> https://link.springer.com/chapter/10.1007/978-3-642-37651-1_15
+
+In recent work we developed a saturation method for deciding Boolean conjunctive
+querying and query rewriting for a large class of guarded fragments which
+produces saturations which can be back-translated in FOL, i.e., the saturation
+is readable.
+Reference: https://link.springer.com/article/10.1007/s10817-023-09687-x
+
+We have also investigated how resolution can be used to simulate other inference
+methods, e.g. modal tableau. For this again structural transformation is crucial
+and in the case of tableau we use hyperresolution, where for modal and
+description logics the saturation will be ground and thus nice, because readable
+in the source logic.
+Reference: Section 2 in this paper http://dx.doi.org/10.1016/j.entcs.2010.04.016
+[https://ars.els-cdn.com/content/image/S15710661.gif]<http://dx.doi.org/10.1016/
+j.entcs.2010.04.016>
+Simulation and Synthesis of Deduction
+Calculi<http://dx.doi.org/10.1016/j.entcs.2010.04.016>
+This paper gives an overview of two methods for automatically or
+semi-automatically generating deduction calculi from the semantic specification
+of a …
+dx.doi.org
+          </PRE>
+     </UL>
+</UL>
+
+<P>
+<A NAME="FOFFinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of FOF Finite Interpretations</H2>
+
+Consider the following FOF problem from the
+<A HREF="https://tptp.org/UserDocs/QuickGuide/FiniteInterpretations.html">
+TPTP Format for Finite Interpretations</A> in the TPTP Quick Guide.
+It is CounterSatisfiable, i.e., there is a model for the axioms and negated conjecture.
+<PRE>
+<!--#include file="ModelExamples/FOF_Finite.p"-->
+</PRE>
+A weakness of the format for the finite interpretation presented in the
+<A HREF="https://tptp.org/UserDocs/QuickGuide/FiniteInterpretations.html">
+TPTP Format for Finite Interpretations</A> in the TPTP Quick Guide
+is that the format relies on the formulae names (all the same) to link the three
+components of the interpretation, which is not allowed in the TPTP world.
+In the new format these are merged into a single annotated formula with the role
+<TT>interpretation</TT>:
+<PRE>
+<!--#include file="ModelExamples/FOF_Finite.s"-->
+</PRE>
+
+Note how the use of <TT>"distinct object"</TT>s makes the domain elements distinct.
+<P>
+<UL>
+<LI> The consistency of the interpretation formula can be
+     <A HREF="ModelExamples/FOF_Finite.s___Vampire---4.7.s.txt">confirmed by Vampire</A>.
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/FOF_Finite.s.p"><TT>FOF_Finite.s.p</TT></A> can be 
+     <A HREF="ModelExamples/FOF_Finite.s.p___Vampire---4.7.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+The parts of a single <TT>interpretation</TT> formula can be separated out at varying levels of 
+granularity, using subroles.
+At a medium grained level the domain and mappings can be separated:
+<PRE>
+<!--#include file="ModelExamples/FOF_Finite_Medium.s"-->
+</PRE>
+<P>
+At a fine grained level the domain and mappings can be separated by symbol:
+<PRE>
+<!--#include file="ModelExamples/FOF_Finite_Fine.s"-->
+</PRE>
+<A NAME="FOFSaturation">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of FOF Saturation Interpretations</H2>
+
+The new format for interpretations can also be used for saturations that induce a set of Herbrand
+interpretations, by giving the saturation formulae the role <TT>interpretation-herbrand</TT>:
+(the <TT>-herbrand</TT> is optional but useful):
+
+<PRE>
+<!--#include file="ModelExamples/FOF_Saturation.s"-->
+</PRE>
+(This saturation was created by E.)
+<UL>
+
+<LI> The consistency of the interpretation formulae can be
+     <A HREF="ModelExamples/FOF_Saturation.s___Vampire---4.8.s.txt">confirmed by 
+     Vampire</A>.
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/FOF_Saturation.s.p"><TT>FOF_Saturation.s.p</TT></A> can be 
+     <A HREF="ModelExamples/FOF_Saturation.s.p___E---3.1.s.txt">proved by E</A>.
+</UL>
+<P>
+<A NAME="FOFFormulae">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of FOF Formulae Interpretations</H2>
+
+The new format for interpretations can also be used for formulae that induce a set of Herbrand
+interpretations, by giving the formulae the role <TT>interpretation-herbrand</TT> 
+(the <TT>-herbrand</TT> is optional but useful):
+<PRE>
+<!--#include file="ModelExamples/FOF_Formulae.s"-->
+</PRE>
+(This set of formulae is a modified version of the 
+<A HREF="ModelExamples/FOF_Finite.p___iProver-SAT---3.8.s.txt">Herbrand-formulae created by 
+iProver</A>.)
+<UL>
+<LI> The consistency of the interpretation formulae can be
+     <A HREF="ModelExamples/FOF_Formulae.s___Vampire---4.8.s.txt">confirmed by Vampire</A>.
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/FOF_Formulae.s.p"><TT>FOF_Formulae.s.p</TT></A> can be 
+     <A HREF="ModelExamples/FOF_Formulae.s.p___Vampire---4.8.s.txt">proved by Vampire</A>.
+</UL>
+<A NAME="TFFFinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of TFF/TXF Interpretations</H2>
+
+The example of a finite FOF interpretation clearly points to the need for types.
+The problem would be better written as ...
+<PRE>
+<!--#include file="ModelExamples/TFF_Finite.p"-->
+</PRE>
+... and a finite interpretation (a countermodel for the conjecture) is ...
+<PRE>
+<!--#include file="ModelExamples/TFF_Finite.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula can be
+     <A HREF="ModelExamples/TFF_Finite.s___Vampire.s.txt">confirmed by Vampire</A>.
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/TFF_Finite.s.p"><TT>TFF_Finite.s.p</TT></A> can be
+     <A HREF="ModelExamples/TFF_Finite.s.p___Vampire.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+The parts of a single <TT>interpretation</TT> formula can be separated out at varying levels of 
+granularity, using subroles.
+At a medium grained level the domain and mappings can be separated:
+<PRE>
+<!--#include file="ModelExamples/TFF_Finite_Medium.s"-->
+</PRE>
+At a fine grained level the individual symbol mappings can be separated. 
+The types of the symbols and the types of the domain must be given.
+<PRE>
+<!--#include file="ModelExamples/TFF_Finite_Fine.s"-->
+</PRE>
+<P>
+If you baulk at using the same type for domains elements as terms (and it does get murky,
+e.g., when quantification over only the domain elements is intended, e.g., in 
+<TT>! [DH: human] : ( DH = d_jon )</TT>, you can use new types for the domain elements.
+This is mandatory when the <A HREF="#TFFInfiniteUninterpreted">domain elements are complex</A>, 
+or of a <A HREF="#TFFInfiniteDefined">defined type like <TT>$int</TT></A>.
+Sadly, using separate types makes it necessary to add <EM>type promotion</EM> bijections to raise 
+domain elements from domain types to term types, so that it's possible to reuse the problem's
+functions and predicates and keep things well typed. 
+Here's an example ...
+<PRE>
+<!--#include file="ModelExamples/TFF_Finite_SeparateDomains.s"-->
+</PRE>
+
+With the use of separate domain types, use of quantification is clear, e.g., ...
+<PRE>
+<!--#include file="ModelExamples/TFF_Finite_Compact.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula can be
+     <A HREF="ModelExamples/TFF_Finite_SeparateDomains.s___Vampire.s.txt">confirmed by Vampire</A>.
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/TFF_Finite_SeparateDomains.s.p"><TT>TFF_Finite_SeparateDomains.s.p</TT></A> can be
+     <A HREF="ModelExamples/TFF_Finite_SeparateDomains.s.p___Vampire.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+<P>
+<A NAME="TXFFinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of TXF Interpretations</H2>
+
+<P>
+<A NAME="THFFinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of THF Interpretations</H2>
+
+The following TH0 problem is CounterSatisfiable, i.e., there is a model for the axioms and 
+negated conjecture.
+<PRE>
+<!--#include file="ModelExamples/THF_Finite.p"-->
+</PRE>
+Here's a finite model (that I found using Nitpick) ... 
+<PRE>
+<!--#include file="ModelExamples/THF_Finite.s"-->
+</PRE>
+
+<UL>
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/THF_Finite.s.p"><TT>THF_Finite.s.p</TT></A> can be
+     <A HREF="ModelExamples/THF_Finite.s.p___Vampire.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+<A NAME="TFFInfinite">
+<A NAME="TFFInfiniteUninterpreted">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Infinite Interpretations</H2>
+
+Consider the following TFF example that requires an integer size domain ...
+<PRE>
+<!--#include file="ModelExamples/TFF_Infinite.p"-->
+</PRE>
+Here's a model using closed terms representing Peano numbers as the domain elements ... 
+<PRE>
+<!--#include file="ModelExamples/TFF_Peano.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula 
+<!--
+     can be <A HREF="ModelExamples/TFF_Peano.s___Vampire---4.7.s.txt">
+     confirmed by Vampire</A>.
+-->
+     cannot be confirmed by any ATP system I have.
+<LI> The verification proof problem
+     <A HREF="ModelExamples/TFF_Peano.s.p"><TT>TFF_Peano.s.p</TT></A> can be
+     <A HREF="ModelExamples/TFF_Peano.s.p___Vampire.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+<A NAME="TFFInfiniteDefined">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+Here's a model using the integers for the domain elements ... 
+<PRE>
+<!--#include file="ModelExamples/TFF_Integer.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula
+<!--
+     can be <A HREF="ModelExamples/TFF_Integer.s___Vampire.s.txt">confirmed by Vampire</A>.
+-->
+     cannot be confirmed by any ATP system I have.
+<LI> <A HREF="ModelExamples/TFF_Integer.s.p"><TT>TFF_Integer.s.p</TT></A> 
+     is the proof problem to verify the countermodel.
+<LI> The consistency of the proof problem's axioms
+<!-- can be <A HREF="ModelExamples/TFF_Integer.s.p.SAT___Vampire---4.7.s.txt">confirmed by
+     Vampire</A>.
+-->
+     cannot be confirmed by any ATP system I have.
+<LI> The verification proof problem can be
+     <A HREF="ModelExamples/TFF_Integer.s.p___Vampire.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<A NAME="TFFMixed">
+Finite and infinite domains can be mixed.
+<A HREF="ModelExamples/TFF_Mixed.THM.p">Here's a problem</A> that can be
+proven by Vampire.
+With the conjecture modified as below, it has a countermodel with integer domains for the X and
+Y positions (mimicing the logic), and a finite domain for the Z level.
+<PRE>
+<!--#include file="ModelExamples/TFF_Mixed.p"-->
+</PRE>
+Here's the countermodel ...
+<PRE>
+<!--#include file="ModelExamples/TFF_Mixed.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula can be 
+     <A HREF="ModelExamples/TFF_Mixed.s___Z3---4.8.9.0.s.txt">confirmed by Z3</A> 
+     (and not by Vampire).
+<LI> The verification proof problem 
+     <A HREF="ModelExamples/TFF_Mixed.s.p"><TT>TFF_Mixed.s.p</TT></A> can be
+     <A HREF="ModelExamples/TFF_Mixed.s.p___Vampire---4.7.s.txt">proved by Vampire</A>.
+</UL>
+<P>
+<A NAME="KripkeInterpretations">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Kripke Interpretations</H2>
+
+This can be done in only a typed logic.
+<P>
+Record world information in interpretation-formulas, using 
+a new defined type <TT>$world</TT>, 
+a new defined predicate <TT>$in_world</TT> with type <TT>($world * $o) > $o</TT>,
+a new defined predicate <TT>$accessible_world</TT> with type <TT>($world * $world) > $o</TT>, 
+and
+a new defined constant <TT>$local_world</TT> with type <TT>$world</TT>.
+Syntactically distinct constants of type <TT>$world</TT> are known to be unequal.
+The interpretation in a world is represented as above, with guards used to specify the worlds 
+in which the interpretation is used.
+<P>
+The <TT>logic</TT> specification of the problem is included as a comment, because the
+interpretation-formulae under-specify the logic, e.g., it's usually not possible to see whether 
+an interpretation was meant to exemplify a S5 logic specification or a K logic specification - in 
+both cases the concrete model could interpret the accessibility relation as equivalence
+relation (this is required for S5 but it is also OK for K).
+<P>
+<A NAME="KripkeFiniteFiniteGlobal">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Finite-Finite Kripke Interpretations - Global Axioms</H2>
+
+Here's a non-theorem.
+Note that there are only global axioms and a local conjecture, which is the TPTP standard for 
+non-classical logic problems.
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Finite-Global.p"-->
+</PRE>
+After using NTF2THF to embed the 
+<A HREF="ModelExamples/NXF_Finite-Finite-Global.TH0.p">problem into TH0</A>, Nitpick 
+finds a <A HREF="ModelExamples/NXF_Finite-Finite-Global.TH0.p___Nitpick---2016.s">model</A> 
+with a finite number of worlds each of which has a finite domain (hence a "Finite-Finite Kripke 
+Interpretation") that I converted by hand into TPTP format ...
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Finite-Global.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula can be
+     <A HREF="ModelExamples/NXF_Finite-Finite-Global.s___Vampire.s.txt">
+     confirmed by Vampire</A>.
+<!--
+<LI> The TXF verification proof problem 
+     <A HREF="ModelExamples/NXF_Finite-Finite-Global.s.TXF.p">
+     <TT>NXF_Finite-Finite-Global.s.TXF.p</TT></A> can be
+     <A HREF="ModelExamples/NXF_Finite-Finite-Global.s.TXF.p___Vampire---4.8.s.txt">
+     proved by Vampire</A>.
+-->
+<LI> The NXF verification proof problem 
+     <A HREF="ModelExamples/NXF_Finite-Finite-Global.s.p">
+     <TT>NXF_Finite-Finite-Global.s.p</TT></A> can be
+     <A HREF="ModelExamples/NXF_Finite-Finite-Global.s.p___Leo-III.s.txt">proved by Leo-III</A>.
+</UL>
+
+Here's an interpretation for that signature with a varying-flexible logic, using various possible 
+techniques in an interpretation representation:
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Finite-Varying.s"-->
+</PRE>
+<P>
+<A NAME="KripkeFiniteFiniteLocal">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Finite-Finite Kripke Interpretations - Global and Local Axioms</H2>
+
+<A HREF="ModelExamples/NXF_Finite-Finite-Local.THM.p">Here's a problem</A> that can be
+proven by Leo-III. 
+Note that it has both global and local axioms (contrary to the standard case for proving, where
+all the axioms are global).
+With the conjecture modified as below, it has a countermodel with a finite number of worlds 
+each of which has a finite domain ...
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Finite-Local.p"-->
+</PRE>
+After using NTF2THF to embed the <A HREF="ModelExamples/NXF_Finite-Finite-Local.TH0.p">
+problem into TH0</A>, Nitpick finds a 
+<A HREF="ModelExamples/NXF_Finite-Finite-Local.TH0.p___Nitpick---2016.s">countermodel</A> 
+that I converted by hand into TPTP format ...
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Finite-Local.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula can be
+     <A HREF="ModelExamples/NXF_Finite-Finite-Local.s___Vampire.s.txt">confirmed by Vampire</A>.
+<!--
+<LI> <A HREF="ModelExamples/NXF_Finite-Finite-Local.s.TXF.p">
+     <TT>NXF_Finite-Finite-Local.s.TXF.p</TT></A> is the proof problem to verify the countermodel.
+<LI> The consistency of the proof problem's axioms can be
+     <A HREF="ModelExamples/TFF_Mixed.s.p.SAT___Z3---4.8.9.0.s.txt">confirmed by Z3</A>
+     (and not by Vampire).
+<LI> The verification proof problem can be
+     <A HREF="ModelExamples/NXF_Finite-Finite.s.TXF.p___Vampire---4.7.s.txt"> 
+     proved by Vampire</A>.
+-->
+</UL>
+<P>
+<A NAME="KripkeFiniteInfinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Finite-Infinite Kripke Interpretations</H2>
+
+<A HREF="ModelExamples/NXF_Finite-Infinite.THM.p">Here's a problem</A> that can be
+proven by Leo-III. 
+With the conjecture modified as below, it has a countermodel that requires (I think, at least
+it uses) only two worlds, and they have infinite domains because sequences of tosses are infinite 
+and different sequences are unequal.
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Infinite.p"-->
+</PRE>
+After using NTF2THF to embed the <A HREF="ModelExamples/NXF_Finite-Infinite.TH0.p">problem 
+into TH0</A>, Nitpick cannot find a countermodel ... as expected ... Nitpick can find only finite 
+models.
+So I hand-rolled a countermodel.
+In the countermodel sequences of tosses are represented by integers, with the null sequence 
+represented by 1.
+The encoding is easy to see in binary, reading the tosses left-to-right and the bits
+right-to-left. 
+If the last bit is 0 a head was tossed, if 1 a tail was tossed:
+null = 1 =            0001,
+head = 2 =            0010,
+tail = 3 =            0011,
+head-head = 4 =       0100,
+head-tail = 5 =       0101,
+tail-head = 6 =       0110,
+tail-tail = 7 =       0111,
+head-head-head = 8 =  1000,
+head-head-tail = 9 =  1001,
+head-tail-head = 10 = 1010,
+head-tail-tail = 11 = 1011,
+tail-head-head = 12 = 1100,
+etc, etc.
+The local world tosses a sequence of heads, interpreted as integer domain elements that are
+powers of 2.
+The other world first tosses a tail, represented by 3, and then tosses all heads, interpreted as
+integer domain elements that are powers of 2 multiplied by 3.
+There is no definition of sequences interpreted as integer domain elements less or equal to 0,
+but they are not "all_heads".
+<PRE>
+<!--#include file="ModelExamples/NXF_Finite-Infinite.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula 
+     cannot be confirmed by any ATP system I have.
+<!--
+     can be <A HREF="ModelExamples/NXF_Finite-Infinite.s___Vampire---4.7.s.txt">
+     confirmed by Vampire</A>.
+-->
+<!--
+<LI> <A HREF="ModelExamples/NXF_Finite-Infinite.s.p"><TT>NXF_Finite-Infinite.s.p</TT></A>
+     is the proof problem to verify the countermodel.
+<LI> The consistency of the proof problem's axioms can be
+     <A HREF="ModelExamples/TFF_Mixed.s.p.SAT___Z3---4.8.9.0.s.txt">confirmed by Z3</A>
+     (and not by Vampire).
+<LI> The verification proof problem can be
+     <A HREF="ModelExamples/NXF_Finite--Infinite.s.p___Vampire---4.7.s.txt">
+     proved by Vampire</A>.
+-->
+</UL>
+<P>
+<A NAME="KripkeInfiniteFinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Infinite-Finite Kripke Interpretations</H2>
+
+This example requires (I think) an infinite number of worlds.
+The interpretation in the local world will have an infinite domain, but all the other
+worlds' domains need only a single element (one of the domain elements from the local world).
+All the domain elements of the local world need to have a corresponding world with that
+domain element.
+<PRE>
+<!--#include file="ModelExamples/NXF_Infinite-Finite.p"-->
+</PRE>
+Here's a model with an integer number of worlds.
+<PRE>
+<!--#include file="ModelExamples/NXF_Infinite-Finite.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula
+     cannot be confirmed by any ATP system I have.
+<!--
+     can be <A HREF="ModelExamples/NXF_Infinite-Finite.s___Vampire---4.7.s.txt">
+     confirmed by Vampire</A>.
+-->
+<!--
+<LI> <A HREF="ModelExamples/NXF_Infinite-Finite.s.p"><TT>NXF_Infinite-Finite.s.p</TT></A>
+     is the proof problem to verify the countermodel.
+<LI> The consistency of the proof problem's axioms can be
+     <A HREF="ModelExamples/TFF_Mixed.s.p.SAT___Z3---4.8.9.0.s.txt">confirmed by Z3</A>
+     (and not by Vampire).
+<LI> The verification proof problem can be
+     <A HREF="ModelExamples/NXF_Finite--Infinite.s.p___Vampire---4.7.s.txt">
+     proved by Vampire</A>.
+-->
+</UL>
+<P>
+<A NAME="KripkeInfiniteInfinite">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Representation of Infinite-Infinite Kripke Interpretations</H2>
+
+<A HREF="ModelExamples/NXF_Infinite-Infinite.THM.p">Here's a problem</A> that I think
+should be provable, but none of the ATP systems I know can (after 
+<A HREF="ModelExamples/NXF_Infinite-Infinite.THM.TH0.p">conversion to TH0</A>, Leo-III
+does not have the arithmetic power, E, Vampire, and Zipperposition don't do arithmetic (at least
+in THF), cvc5 gives parse error).
+With the conjecture commented out as below, the axioms have a an Infinite-Infinite model (I think).
+<PRE>
+<!--#include file="ModelExamples/NXF_Infinite-Infinite.p"-->
+</PRE>
+Here's a model in which there are an infinite number of worlds - one for each integer numbered 
+year, an infinite number of ages as integers, and just one person in each world.
+<PRE>
+<!--#include file="ModelExamples/NXF_Infinite-Infinite.s"-->
+</PRE>
+
+<UL>
+<LI> The consistency of the interpretation formula
+     cannot be confirmed by any ATP system I have.
+<!--
+     can be <A HREF="ModelExamples/NXF_Infinite-Infinite.s___Vampire---4.7.s.txt">
+     confirmed by Vampire</A>.
+-->
+<!--
+<LI> <A HREF="ModelExamples/NXF_Infinite-Infinite.s.p"><TT>NXF_Infinite-Infinite.s.p</TT></A>
+     is the proof problem to verify the countermodel.
+<LI> The consistency of the proof problem's axioms can be
+     <A HREF="ModelExamples/TFF_Mixed.s.p.SAT___Z3---4.8.9.0.s.txt">confirmed by Z3</A>
+     (and not by Vampire).
+<LI> The verification proof problem can be
+     <A HREF="ModelExamples/NXF_Finite--Infinite.s.p___Vampire---4.7.s.txt">
+     proved by Vampire</A>.
+-->
+</UL>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

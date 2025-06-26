@@ -1,0 +1,87 @@
+Z3---4.8.9.0   system information being retrieved
+Z3---4.8.9.0's non-default parameters being retrieved
+Z3---4.8.9.0's TFF_Mixed.s being prepared by /exp/home/tptp/ServiceTools/tptp4X
+    -d /tmp/SystemOnTPTP16612 
+    -t none 
+    -f tptp
+    -x 
+    -u machine
+    TFF_Mixed.s
+Z3---4.8.9.0   being executed on TFF_Mixed using /exp/home/tptp/Systems/Z3---4.8.9.0/run_z3_tptp -proof -model -t:30 -file:'/tmp/SystemOnTPTP16612/TFF_Mixed.s.tptp'
+% START OF SYSTEM OUTPUT
+Z3tptp [4.8.9.0] (c) 2006-20**. Microsoft Corp.
+Usage: tptp [options] [-file:]file
+  -h, -?       prints this message.
+  -smt2        print SMT-LIB2 benchmark.
+  -m, -model   generate model.
+  -p, -proof   generate proof.
+  -c, -core    generate unsat core of named formulas.
+  -st, -statistics display statistics.
+  -t:timeout   set timeout (in second).
+  -smt2status  display status in smt2 format instead of SZS.
+  -check_status check the status produced by Z3 against annotation in benchmark.
+  -<param>:<value> configuration parameter and value.
+  -o:<output-file> file to place output in.
+% SZS status Satisfiable
+% SZS output start Model
+tff(d_level_val_1_type, type, (
+   d_level_val_1: d_level)).
+tff(d_middle_type, type, (
+   d_middle: d_level)).
+tff(d_level_val_3_type, type, (
+   d_level_val_3: d_level)).
+tff(d_space_type, type, (
+   d_space: d_level)).
+tff(d_level_val_0_type, type, (
+   d_level_val_0: d_level)).
+tff(d_ground_type, type, (
+   d_ground: d_level)).
+tff(d_level_val_2_type, type, (
+   d_level_val_2: d_level)).
+tff(d_top_type, type, (
+   d_top: d_level)).
+tff(level_val_3_type, type, (
+   level_val_3: level)).
+tff(space_type, type, (
+   space: level)).
+tff(level_val_0_type, type, (
+   level_val_0: level)).
+tff(top_type, type, (
+   top: level)).
+tff(level_val_2_type, type, (
+   level_val_2: level)).
+tff(middle_type, type, (
+   middle: level)).
+tff(level_val_1_type, type, (
+   level_val_1: level)).
+tff(ground_type, type, (
+   ground: level)).
+tff(possible_position_type, type, (
+   possible_position: ( $int * $int * level ) > $o)).
+tff(d2level_type, type, (
+   d2level: d_level > level)).
+tff(formula1, axiom,
+    d_middle = d_level!val!1).
+tff(formula2, axiom,
+    d_space = d_level!val!3).
+tff(formula3, axiom,
+    d_ground = d_level!val!0).
+tff(formula4, axiom,
+    d_top = d_level!val!2).
+tff(formula5, axiom,
+    space = level!val!3).
+tff(formula6, axiom,
+    top = level!val!0).
+tff(formula7, axiom,
+    middle = level!val!2).
+tff(formula8, axiom,
+    ground = level!val!1).
+tff(formula9, axiom,
+    ![X0: $int, X1: $int, X2: level] : (possible_position(X0, X1, X2) <=> ((X0 = level!val!2) | (X0 = level!val!1) | (X0 = level!val!0)))).
+tff(formula10, axiom,
+    ![X0: d_level] : (d2level(X0) = ite_t((ite_t((X0 = d_level!val!2), d_level!val!2, ite_t((X0 = d_level!val!0), d_level!val!0, ite_t((X0 = d_level!val!3), d_level!val!3, d_level!val!1))) = d_level!val!3), level!val!3, ite_t((ite_t((X0 = d_level!val!2), d_level!val!2, ite_t((X0 = d_level!val!0), d_level!val!0, ite_t((X0 = d_level!val!3), d_level!val!3, d_level!val!1))) = d_level!val!2), level!val!0, ite_t((ite_t((X0 = d_level!val!2), d_level!val!2, ite_t((X0 = d_level!val!0), d_level!val!0, ite_t((X0 = d_level!val!3), d_level!val!3, d_level!val!1))) = d_level!val!1), level!val!2, level!val!1))))).
+% SZS output end Model
+
+% END OF SYSTEM OUTPUT
+RESULT: TFF_Mixed - Z3---4.8.9.0 says Satisfiable - CPU = 0.07 WC = 0.16 
+OUTPUT: TFF_Mixed - Z3---4.8.9.0 says Model - CPU = 0.07 WC = 0.16 

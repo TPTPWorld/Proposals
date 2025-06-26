@@ -1,0 +1,1003 @@
+% SZS status Theorem for TFF_Mixed.s
+% SZS output start Proof for TFF_Mixed.s
+tff(type_def_5, type, level: $tType).
+tff(type_def_6, type, d_level: $tType).
+tff(func_def_0, type, ground: level).
+tff(func_def_1, type, middle: level).
+tff(func_def_2, type, top: level).
+tff(func_def_3, type, space: level).
+tff(func_def_4, type, d_ground: d_level).
+tff(func_def_5, type, d_middle: d_level).
+tff(func_def_6, type, d_top: d_level).
+tff(func_def_7, type, d_space: d_level).
+tff(func_def_8, type, d2level: (d_level) > level).
+tff(func_def_16, type, sK1: $int).
+tff(func_def_17, type, sK2: $int).
+tff(func_def_18, type, sK3: $int).
+tff(func_def_19, type, sK4: $int).
+tff(func_def_20, type, sK5: level).
+tff(func_def_21, type, sK6: $int).
+tff(func_def_22, type, sK7: $int).
+tff(func_def_23, type, sK8: level).
+tff(func_def_24, type, sK9: level).
+tff(func_def_25, type, sK10: (level) > d_level).
+tff(pred_def_1, type, possible_position: ($int * $int * level) > $o).
+tff(f1101,plain,(
+  $false),
+  inference(avatar_smt_refutation,[],[f138,f143,f148,f153,f164,f165,f166,f167,f168,f169,f170,f171,f184,f185,f186,f187,f188,f189,f194,f199,f204,f209,f214,f219,f224,f229,f234,f239,f245,f247,f250,f251,f308,f313,f318,f323,f392,f397,f402,f668,f674,f794,f795,f846,f903,f924,f935,f938,f943,f952,f963,f985,f998,f1001,f1010,f1020,f1025,f1030,f1035,f1044,f1053,f1054,f1055,f1068,f1078,f1088,f1090,f1091,f1100])).
+tff(f1100,plain,(
+  ~spl11_13 | ~spl11_23),
+  inference(avatar_contradiction_clause,[],[f1098])).
+tff(f1098,plain,(
+  $false | (~spl11_13 | ~spl11_23)),
+  inference(resolution,[],[f137,f240])).
+tff(f240,plain,(
+  ( ! [X0 : $int,X1 : $int] : (~possible_position(X0,X1,space)) ) | ~spl11_23),
+  inference(backward_demodulation,[],[f61,f193])).
+tff(f193,plain,(
+  space = d2level(d_space) | ~spl11_23),
+  inference(avatar_component_clause,[],[f191])).
+tff(f191,plain,(
+  spl11_23 <=> space = d2level(d_space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_23])])).
+tff(f61,plain,(
+  ( ! [X0 : $int,X1 : $int] : (~possible_position(X0,X1,d2level(d_space))) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f20,plain,(
+  ! [X0 : $int,X1 : $int] : (~possible_position(X0,X1,d2level(d_space)) & possible_position(X0,X1,d2level(d_top)) & possible_position(X0,X1,d2level(d_middle)) & possible_position(X0,X1,d2level(d_ground))) & space = d2level(d_space) & top = d2level(d_top) & middle = d2level(d_middle) & ground = d2level(d_ground) & ! [X2 : level] : d2level(sK10(X2)) = X2 & ! [X4 : d_level,X5 : d_level] : (X4 = X5 | d2level(X4) != d2level(X5)) & d_top != d_space & d_middle != d_space & d_middle != d_top & d_ground != d_space & d_ground != d_top & d_ground != d_middle & ! [X6 : d_level] : (d_space = X6 | d_top = X6 | d_middle = X6 | d_ground = X6)),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK10])],[f8,f19])).
+tff(f19,plain,(
+  ! [X2 : level] : (? [X3 : d_level] : d2level(X3) = X2 => d2level(sK10(X2)) = X2)),
+  introduced(choice_axiom,[])).
+tff(f8,plain,(
+  ! [X0 : $int,X1 : $int] : (~possible_position(X0,X1,d2level(d_space)) & possible_position(X0,X1,d2level(d_top)) & possible_position(X0,X1,d2level(d_middle)) & possible_position(X0,X1,d2level(d_ground))) & space = d2level(d_space) & top = d2level(d_top) & middle = d2level(d_middle) & ground = d2level(d_ground) & ! [X2 : level] : ? [X3 : d_level] : d2level(X3) = X2 & ! [X4 : d_level,X5 : d_level] : (X4 = X5 | d2level(X4) != d2level(X5)) & d_top != d_space & d_middle != d_space & d_middle != d_top & d_ground != d_space & d_ground != d_top & d_ground != d_middle & ! [X6 : d_level] : (d_space = X6 | d_top = X6 | d_middle = X6 | d_ground = X6)),
+  inference(ennf_transformation,[],[f6])).
+tff(f6,plain,(
+  ! [X0 : $int,X1 : $int] : (~possible_position(X0,X1,d2level(d_space)) & possible_position(X0,X1,d2level(d_top)) & possible_position(X0,X1,d2level(d_middle)) & possible_position(X0,X1,d2level(d_ground))) & space = d2level(d_space) & top = d2level(d_top) & middle = d2level(d_middle) & ground = d2level(d_ground) & ! [X2 : level] : ? [X3 : d_level] : d2level(X3) = X2 & ! [X4 : d_level,X5 : d_level] : (d2level(X4) = d2level(X5) => X4 = X5) & d_top != d_space & d_middle != d_space & d_middle != d_top & d_ground != d_space & d_ground != d_top & d_ground != d_middle & ! [X6 : d_level] : (d_space = X6 | d_top = X6 | d_middle = X6 | d_ground = X6)),
+  inference(rectify,[],[f1])).
+tff(f1,axiom,(
+  ! [X1 : $int,X2 : $int] : (~possible_position(X1,X2,d2level(d_space)) & possible_position(X1,X2,d2level(d_top)) & possible_position(X1,X2,d2level(d_middle)) & possible_position(X1,X2,d2level(d_ground))) & space = d2level(d_space) & top = d2level(d_top) & middle = d2level(d_middle) & ground = d2level(d_ground) & ! [X1 : level] : ? [X3 : d_level] : d2level(X3) = X1 & ! [X1 : d_level,X2 : d_level] : (d2level(X1) = d2level(X2) => X1 = X2) & d_top != d_space & d_middle != d_space & d_middle != d_top & d_ground != d_space & d_ground != d_top & d_ground != d_middle & ! [X0 : d_level] : (d_space = X0 | d_top = X0 | d_middle = X0 | d_ground = X0)),
+  file('TFF_Mixed.s.p',drone)).
+tff(f137,plain,(
+  possible_position(3,-5,space) | ~spl11_13),
+  inference(avatar_component_clause,[],[f135])).
+tff(f135,plain,(
+  spl11_13 <=> possible_position(3,-5,space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_13])])).
+tff(f1091,plain,(
+  spl11_14 | spl11_15 | spl11_1 | spl11_16 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f1089,f206,f201,f196,f191,f150,f89,f145,f140])).
+tff(f140,plain,(
+  spl11_14 <=> middle = sK9),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_14])])).
+tff(f145,plain,(
+  spl11_15 <=> top = sK9),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_15])])).
+tff(f89,plain,(
+  spl11_1 <=> ground = sK9),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_1])])).
+tff(f150,plain,(
+  spl11_16 <=> space = sK9),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_16])])).
+tff(f196,plain,(
+  spl11_24 <=> top = d2level(d_top)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_24])])).
+tff(f201,plain,(
+  spl11_25 <=> middle = d2level(d_middle)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_25])])).
+tff(f206,plain,(
+  spl11_26 <=> ground = d2level(d_ground)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_26])])).
+tff(f1089,plain,(
+  ground = sK9 | top = sK9 | middle = sK9 | (spl11_16 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(trivial_inequality_removal,[],[f892])).
+tff(f892,plain,(
+  space != space | ground = sK9 | top = sK9 | middle = sK9 | (spl11_16 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f152,f801])).
+tff(f801,plain,(
+  ( ! [X2 : level] : (space = X2 | ground = X2 | top = X2 | middle = X2) ) | (~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f724,f208])).
+tff(f208,plain,(
+  ground = d2level(d_ground) | ~spl11_26),
+  inference(avatar_component_clause,[],[f206])).
+tff(f724,plain,(
+  ( ! [X2 : level] : (d2level(d_ground) = X2 | space = X2 | top = X2 | middle = X2) ) | (~spl11_23 | ~spl11_24 | ~spl11_25)),
+  inference(superposition,[],[f53,f583])).
+tff(f583,plain,(
+  ( ! [X1 : level] : (d_ground = sK10(X1) | space = X1 | top = X1 | middle = X1) ) | (~spl11_23 | ~spl11_24 | ~spl11_25)),
+  inference(forward_demodulation,[],[f570,f203])).
+tff(f203,plain,(
+  middle = d2level(d_middle) | ~spl11_25),
+  inference(avatar_component_clause,[],[f201])).
+tff(f570,plain,(
+  ( ! [X1 : level] : (d2level(d_middle) = X1 | space = X1 | top = X1 | d_ground = sK10(X1)) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f53,f367])).
+tff(f367,plain,(
+  ( ! [X0 : level] : (d_middle = sK10(X0) | space = X0 | top = X0 | d_ground = sK10(X0)) ) | (~spl11_23 | ~spl11_24)),
+  inference(forward_demodulation,[],[f360,f198])).
+tff(f198,plain,(
+  top = d2level(d_top) | ~spl11_24),
+  inference(avatar_component_clause,[],[f196])).
+tff(f360,plain,(
+  ( ! [X0 : level] : (d2level(d_top) = X0 | space = X0 | d_middle = sK10(X0) | d_ground = sK10(X0)) ) | ~spl11_23),
+  inference(superposition,[],[f53,f287])).
+tff(f287,plain,(
+  ( ! [X0 : level] : (d_top = sK10(X0) | space = X0 | d_middle = sK10(X0) | d_ground = sK10(X0)) ) | ~spl11_23),
+  inference(forward_demodulation,[],[f283,f193])).
+tff(f283,plain,(
+  ( ! [X0 : level] : (d2level(d_space) = X0 | d_top = sK10(X0) | d_middle = sK10(X0) | d_ground = sK10(X0)) )),
+  inference(superposition,[],[f53,f45])).
+tff(f45,plain,(
+  ( ! [X6 : d_level] : (d_space = X6 | d_top = X6 | d_middle = X6 | d_ground = X6) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f53,plain,(
+  ( ! [X2 : level] : (d2level(sK10(X2)) = X2) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f152,plain,(
+  space != sK9 | spl11_16),
+  inference(avatar_component_clause,[],[f150])).
+tff(f1090,plain,(
+  spl11_14 | spl11_15 | spl11_1 | spl11_16 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f899,f206,f201,f196,f191,f150,f89,f145,f140])).
+tff(f899,plain,(
+  ground = sK9 | top = sK9 | middle = sK9 | (spl11_16 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(trivial_inequality_removal,[],[f892])).
+tff(f1088,plain,(
+  ~spl11_19 | ~spl11_24 | ~spl11_47),
+  inference(avatar_contradiction_clause,[],[f1087])).
+tff(f1087,plain,(
+  $false | (~spl11_19 | ~spl11_24 | ~spl11_47)),
+  inference(equality_resolution,[],[f1086])).
+tff(f1086,plain,(
+  ( ! [X0 : $int] : ($sum(sK4,1) != X0) ) | (~spl11_19 | ~spl11_24 | ~spl11_47)),
+  inference(equality_resolution,[],[f1085])).
+tff(f1085,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK4 != X0 | $sum(X0,1) != X1) ) | (~spl11_19 | ~spl11_24 | ~spl11_47)),
+  inference(resolution,[],[f1084,f241])).
+tff(f241,plain,(
+  ( ! [X0 : $int,X1 : $int] : (possible_position(X0,X1,top)) ) | ~spl11_24),
+  inference(backward_demodulation,[],[f60,f198])).
+tff(f60,plain,(
+  ( ! [X0 : $int,X1 : $int] : (possible_position(X0,X1,d2level(d_top))) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f1084,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(sK3,X1,top) | sK4 != X2 | $sum(X2,1) != X1) ) | (~spl11_19 | ~spl11_47)),
+  inference(forward_demodulation,[],[f163,f915])).
+tff(f915,plain,(
+  top = sK5 | ~spl11_47),
+  inference(avatar_component_clause,[],[f913])).
+tff(f913,plain,(
+  spl11_47 <=> top = sK5),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_47])])).
+tff(f163,plain,(
+  ( ! [X2 : $int,X1 : $int] : (sK4 != X2 | ~possible_position(sK3,X1,sK5) | $sum(X2,1) != X1) ) | ~spl11_19),
+  inference(avatar_component_clause,[],[f162])).
+tff(f162,plain,(
+  spl11_19 <=> ! [X2 : $int,X1 : $int] : (sK4 != X2 | ~possible_position(sK3,X1,sK5) | $sum(X2,1) != X1)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_19])])).
+tff(f1078,plain,(
+  ~spl11_19 | ~spl11_25 | ~spl11_46),
+  inference(avatar_contradiction_clause,[],[f1077])).
+tff(f1077,plain,(
+  $false | (~spl11_19 | ~spl11_25 | ~spl11_46)),
+  inference(equality_resolution,[],[f1076])).
+tff(f1076,plain,(
+  ( ! [X0 : $int] : ($sum(sK4,1) != X0) ) | (~spl11_19 | ~spl11_25 | ~spl11_46)),
+  inference(equality_resolution,[],[f1075])).
+tff(f1075,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK4 != X0 | $sum(X0,1) != X1) ) | (~spl11_19 | ~spl11_25 | ~spl11_46)),
+  inference(resolution,[],[f1074,f242])).
+tff(f242,plain,(
+  ( ! [X0 : $int,X1 : $int] : (possible_position(X0,X1,middle)) ) | ~spl11_25),
+  inference(backward_demodulation,[],[f59,f203])).
+tff(f59,plain,(
+  ( ! [X0 : $int,X1 : $int] : (possible_position(X0,X1,d2level(d_middle))) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f1074,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(sK3,X1,middle) | sK4 != X2 | $sum(X2,1) != X1) ) | (~spl11_19 | ~spl11_46)),
+  inference(forward_demodulation,[],[f163,f911])).
+tff(f911,plain,(
+  middle = sK5 | ~spl11_46),
+  inference(avatar_component_clause,[],[f909])).
+tff(f909,plain,(
+  spl11_46 <=> middle = sK5),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_46])])).
+tff(f1068,plain,(
+  ~spl11_19 | ~spl11_26 | ~spl11_48),
+  inference(avatar_contradiction_clause,[],[f1067])).
+tff(f1067,plain,(
+  $false | (~spl11_19 | ~spl11_26 | ~spl11_48)),
+  inference(equality_resolution,[],[f1066])).
+tff(f1066,plain,(
+  ( ! [X0 : $int] : ($sum(sK4,1) != X0) ) | (~spl11_19 | ~spl11_26 | ~spl11_48)),
+  inference(equality_resolution,[],[f1065])).
+tff(f1065,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK4 != X0 | $sum(X0,1) != X1) ) | (~spl11_19 | ~spl11_26 | ~spl11_48)),
+  inference(resolution,[],[f1064,f243])).
+tff(f243,plain,(
+  ( ! [X0 : $int,X1 : $int] : (possible_position(X0,X1,ground)) ) | ~spl11_26),
+  inference(backward_demodulation,[],[f58,f208])).
+tff(f58,plain,(
+  ( ! [X0 : $int,X1 : $int] : (possible_position(X0,X1,d2level(d_ground))) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f1064,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(sK3,X1,ground) | sK4 != X2 | $sum(X2,1) != X1) ) | (~spl11_19 | ~spl11_48)),
+  inference(forward_demodulation,[],[f163,f919])).
+tff(f919,plain,(
+  ground = sK5 | ~spl11_48),
+  inference(avatar_component_clause,[],[f917])).
+tff(f917,plain,(
+  spl11_48 <=> ground = sK5),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_48])])).
+tff(f1055,plain,(
+  spl11_46 | spl11_47 | spl11_48 | spl11_49 | ~spl11_11 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f907,f206,f201,f196,f191,f127,f921,f917,f913,f909])).
+tff(f921,plain,(
+  spl11_49 <=> possible_position(sK3,sK4,space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_49])])).
+tff(f127,plain,(
+  spl11_11 <=> possible_position(sK3,sK4,sK5)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_11])])).
+tff(f907,plain,(
+  possible_position(sK3,sK4,space) | ground = sK5 | top = sK5 | middle = sK5 | (~spl11_11 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f129,f801])).
+tff(f129,plain,(
+  possible_position(sK3,sK4,sK5) | ~spl11_11),
+  inference(avatar_component_clause,[],[f127])).
+tff(f1054,plain,(
+  spl11_46 | spl11_47 | spl11_48 | spl11_49 | ~spl11_11 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f937,f206,f201,f196,f191,f127,f921,f917,f913,f909])).
+tff(f937,plain,(
+  possible_position(sK3,sK4,space) | ground = sK5 | top = sK5 | middle = sK5 | (~spl11_11 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f129,f801])).
+tff(f1053,plain,(
+  ~spl11_9 | ~spl11_25 | ~spl11_50),
+  inference(avatar_contradiction_clause,[],[f1052])).
+tff(f1052,plain,(
+  $false | (~spl11_9 | ~spl11_25 | ~spl11_50)),
+  inference(equality_resolution,[],[f1051])).
+tff(f1051,plain,(
+  ( ! [X0 : $int] : ($sum(sK6,-1) != X0) ) | (~spl11_9 | ~spl11_25 | ~spl11_50)),
+  inference(equality_resolution,[],[f1050])).
+tff(f1050,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK6 != X0 | $sum(X0,-1) != X1) ) | (~spl11_9 | ~spl11_25 | ~spl11_50)),
+  inference(resolution,[],[f1049,f242])).
+tff(f1049,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(X3,sK7,middle) | sK6 != X4 | $sum(X4,-1) != X3) ) | (~spl11_9 | ~spl11_50)),
+  inference(forward_demodulation,[],[f122,f972])).
+tff(f972,plain,(
+  middle = sK8 | ~spl11_50),
+  inference(avatar_component_clause,[],[f970])).
+tff(f970,plain,(
+  spl11_50 <=> middle = sK8),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_50])])).
+tff(f122,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(X3,sK7,sK8) | sK6 != X4 | $sum(X4,-1) != X3) ) | ~spl11_9),
+  inference(avatar_component_clause,[],[f121])).
+tff(f121,plain,(
+  spl11_9 <=> ! [X4 : $int,X3 : $int] : (sK6 != X4 | ~possible_position(X3,sK7,sK8) | $sum(X4,-1) != X3)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_9])])).
+tff(f1044,plain,(
+  ~spl11_9 | ~spl11_24 | ~spl11_51),
+  inference(avatar_contradiction_clause,[],[f1043])).
+tff(f1043,plain,(
+  $false | (~spl11_9 | ~spl11_24 | ~spl11_51)),
+  inference(equality_resolution,[],[f1042])).
+tff(f1042,plain,(
+  ( ! [X0 : $int] : ($sum(sK6,-1) != X0) ) | (~spl11_9 | ~spl11_24 | ~spl11_51)),
+  inference(equality_resolution,[],[f1041])).
+tff(f1041,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK6 != X0 | $sum(X0,-1) != X1) ) | (~spl11_9 | ~spl11_24 | ~spl11_51)),
+  inference(resolution,[],[f1036,f241])).
+tff(f1036,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(X3,sK7,top) | sK6 != X4 | $sum(X4,-1) != X3) ) | (~spl11_9 | ~spl11_51)),
+  inference(backward_demodulation,[],[f122,f976])).
+tff(f976,plain,(
+  top = sK8 | ~spl11_51),
+  inference(avatar_component_clause,[],[f974])).
+tff(f974,plain,(
+  spl11_51 <=> top = sK8),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_51])])).
+tff(f1035,plain,(
+  ~spl11_23 | ~spl11_53),
+  inference(avatar_contradiction_clause,[],[f1033])).
+tff(f1033,plain,(
+  $false | (~spl11_23 | ~spl11_53)),
+  inference(resolution,[],[f984,f240])).
+tff(f984,plain,(
+  possible_position(sK6,sK7,space) | ~spl11_53),
+  inference(avatar_component_clause,[],[f982])).
+tff(f982,plain,(
+  spl11_53 <=> possible_position(sK6,sK7,space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_53])])).
+tff(f1030,plain,(
+  spl11_50 | spl11_51 | spl11_52 | spl11_53 | ~spl11_17 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f1029,f206,f201,f196,f191,f155,f982,f978,f974,f970])).
+tff(f978,plain,(
+  spl11_52 <=> ground = sK8),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_52])])).
+tff(f155,plain,(
+  spl11_17 <=> possible_position(sK6,sK7,sK8)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_17])])).
+tff(f1029,plain,(
+  possible_position(sK6,sK7,space) | ground = sK8 | top = sK8 | middle = sK8 | (~spl11_17 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f157,f801])).
+tff(f157,plain,(
+  possible_position(sK6,sK7,sK8) | ~spl11_17),
+  inference(avatar_component_clause,[],[f155])).
+tff(f1025,plain,(
+  ~spl11_9 | ~spl11_26 | ~spl11_52),
+  inference(avatar_contradiction_clause,[],[f1024])).
+tff(f1024,plain,(
+  $false | (~spl11_9 | ~spl11_26 | ~spl11_52)),
+  inference(equality_resolution,[],[f1023])).
+tff(f1023,plain,(
+  ( ! [X0 : $int] : ($sum(sK6,-1) != X0) ) | (~spl11_9 | ~spl11_26 | ~spl11_52)),
+  inference(equality_resolution,[],[f1022])).
+tff(f1022,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK6 != X0 | $sum(X0,-1) != X1) ) | (~spl11_9 | ~spl11_26 | ~spl11_52)),
+  inference(resolution,[],[f1021,f243])).
+tff(f1021,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(X3,sK7,ground) | sK6 != X4 | $sum(X4,-1) != X3) ) | (~spl11_9 | ~spl11_52)),
+  inference(forward_demodulation,[],[f122,f980])).
+tff(f980,plain,(
+  ground = sK8 | ~spl11_52),
+  inference(avatar_component_clause,[],[f978])).
+tff(f1020,plain,(
+  ~spl11_10 | ~spl11_26 | ~spl11_52),
+  inference(avatar_contradiction_clause,[],[f1019])).
+tff(f1019,plain,(
+  $false | (~spl11_10 | ~spl11_26 | ~spl11_52)),
+  inference(equality_resolution,[],[f1018])).
+tff(f1018,plain,(
+  ( ! [X0 : $int] : ($sum(sK6,1) != X0) ) | (~spl11_10 | ~spl11_26 | ~spl11_52)),
+  inference(equality_resolution,[],[f1017])).
+tff(f1017,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK6 != X0 | $sum(X0,1) != X1) ) | (~spl11_10 | ~spl11_26 | ~spl11_52)),
+  inference(resolution,[],[f1016,f243])).
+tff(f1016,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(X1,sK7,ground) | sK6 != X2 | $sum(X2,1) != X1) ) | (~spl11_10 | ~spl11_52)),
+  inference(forward_demodulation,[],[f125,f980])).
+tff(f125,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(X1,sK7,sK8) | sK6 != X2 | $sum(X2,1) != X1) ) | ~spl11_10),
+  inference(avatar_component_clause,[],[f124])).
+tff(f124,plain,(
+  spl11_10 <=> ! [X2 : $int,X1 : $int] : (sK6 != X2 | ~possible_position(X1,sK7,sK8) | $sum(X2,1) != X1)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_10])])).
+tff(f1010,plain,(
+  ~spl11_10 | ~spl11_24 | ~spl11_51),
+  inference(avatar_contradiction_clause,[],[f1009])).
+tff(f1009,plain,(
+  $false | (~spl11_10 | ~spl11_24 | ~spl11_51)),
+  inference(equality_resolution,[],[f1008])).
+tff(f1008,plain,(
+  ( ! [X0 : $int] : ($sum(sK6,1) != X0) ) | (~spl11_10 | ~spl11_24 | ~spl11_51)),
+  inference(equality_resolution,[],[f1007])).
+tff(f1007,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK6 != X0 | $sum(X0,1) != X1) ) | (~spl11_10 | ~spl11_24 | ~spl11_51)),
+  inference(resolution,[],[f1006,f241])).
+tff(f1006,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(X1,sK7,top) | sK6 != X2 | $sum(X2,1) != X1) ) | (~spl11_10 | ~spl11_51)),
+  inference(forward_demodulation,[],[f125,f976])).
+tff(f1001,plain,(
+  spl11_50 | spl11_51 | spl11_52 | spl11_53 | ~spl11_17 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f1000,f206,f201,f196,f191,f155,f982,f978,f974,f970])).
+tff(f1000,plain,(
+  possible_position(sK6,sK7,space) | ground = sK8 | top = sK8 | middle = sK8 | (~spl11_17 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f157,f801])).
+tff(f998,plain,(
+  ~spl11_10 | ~spl11_25 | ~spl11_50),
+  inference(avatar_contradiction_clause,[],[f997])).
+tff(f997,plain,(
+  $false | (~spl11_10 | ~spl11_25 | ~spl11_50)),
+  inference(equality_resolution,[],[f996])).
+tff(f996,plain,(
+  ( ! [X0 : $int] : ($sum(sK6,1) != X0) ) | (~spl11_10 | ~spl11_25 | ~spl11_50)),
+  inference(equality_resolution,[],[f995])).
+tff(f995,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK6 != X0 | $sum(X0,1) != X1) ) | (~spl11_10 | ~spl11_25 | ~spl11_50)),
+  inference(resolution,[],[f988,f242])).
+tff(f988,plain,(
+  ( ! [X2 : $int,X1 : $int] : (~possible_position(X1,sK7,middle) | sK6 != X2 | $sum(X2,1) != X1) ) | (~spl11_10 | ~spl11_50)),
+  inference(backward_demodulation,[],[f125,f972])).
+tff(f985,plain,(
+  spl11_50 | spl11_51 | spl11_52 | spl11_53 | ~spl11_17 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f968,f206,f201,f196,f191,f155,f982,f978,f974,f970])).
+tff(f968,plain,(
+  possible_position(sK6,sK7,space) | ground = sK8 | top = sK8 | middle = sK8 | (~spl11_17 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f157,f801])).
+tff(f963,plain,(
+  ~spl11_18 | ~spl11_26 | ~spl11_48),
+  inference(avatar_contradiction_clause,[],[f962])).
+tff(f962,plain,(
+  $false | (~spl11_18 | ~spl11_26 | ~spl11_48)),
+  inference(equality_resolution,[],[f961])).
+tff(f961,plain,(
+  ( ! [X0 : $int] : ($sum(sK4,-1) != X0) ) | (~spl11_18 | ~spl11_26 | ~spl11_48)),
+  inference(equality_resolution,[],[f960])).
+tff(f960,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK4 != X0 | $sum(X0,-1) != X1) ) | (~spl11_18 | ~spl11_26 | ~spl11_48)),
+  inference(resolution,[],[f959,f243])).
+tff(f959,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(sK3,X3,ground) | sK4 != X4 | $sum(X4,-1) != X3) ) | (~spl11_18 | ~spl11_48)),
+  inference(forward_demodulation,[],[f160,f919])).
+tff(f160,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(sK3,X3,sK5) | sK4 != X4 | $sum(X4,-1) != X3) ) | ~spl11_18),
+  inference(avatar_component_clause,[],[f159])).
+tff(f159,plain,(
+  spl11_18 <=> ! [X4 : $int,X3 : $int] : (sK4 != X4 | ~possible_position(sK3,X3,sK5) | $sum(X4,-1) != X3)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_18])])).
+tff(f952,plain,(
+  ~spl11_18 | ~spl11_25 | ~spl11_46),
+  inference(avatar_contradiction_clause,[],[f951])).
+tff(f951,plain,(
+  $false | (~spl11_18 | ~spl11_25 | ~spl11_46)),
+  inference(equality_resolution,[],[f950])).
+tff(f950,plain,(
+  ( ! [X0 : $int] : ($sum(sK4,-1) != X0) ) | (~spl11_18 | ~spl11_25 | ~spl11_46)),
+  inference(equality_resolution,[],[f949])).
+tff(f949,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK4 != X0 | $sum(X0,-1) != X1) ) | (~spl11_18 | ~spl11_25 | ~spl11_46)),
+  inference(resolution,[],[f944,f242])).
+tff(f944,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(sK3,X3,middle) | sK4 != X4 | $sum(X4,-1) != X3) ) | (~spl11_18 | ~spl11_46)),
+  inference(backward_demodulation,[],[f160,f911])).
+tff(f943,plain,(
+  ~spl11_23 | ~spl11_49),
+  inference(avatar_contradiction_clause,[],[f941])).
+tff(f941,plain,(
+  $false | (~spl11_23 | ~spl11_49)),
+  inference(resolution,[],[f923,f240])).
+tff(f923,plain,(
+  possible_position(sK3,sK4,space) | ~spl11_49),
+  inference(avatar_component_clause,[],[f921])).
+tff(f938,plain,(
+  spl11_46 | spl11_47 | spl11_48 | spl11_49 | ~spl11_11 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f937,f206,f201,f196,f191,f127,f921,f917,f913,f909])).
+tff(f935,plain,(
+  ~spl11_18 | ~spl11_24 | ~spl11_47),
+  inference(avatar_contradiction_clause,[],[f934])).
+tff(f934,plain,(
+  $false | (~spl11_18 | ~spl11_24 | ~spl11_47)),
+  inference(equality_resolution,[],[f933])).
+tff(f933,plain,(
+  ( ! [X0 : $int] : ($sum(sK4,-1) != X0) ) | (~spl11_18 | ~spl11_24 | ~spl11_47)),
+  inference(equality_resolution,[],[f932])).
+tff(f932,plain,(
+  ( ! [X0 : $int,X1 : $int] : (sK4 != X0 | $sum(X0,-1) != X1) ) | (~spl11_18 | ~spl11_24 | ~spl11_47)),
+  inference(resolution,[],[f931,f241])).
+tff(f931,plain,(
+  ( ! [X3 : $int,X4 : $int] : (~possible_position(sK3,X3,top) | sK4 != X4 | $sum(X4,-1) != X3) ) | (~spl11_18 | ~spl11_47)),
+  inference(forward_demodulation,[],[f160,f915])).
+tff(f924,plain,(
+  spl11_46 | spl11_47 | spl11_48 | spl11_49 | ~spl11_11 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f907,f206,f201,f196,f191,f127,f921,f917,f913,f909])).
+tff(f903,plain,(
+  spl11_14 | spl11_15 | spl11_1 | spl11_16 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f899,f206,f201,f196,f191,f150,f89,f145,f140])).
+tff(f846,plain,(
+  spl11_45 | ~spl11_26 | ~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26),
+  inference(avatar_split_clause,[],[f822,f206,f201,f196,f191,f206,f844])).
+tff(f844,plain,(
+  spl11_45 <=> ! [X0 : d_level] : (d_ground = X0 | middle = d2level(X0) | top = d2level(X0) | space = d2level(X0))),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_45])])).
+tff(f822,plain,(
+  ( ! [X0 : d_level] : (ground != d2level(d_ground) | d_ground = X0 | space = d2level(X0) | top = d2level(X0) | middle = d2level(X0)) ) | (~spl11_23 | ~spl11_24 | ~spl11_25 | ~spl11_26)),
+  inference(superposition,[],[f252,f724])).
+tff(f252,plain,(
+  ( ! [X0 : d_level] : (ground != d2level(X0) | d_ground = X0) ) | ~spl11_26),
+  inference(superposition,[],[f52,f208])).
+tff(f52,plain,(
+  ( ! [X4 : d_level,X5 : d_level] : (d2level(X4) != d2level(X5) | X4 = X5) )),
+  inference(cnf_transformation,[],[f20])).
+tff(f795,plain,(
+  spl11_39 | spl11_40 | spl11_38 | spl11_44 | ~spl11_23 | ~spl11_24),
+  inference(avatar_split_clause,[],[f749,f196,f191,f792,f389,f399,f394])).
+tff(f394,plain,(
+  spl11_39 <=> d_middle = sK10(space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_39])])).
+tff(f399,plain,(
+  spl11_40 <=> d_ground = sK10(space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_40])])).
+tff(f389,plain,(
+  spl11_38 <=> d_top = sK10(space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_38])])).
+tff(f792,plain,(
+  spl11_44 <=> ! [X0 : d_level,X1 : d_level] : (X0 = X1 | d_middle = X0 | d_ground = X0 | d_top = X0 | d_ground = X1 | d_middle = X1 | d2level(X1) = top)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_44])])).
+tff(f749,plain,(
+  ( ! [X0 : d_level,X1 : d_level] : (X0 = X1 | d2level(X1) = top | d_middle = X1 | d_ground = X1 | d_top = sK10(space) | d_top = X0 | d_ground = sK10(space) | d_middle = sK10(space) | d_middle = X0 | d_ground = X0) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f595,f278])).
+tff(f278,plain,(
+  ( ! [X0 : d_level,X1 : d_level] : (d_top = X1 | d_top = X0 | X0 = X1 | d_ground = X1 | d_middle = X1 | d_middle = X0 | d_ground = X0) )),
+  inference(superposition,[],[f45,f45])).
+tff(f595,plain,(
+  ( ! [X11 : d_level] : (top = d2level(X11) | sK10(space) = X11 | d_middle = X11 | d_ground = X11) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f298,f568])).
+tff(f568,plain,(
+  ( ! [X3 : d_level] : (d2level(X3) = space | d_middle = X3 | d2level(X3) = top | d_ground = X3) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f367,f298])).
+tff(f298,plain,(
+  ( ! [X0 : d_level] : (sK10(d2level(X0)) = X0) )),
+  inference(equality_resolution,[],[f256])).
+tff(f256,plain,(
+  ( ! [X4 : level,X5 : d_level] : (d2level(X5) != X4 | sK10(X4) = X5) )),
+  inference(superposition,[],[f52,f53])).
+tff(f794,plain,(
+  spl11_40 | spl11_39 | spl11_38 | spl11_44 | ~spl11_23 | ~spl11_24),
+  inference(avatar_split_clause,[],[f748,f196,f191,f792,f389,f394,f399])).
+tff(f748,plain,(
+  ( ! [X0 : d_level,X1 : d_level] : (X0 = X1 | d2level(X1) = top | d_middle = X1 | d_ground = X1 | d_top = X0 | d_top = sK10(space) | d_ground = X0 | d_middle = X0 | d_middle = sK10(space) | d_ground = sK10(space)) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f595,f278])).
+tff(f674,plain,(
+  spl11_41 | ~spl11_43 | ~spl11_23 | ~spl11_24),
+  inference(avatar_split_clause,[],[f655,f196,f191,f671,f662])).
+tff(f662,plain,(
+  spl11_41 <=> ! [X0 : d_level] : (d_middle = X0 | d_ground = X0 | d_space = X0)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_41])])).
+tff(f671,plain,(
+  spl11_43 <=> d_ground = sK10(top)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_43])])).
+tff(f655,plain,(
+  ( ! [X0 : d_level] : (d_ground != sK10(top) | d_middle = X0 | d_space = X0 | d_ground = X0) ) | (~spl11_23 | ~spl11_24)),
+  inference(equality_factoring,[],[f618])).
+tff(f618,plain,(
+  ( ! [X11 : d_level] : (sK10(top) = X11 | d_middle = X11 | d_space = X11 | d_ground = X11) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f298,f601])).
+tff(f601,plain,(
+  ( ! [X7 : d_level] : (top = d2level(X7) | d_middle = X7 | d_space = X7 | d_ground = X7) ) | (~spl11_23 | ~spl11_24)),
+  inference(trivial_inequality_removal,[],[f593])).
+tff(f593,plain,(
+  ( ! [X7 : d_level] : (space != space | d_space = X7 | d_middle = X7 | top = d2level(X7) | d_ground = X7) ) | (~spl11_23 | ~spl11_24)),
+  inference(superposition,[],[f255,f568])).
+tff(f255,plain,(
+  ( ! [X3 : d_level] : (d2level(X3) != space | d_space = X3) ) | ~spl11_23),
+  inference(superposition,[],[f52,f193])).
+tff(f668,plain,(
+  spl11_41 | ~spl11_42 | ~spl11_23 | ~spl11_24),
+  inference(avatar_split_clause,[],[f653,f196,f191,f665,f662])).
+tff(f665,plain,(
+  spl11_42 <=> d_middle = sK10(top)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_42])])).
+tff(f653,plain,(
+  ( ! [X0 : d_level] : (d_middle != sK10(top) | d_middle = X0 | d_space = X0 | d_ground = X0) ) | (~spl11_23 | ~spl11_24)),
+  inference(equality_factoring,[],[f618])).
+tff(f402,plain,(
+  spl11_37 | ~spl11_40 | ~spl11_23),
+  inference(avatar_split_clause,[],[f381,f191,f399,f386])).
+tff(f386,plain,(
+  spl11_37 <=> ! [X0 : d_level] : (d_top = X0 | d_ground = X0 | d_middle = X0)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_37])])).
+tff(f381,plain,(
+  ( ! [X0 : d_level] : (d_ground != sK10(space) | d_top = X0 | d_middle = X0 | d_ground = X0) ) | ~spl11_23),
+  inference(equality_factoring,[],[f344])).
+tff(f344,plain,(
+  ( ! [X10 : d_level] : (sK10(space) = X10 | d_top = X10 | d_middle = X10 | d_ground = X10) ) | ~spl11_23),
+  inference(superposition,[],[f298,f279])).
+tff(f279,plain,(
+  ( ! [X0 : d_level] : (space = d2level(X0) | d_top = X0 | d_middle = X0 | d_ground = X0) ) | ~spl11_23),
+  inference(superposition,[],[f193,f45])).
+tff(f397,plain,(
+  spl11_37 | ~spl11_39 | ~spl11_23),
+  inference(avatar_split_clause,[],[f380,f191,f394,f386])).
+tff(f380,plain,(
+  ( ! [X0 : d_level] : (d_middle != sK10(space) | d_top = X0 | d_middle = X0 | d_ground = X0) ) | ~spl11_23),
+  inference(equality_factoring,[],[f344])).
+tff(f392,plain,(
+  spl11_37 | ~spl11_38 | ~spl11_23),
+  inference(avatar_split_clause,[],[f379,f191,f389,f386])).
+tff(f379,plain,(
+  ( ! [X0 : d_level] : (d_top != sK10(space) | d_top = X0 | d_middle = X0 | d_ground = X0) ) | ~spl11_23),
+  inference(equality_factoring,[],[f344])).
+tff(f323,plain,(
+  spl11_36 | ~spl11_23),
+  inference(avatar_split_clause,[],[f302,f191,f320])).
+tff(f320,plain,(
+  spl11_36 <=> d_space = sK10(space)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_36])])).
+tff(f302,plain,(
+  d_space = sK10(space) | ~spl11_23),
+  inference(superposition,[],[f298,f193])).
+tff(f318,plain,(
+  spl11_35 | ~spl11_24),
+  inference(avatar_split_clause,[],[f301,f196,f315])).
+tff(f315,plain,(
+  spl11_35 <=> d_top = sK10(top)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_35])])).
+tff(f301,plain,(
+  d_top = sK10(top) | ~spl11_24),
+  inference(superposition,[],[f298,f198])).
+tff(f313,plain,(
+  spl11_34 | ~spl11_25),
+  inference(avatar_split_clause,[],[f300,f201,f310])).
+tff(f310,plain,(
+  spl11_34 <=> d_middle = sK10(middle)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_34])])).
+tff(f300,plain,(
+  d_middle = sK10(middle) | ~spl11_25),
+  inference(superposition,[],[f298,f203])).
+tff(f308,plain,(
+  spl11_33 | ~spl11_26),
+  inference(avatar_split_clause,[],[f299,f206,f305])).
+tff(f305,plain,(
+  spl11_33 <=> d_ground = sK10(ground)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_33])])).
+tff(f299,plain,(
+  d_ground = sK10(ground) | ~spl11_26),
+  inference(superposition,[],[f298,f208])).
+tff(f251,plain,(
+  spl11_8 | ~spl11_26),
+  inference(avatar_contradiction_clause,[],[f248])).
+tff(f248,plain,(
+  $false | (spl11_8 | ~spl11_26)),
+  inference(resolution,[],[f243,f119])).
+tff(f119,plain,(
+  ~possible_position(0,0,ground) | spl11_8),
+  inference(avatar_component_clause,[],[f117])).
+tff(f117,plain,(
+  spl11_8 <=> possible_position(0,0,ground)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_8])])).
+tff(f250,plain,(
+  spl11_20 | ~spl11_26),
+  inference(avatar_contradiction_clause,[],[f249])).
+tff(f249,plain,(
+  $false | (spl11_20 | ~spl11_26)),
+  inference(resolution,[],[f243,f175])).
+tff(f175,plain,(
+  ~possible_position(sK1,sK2,ground) | spl11_20),
+  inference(avatar_component_clause,[],[f173])).
+tff(f173,plain,(
+  spl11_20 <=> possible_position(sK1,sK2,ground)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_20])])).
+tff(f247,plain,(
+  spl11_22 | ~spl11_25),
+  inference(avatar_contradiction_clause,[],[f246])).
+tff(f246,plain,(
+  $false | (spl11_22 | ~spl11_25)),
+  inference(resolution,[],[f242,f183])).
+tff(f183,plain,(
+  ~possible_position(sK1,sK2,middle) | spl11_22),
+  inference(avatar_component_clause,[],[f181])).
+tff(f181,plain,(
+  spl11_22 <=> possible_position(sK1,sK2,middle)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_22])])).
+tff(f245,plain,(
+  spl11_21 | ~spl11_24),
+  inference(avatar_contradiction_clause,[],[f244])).
+tff(f244,plain,(
+  $false | (spl11_21 | ~spl11_24)),
+  inference(resolution,[],[f241,f179])).
+tff(f179,plain,(
+  ~possible_position(sK1,sK2,top) | spl11_21),
+  inference(avatar_component_clause,[],[f177])).
+tff(f177,plain,(
+  spl11_21 <=> possible_position(sK1,sK2,top)),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_21])])).
+tff(f239,plain,(
+  ~spl11_32),
+  inference(avatar_split_clause,[],[f46,f236])).
+tff(f236,plain,(
+  spl11_32 <=> d_ground = d_middle),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_32])])).
+tff(f46,plain,(
+  d_ground != d_middle),
+  inference(cnf_transformation,[],[f20])).
+tff(f234,plain,(
+  ~spl11_31),
+  inference(avatar_split_clause,[],[f47,f231])).
+tff(f231,plain,(
+  spl11_31 <=> d_ground = d_top),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_31])])).
+tff(f47,plain,(
+  d_ground != d_top),
+  inference(cnf_transformation,[],[f20])).
+tff(f229,plain,(
+  ~spl11_30),
+  inference(avatar_split_clause,[],[f48,f226])).
+tff(f226,plain,(
+  spl11_30 <=> d_ground = d_space),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_30])])).
+tff(f48,plain,(
+  d_ground != d_space),
+  inference(cnf_transformation,[],[f20])).
+tff(f224,plain,(
+  ~spl11_29),
+  inference(avatar_split_clause,[],[f49,f221])).
+tff(f221,plain,(
+  spl11_29 <=> d_middle = d_top),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_29])])).
+tff(f49,plain,(
+  d_middle != d_top),
+  inference(cnf_transformation,[],[f20])).
+tff(f219,plain,(
+  ~spl11_28),
+  inference(avatar_split_clause,[],[f50,f216])).
+tff(f216,plain,(
+  spl11_28 <=> d_middle = d_space),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_28])])).
+tff(f50,plain,(
+  d_middle != d_space),
+  inference(cnf_transformation,[],[f20])).
+tff(f214,plain,(
+  ~spl11_27),
+  inference(avatar_split_clause,[],[f51,f211])).
+tff(f211,plain,(
+  spl11_27 <=> d_top = d_space),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_27])])).
+tff(f51,plain,(
+  d_top != d_space),
+  inference(cnf_transformation,[],[f20])).
+tff(f209,plain,(
+  spl11_26),
+  inference(avatar_split_clause,[],[f54,f206])).
+tff(f54,plain,(
+  ground = d2level(d_ground)),
+  inference(cnf_transformation,[],[f20])).
+tff(f204,plain,(
+  spl11_25),
+  inference(avatar_split_clause,[],[f55,f201])).
+tff(f55,plain,(
+  middle = d2level(d_middle)),
+  inference(cnf_transformation,[],[f20])).
+tff(f199,plain,(
+  spl11_24),
+  inference(avatar_split_clause,[],[f56,f196])).
+tff(f56,plain,(
+  top = d2level(d_top)),
+  inference(cnf_transformation,[],[f20])).
+tff(f194,plain,(
+  spl11_23),
+  inference(avatar_split_clause,[],[f57,f191])).
+tff(f57,plain,(
+  space = d2level(d_space)),
+  inference(cnf_transformation,[],[f20])).
+tff(f189,plain,(
+  ~spl11_1 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f29,f135,f131,f127,f155,f117,f113,f109,f105,f101,f97,f93,f89])).
+tff(f93,plain,(
+  spl11_2 <=> ground = middle),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_2])])).
+tff(f97,plain,(
+  spl11_3 <=> ground = top),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_3])])).
+tff(f101,plain,(
+  spl11_4 <=> ground = space),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_4])])).
+tff(f105,plain,(
+  spl11_5 <=> middle = top),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_5])])).
+tff(f109,plain,(
+  spl11_6 <=> middle = space),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_6])])).
+tff(f113,plain,(
+  spl11_7 <=> top = space),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_7])])).
+tff(f131,plain,(
+  spl11_12 <=> sP0),
+  introduced(avatar_definition,[new_symbols(naming,[spl11_12])])).
+tff(f29,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f18,plain,(
+  possible_position(3,-5,space) | sP0 | ((~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5)) & possible_position(sK3,sK4,sK5)) | ((~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8)) & possible_position(sK6,sK7,sK8)) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | (space != sK9 & top != sK9 & middle != sK9 & ground != sK9)),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK3,sK4,sK5,sK6,sK7,sK8,sK9])],[f14,f17,f16,f15])).
+tff(f15,plain,(
+  ? [X0 : $int,X1 : $int,X2 : level] : ((~possible_position(X0,$sum(X1,1),X2) | ~possible_position(X0,$sum(X1,$uminus(1)),X2)) & possible_position(X0,X1,X2)) => ((~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5)) & possible_position(sK3,sK4,sK5))),
+  introduced(choice_axiom,[])).
+tff(f16,plain,(
+  ? [X3 : $int,X4 : $int,X5 : level] : ((~possible_position($sum(X3,1),X4,X5) | ~possible_position($sum(X3,$uminus(1)),X4,X5)) & possible_position(X3,X4,X5)) => ((~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8)) & possible_position(sK6,sK7,sK8))),
+  introduced(choice_axiom,[])).
+tff(f17,plain,(
+  ? [X6 : level] : (space != X6 & top != X6 & middle != X6 & ground != X6) => (space != sK9 & top != sK9 & middle != sK9 & ground != sK9)),
+  introduced(choice_axiom,[])).
+tff(f14,plain,(
+  possible_position(3,-5,space) | sP0 | ? [X0 : $int,X1 : $int,X2 : level] : ((~possible_position(X0,$sum(X1,1),X2) | ~possible_position(X0,$sum(X1,$uminus(1)),X2)) & possible_position(X0,X1,X2)) | ? [X3 : $int,X4 : $int,X5 : level] : ((~possible_position($sum(X3,1),X4,X5) | ~possible_position($sum(X3,$uminus(1)),X4,X5)) & possible_position(X3,X4,X5)) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ? [X6 : level] : (space != X6 & top != X6 & middle != X6 & ground != X6)),
+  inference(rectify,[],[f10])).
+tff(f10,plain,(
+  possible_position(3,-5,space) | sP0 | ? [X2 : $int,X3 : $int,X4 : level] : ((~possible_position(X2,$sum(X3,1),X4) | ~possible_position(X2,$sum(X3,$uminus(1)),X4)) & possible_position(X2,X3,X4)) | ? [X5 : $int,X6 : $int,X7 : level] : ((~possible_position($sum(X5,1),X6,X7) | ~possible_position($sum(X5,$uminus(1)),X6,X7)) & possible_position(X5,X6,X7)) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ? [X8 : level] : (space != X8 & top != X8 & middle != X8 & ground != X8)),
+  inference(definition_folding,[],[f7,f9])).
+tff(f9,plain,(
+  ? [X0 : $int,X1 : $int] : ((~possible_position(X0,X1,middle) & possible_position(X0,X1,top)) | ((~possible_position(X0,X1,top) | ~possible_position(X0,X1,ground)) & possible_position(X0,X1,middle)) | (~possible_position(X0,X1,middle) & possible_position(X0,X1,ground))) | ~sP0),
+  introduced(predicate_definition_introduction,[new_symbols(naming,[sP0])])).
+tff(f7,plain,(
+  possible_position(3,-5,space) | ? [X0 : $int,X1 : $int] : ((~possible_position(X0,X1,middle) & possible_position(X0,X1,top)) | ((~possible_position(X0,X1,top) | ~possible_position(X0,X1,ground)) & possible_position(X0,X1,middle)) | (~possible_position(X0,X1,middle) & possible_position(X0,X1,ground))) | ? [X2 : $int,X3 : $int,X4 : level] : ((~possible_position(X2,$sum(X3,1),X4) | ~possible_position(X2,$sum(X3,$uminus(1)),X4)) & possible_position(X2,X3,X4)) | ? [X5 : $int,X6 : $int,X7 : level] : ((~possible_position($sum(X5,1),X6,X7) | ~possible_position($sum(X5,$uminus(1)),X6,X7)) & possible_position(X5,X6,X7)) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ? [X8 : level] : (space != X8 & top != X8 & middle != X8 & ground != X8)),
+  inference(ennf_transformation,[],[f5])).
+tff(f5,plain,(
+  ~(~possible_position(3,-5,space) & ! [X0 : $int,X1 : $int] : ((possible_position(X0,X1,top) => possible_position(X0,X1,middle)) & (possible_position(X0,X1,middle) => (possible_position(X0,X1,top) & possible_position(X0,X1,ground))) & (possible_position(X0,X1,ground) => possible_position(X0,X1,middle))) & ! [X2 : $int,X3 : $int,X4 : level] : (possible_position(X2,X3,X4) => (possible_position(X2,$sum(X3,1),X4) & possible_position(X2,$sum(X3,$uminus(1)),X4))) & ! [X5 : $int,X6 : $int,X7 : level] : (possible_position(X5,X6,X7) => (possible_position($sum(X5,1),X6,X7) & possible_position($sum(X5,$uminus(1)),X6,X7))) & possible_position(0,0,ground) & top != space & middle != space & middle != top & ground != space & ground != top & ground != middle & ! [X8 : level] : (space = X8 | top = X8 | middle = X8 | ground = X8))),
+  inference(rectify,[],[f4])).
+tff(f4,plain,(
+  ~(~possible_position(3,-5,space) & ! [X1 : $int,X2 : $int] : ((possible_position(X1,X2,top) => possible_position(X1,X2,middle)) & (possible_position(X1,X2,middle) => (possible_position(X1,X2,top) & possible_position(X1,X2,ground))) & (possible_position(X1,X2,ground) => possible_position(X1,X2,middle))) & ! [X1 : $int,X2 : $int,X0 : level] : (possible_position(X1,X2,X0) => (possible_position(X1,$sum(X2,1),X0) & possible_position(X1,$sum(X2,$uminus(1)),X0))) & ! [X1 : $int,X2 : $int,X0 : level] : (possible_position(X1,X2,X0) => (possible_position($sum(X1,1),X2,X0) & possible_position($sum(X1,$uminus(1)),X2,X0))) & possible_position(0,0,ground) & top != space & middle != space & middle != top & ground != space & ground != top & ground != middle & ! [X0 : level] : (space = X0 | top = X0 | middle = X0 | ground = X0))),
+  inference(theory_normalization,[],[f3])).
+tff(f3,negated_conjecture,(
+  ~(~possible_position(3,-5,space) & ! [X1 : $int,X2 : $int] : ((possible_position(X1,X2,top) => possible_position(X1,X2,middle)) & (possible_position(X1,X2,middle) => (possible_position(X1,X2,top) & possible_position(X1,X2,ground))) & (possible_position(X1,X2,ground) => possible_position(X1,X2,middle))) & ! [X1 : $int,X2 : $int,X0 : level] : (possible_position(X1,X2,X0) => (possible_position(X1,$sum(X2,1),X0) & possible_position(X1,$difference(X2,1),X0))) & ! [X1 : $int,X2 : $int,X0 : level] : (possible_position(X1,X2,X0) => (possible_position($sum(X1,1),X2,X0) & possible_position($difference(X1,1),X2,X0))) & possible_position(0,0,ground) & top != space & middle != space & middle != top & ground != space & ground != top & ground != middle & ! [X0 : level] : (space = X0 | top = X0 | middle = X0 | ground = X0))),
+  inference(negated_conjecture,[],[f2])).
+tff(f2,conjecture,(
+  ~possible_position(3,-5,space) & ! [X1 : $int,X2 : $int] : ((possible_position(X1,X2,top) => possible_position(X1,X2,middle)) & (possible_position(X1,X2,middle) => (possible_position(X1,X2,top) & possible_position(X1,X2,ground))) & (possible_position(X1,X2,ground) => possible_position(X1,X2,middle))) & ! [X1 : $int,X2 : $int,X0 : level] : (possible_position(X1,X2,X0) => (possible_position(X1,$sum(X2,1),X0) & possible_position(X1,$difference(X2,1),X0))) & ! [X1 : $int,X2 : $int,X0 : level] : (possible_position(X1,X2,X0) => (possible_position($sum(X1,1),X2,X0) & possible_position($difference(X1,1),X2,X0))) & possible_position(0,0,ground) & top != space & middle != space & middle != top & ground != space & ground != top & ground != middle & ! [X0 : level] : (space = X0 | top = X0 | middle = X0 | ground = X0)),
+  file('TFF_Mixed.s.p',prove_formulae)).
+tff(f188,plain,(
+  ~spl11_14 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f30,f135,f131,f127,f155,f117,f113,f109,f105,f101,f97,f93,f140])).
+tff(f30,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f187,plain,(
+  ~spl11_15 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f31,f135,f131,f127,f155,f117,f113,f109,f105,f101,f97,f93,f145])).
+tff(f31,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f186,plain,(
+  ~spl11_16 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f32,f135,f131,f127,f155,f117,f113,f109,f105,f101,f97,f93,f150])).
+tff(f32,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f185,plain,(
+  ~spl11_12 | spl11_20 | spl11_22 | spl11_21),
+  inference(avatar_split_clause,[],[f21,f177,f181,f173,f131])).
+tff(f21,plain,(
+  possible_position(sK1,sK2,top) | possible_position(sK1,sK2,middle) | possible_position(sK1,sK2,ground) | ~sP0),
+  inference(cnf_transformation,[],[f13])).
+tff(f13,plain,(
+  ((~possible_position(sK1,sK2,middle) & possible_position(sK1,sK2,top)) | ((~possible_position(sK1,sK2,top) | ~possible_position(sK1,sK2,ground)) & possible_position(sK1,sK2,middle)) | (~possible_position(sK1,sK2,middle) & possible_position(sK1,sK2,ground))) | ~sP0),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK1,sK2])],[f11,f12])).
+tff(f12,plain,(
+  ? [X0 : $int,X1 : $int] : ((~possible_position(X0,X1,middle) & possible_position(X0,X1,top)) | ((~possible_position(X0,X1,top) | ~possible_position(X0,X1,ground)) & possible_position(X0,X1,middle)) | (~possible_position(X0,X1,middle) & possible_position(X0,X1,ground))) => ((~possible_position(sK1,sK2,middle) & possible_position(sK1,sK2,top)) | ((~possible_position(sK1,sK2,top) | ~possible_position(sK1,sK2,ground)) & possible_position(sK1,sK2,middle)) | (~possible_position(sK1,sK2,middle) & possible_position(sK1,sK2,ground)))),
+  introduced(choice_axiom,[])).
+tff(f11,plain,(
+  ? [X0 : $int,X1 : $int] : ((~possible_position(X0,X1,middle) & possible_position(X0,X1,top)) | ((~possible_position(X0,X1,top) | ~possible_position(X0,X1,ground)) & possible_position(X0,X1,middle)) | (~possible_position(X0,X1,middle) & possible_position(X0,X1,ground))) | ~sP0),
+  inference(nnf_transformation,[],[f9])).
+tff(f184,plain,(
+  ~spl11_12 | ~spl11_20 | ~spl11_21 | ~spl11_22),
+  inference(avatar_split_clause,[],[f75,f181,f177,f173,f131])).
+tff(f75,plain,(
+  ~possible_position(sK1,sK2,middle) | ~possible_position(sK1,sK2,top) | ~possible_position(sK1,sK2,ground) | ~sP0),
+  inference(duplicate_literal_removal,[],[f28])).
+tff(f28,plain,(
+  ~possible_position(sK1,sK2,middle) | ~possible_position(sK1,sK2,top) | ~possible_position(sK1,sK2,ground) | ~possible_position(sK1,sK2,middle) | ~sP0),
+  inference(cnf_transformation,[],[f13])).
+tff(f171,plain,(
+  ~spl11_16 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f76,f135,f131,f162,f159,f124,f121,f117,f113,f109,f105,f101,f97,f93,f150])).
+tff(f76,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,-1) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9) )),
+  inference(evaluation,[],[f62])).
+tff(f62,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,$uminus(1)) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9) )),
+  inference(theory_flattening,[],[f44])).
+tff(f44,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f170,plain,(
+  ~spl11_15 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f77,f135,f131,f162,f159,f124,f121,f117,f113,f109,f105,f101,f97,f93,f145])).
+tff(f77,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,-1) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9) )),
+  inference(evaluation,[],[f63])).
+tff(f63,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,$uminus(1)) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9) )),
+  inference(theory_flattening,[],[f43])).
+tff(f43,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f169,plain,(
+  ~spl11_14 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f78,f135,f131,f162,f159,f124,f121,f117,f113,f109,f105,f101,f97,f93,f140])).
+tff(f78,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,-1) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9) )),
+  inference(evaluation,[],[f64])).
+tff(f64,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,$uminus(1)) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9) )),
+  inference(theory_flattening,[],[f42])).
+tff(f42,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f168,plain,(
+  ~spl11_1 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f79,f135,f131,f162,f159,f124,f121,f117,f113,f109,f105,f101,f97,f93,f89])).
+tff(f79,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,-1) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9) )),
+  inference(evaluation,[],[f65])).
+tff(f65,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X8 : $int,X6 : $int,X7 : $int,X4 : $int,X5 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | sK6 != X6 | $sum(X6,1) != X5 | ~possible_position(X5,sK7,sK8) | sK6 != X8 | $sum(X8,$uminus(1)) != X7 | ~possible_position(X7,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9) )),
+  inference(theory_flattening,[],[f41])).
+tff(f41,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f167,plain,(
+  ~spl11_16 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f80,f135,f131,f162,f159,f155,f117,f113,f109,f105,f101,f97,f93,f150])).
+tff(f80,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9) )),
+  inference(evaluation,[],[f66])).
+tff(f66,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9) )),
+  inference(theory_flattening,[],[f40])).
+tff(f40,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f166,plain,(
+  ~spl11_15 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f81,f135,f131,f162,f159,f155,f117,f113,f109,f105,f101,f97,f93,f145])).
+tff(f81,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9) )),
+  inference(evaluation,[],[f67])).
+tff(f67,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9) )),
+  inference(theory_flattening,[],[f39])).
+tff(f39,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f165,plain,(
+  ~spl11_14 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f82,f135,f131,f162,f159,f155,f117,f113,f109,f105,f101,f97,f93,f140])).
+tff(f82,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9) )),
+  inference(evaluation,[],[f68])).
+tff(f68,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9) )),
+  inference(theory_flattening,[],[f38])).
+tff(f38,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f164,plain,(
+  ~spl11_1 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_17 | spl11_18 | spl11_19 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f83,f135,f131,f162,f159,f155,f117,f113,f109,f105,f101,f97,f93,f89])).
+tff(f83,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,-1) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9) )),
+  inference(evaluation,[],[f69])).
+tff(f69,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | sK4 != X2 | $sum(X2,1) != X1 | ~possible_position(sK3,X1,sK5) | sK4 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(sK3,X3,sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9) )),
+  inference(theory_flattening,[],[f37])).
+tff(f37,plain,(
+  possible_position(3,-5,space) | sP0 | ~possible_position(sK3,$sum(sK4,1),sK5) | ~possible_position(sK3,$sum(sK4,$uminus(1)),sK5) | possible_position(sK6,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f153,plain,(
+  ~spl11_16 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f84,f135,f131,f127,f124,f121,f117,f113,f109,f105,f101,f97,f93,f150])).
+tff(f84,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,-1) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9) )),
+  inference(evaluation,[],[f70])).
+tff(f70,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9) )),
+  inference(theory_flattening,[],[f36])).
+tff(f36,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | space != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f148,plain,(
+  ~spl11_15 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f85,f135,f131,f127,f124,f121,f117,f113,f109,f105,f101,f97,f93,f145])).
+tff(f85,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,-1) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9) )),
+  inference(evaluation,[],[f71])).
+tff(f71,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9) )),
+  inference(theory_flattening,[],[f35])).
+tff(f35,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | top != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f143,plain,(
+  ~spl11_14 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f86,f135,f131,f127,f124,f121,f117,f113,f109,f105,f101,f97,f93,f140])).
+tff(f86,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,-1) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9) )),
+  inference(evaluation,[],[f72])).
+tff(f72,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9) )),
+  inference(theory_flattening,[],[f34])).
+tff(f34,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | middle != sK9),
+  inference(cnf_transformation,[],[f18])).
+tff(f138,plain,(
+  ~spl11_1 | spl11_2 | spl11_3 | spl11_4 | spl11_5 | spl11_6 | spl11_7 | ~spl11_8 | spl11_9 | spl11_10 | spl11_11 | spl11_12 | spl11_13),
+  inference(avatar_split_clause,[],[f87,f135,f131,f127,f124,f121,f117,f113,f109,f105,f101,f97,f93,f89])).
+tff(f87,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,-1) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9) )),
+  inference(evaluation,[],[f73])).
+tff(f73,plain,(
+  ( ! [X2 : $int,X3 : $int,X1 : $int,X4 : $int] : (possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | sK6 != X2 | $sum(X2,1) != X1 | ~possible_position(X1,sK7,sK8) | sK6 != X4 | $sum(X4,$uminus(1)) != X3 | ~possible_position(X3,sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9) )),
+  inference(theory_flattening,[],[f33])).
+tff(f33,plain,(
+  possible_position(3,-5,space) | sP0 | possible_position(sK3,sK4,sK5) | ~possible_position($sum(sK6,1),sK7,sK8) | ~possible_position($sum(sK6,$uminus(1)),sK7,sK8) | ~possible_position(0,0,ground) | top = space | middle = space | middle = top | ground = space | ground = top | ground = middle | ground != sK9),
+  inference(cnf_transformation,[],[f18])).
+% SZS output end Proof for TFF_Mixed.s

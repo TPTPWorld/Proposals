@@ -1,0 +1,175 @@
+% SZS status Theorem for Vampire---4
+% SZS output start Proof for Vampire---4
+thf(type_def_5, type, beverage: $tType).
+thf(type_def_6, type, syrup: $tType).
+thf(type_def_8, type, d_beverage: $tType).
+thf(type_def_9, type, d_syrup: $tType).
+thf(func_def_0, type, beverage: $tType).
+thf(func_def_1, type, syrup: $tType).
+thf(func_def_2, type, coffee: beverage).
+thf(func_def_3, type, mix: beverage > syrup > beverage).
+thf(func_def_4, type, heat: beverage > beverage).
+thf(func_def_5, type, heated_mix: beverage > syrup > beverage).
+thf(func_def_6, type, hot: beverage > $o).
+thf(func_def_7, type, d_beverage: $tType).
+thf(func_def_8, type, d_syrup: $tType).
+thf(func_def_9, type, d2beverage: d_beverage > beverage).
+thf(func_def_10, type, d2syrup: d_syrup > syrup).
+thf(func_def_11, type, d_coffee: d_beverage).
+thf(func_def_12, type, d_date: d_syrup).
+thf(func_def_19, type, sK0: syrup).
+thf(func_def_20, type, sK1: beverage).
+thf(func_def_21, type, sK2: syrup).
+thf(func_def_22, type, sK3: syrup > beverage).
+thf(func_def_23, type, sK4: syrup > d_syrup).
+thf(func_def_24, type, sK5: beverage > d_beverage).
+thf(func_def_26, type, inv_d2beverage_7: beverage > d_beverage).
+thf(func_def_27, type, inv_d2syrup_8: syrup > d_syrup).
+thf(func_def_28, type, ph9: !>[X0: $tType]:(X0)).
+thf(func_def_29, type, sK10: beverage).
+thf(func_def_30, type, sK11: syrup).
+thf(f144,plain,(
+  $false),
+  inference(avatar_sat_refutation,[],[f45,f50,f138,f140,f143])).
+thf(f143,plain,(
+  ~spl6_2),
+  inference(avatar_contradiction_clause,[],[f142])).
+thf(f142,plain,(
+  $false | ~spl6_2),
+  inference(subsumption_resolution,[],[f141,f84])).
+thf(f84,plain,(
+  ( ! [X0 : beverage] : (($true = (hot @ X0))) )),
+  inference(superposition,[],[f29,f59])).
+thf(f59,plain,(
+  ( ! [X0 : beverage,X1 : beverage] : ((X0 = X1)) )),
+  inference(superposition,[],[f46,f46])).
+thf(f46,plain,(
+  ( ! [X7 : beverage] : (((d2beverage @ d_coffee) = X7)) )),
+  inference(backward_demodulation,[],[f21,f20])).
+thf(f20,plain,(
+  ( ! [X9 : d_beverage] : ((d_coffee = X9)) )),
+  inference(cnf_transformation,[],[f18])).
+thf(f18,plain,(
+  ((hot @ (d2beverage @ d_coffee)) = $true) & ((d2beverage @ d_coffee) = (heated_mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ((d2beverage @ d_coffee) = (heat @ (d2beverage @ d_coffee))) & ((d2beverage @ d_coffee) = (mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X0 : d_syrup] : (d_date = X0) & ! [X1 : syrup] : ((d2syrup @ (sK4 @ X1)) = X1) & ! [X3 : d_syrup,X4 : d_syrup] : ((X3 = X4) | ((d2syrup @ X3) != (d2syrup @ X4))) & ! [X5 : d_beverage,X6 : d_beverage] : (((d2beverage @ X5) != (d2beverage @ X6)) | (X5 = X6)) & ! [X7 : beverage] : ((d2beverage @ (sK5 @ X7)) = X7) & ! [X9 : d_beverage] : (d_coffee = X9)),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK4,sK5])],[f15,f17,f16])).
+thf(f16,plain,(
+  ! [X1 : syrup] : (? [X2 : d_syrup] : ((d2syrup @ X2) = X1) => ((d2syrup @ (sK4 @ X1)) = X1))),
+  introduced(choice_axiom,[])).
+thf(f17,plain,(
+  ! [X7 : beverage] : (? [X8 : d_beverage] : ((d2beverage @ X8) = X7) => ((d2beverage @ (sK5 @ X7)) = X7))),
+  introduced(choice_axiom,[])).
+thf(f15,plain,(
+  ((hot @ (d2beverage @ d_coffee)) = $true) & ((d2beverage @ d_coffee) = (heated_mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ((d2beverage @ d_coffee) = (heat @ (d2beverage @ d_coffee))) & ((d2beverage @ d_coffee) = (mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X0 : d_syrup] : (d_date = X0) & ! [X1 : syrup] : ? [X2 : d_syrup] : ((d2syrup @ X2) = X1) & ! [X3 : d_syrup,X4 : d_syrup] : ((X3 = X4) | ((d2syrup @ X3) != (d2syrup @ X4))) & ! [X5 : d_beverage,X6 : d_beverage] : (((d2beverage @ X5) != (d2beverage @ X6)) | (X5 = X6)) & ! [X7 : beverage] : ? [X8 : d_beverage] : ((d2beverage @ X8) = X7) & ! [X9 : d_beverage] : (d_coffee = X9)),
+  inference(rectify,[],[f10])).
+thf(f10,plain,(
+  ((hot @ (d2beverage @ d_coffee)) = $true) & ((d2beverage @ d_coffee) = (heated_mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ((d2beverage @ d_coffee) = (heat @ (d2beverage @ d_coffee))) & ((d2beverage @ d_coffee) = (mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X0 : d_syrup] : (d_date = X0) & ! [X1 : syrup] : ? [X2 : d_syrup] : ((d2syrup @ X2) = X1) & ! [X8 : d_syrup,X9 : d_syrup] : ((X8 = X9) | ((d2syrup @ X9) != (d2syrup @ X8))) & ! [X5 : d_beverage,X6 : d_beverage] : (((d2beverage @ X5) != (d2beverage @ X6)) | (X5 = X6)) & ! [X3 : beverage] : ? [X4 : d_beverage] : ((d2beverage @ X4) = X3) & ! [X7 : d_beverage] : (d_coffee = X7)),
+  inference(ennf_transformation,[],[f6])).
+thf(f6,plain,(
+  ! [X5 : d_beverage,X6 : d_beverage] : (((d2beverage @ X5) = (d2beverage @ X6)) => (X5 = X6)) & ! [X0 : d_syrup] : (d_date = X0) & ! [X8 : d_syrup,X9 : d_syrup] : (((d2syrup @ X9) = (d2syrup @ X8)) => (X8 = X9)) & ((d2beverage @ d_coffee) = (heated_mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X1 : syrup] : ? [X2 : d_syrup] : ((d2syrup @ X2) = X1) & ((hot @ (d2beverage @ d_coffee)) = $true) & ! [X7 : d_beverage] : (d_coffee = X7) & ((d2beverage @ d_coffee) = (mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ((d2beverage @ d_coffee) = (heat @ (d2beverage @ d_coffee))) & ! [X3 : beverage] : ? [X4 : d_beverage] : ((d2beverage @ X4) = X3)),
+  inference(fool_elimination,[],[f5])).
+thf(f5,plain,(
+  (hot @ (d2beverage @ d_coffee)) & ((d2beverage @ d_coffee) = (mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X0 : d_syrup] : (d_date = X0) & ! [X1 : syrup] : ? [X2 : d_syrup] : ((d2syrup @ X2) = X1) & ((d2beverage @ d_coffee) = (heat @ (d2beverage @ d_coffee))) & ((d2beverage @ d_coffee) = (heated_mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X3 : beverage] : ? [X4 : d_beverage] : ((d2beverage @ X4) = X3) & ! [X5 : d_beverage,X6 : d_beverage] : (((d2beverage @ X5) = (d2beverage @ X6)) => (X5 = X6)) & ! [X7 : d_beverage] : (d_coffee = X7) & ! [X8 : d_syrup,X9 : d_syrup] : (((d2syrup @ X9) = (d2syrup @ X8)) => (X8 = X9))),
+  inference(rectify,[],[f1])).
+thf(f1,axiom,(
+  (hot @ (d2beverage @ d_coffee)) & ((d2beverage @ d_coffee) = (mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X5 : d_syrup] : (d_date = X5) & ! [X4 : syrup] : ? [X5 : d_syrup] : ((d2syrup @ X5) = X4) & ((d2beverage @ d_coffee) = (heat @ (d2beverage @ d_coffee))) & ((d2beverage @ d_coffee) = (heated_mix @ (d2beverage @ d_coffee) @ (d2syrup @ d_date))) & ! [X0 : beverage] : ? [X1 : d_beverage] : ((d2beverage @ X1) = X0) & ! [X3 : d_beverage,X2 : d_beverage] : (((d2beverage @ X2) = (d2beverage @ X3)) => (X2 = X3)) & ! [X1 : d_beverage] : (d_coffee = X1) & ! [X6 : d_syrup,X7 : d_syrup] : (((d2syrup @ X6) = (d2syrup @ X7)) => (X6 = X7))),
+  file('/tmp/tmp.55zkt07uQX/Vampire---4.8_7177',hot_coffee)).
+thf(f21,plain,(
+  ( ! [X7 : beverage] : (((d2beverage @ (sK5 @ X7)) = X7)) )),
+  inference(cnf_transformation,[],[f18])).
+thf(f29,plain,(
+  ((hot @ (d2beverage @ d_coffee)) = $true)),
+  inference(cnf_transformation,[],[f18])).
+thf(f141,plain,(
+  ( ! [X4 : syrup] : (($true != (hot @ (sK3 @ X4)))) ) | ~spl6_2),
+  inference(subsumption_resolution,[],[f36,f59])).
+thf(f36,plain,(
+  ( ! [X4 : syrup] : ((coffee != (sK3 @ X4)) | ($true != (hot @ (sK3 @ X4)))) ) | ~spl6_2),
+  inference(avatar_component_clause,[],[f35])).
+thf(f35,plain,(
+  spl6_2 <=> ! [X4 : syrup] : ((coffee != (sK3 @ X4)) | ($true != (hot @ (sK3 @ X4))))),
+  introduced(avatar_definition,[new_symbols(naming,[spl6_2])])).
+thf(f140,plain,(
+  spl6_4),
+  inference(avatar_contradiction_clause,[],[f139])).
+thf(f139,plain,(
+  $false | spl6_4),
+  inference(subsumption_resolution,[],[f44,f59])).
+thf(f44,plain,(
+  (coffee != (heated_mix @ coffee @ sK2)) | spl6_4),
+  inference(avatar_component_clause,[],[f42])).
+thf(f42,plain,(
+  spl6_4 <=> (coffee = (heated_mix @ coffee @ sK2))),
+  introduced(avatar_definition,[new_symbols(naming,[spl6_4])])).
+thf(f138,plain,(
+  spl6_3),
+  inference(avatar_contradiction_clause,[],[f137])).
+thf(f137,plain,(
+  $false | spl6_3),
+  inference(subsumption_resolution,[],[f136,f59])).
+thf(f136,plain,(
+  ((heat @ (mix @ sK10 @ sK11)) != (heated_mix @ sK10 @ sK11)) | spl6_3),
+  inference(beta_eta_normalization,[],[f135])).
+thf(f135,plain,(
+  (((^[Y0 : syrup]: (heat @ (mix @ sK10 @ Y0))) @ sK11) != (heated_mix @ sK10 @ sK11)) | spl6_3),
+  inference(negative_extensionality,[],[f134])).
+thf(f134,plain,(
+  ((heated_mix @ sK10) != (^[Y0 : syrup]: (heat @ (mix @ sK10 @ Y0)))) | spl6_3),
+  inference(beta_eta_normalization,[],[f133])).
+thf(f133,plain,(
+  ((heated_mix @ sK10) != ((^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1))))) @ sK10)) | spl6_3),
+  inference(negative_extensionality,[],[f40])).
+thf(f40,plain,(
+  (heated_mix != (^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1)))))) | spl6_3),
+  inference(avatar_component_clause,[],[f38])).
+thf(f38,plain,(
+  spl6_3 <=> (heated_mix = (^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1))))))),
+  introduced(avatar_definition,[new_symbols(naming,[spl6_3])])).
+thf(f50,plain,(
+  spl6_1),
+  inference(avatar_contradiction_clause,[],[f49])).
+thf(f49,plain,(
+  $false | spl6_1),
+  inference(subsumption_resolution,[],[f48,f29])).
+thf(f48,plain,(
+  ((hot @ (d2beverage @ d_coffee)) != $true) | spl6_1),
+  inference(forward_demodulation,[],[f33,f46])).
+thf(f33,plain,(
+  ((hot @ (heated_mix @ sK1 @ sK0)) != $true) | spl6_1),
+  inference(avatar_component_clause,[],[f31])).
+thf(f31,plain,(
+  spl6_1 <=> ((hot @ (heated_mix @ sK1 @ sK0)) = $true)),
+  introduced(avatar_definition,[new_symbols(naming,[spl6_1])])).
+thf(f45,plain,(
+  ~spl6_1 | spl6_2 | ~spl6_3 | ~spl6_4),
+  inference(avatar_split_clause,[],[f19,f42,f38,f35,f31])).
+thf(f19,plain,(
+  ( ! [X4 : syrup] : ((coffee != (sK3 @ X4)) | (coffee != (heated_mix @ coffee @ sK2)) | (heated_mix != (^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1)))))) | ((hot @ (heated_mix @ sK1 @ sK0)) != $true) | ($true != (hot @ (sK3 @ X4)))) )),
+  inference(cnf_transformation,[],[f14])).
+thf(f14,plain,(
+  (heated_mix != (^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1)))))) | ((hot @ (heated_mix @ sK1 @ sK0)) != $true) | (coffee != (heated_mix @ coffee @ sK2)) | ! [X4 : syrup] : ((coffee != (sK3 @ X4)) | ($true != (hot @ (sK3 @ X4))))),
+  inference(skolemisation,[status(esa),new_symbols(skolem,[sK0,sK1,sK2,sK3])],[f9,f13,f12,f11])).
+thf(f11,plain,(
+  ? [X0 : syrup,X1 : beverage] : ((hot @ (heated_mix @ X1 @ X0)) != $true) => ((hot @ (heated_mix @ sK1 @ sK0)) != $true)),
+  introduced(choice_axiom,[])).
+thf(f12,plain,(
+  ? [X2 : syrup] : (coffee != (heated_mix @ coffee @ X2)) => (coffee != (heated_mix @ coffee @ sK2))),
+  introduced(choice_axiom,[])).
+thf(f13,plain,(
+  ? [X3 : syrup > beverage] : ! [X4 : syrup] : ((coffee != (X3 @ X4)) | ($true != (hot @ (X3 @ X4)))) => ! [X4 : syrup] : ((coffee != (sK3 @ X4)) | ($true != (hot @ (sK3 @ X4))))),
+  introduced(choice_axiom,[])).
+thf(f9,plain,(
+  (heated_mix != (^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1)))))) | ? [X0 : syrup,X1 : beverage] : ((hot @ (heated_mix @ X1 @ X0)) != $true) | ? [X2 : syrup] : (coffee != (heated_mix @ coffee @ X2)) | ? [X3 : syrup > beverage] : ! [X4 : syrup] : ((coffee != (X3 @ X4)) | ($true != (hot @ (X3 @ X4))))),
+  inference(ennf_transformation,[],[f8])).
+thf(f8,plain,(
+  ~(! [X2 : syrup] : (coffee = (heated_mix @ coffee @ X2)) & ! [X0 : syrup,X1 : beverage] : ((hot @ (heated_mix @ X1 @ X0)) = $true) & ~? [X3 : syrup > beverage] : ~? [X4 : syrup] : ((coffee = (X3 @ X4)) & ($true = (hot @ (X3 @ X4)))) & (heated_mix = (^[Y0 : beverage]: ((^[Y1 : syrup]: (heat @ (mix @ Y0 @ Y1)))))))),
+  inference(fool_elimination,[],[f7])).
+thf(f7,plain,(
+  ~(! [X0 : syrup,X1 : beverage] : (hot @ (heated_mix @ X1 @ X0)) & ! [X2 : syrup] : (coffee = (heated_mix @ coffee @ X2)) & ~? [X3 : syrup > beverage] : ~? [X4 : syrup] : ((hot @ (X3 @ X4)) & (coffee = (X3 @ X4))) & (heated_mix = (^[X5 : beverage, X6 : syrup] : (heat @ (mix @ X5 @ X6)))))),
+  inference(rectify,[],[f3])).
+thf(f3,negated_conjecture,(
+  ~(! [X4 : syrup,X0 : beverage] : (hot @ (heated_mix @ X0 @ X4)) & ! [X4 : syrup] : (coffee = (heated_mix @ coffee @ X4)) & ~? [X8 : syrup > beverage] : ~? [X4 : syrup] : ((hot @ (X8 @ X4)) & (coffee = (X8 @ X4))) & (heated_mix = (^[X0 : beverage, X4 : syrup] : (heat @ (mix @ X0 @ X4)))))),
+  inference(negated_conjecture,[],[f2])).
+thf(f2,conjecture,(
+  ! [X4 : syrup,X0 : beverage] : (hot @ (heated_mix @ X0 @ X4)) & ! [X4 : syrup] : (coffee = (heated_mix @ coffee @ X4)) & ~? [X8 : syrup > beverage] : ~? [X4 : syrup] : ((hot @ (X8 @ X4)) & (coffee = (X8 @ X4))) & (heated_mix = (^[X0 : beverage, X4 : syrup] : (heat @ (mix @ X0 @ X4))))),
+  file('/tmp/tmp.55zkt07uQX/Vampire---4.8_7177',verify)).
+% SZS output end Proof for Vampire---4

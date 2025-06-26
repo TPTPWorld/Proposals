@@ -1,0 +1,253 @@
+<A NAME="Visualization">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<!--
+<H2>Visualization of Interpretations</H2>
+
+Visualizing a finite interpretation:
+<UL>
+<LI> List of function and predicate symbols.
+<LI> When you click on a symbol you get a tree with branching factor equal to the number of
+     domain elements, so that each branch corresponds to a domain element. The tree depth
+     is the arity of the symbol, so that one branch represents one tuple of possible domain
+     element arguments to the symbol.
+<LI> Each leaf is the domain element that the symbol is interpreted as for that branch's
+     sequence of domain elements.
+<LI> Below the tree have a list of the domain elements.
+<LI> When you click on a domain element in the list lines are drawn from the domain element
+     to the tree leaves with that value.
+</UL>
+
+Here's a mockup for the interpretation ...
+<PRE>
+%------------------------------------------------------------------------------
+fof(equality_lost,interpretation_domain,
+    ! [X] : ( X = "a" | X = "f" | X = "john" | X = "got_a")  ).
+
+fof(equality_lost,interpretation_terms,
+    ( a = "a"
+    & f = "f"
+    & john = "john"
+    & grade("a") = "f"
+    & grade("f") = "a"
+    & grade("john") = "f"
+    & grade("got_a") = "a" )  ).
+
+fof(equality_lost,interpretation_atoms,
+    ( ~ human("a")
+    & ~ human("f")
+    & human("john")
+    & human("got_a")
+    & ~ created_equal("a","a")
+    & ~ created_equal("a","f")
+    & ~ created_equal("a","john")
+    & ~ created_equal("a","got_a")
+    & ~ created_equal("f","a")
+    & ~ created_equal("f","f")
+    & ~ created_equal("f","john")
+    & ~ created_equal("f","got_a")
+    & ~ created_equal("john","a")
+    & ~ created_equal("john","f")
+    & created_equal("john","john")
+    & created_equal("john","got_a")
+    & ~ created_equal("got_a","a")
+    & ~ created_equal("got_a","f")
+    & created_equal("got_a","john")
+    & created_equal("got_a","got_a") )  ).
+%------------------------------------------------------------------------------
+</PRE>
+
+Red means the user clicked on it, blue means it's connected to the red. 
+attached.
+<P>
+<CENTER>
+<IMG SRC="InterpretationsModels/InterpretationVizualizationMockup.jpg" WIDTH=80%>
+</CENTER>
+<P>
+Here's a TFF interpretation encoded as a derivation that can be 
+<A HREF="https://www.tptp.org/cgi-bin/SystemOnTPTPFormReply?QuietFlag=-q1&ProblemSource=URL&FormulaURL=https://www.tptp.org/TPTP/Proposals/InterpretationsModels/TFF_Finite.s.IIV&System___IIV---0.0=IIV---0.0&SubmitButton=ProcessProblem" target="_blank">viewed in IIV</A>:
+<PRE>
+<!--#include file="InterpretationsModels/TFF_Finite.s.IIV"-->
+</PRE>
+
+Visualizing an Kripke interpretation reachability relation: Draw the graph, e.g., using Graphviz.
+<P>
+<A NAME="Verification">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2>Verification of Models</H2>
+
+Let ...
+<UL>
+<LI> &Sigma; be an untyped first-order logic language, consisting of ...
+     <UL>
+     <LI> V<SUB>&Sigma;</SUB>, a set of variables
+     <LI> F<SUB>&Sigma;</SUB>, a set of functions with arity
+     <LI> P<SUB>&Sigma;</SUB>, a set of predicate with arity
+     </UL>
+<LI> &phi; be a formula written in &Sigma;
+<LI> &Iota; be an interpretation of &Sigma;, consisting of ...
+     <UL>
+     <LI> D<SUB>&Iota;</SUB>, a set of domain elements.
+     <LI> F<SUB>&Iota;</SUB>, a mapping from elements of F applied to arguments from D, to D.
+     <LI> R<SUB>&Iota;</SUB>, a mapping from elements of D applied to arguments from D, to 
+          {<EM>TRUE</EM>,<EM>FALSE</EM>}.
+     </UL>
+     &Iota; can be a <EM>partial</EM> interpretation of &Sigma;, but must be enough to 
+     interpret &phi;.
+</UL>
+For example ...
+<UL>
+<LI> &Sigma; ...
+     <UL>
+     <LI> V<SUB>&Sigma;</SUB> = {Words starting uppercase}
+     <LI> F<SUB>&Sigma;</SUB> = {<TT>geoff</TT>/0, <TT>brotherOf</TT>/2}
+     <LI> P<SUB>&Sigma;</SUB> = {<TT>taller</TT>/2}
+     </UL>
+<LI> &Iota; ...
+     <UL>
+     <LI> D<SUB>&Iota;</SUB> = {&#128512;, &#128378;}
+     <LI> F<SUB>&Iota;</SUB> = {
+               <TT>geoff</TT> &rarr; &#128512;,
+               <TT>brotherOf(&#128512;)</TT> &rarr; &#128378;,
+               <TT>brotherOf(&#128378;)</TT> &rarr; <TT>&#128512;</TT>}
+     <LI> R<SUB>&Iota;</SUB> = {
+               <TT>taller(&#128512;,&#128512;)</TT> &rarr; <EM>FALSE</EM>,
+               <TT>taller(&#128512;,&#128378;)</TT> &rarr; <EM>FALSE</EM>,
+               <TT>taller(&#128378;,&#128512;)</TT> &rarr; <EM>TRUE</EM>,
+               <TT>taller(&#128378;,&#128378;)</TT> &rarr; <EM>FALSE</EM>}
+     </UL>
+<LI> &phi; ... 
+     <UL>
+     <LI> <TT>taller(brotherOf(geoff),geoff)</TT>
+     </UL>
+</UL>
+
+In the TPTP World the interpretation &Iota; is represented by formulae &phi;<SUB>&Iota;</SUB> ...
+<UL>
+<LI> The domain is represented by an annotated formula with role <TT>domain</TT>, and
+     a formula that uses equalities to list the domain element values. 
+     To ensure that the domain elements written in a <TT>domain</TT> are understood to
+     be distinct, <TT>"distinct object"</TT>s or numbers can be used.
+     Otherwise their inequality must also be specified.
+<LI> The function map is represented by formulae with the role <TT>functors</TT>, and
+     formulae that use equalities to express the mapping of functions applied to domain
+     elements, to domain element values.
+<LI> The predicate map is represented by formulae with the role <TT>predicates</TT>, and
+     formulae that use equalities to express the mapping of functions applied to domain
+     elements, to truth values.
+</UL>
+<EM>Currently the TPTP World specifies the roles</EM> <TT>fi_domain</TT>, <TT>fi_functors</TT>, 
+<EM>and</EM> <TT>fi_predicates</TT>.
+<EM>The plan is to drop the <TT>fi_</TT> prefixes, and allow infinite models.</EM>
+<P>
+<UL>
+<LI> Let E<SUB>&phi;<SUB>&Iota;</SUB></SUB> be the set {<EM>e</EM> that are "domain element"s
+     in &phi;<SUB>&Iota;</SUB>}.
+<LI> Let <EM>inI<SUB>&phi;<SUB>&Iota;</SUB></SUB>(<EM>e</EM>)</EM> be the 
+     d<SUB>&Iota;</SUB> &isin; <EM>D<SUB>&Iota;</SUB> corresponding to 
+     <EM>e</EM> &isin; E<SUB>&phi;<SUB>&Iota;</SUB></SUB>.
+</UL>
+<P>
+For example ...
+<UL>
+<LI> <PRE>
+tff(myI_domain,domain,
+    ! [X: $i] : ( X = "face" | X = "stickman" ) ).</PRE>
+<LI> <PRE>
+tff(myI_functions,functors,
+    ( geoff = "face"
+    & brotherOf("face") = "stickman"
+    & brotherOf("stickman") = "face" ) ).</PRE>
+<LI> <PRE>
+tff(myI_predicates,predicates,
+    ( ~ taller("face","face")
+    & ~ taller("face","stickman")
+    & taller("stickman","face")
+    & ~ taller("stickman","stickman") ) ).
+</UL>
+<P>
+<UL>
+<LI> E<SUB>&phi;<SUB>&Iota;</SUB></SUB> = {<TT>"face"</TT>, <TT>"stickman"</TT>}
+<LI> <EM>inI<SUB>&phi;<SUB>&Iota;</SUB></SUB>(</EM><TT>"face"</TT><EM>)</EM> = &#128512;,
+     <EM>inI<SUB>&phi;<SUB>&Iota;</SUB></SUB>(</EM><TT>"stickman"</TT><EM>)</EM> = &#128378;
+</UL>
+<P>
+<STRONG>Proof that</STRONG>
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;if &phi;<SUB>&Iota;</SUB> &vDash; &phi; then &Iota; &vDash; &phi;
+<UL>
+<LI> Let &Sigma;' be ...
+     <UL>
+     <LI> V'<SUB>&Sigma;'</SUB> = V<SUB>&Sigma;</SUB>
+     <LI> F'<SUB>&Sigma;'</SUB> = F<SUB>&Sigma;</SUB> &cup; E<SUB>&phi;<SUB>&Iota;</SUB></SUB>
+     <LI> P'<SUB>&Sigma;'</SUB> = P<SUB>&Sigma;</SUB>
+     </UL>
+<LI> Let &Iota;' be an interpretation ...
+     <UL>
+     <LI> D<SUB>&Iota;'</SUB> = D<SUB>&Iota;</SUB>
+     <LI> F<SUB>&Iota;'</SUB> = F<SUB>&Iota;</SUB>
+              &cup;
+              {<EM>e</EM> &rarr; <EM>inI<SUB>&Iota;</SUB>(<EM>e</EM>)</EM>} for 
+              <EM>e</EM> &isin; E<SUB>&phi;<SUB>&Iota;</SUB></SUB>
+     <LI> P<SUB>&Iota;'</SUB> = P<SUB>&Iota;</SUB>
+     </UL>
+<P>
+<LI> If &Iota;' &vDash; &phi; then &Iota; &vDash; &phi;, because &phi; contains nothing from
+     E<SUB>&phi;<SUB>&Iota;</SUB></SUB> and &Iota;' is the same as &Iota; wrt all other symbols.
+<LI> &Iota;' &vDash; &phi;<SUB>&Iota;</SUB>, because ...
+     <UL>
+     <LI> Let &phi;<SUB>&Iota;</SUB>' be the "formulae" that result from
+          applying &Iota;' to the <EM>e</EM> &isin; 
+          E<SUB>&phi;<SUB>&Iota;</SUB></SUB> in &phi;<SUB>&Iota;</SUB>.
+     <LI> &Iota;' &vDash; &phi;<SUB>&Iota;</SUB>' iff 
+          &Iota; &vDash; &phi;<SUB>&Iota;</SUB>'.
+     <LI> &Iota; &vDash; &phi;<SUB>&Iota;</SUB>' by the construction of
+          &Iota;
+     <LI> &Iota;' &vDash; &phi;<SUB>&Iota;</SUB>'
+     <LI> By undoing the application of &Iota;' to the <EM>e</EM> &isin;
+          E<SUB>&phi;<SUB>&Iota;</SUB></SUB> in &phi;<SUB>&Iota;</SUB>,
+          &Iota;' &vDash; &phi;<SUB>&Iota;</SUB>
+     </UL>
+<LI> If &phi;<SUB>&Iota;</SUB> &vDash; &phi; then &Iota;' &vDash; &phi; (every model of 
+     &phi;<SUB>&Iota;</SUB> is a model of &phi;, &Iota;' is a model of &phi;<SUB>&Iota;</SUB>, so
+     &Iota;' is a model of &phi;)
+<LI> If &phi;<SUB>&Iota;</SUB> &vDash; &phi; then &Iota; &vDash; &phi;
+   
+</UL>
+For example ...
+<UL>
+<LI> &Sigma;' ...
+     <UL>
+     <LI> V'<SUB>&Sigma;'</SUB> = {Words starting uppercase}
+     <LI> F'<SUB>&Sigma;''</SUB> = {<TT>geoff</TT>/0, <TT>brotherOf</TT>/2, "face"/0,
+          "stickman"/0}
+     <LI> P'<SUB>&Sigma;'</SUB> = {<TT>taller</TT>/2}
+     </UL>
+<LI> &Iota;' ...
+     <UL>
+     <LI> D<SUB>&Iota;'</SUB> = {&#128512;, &#128378;}
+     <LI> F<SUB>&Iota;'</SUB> = {
+               <TT>geoff</TT> &rarr; &#128512;,
+               <TT>"face"</TT> &rarr; &#128512;,
+               <TT>"stickman"</TT> &rarr; &#128378;,<BR>
+               <TT>brotherOf(&#128512;)</TT> &rarr; &#128378;,
+               <TT>brotherOf(&#128378;)</TT> &rarr; <TT>&#128512;</TT>}
+     <LI> R<SUB>&Iota;'</SUB> = {
+               <TT>taller(&#128512;,&#128512;)</TT> &rarr; <EM>FALSE</EM>,
+               <TT>taller(&#128512;,&#128378;)</TT> &rarr; <EM>FALSE</EM>,
+               <TT>taller(&#128378;,&#128512;)</TT> &rarr; <EM>TRUE</EM>,
+               <TT>taller(&#128378;,&#128378;)</TT> &rarr; <EM>FALSE</EM>}
+     </UL>
+<P> 
+<LI> &Iota;' &vDash; <TT>taller(brotherOf(geoff),geoff)</TT>, so<BR>
+     &Iota; &vDash; <TT>taller(brotherOf(geoff),geoff)</TT>
+<LI> &Iota;' &vDash; <TT>tff(myI_domain, ... </TT>
+<LI> If <TT>tff(myI_domain, ... </TT> &vDash; <TT>taller(brotherOf(geoff),geoff)</TT> then<BR>
+     &Iota;' &vDash; <TT>taller(brotherOf(geoff),geoff)</TT>
+<LI> If <TT>tff(myI_domain, ... </TT> &vDash; <TT>taller(brotherOf(geoff),geoff)</TT> then<BR>
+     &Iota; &vDash; <TT>taller(brotherOf(geoff),geoff)</TT>
+</UL>
+
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

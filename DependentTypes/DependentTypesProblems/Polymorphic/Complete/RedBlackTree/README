@@ -1,0 +1,5 @@
+This is a formulation of Red-Black-Trees closely following the presentation of Stephanie
+Weirich, which based her version off of Dan Licata.
+(https://github.com/sweirich/dth/blob/master/depending-on-types/RBT.hs)
+
+The conjectures establish the fact that reversal of a Red-Black-Tree is an involution.

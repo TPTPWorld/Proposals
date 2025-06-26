@@ -1,0 +1,64 @@
+% SZS status Satisfiable for FOF_Finite
+% SZS output start FiniteModel for FOF_Finite
+tff(declare_$i,type,$i:$tType).
+tff(declare_$i1,type,"a":$i).
+tff(declare_$i2,type,"f":$i).
+tff(declare_$i3,type,"john":$i).
+tff(declare_$i4,type,"gotA":$i).
+tff(finite_domain,axiom,
+      ! [X:$i] : (
+         X = "a" | X = "f" | X = "john" | X = "gotA"
+      ) ).
+
+tff(distinct_domain,axiom,
+         "a" != "f" & "a" != "john" & "a" != "gotA" & "f" != "john" & "f" != "gotA" & 
+         "john" != "gotA"
+).
+
+tff(declare_bool,type,$o:$tType).
+tff(declare_bool1,type,fmb_bool_1:$o).
+tff(finite_domain,axiom,
+      ! [X:$o] : (
+         X = fmb_bool_1
+      ) ).
+
+tff(declare_grade,type,grade: $i > $i).
+tff(function_grade,axiom,
+           grade_of("a") = "a"
+         & grade_of("f") = "a"
+         & grade_of("john") = "f"
+         & grade_of("gotA") = "a"
+
+).
+
+tff(declare_human,type,human: $i > $o ).
+tff(predicate_human,axiom,
+           ~human("a")
+         & ~human("f")
+         & human("john")
+         & human("gotA")
+
+).
+
+tff(declare_created_equal,type,created_equal: $i * $i > $o ).
+tff(predicate_created_equal,axiom,
+           ~created_equal("a","a")
+         & ~created_equal("a","f")
+         & ~created_equal("a","john")
+         & ~created_equal("a","gotA")
+         & ~created_equal("f","a")
+         & ~created_equal("f","f")
+         & ~created_equal("f","john")
+         & ~created_equal("f","gotA")
+         & ~created_equal("john","a")
+         & ~created_equal("john","f")
+         & created_equal("john","john")
+         & created_equal("john","gotA")
+         & ~created_equal("gotA","a")
+         & ~created_equal("gotA","f")
+         & created_equal("gotA","john")
+         & created_equal("gotA","gotA")
+
+).
+
+% SZS output end FiniteModel for FOF_Finite

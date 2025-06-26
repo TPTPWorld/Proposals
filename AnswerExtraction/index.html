@@ -67,7 +67,7 @@ Answers are bindings for the outermost existentially quantified variables.
 <P>
 For returning answers, two SZS answer forms are proposed:
 <UL>
-<LI> The <TT>AnswerTuples</TT> form for returning answers in tuples
+<LI> The <TT>AnswerBindings</TT> form for returning answers in tuples
 <LI> The <TT>AnswerFormulae</TT> form for returning answers in the instantiated question
 </UL>
 The answer output lines must be preceded by an
@@ -88,45 +88,38 @@ The following problem, from the problem file <TT>ANS001+1</TT>, is used as the r
 </PRE>
 
 <HR><!-- -------------------------------------------------------------------------------------- -->
-<H2> The AnswerTuples Form </H2>
+<H3> The <TT>AnswerBindings</TT> Form </H3>
 
 The tuple form is ...
 <PRE>
-    SZS output start AnswerTuples
-    <EM>answer tuples one per line</EM>
-    SZS output end AnswerTuples
+    SZS output start AnswerBindings
+    <EM>answer bindings one per line</EM>
+    SZS output end AnswerBindings
 </PRE>
 ... e.g., ...
 <PRE>
     % SZS status Success for ANS001+1
-    % SZS output start AnswerTuples
-    [a,b,c]
-    [d,e,f]
-    % SZS output end AnswerTuples
+    % SZS output start AnswerBindings
+    [bind(X,a),bind(Y,b),bind(Z,c)]
+    [bind(X,d),bind(Y,e),bind(Z,f)]
+    % SZS output end AnswerBindings
 </PRE>
-Disjunctive answers can also be expressed, e.g., ... <EM>Should this be allowed?</EM>
-<PRE>
-    % SZS status Success for ANS001+1
-    % SZS output start AnswerTuples
-    [a,b,c]
-    [d,e,f]
-    [g,h,i]|[j,k,l]
-    % SZS output end AnswerTuples
-</PRE>
+<EM>Should this be expressed as variable bindings, as in Vampire's <TT>X-&gt;a</TT>?
+That would allow the order to be arbitrary.</EM>
 <P>
-A final line <TT>_</TT> indicates that there might be more answers than the preceding tuples,
+A final line with variables indicates that there might be more answers than the preceding tuples,
 e.g., ...
 <PRE>
     % SZS status Success for ANS001+1
-    % SZS output start AnswerTuples
-    [a,b,c]
-    [d,e,f]
-    _
-    % SZS output end AnswerTuples
+    % SZS output start AnswerBindings
+    [bind(X,a),bind(Y,b),bind(Z,c)]
+    [bind(X,d),bind(Y,e),bind(Z,f)]
+    [bind(X,X),bind(Y,Y),bind(Z,Z)]
+    % SZS output end AnswerBindings
 </PRE>
 
 <HR><!-- -------------------------------------------------------------------------------------- -->
-<H2> The InstantiatedFormulae Answer Form </H2>
+<H3> The <TT>InstantiatedFormulae</TT> Answer Form </H3>
 
 The instantiated formulae form provides answers in the TPTP annotated formula format, so that 
 answers can be used as input to other tools.
@@ -144,7 +137,7 @@ The instantiated formulae form is ...
     fof(xyz,answer, ! [W] : ( p(d,e,f) & q(d,W) ) ).
     % SZS output end InstantiatedFormulae for ANS001+1
 </PRE>
-Disjunctive answers can also be expressed, e.g., ... <EM>Should this be allowed?</EM>
+Disjunctive answers can also be expressed, e.g., ...
 <PRE>
     % SZS status Success for ANS001+1
     % SZS output start InstantiatedFormulae for ANS001+1
@@ -152,140 +145,83 @@ Disjunctive answers can also be expressed, e.g., ... <EM>Should this be allowed?
     % SZS output end InstantiatedFormulae for ANS001+1
 </PRE>
 <P>
-A final line <TT>_</TT> indicates that there might be more answers than the preceding tuples,
+A final line with existentially quantified variables indicates that there might be more answers 
+than the preceding instantiated formulae,
 e.g., ...
 <PRE>
     % SZS status Success for ANS001+1
     % SZS answers start InstantiatedFormulae for ANS001+1
     fof(xyz,answer, ! [W] : ( p(a,b,c) & q(a,W) ) ).
     fof(xyz,answer, ! [W] : ( p(d,e,f) & q(d,W) ) ).
-    _
+    fof(xyz,answer, ? [X,Y,Z] : ! [W] : ( p(X,Y,Z) & q(X,W) ) ).
     % SZS answers end InstantiatedFormulae for ANS001+1
 </PRE>
 <P>
 <HR><!-- -------------------------------------------------------------------------------------- -->
-</BODY>
-</HTML>
-<PRE>
-Emails with Petra
+<H2> Additional Control </H2>
 
-Hi Geoff, Petra,
-
-> On 16 Jun 2023, at 19:46, Geoff Sutcliffe <geoff@cs.miami.edu> wrote:
->
-> Hi Stephan (and Petra),
->
-> At LPAR Petra and I talked about her use of question answering (this paper,
-> if you are interested, but not necessary reading for this email) ...
->    https://easychair.org/publications/paper/BlrQ
-> The upshot is a need for some funky builtin predicates. You might recall
-> my previous foray into this topic with Arpana, and the resultant Multiple
-> AnSwer EXtraction system she wrote in her MS work. Do you recall if I
-> convinced you to provide something like $syntactically_different_from in
-> E? What we seem to need now is $unify/2 that tests if two expressions unify,
-> and Petra would also like $contains/2 that tests if a certain symbol occurs
-> in an expression. I think $unify would be easy, right? What about $contains?
-> This is a gentle step of consideration, not a request for implementation :-)
-
+What we seem to need now is <TT>$unify</TT>/2 that tests if two expressions unify,
+and Petra would also like <TT>$contains</TT>/2 that tests if a certain symbol occurs
+in an expression. 
 In principle, both would be quite simple to implement (unify is harder,
 because for equational literals, you would need to do it modulo symmetry).
+<P>
+<TABLE>
+<TR> <TH ALIGN=LEFT WIDTH=20%> Axioms
+     <TH ALIGN=LEFT WIDTH=20%> Question
+     <TH ALIGN=LEFT> Answer
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>p(a), p(b), a = b</TT>
+     <TD> <TT>? [X] : ( p(X) & X != a )</TT>
+     <TD> No answer
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>p(a), p(b), a = b</TT>
+     <TD> <TT>? [X] : ( p(X) & ~$unify(X,a) )</TT>
+     <TD> <TT>[bind(X,b)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>! [X] : p(X)</TT>
+     <TD> <TT>? [X] : p(X)</TT>
+     <TD> No answer (Skolem's not permitted).
+          This one is interesting - as a conjecture it's provable, but as a question
+          it's not answerable. I like that!
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>! [Z] : p(Z)</TT>
+     <TD> <TT>? [X] : (p(X) & ? [Y] : $unify(X,f(Y)))</TT>
+     <TD> <TT>[bind(X,Z)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>p(f(a))</TT>
+     <TD> <TT>? [X] : (p(X) & ? [Y] : $unify(X,f(Y)))</TT>
+     <TD> <TT>[bind(X,f(a))]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>! [Z] : p(Z)</TT>
+     <TD> <TT>? [X] : p(f(X))</TT>
+     <TD> <TT>[bind(X,Z1)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>p(f(a))</TT>
+     <TD> <TT>? [X] : p(f(X))</TT>
+     <TD> <TT>[bind(X,a)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> Aunt Agatha
+     <TD> <PRE>? [X] : 
+  ( killed(X,agatha) 
+  & ( $unify(X,agatha) | $unify(X,butler) | $unify(X,charles) ) )</PRE>
+     <TD> <TT>[bind(X,agatha)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR> <TD> <TT>p(a) & p(b)</TT>
+     <TD> <TT>? [X] : ( p(X) & ~$unify(X,a))</TT>
+     <TD> <TT>[bind(X,b)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>Axioms for arrays, Swap array elements, array, indices i, j</TT>
+     <TD> <TT>? [X: $o] : (X => (array[i] != array[j]))</TT><BR>
+          Switch the contents of array[i] and array[j] such that the resultant array is different.
+     <TD> <TT>[bind(X,(i != j) & (array[i] != array[j])]</TT>
+<TR> <TD COLSPAN=3> <HR>
+</TABLE>
 
-But this may be an X/Y-problem. What behaviour do you actually want, and
-why?
-
-> Cheers,
->
-> Geoff
->
->>> 1. In the TPTP World answers may contain only variables and symbols from the
->>>   input formulae. That excludes, e.g., Skolems.
-
-E will happily give you a Skolem. Otherwise, you can’t answer
-?[X]:p(X)
-under axiom
-![X]:p(X)
-...which seems counterproductive. You can always filter unwanted
-answers after the fact (e.g. with grep -v).
-
->>> 2. I would like ATP systems to provide a builtin predicate $unify/2.
->>>   Notice $unify allows instantiation both ways.Some examples ...
-
-I wonder if you cannot simply add the unification constraint as
-an equational literal X!=f(Y).
-Aha...more smart people have answered the above question ;-).
-
->>> No. The negative case breaks. For example ...
->>> Axioms
->>>    p(a)
->>>    p(b)
->>>    a = b
->>> Question
->>>    ? [X] : ( p(X) & X != a )
->>> No answer. But ...
->>> Question
->>>    ? [X] : ( p(X) & ~$unify(X,a) )
->>> Answer X == b
-
-
-Examples that illustrate my need for $unify ...
-
-
->   Question
->       ? [X] : (p(X) & ? [Y] : $unify(X,f(Y)))
->   Axiom                    Answer
->       ! [Z] : p(Z)             Z
->       p(f(a))                  f(a)
->
->   Question
->       ? [X] : p(f(X))
->   Axiom                    Answer
->       ! [Z] : p(Z)             Z
->       p(f(a))                  a
->
->   Question
->       ? [X] : ( p(X) & ~$unify(X,a))
->   Axiom                    Answer
->       p(a) & p(b)              b
->
->   Question
->       ? [X] : p(X)
->   Axiom                    Answer
->       ? [Z] : p(Z)             no answer (Skolems not allowed)
->   This one is interesting - as a conjecture it's provable, but as a question
->   it's not answerable. I like that!
-
-
-I discussed this with Sophie today, when she explained her interest in
-abduction as a way to explain why a countermodel invalidates some claim.
-Her example was an array A, then you switch the contents of A[i] and
-A[j], then claim the new array is not equal to the old array. This is not
-true if i = j, or A[i] = A[j], and that's what need to be found as the
-"explanation". I recast is as a question of the form ...
-
-Axioms: Arrays, Swap, array A, indices i, j.
-Question: ? [X:$o] : (X => (A[i] != A[j]))
-
-... and the ATP must synthesize X as (i != j) & (A[i] != A[j]). $unify
-and $contains might be used to provide hints (e.g., $contains(X,!=)) or
-contraints, e.g., ? [L:$o,R:$o] : $unify(X,L & R). Yay, another nice use
-case - thanks Sophie!
-
-
-My proposal would do it using $contains, e.g., ....
-    fof(pel55,question,
-        ? [X] :
-          ( killed(X,agatha)
-          & ~ $contains(X,killed)
-          & ~ $contains(X,hates) ) ).
-... or more positively ...
-    fof(pel55,question,
-        ? [X] :
-          ( killed(X,agatha)
-          & ( $unifies(X,agatha)
-            | $unifies(X,butler)
-            | $unifies(X,charles) ) ) ).
-
-Your work shows that it can be done. Next to get agreement on the syntax
-(quite easy), then convince ATP system developers to adopt it (not so
-easy).
-</PRE>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>

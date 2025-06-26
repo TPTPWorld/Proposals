@@ -1,0 +1,291 @@
+<HTML>
+<HEAD>
+<TITLE>Answer Extraction for TPTP</TITLE>
+</HEAD>
+<BODY ALIGN="JUSTIFY">
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H1 ALIGN="LEFT">Answer Extraction for TPTP</H1>
+
+by 
+<A href="https://www.cs.miami.edu/~geoff/">Geoff Sutcliffe</A>,
+Michael Rawson, Petra Hozzova,
+<A href="http://www.ai.sri.com/~stickel/">Mark Stickel</A>,
+<A href="http://www4.in.tum.de/~schulz/">Stephan Schulz</A>,
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<P>
+Answer extraction is useful (and meaningful only) when there are existential quantifiers at the 
+outermost level of a conjecture.
+In this situation the conjecture can be considered to a question for which an answer is required, 
+in the form of the values that instantiate the existentially quantified variables.
+This proposal describes how such instantiations can be returned in a standard and useful way.
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Questions </H2>
+
+The new <TT>question</TT> role is introduced to identify conjectures for which the bindings for 
+the outermost existentially quantified variables are wanted.
+Questions are written like conjectures, but using the <TT>question</TT> role instead of the 
+<TT>conjecture</TT> role.
+The outermost existentially quantified variables are the ones that the user wants values for, 
+i.e., their sets of instatiations are the answer.
+<PRE>
+    fof(xyz,question, ? [X,Y,Z] : p(X,Y,Z)).
+</PRE>
+... and if the user wants values for only <TT>X</TT> and <TT>Z</TT> ...
+<PRE>
+    fof(xyz,question, ? [X,Z] : ? [Y] : p(X,Y,Z)).
+</PRE>
+
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Answers </H2>
+
+Answers are bindings for the outermost existentially quantified variables.
+<UL>
+<LI> Answers may contain only variables, and symbols from the input formulae. 
+     That excludes, e.g., Skolem symbols.
+<P>
+<LI> More general answers are preferred over less general.
+     If all terms are answers, a variable should be output.
+<P>
+<LI> For existentially quantified variables from interpreted domains, domain elements are 
+     preferred as answer values.
+     Examples of interpreted domain are the numeric domains <TT>$int</TT>, <TT>$rat</TT>, 
+     <TT>$real</TT>, and <TT>"double quoted"</TT> distinct objects, 
+     <UL>
+     <LI> Ground interpreted terms, e.g., ground arithmetic terms, must be evaluated to domain 
+          elements.
+     <LI> For ground terms that include underspecified functions, e.g., <TT>$to_rat</TT> and 
+          <TT>$quotient</TT>, it is not always "possible" to evaluate to a domain element.
+     </UL>
+<P>
+<LI> For existentially quantified variables from uninterpreted domains, constants are 
+     preferred as answer values.
+     Examples of uninterpreted domains are <TT>$i</TT> in typed logics (e.g., THF and TFF), 
+     and the Herbrand Universe in untyped logics (e.g., FOF and CNF), 
+</UL>
+<P>
+For returning answers, two SZS answer forms are proposed:
+<UL>
+<LI> The <TT>AnswerTuples</TT> form for returning answers in tuples
+<LI> The <TT>AnswerFormulae</TT> form for returning answers in the instantiated question
+</UL>
+The answer output lines must be preceded by an
+<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=Documents&File=SZSOntology">
+<TT>SZS status</TT> line</A>.
+<P>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> Running Example </H2>
+
+The following problem, from the problem file <TT>ANS001+1</TT>, is used as the running example ...
+<PRE>
+    fof(abc,axiom,p(a,b,c)).
+    fof(def,axiom,p(d,e,f)).
+    fof(ghi_or_jkl,axiom,( p(g,h,i) | p(j,k,l) )).
+    fof(qq,axiom,! [U,V] : q(U,V) ).
+    fof(xyz,question, ? [X,Y,Z] : ! [W] : ( p(X,Y,Z) & q(X,W) ) ).
+</PRE>
+
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> The AnswerTuples Form </H2>
+
+The tuple form is ...
+<PRE>
+    SZS output start AnswerTuples
+    <EM>answer tuples one per line</EM>
+    SZS output end AnswerTuples
+</PRE>
+... e.g., ...
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS output start AnswerTuples
+    [a,b,c]
+    [d,e,f]
+    % SZS output end AnswerTuples
+</PRE>
+Disjunctive answers can also be expressed, e.g., ... <EM>Should this be allowed?</EM>
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS output start AnswerTuples
+    [a,b,c]
+    [d,e,f]
+    [g,h,i]|[j,k,l]
+    % SZS output end AnswerTuples
+</PRE>
+<P>
+A final line <TT>_</TT> indicates that there might be more answers than the preceding tuples,
+e.g., ...
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS output start AnswerTuples
+    [a,b,c]
+    [d,e,f]
+    _
+    % SZS output end AnswerTuples
+</PRE>
+
+<HR><!-- -------------------------------------------------------------------------------------- -->
+<H2> The InstantiatedFormulae Answer Form </H2>
+
+The instantiated formulae form provides answers in the TPTP annotated formula format, so that 
+answers can be used as input to other tools.
+The instantiated formulae form is ...
+<PRE>
+    % SZS answers start InstantiatedFormulae for ANS001+1
+    <EM>instantiated annotated formulae</EM>
+    % SZS answers end InstantiatedFormulae for ANS001+1
+</PRE>
+... e.g., ...
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS output start InstantiatedFormulae for ANS001+1
+    fof(xyz,answer, ! [W] : ( p(a,b,c) & q(a,W) ) ).
+    fof(xyz,answer, ! [W] : ( p(d,e,f) & q(d,W) ) ).
+    % SZS output end InstantiatedFormulae for ANS001+1
+</PRE>
+Disjunctive answers can also be expressed, e.g., ... <EM>Should this be allowed?</EM>
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS output start InstantiatedFormulae for ANS001+1
+    fof(xyz,answer, ! [W] : ( ( p(g,h,i) & q(g,W) ) | ( p(j,k,l) & q(j,W) ) ) ).
+    % SZS output end InstantiatedFormulae for ANS001+1
+</PRE>
+<P>
+A final line <TT>_</TT> indicates that there might be more answers than the preceding tuples,
+e.g., ...
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS answers start InstantiatedFormulae for ANS001+1
+    fof(xyz,answer, ! [W] : ( p(a,b,c) & q(a,W) ) ).
+    fof(xyz,answer, ! [W] : ( p(d,e,f) & q(d,W) ) ).
+    _
+    % SZS answers end InstantiatedFormulae for ANS001+1
+</PRE>
+<P>
+<HR><!-- -------------------------------------------------------------------------------------- -->
+</BODY>
+</HTML>
+<PRE>
+Emails with Petra
+
+Hi Geoff, Petra,
+
+> On 16 Jun 2023, at 19:46, Geoff Sutcliffe <geoff@cs.miami.edu> wrote:
+>
+> Hi Stephan (and Petra),
+>
+> At LPAR Petra and I talked about her use of question answering (this paper,
+> if you are interested, but not necessary reading for this email) ...
+>    https://easychair.org/publications/paper/BlrQ
+> The upshot is a need for some funky builtin predicates. You might recall
+> my previous foray into this topic with Arpana, and the resultant Multiple
+> AnSwer EXtraction system she wrote in her MS work. Do you recall if I
+> convinced you to provide something like $syntactically_different_from in
+> E? What we seem to need now is $unify/2 that tests if two expressions unify,
+> and Petra would also like $contains/2 that tests if a certain symbol occurs
+> in an expression. I think $unify would be easy, right? What about $contains?
+> This is a gentle step of consideration, not a request for implementation :-)
+
+In principle, both would be quite simple to implement (unify is harder,
+because for equational literals, you would need to do it modulo symmetry).
+
+But this may be an X/Y-problem. What behaviour do you actually want, and
+why?
+
+> Cheers,
+>
+> Geoff
+>
+>>> 1. In the TPTP World answers may contain only variables and symbols from the
+>>>   input formulae. That excludes, e.g., Skolems.
+
+E will happily give you a Skolem. Otherwise, you can’t answer
+?[X]:p(X)
+under axiom
+![X]:p(X)
+...which seems counterproductive. You can always filter unwanted
+answers after the fact (e.g. with grep -v).
+
+>>> 2. I would like ATP systems to provide a builtin predicate $unify/2.
+>>>   Notice $unify allows instantiation both ways.Some examples ...
+
+I wonder if you cannot simply add the unification constraint as
+an equational literal X!=f(Y).
+Aha...more smart people have answered the above question ;-).
+
+>>> No. The negative case breaks. For example ...
+>>> Axioms
+>>>    p(a)
+>>>    p(b)
+>>>    a = b
+>>> Question
+>>>    ? [X] : ( p(X) & X != a )
+>>> No answer. But ...
+>>> Question
+>>>    ? [X] : ( p(X) & ~$unify(X,a) )
+>>> Answer X == b
+
+
+Examples that illustrate my need for $unify ...
+
+
+>   Question
+>       ? [X] : (p(X) & ? [Y] : $unify(X,f(Y)))
+>   Axiom                    Answer
+>       ! [Z] : p(Z)             Z
+>       p(f(a))                  f(a)
+>
+>   Question
+>       ? [X] : p(f(X))
+>   Axiom                    Answer
+>       ! [Z] : p(Z)             Z
+>       p(f(a))                  a
+>
+>   Question
+>       ? [X] : ( p(X) & ~$unify(X,a))
+>   Axiom                    Answer
+>       p(a) & p(b)              b
+>
+>   Question
+>       ? [X] : p(X)
+>   Axiom                    Answer
+>       ? [Z] : p(Z)             no answer (Skolems not allowed)
+>   This one is interesting - as a conjecture it's provable, but as a question
+>   it's not answerable. I like that!
+
+
+I discussed this with Sophie today, when she explained her interest in
+abduction as a way to explain why a countermodel invalidates some claim.
+Her example was an array A, then you switch the contents of A[i] and
+A[j], then claim the new array is not equal to the old array. This is not
+true if i = j, or A[i] = A[j], and that's what need to be found as the
+"explanation". I recast is as a question of the form ...
+
+Axioms: Arrays, Swap, array A, indices i, j.
+Question: ? [X:$o] : (X => (A[i] != A[j]))
+
+... and the ATP must synthesize X as (i != j) & (A[i] != A[j]). $unify
+and $contains might be used to provide hints (e.g., $contains(X,!=)) or
+contraints, e.g., ? [L:$o,R:$o] : $unify(X,L & R). Yay, another nice use
+case - thanks Sophie!
+
+
+My proposal would do it using $contains, e.g., ....
+    fof(pel55,question,
+        ? [X] :
+          ( killed(X,agatha)
+          & ~ $contains(X,killed)
+          & ~ $contains(X,hates) ) ).
+... or more positively ...
+    fof(pel55,question,
+        ? [X] :
+          ( killed(X,agatha)
+          & ( $unifies(X,agatha)
+            | $unifies(X,butler)
+            | $unifies(X,charles) ) ) ).
+
+Your work shows that it can be done. Next to get agreement on the syntax
+(quite easy), then convince ATP system developers to adopt it (not so
+easy).
+</PRE>

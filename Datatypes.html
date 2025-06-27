@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<title>Algebraic Data Types</title>
+<h1>Algebraic Data Types</h1>
+by Petra Hozzov&aacute;, Geoff Sutcliffe, and Michael Rawson.
+
+<hr>
+
+<h2>Background</h2>
+<em>Algebraic data types</em> (ADTs, see also: <em>term algebras</em>, <em>inductive data types</em>, and <em>Herbrand universes</em>) are sorts with a specific interpretation.
+Members of the sort are built from a fixed set of user-provided <em>constructors</em>.
+ADTs are useful for representing objects from functional programming such as lists or trees, and also from mathematics, such as the natural numbers.
+See elsewhere [<a href="#KRV">KRV</a>, <a href="#BPR">BPR</a>] for more background material on ADTs in the context of ATP.
+
+<h3>Examples</h3>
+The natural numbers 0, 1, 2, 3... can be defined as a sort where every term is either
+<ul>
+ <li>zero, or
+ <li>S(n), where n is itself a natural number.
+</ul>
+<p>
+S could be read as "successor", n + 1, so that 0 is defined as 0, 1 as S(0), 2 as S(1) = S(S(0)), and so on.
+
+<p>
+In a similar way, lists can be defined as either the nil list or a cons cell containing an element and the tail of a list.
+This is a natural example of a polymorphic datatype, as we didn't say what the element sort is.
+
+<p>
+ADTs are often (but not always) self-referential, in the sense that larger terms are built from smaller terms of the same sort and an appropriate constructor.
+
+<h3>Definition</h3>
+An ADT <em>A</em> is defined by a finite non-empty set of constructors.
+Each constructor <em>C</em> maps zero or more arguments of any type (including <em>A</em>) into <em>A</em>.
+The sort <em>A</em> is inhabited only by terms induced by these constructors.
+Each term is distinct from any other.
+<em>A</em> must be non-empty, as usual.
+
+<hr>
+
+<h2>Proposal</h2>
+We propose extending the typed first-order and higher-order languages of the TPTP with ADTs.
+We re-use existing syntax as far as possible ADT constructs in order that new syntax, cognitive load and implementation effort are minimised.
+<h3>By Example</h3>
+We first present the new syntax and semantics by example.
+Consider the natural numbers as defined above.
+<pre>
+tff(nat_type, type-datatype, nat : $tType).
+tff(zero_type, type-datatype-constructor, zero : nat).
+tff(successor_type, type-datatype-constructor, succ : nat > nat).
+</pre>
+<b>TODO</b> consider shorter role names: <code>type-adt</code> and <code>type-adtc</code>?
+
+<p>
+Here we define the type of natural numbers and two constructors.
+Note the use of the sub-roles <code>type-datatype</code> and <code>type-datatype-constructor</code> of the existing <code>type</code> role.
+This indicates to the theorem prover that a certain type declaration should be considered an ADT or an ADT constructor respectively.
+
+<p>
+ADT <em>testers</em> and <em>destructors</em> can be defined in the language itself:
+<pre>
+% check for zero
+tff(is_zero_type, type, is_zero : nat > $o).
+tff(zero_is_zero, axiom, is_zero(zero)).
+tff(succ_is_not_zero, axiom, ![X : nat]: ~is_zero(succ(X))).
+
+% check for successor
+tff(is_succ_type, type, is_succ : nat > $o).
+tff(zero_is_not_succ, axiom, ~is_succ(zero)).
+tff(succ_is_succ, axiom, ![X : nat]: is_succ(succ(X))).
+
+% get the predecessor of a number, if it exists
+tff(pred_type, type, pred : nat > nat).
+tff(pred_succ, axiom, ![X : nat]: pred(succ(X)) = X).
+</pre>
+
+<p>
+We draw attention to the fact that <code>pred</code> is a <code>type</code>, not a <code>type-datatype-constructor</code>: we want it to be a free function, not part of the ADT itself.
+At present such testers and destructors are user-provided, but a future proposal may require the system to define these automatically.
+
+<p>
+With this, we can already give a conjecture that is only provable with ADT semantics.
+<pre>
+tff(all_nats_zero_or_succ, conjecture, ![X : nat]: is_zero(X) | is_succ(X)).
+</pre>
+<p>
+This relies on the theorem prover reasoning that all natural numbers are either zero or the successor a natural number.
+Similarly:
+<pre>
+tff(no_cyclic_nats, conjecture, ~?[X : nat]: X = succ(X)).
+tff(succ_injective, conjecture, ![X : nat, Y : nat]: X != Y => succ(X) != succ(Y)).
+</pre>
+<p>
+Again, these are not theorems without ADT semantics.
+
+<pre>
+tff(add_type, type, plus : nat * nat > nat).
+tff(add_zero, axiom, ![X : nat]: plus(X, zero) = X).
+tff(add_succ, axiom, ![X : nat, Y : nat]: plus(X, succ(Y)) = succ(plus(X, Y))).
+tff(add_commutative, conjecture, ![X : nat, Y : nat]: plus(X, Y) = plus(Y, X)).
+</pre>
+<p>
+Finally, the above conjecture requires the theorem prover to reason inductively.
+It is of course possible to combine ADTs with other parts of TPTP such as arithmetic:
+<pre>
+tff(nat2int_type, type, nat2int : nat > int).
+tff(nat2int_zero, type, nat2int(zero) = 0).
+tff(nat2int_succ, type, ![X : nat]: nat2int(succ(X)) = nat2int(X) + 1).
+</pre>
+<b>TODO</b> more examples with e.g. HOL, FOOL, non-classical?
+
+<h3>The <code>type-datatype</code> Role</h3>
+A new ADT sort <code>a</code> can be introduced in the same way as an uninterpreted sort, i.e. a <code>type</code> declaration that declares <code>a : $tType</code>.
+However, the <code>type-datatype</code> role is used to signal the intended semantics.
+Systems should process this in the same way as a <code>type</code> declaration, but flag <code>a</code> as an ADT internally.
+ADTs can be polymorphic, and this is also supported in TPTP by declaring a type constructor:
+<pre>
+tff(list_type, type-datatype, list : $tType > $tType).
+</pre>
+
+<h3>The <code>type-datatype-constructor</code> Role</h3>
+A new ADT constructor <code>c</code> can be introduced in the same way as a function, i.e. a <code>type</code> declaration mapping into <code>a</code>.
+However, the <code>type-datatype-constructor</code> role is used to signal the intended semantics.
+Systems should process this in the same way as a <code>type</code> declaration, but flag <code>c</code> as an ADT constructor for <code>a</code> internally.
+Polymorphism works naturally:
+<pre>
+tff(nil_type, type-datatype-constructor, nil : !>[A : $tType]: A > list(A)).
+tff(cons_type, type-datatype-constructor, cons : !>[A : $tType]: A * list(A) > list(A)).
+</pre>
+
+<p>
+The associated ADT for a constructor can be determined uniquely by the type constructor it maps into.
+The ADT should have been declared with <code>type-datatype</code>, and systems should signal <code>SZS status SemanticError</code> if it is not.
+In the polymorphic case, it is malformed for a <code>type-datatype-constructor</code> to map into a type variable, and systems should likewise signal <code>SemanticError</code> on inputs of the form
+<pre>
+tff(who_do_I_belong_to, type-datatype-constructor, confused : !>[X : $tType]: X).
+</pre>
+
+Type variables should generally be repeated verbatim in the constructors of polymorphic ADTs:
+<pre>
+/* Below corresponds to Coq
+Inductive sum (A B:Type) : Type :=
+  | inl : A -> sum A B
+  | inr : B -> sum A B.
+*/
+
+% OK
+tff(sum_type, type-datatype, sum : ($tType * $tType) > $tType).
+tff(inl_type, type-datatype-constructor, inl : !>[A : $tType, B : $tType]: A > sum(A, B)).
+tff(inr_type, type-datatype-constructor, inr : !>[A : $tType, B : $tType]: B > sum(A, B)).
+
+% probably not intended but permissible
+tff(sum_type, type-datatype, sum : ($tType * $tType) > $tType).
+tff(inl_type, type-datatype-constructor, inl : !>[A : $tType, B : $tType]: B > sum(B, A)).
+tff(inr_type, type-datatype-constructor, inr : !>[A : $tType, B : $tType]: A > sum(B, A)).
+</pre>
+but deviating from this is <em>not</em> necessarily an error (see <a href="#GADTs">Generalized ADTs</a>) and systems that do not support such deviations should report <code>SZS status Inappropriate</code>.
+
+<h3>A Hazard with ADT declarations</h3>
+As an ADT's sort and constructors are declared separately, it is not possible to determine the complete ADT until a system has loaded a complete problem.
+This is because an extra constructor may in theory be added at any point.
+We encourage system developers to embrace this situation, while simultaneously advising users to <b>group declarations of an ADT and its constructors together</b>.
+This is a slightly-unfortunate consequence of re-using existing syntax: we do not expect it to be a problem in practice.
+
+<p>
+The interaction of this proposal and extra-logical statements such as selective include directives and TPI commands is unclear: ADTs should be considered as an indivisible unit, declared together in the same file.
+
+<h3>Checking for Inhabited Sorts</h3>
+Systems should check that ADT sorts are inhabited, otherwise any reported results are likely nonsense.
+If a sort turns out to be uninhabited, the system should report <code>SZS status SemanticError</code> with a suitable message.
+For example, both sorts in
+<pre>
+tff(void_type, type-datatype, void : $tType).
+
+tff(list_type, type-datatype, list : $tType > $tType).
+% whoops, forgot nil
+tff(cons_type, type-datatype-constructor, cons : !>[A : $tType]: (A * list(A)) > list(A)).
+</pre>
+should trigger an error.
+
+<h3>Breakage of Existing Systems</h3>
+Existing theorem provers may well treat the new <code>type</code> sub-roles as normal <code>type</code> declarations.
+This will <em>reduce</em> the logical strength of the input, which may result in a previously-correct system claiming a theorem is a non-theorem.
+Developers of systems affected by this could:
+<ul>
+ <li>signal <code>SZS status Inappropriate</code> on encountering one of the new <code>type</code> sub-roles; or
+ <li>treat the symbols as uninterpreted, reporting incompleteness where appropriate; or
+ <li>implement support for ADTs
+</ul>
+in ascending order of preference. ;-)
+
+<hr>
+
+<h2>Problems and Systems</h2>
+<p>
+Problems can be imported from existing libraries, including TIP [<a href="#CJRS">CJRS</a>] and Vampire's inductive benchmarks [???]. ITP systems are likely to produce ADT inputs if the language supports it.
+
+<p>
+Systems are presently more sparse. Vampire supports much of this proposal already, but will need adapting for the new syntax. Some SMT solvers support a theory of data types, including Z3 or cvc5.
+
+<hr>
+
+<h2>Advanced Topics</h2>
+The above should suffice for the casual user and implementer of ADTs.
+However, there are some interesting corners that merit further discussion.
+
+<h3>Induction</h3>
+Some ADT theorems may require the system to employ inductive reasoning, or similar techniques.
+Neither TPTP syntax nor semantics make any reference to this: induction is a system-level technique that is independent of ADTs (and indeed may be applied to other theories or even plain logic).
+However, a new flag will be added to the header of problems in the TPTP library that are thought to require induction.
+<b>TODO</b> how precisely?
+This flag may be removed if a non-inductive proof is found.
+<b>TODO</b> perhaps it makes more sense to have a "no induction needed" flag?
+Systems that use induction should report induction schemata, in the same way as theory axioms in proofs.
+
+<h3>Mutually-Recursive ADTs</h3>
+Mutually-recursive ADTs are allowed, but they require a particular order of declaration in order to avoid undeclared types.
+Consider enforcing colour alternation in red-black trees:
+<pre>
+/* Corresponds to Standard ML
+datatype 'a red =
+    rLeaf of 'a
+  | rBranch of 'a black * 'a black
+and      'a black =
+    bLeaf of 'a
+  | bBranch of 'a red * 'a red
+*/
+
+% declare types first
+tff(red_type, type-datatype, red : $tType > $tType).
+tff(black_type, type-datatype, black : $tType > $tType).
+
+% types have been declared now, any order works
+tff(rLeaf_type, type-datatype-const, rLeaf : !>[A : $tType]: A > red(A)).
+tff(rBranch_type, type-datatype-const, rBranch : !>[A : $tType]: (black(A) * black(A)) > red(A)).
+tff(bLeaf_type, type-datatype-const, bLeaf : !>[A : $tType]: A > black(A)).
+tff(bBranch_type, type-datatype-const, rBranch : !>[A : $tType]: (red(A) * red(A)) > black(A)).
+</pre>
+
+<h3>ADTs and Higher-Order Logic</h3>
+Constructors with a function type in their domain are legal.
+Consider the following embedding of simply-typed &lambda;-calculus into HOL using higher-order abstract syntax:
+<pre>
+/*
+Following corresponds to the Standard ML
+datatype 'a expr =
+    eVar of 'a
+  | eApp of 'a expr * 'a expr
+  | eLam of 'a -> 'a expr
+*/
+
+thf(expr_type, type-datatype, expr : $tType > $tType).
+thf(eVar_type, type-datatype-constructor, eVar : !>[A : $tType]: A > expr(A)).
+thf(eApp_type, type-datatype-constructor, eApp : !>[A : $tType]: (expr(A) * expr(A)) > expr(A)).
+thf(eLam_type, type-datatype-constructor, eLam : !>[A : $tType]: (A > expr(A)) > expr(A)).
+</pre>
+
+<h3 id="GADTs">Generalized ADTs</h3>
+The proposed syntax permits a polymorphic ADT with constructors that instantiate (or permute) arguments of the type constructor in their range.
+This is what functional programmers refer to as <a href="https://wiki.haskell.org/Generalised_algebraic_datatype"><em>Generalized</em> ADTs</a>.
+We see no reason to forbid this in TPTP, but note that system support is likely to be patchy.
+
+<h3>Dependently-Typed ADTs</h3>
+ADTs can also be dependently-typed, incluing the well-known 'vector' example.
+<pre>
+tff(vec_type, type-datatype, vec : (nat * $tType) > $tType).
+tff(nil_type, type-datatype-constructor, nil : !>[A : $tType]: vec(zero, A)).
+tff(cons_type, type-datatype-constructor, cons : !>[N : nat, A : $tType]: (A * vec(N, A)) > vec(succ(N), A)).
+</pre>
+<b>TODO</b> check this with Cezary?
+
+<h3>Codatatypes</h3>
+Codatatypes are a similar concept and will likely use similar syntax in a future proposal.
+Systems that implement codatatypes as an extension should use the datatype syntax as a starting point to minimise later effort.
+
+<hr>
+<h2>Bibliography</h2>
+<ul>
+ <li id="KRV">Kov&aacute;cs, Robillard and Voronkov. <cite>Coming to Terms with Quantified Reasoning</cite>, POPL 2017
+ <li id="BPR">Blanchette, Peltier, Robillard. <cite>Superposition with datatypes and codatatypes</cite>, IJCAR 2018
+ <li id="CJRS">Claessen, Johansson, Ros&eacute;n, and Smallbone. <cite>TIP: Tons of Inductive Problems</cite>, CICM 2015.
+</ul>

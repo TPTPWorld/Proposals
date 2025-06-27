@@ -104,8 +104,14 @@ The tuple form is ...
     [bind(X,d),bind(Y,e),bind(Z,f)]
     % SZS output end AnswerBindings
 </PRE>
-<EM>Should this be expressed as variable bindings, as in Vampire's <TT>X-&gt;a</TT>?
-That would allow the order to be arbitrary.</EM>
+<P>
+Disjunctive answers can also be expressed, e.g., ...
+<PRE>
+    % SZS status Success for ANS001+1
+    % SZS output start AnswerBindings for ANS001+1
+    [bind(X,g),bind(Y,h),bind(Z,i)] | [bind(X,j),bind(Y,k),bind(Z,l)]
+    % SZS output end InstantiatedFormulae for ANS001+1
+</PRE>
 <P>
 A final line with variables indicates that there might be more answers than the preceding tuples,
 e.g., ...
@@ -160,11 +166,11 @@ e.g., ...
 <HR><!-- -------------------------------------------------------------------------------------- -->
 <H2> Additional Control </H2>
 
-What we seem to need now is <TT>$unify</TT>/2 that tests if two expressions unify,
-and Petra would also like <TT>$contains</TT>/2 that tests if a certain symbol occurs
-in an expression. 
-In principle, both would be quite simple to implement (unify is harder,
-because for equational literals, you would need to do it modulo symmetry).
+<H3><TT>$unify</TT></H3>
+
+What we seem to need is <TT>$unify</TT>/2 that (tries to) unify two expressions.
+It would be quite simple to implement (but needs to take symmetry into account if
+equality is used in either argument).
 <P>
 <TABLE>
 <TR> <TH ALIGN=LEFT WIDTH=20%> Axioms
@@ -206,7 +212,9 @@ because for equational literals, you would need to do it modulo symmetry).
      <TD> Aunt Agatha
      <TD> <PRE>? [X] : 
   ( killed(X,agatha) 
-  & ( $unify(X,agatha) | $unify(X,butler) | $unify(X,charles) ) )</PRE>
+  & ( $unify(X,agatha) 
+    | $unify(X,butler) 
+    | $unify(X,charles) ) )</PRE>
      <TD> <TT>[bind(X,agatha)]</TT>
 <TR> <TD COLSPAN=3> <HR>
 <TR> <TD> <TT>p(a) & p(b)</TT>
@@ -219,8 +227,71 @@ because for equational literals, you would need to do it modulo symmetry).
           Switch the contents of array[i] and array[j] such that the resultant array is different.
      <TD> <TT>[bind(X,(i != j) & (array[i] != array[j])]</TT>
 <TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>! [X] : mul(inv(X),X) = id</TT><BR>
+          <TT>! [X] : mul(id,X) = X</TT><BR>
+          <TT>!&nbsp;[X,Y,Z]&nbsp;:&nbsp;mul(X,mul(Y,Z))&nbsp;=&nbsp;mul(mul(X,Y),Z)</TT>
+     <TD> <TT>? [X] : mul(e1,X) = id</TT>
+     <TD> <TT>[bind(X,inv(e1))]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>! [X] : mul(inv(X),X) = id</TT><BR>
+          <TT>! [X] : mul(id,X) = X</TT><BR>
+          <TT>! [X,Y,Z] : mul(X,mul(Y,Z)) = mul(mul(X,Y),Z)</TT><BR>
+          <TT>! [X] : mul(X,id) = X</TT>
+     <TD> <PRE>? [Z] :
+  ( (mul(e1,e2) = Y) 
+ => (mul(Z,Z) != id) )</PRE>
+     <TD> <PRE>[bind(Z,
+      $ite(mul(e1,mul(e2,e1)) = e2,
+           e1,
+           $ite(id = mul(e2,mul(e1,e2))),
+                e1,
+                mul(e1,e2))))]</PRE>
+<TR> <TD COLSPAN=3> <HR>
 </TABLE>
 
+<H3><TT>$contains</TT></H3>
+
+Petra would also like <TT>$contains</TT>/2 that tests if a certain symbol occurs in an expression. 
+It would be quite simple to implement.
+<P>
+<TABLE>
+<TR> <TH ALIGN=LEFT WIDTH=20%> Axioms
+     <TH ALIGN=LEFT WIDTH=20%> Question
+     <TH ALIGN=LEFT> Answer
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>sunday | monday</TT><BR>
+          <TT>monday => workshop(vampire)</TT><BR>
+          <TT>sunday => workshop(arcade)</TT><BR>
+     <TD> <TT>? [X]: workshop(X)</TT>
+     <TD> <TT>[bind(X,$ite(workshop(vampire),vampire,arcade))]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>sunday | monday</TT><BR>
+          <TT>monday => workshop(vampire)</TT><BR>
+          <TT>sunday => workshop(arcade)</TT><BR>
+     <TD> <TT>? [X]: ( workshop(X) & ~$contains(X,workshop) )</TT>
+     <TD> <TT>[bind(X,vampire)] | [bind(X,arcade)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>! [X] : mul(inv(X),X) = id</TT><BR>
+          <TT>! [X] : mul(id,X) = X</TT><BR>
+          <TT>!&nbsp;[X,Y,Z]&nbsp;:&nbsp;mul(X,mul(Y,Z))&nbsp;=&nbsp;mul(mul(X,Y),Z)</TT>
+     <TD> <TT>?&nbsp;[X]:&nbsp;mul(X,&nbsp;mul(inv(a),&nbsp;inv(b)))&nbsp;!=&nbsp;id</TT>
+     <TD> <TT>[bind(X,inv(mul(inv(a), inv(b)))]</TT>
+<TR> <TD COLSPAN=3> <HR>
+<TR VALIGN=TOP>
+     <TD> <TT>! [X] : mul(inv(X),X) = id</TT><BR>
+          <TT>! [X] : mul(id,X) = X</TT><BR>
+          <TT>! [X,Y,Z] : mul(X,mul(Y,Z)) = mul(mul(X,Y),Z)</TT>
+     <TD> <PRE>? [X]: 
+  ( mul(X, mul(inv(a), inv(b))) != id
+  & ~contains(X,inv) )</PRE>
+     <TD> <TT>[bind(X,TBA)]</TT>
+<TR> <TD COLSPAN=3> <HR>
+</TABLE>
 <P>
 <HR><!-- -------------------------------------------------------------------------------------- -->
 </BODY>

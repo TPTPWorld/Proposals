@@ -47,14 +47,14 @@ We first present the new syntax and semantics by example.
 Consider the natural numbers as defined above.
 <pre>
 tff(nat_type, type-datatype, nat : $tType).
-tff(zero_type, type-datatype-constructor, zero : nat).
-tff(successor_type, type-datatype-constructor, succ : nat > nat).
+tff(zero_type, type-datatype_constructor, zero : nat).
+tff(successor_type, type-datatype_constructor, succ : nat > nat).
 </pre>
 <b>TODO</b> consider shorter role names: <code>type-adt</code> and <code>type-adtc</code>?
 
 <p>
 Here we define the type of natural numbers and two constructors.
-Note the use of the sub-roles <code>type-datatype</code> and <code>type-datatype-constructor</code> of the existing <code>type</code> role.
+Note the use of the sub-roles <code>type-datatype</code> and <code>type-datatype_constructor</code> of the existing <code>type</code> role.
 This indicates to the theorem prover that a certain type declaration should be considered an ADT or an ADT constructor respectively.
 
 <p>
@@ -76,7 +76,8 @@ tff(pred_succ, axiom, ![X : nat]: pred(succ(X)) = X).
 </pre>
 
 <p>
-We draw attention to the fact that <code>pred</code> is a <code>type</code>, not a <code>type-datatype-constructor</code>: we want it to be a free function, not part of the ADT itself.
+We draw attention to the fact that <code>pred</code> is a <code>type</code>, not a 
+<code>type-datatype_constructor</code>: it needs to be a free function, not part of the ADT itself.
 At present such testers and destructors are user-provided, but a future proposal may require the system to define these automatically.
 
 <p>
@@ -111,30 +112,32 @@ tff(nat2int_succ, type, ![X : nat]: nat2int(succ(X)) = nat2int(X) + 1).
 <b>TODO</b> more examples with e.g. HOL, FOOL, non-classical?
 
 <h3>The <code>type-datatype</code> Role</h3>
-A new ADT sort <code>a_type</code> can be introduced in the same way as an uninterpreted sort, i.e. a <code>type</code> declaration that declares <code>a_type : $tType</code>.
+A new ADT sort <code>a_type</code> can be introduced in the same way as an uninterpreted sort, 
+i.e. a <code>type</code> declaration that declares <code>a_type : $tType</code>.
 However, the <code>type-datatype</code> role is used to signal the intended semantics.
-Systems should process this in the same way as a <code>type</code> declaration, but flag <code>a_type</code> as an ADT internally.
+Systems should process this in the same way as a <code>type</code> declaration, but flag 
+<code>a_type</code> as an ADT internally.
 ADTs can be polymorphic, and this is also supported in TPTP by declaring a type constructor:
 <pre>
 tff(list_type, type-datatype, list : $tType > $tType).
 </pre>
 
-<h3>The <code>type-datatype-constructor</code> Role</h3>
+<h3>The <code>type-datatype_constructor</code> Role</h3>
 A new ADT constructor <code>constr</code> can be introduced in the same way as a function, i.e. a <code>type</code> declaration mapping into <code>a_type</code>.
-However, the <code>type-datatype-constructor</code> role is used to signal the intended semantics.
+However, the <code>type-datatype_constructor</code> role is used to signal the intended semantics.
 Systems should process this in the same way as a <code>type</code> declaration, but flag <code>constr</code> as an ADT constructor for <code>a_type</code> internally.
 Polymorphism works naturally:
 <pre>
-tff(nil_type, type-datatype-constructor, nil : !>[A : $tType]: A > list(A)).
-tff(cons_type, type-datatype-constructor, cons : !>[A : $tType]: A * list(A) > list(A)).
+tff(nil_type, type-datatype_constructor, nil : !>[A : $tType]: A > list(A)).
+tff(cons_type, type-datatype_constructor, cons : !>[A : $tType]: A * list(A) > list(A)).
 </pre>
 
 <p>
 The associated ADT for a constructor can be determined uniquely by the type constructor it maps into.
 The ADT should have been declared with <code>type-datatype</code>, and systems should signal <code>SZS status SemanticError</code> if it is not.
-In the polymorphic case, it is malformed for a <code>type-datatype-constructor</code> to map into a type variable, and systems should likewise signal <code>SemanticError</code> on inputs of the form
+In the polymorphic case, it is malformed for a <code>type-datatype_constructor</code> to map into a type variable, and systems should likewise signal <code>SemanticError</code> on inputs of the form
 <pre>
-tff(who_do_I_belong_to, type-datatype-constructor, confused : !>[X : $tType]: X).
+tff(who_do_I_belong_to, type-datatype_constructor, confused : !>[X : $tType]: X).
 </pre>
 
 Type variables should generally be repeated verbatim in the constructors of polymorphic ADTs:
@@ -147,13 +150,13 @@ Inductive sum (A B:Type) : Type :=
 
 % OK
 tff(sum_type, type-datatype, sum : ($tType * $tType) > $tType).
-tff(inl_type, type-datatype-constructor, inl : !>[A : $tType, B : $tType]: A > sum(A, B)).
-tff(inr_type, type-datatype-constructor, inr : !>[A : $tType, B : $tType]: B > sum(A, B)).
+tff(inl_type, type-datatype_constructor, inl : !>[A : $tType, B : $tType]: A > sum(A, B)).
+tff(inr_type, type-datatype_constructor, inr : !>[A : $tType, B : $tType]: B > sum(A, B)).
 
 % probably not intended but permissible
 tff(sum_type, type-datatype, sum : ($tType * $tType) > $tType).
-tff(inl_type, type-datatype-constructor, inl : !>[A : $tType, B : $tType]: B > sum(B, A)).
-tff(inr_type, type-datatype-constructor, inr : !>[A : $tType, B : $tType]: A > sum(B, A)).
+tff(inl_type, type-datatype_constructor, inl : !>[A : $tType, B : $tType]: B > sum(B, A)).
+tff(inr_type, type-datatype_constructor, inr : !>[A : $tType, B : $tType]: A > sum(B, A)).
 </pre>
 but deviating from this is <em>not</em> necessarily an error (see <a href="#GADTs">Generalized ADTs</a>) and systems that do not support such deviations should report <code>SZS status Inappropriate</code>.
 
@@ -175,7 +178,7 @@ tff(void_type, type-datatype, void : $tType).
 
 tff(list_type, type-datatype, list : $tType > $tType).
 % whoops, forgot nil
-tff(cons_type, type-datatype-constructor, cons : !>[A : $tType]: (A * list(A)) > list(A)).
+tff(cons_type, type-datatype_constructor, cons : !>[A : $tType]: (A * list(A)) > list(A)).
 </pre>
 should trigger an error.
 
@@ -232,10 +235,10 @@ tff(red_type, type-datatype, red : $tType > $tType).
 tff(black_type, type-datatype, black : $tType > $tType).
 
 % types have been declared now, any order works
-tff(rLeaf_type, type-datatype-const, rLeaf : !>[A : $tType]: A > red(A)).
-tff(rBranch_type, type-datatype-const, rBranch : !>[A : $tType]: (black(A) * black(A)) > red(A)).
-tff(bLeaf_type, type-datatype-const, bLeaf : !>[A : $tType]: A > black(A)).
-tff(bBranch_type, type-datatype-const, rBranch : !>[A : $tType]: (red(A) * red(A)) > black(A)).
+tff(rLeaf_type, type-datatype_const, rLeaf : !>[A : $tType]: A > red(A)).
+tff(rBranch_type, type-datatype_const, rBranch : !>[A : $tType]: (black(A) * black(A)) > red(A)).
+tff(bLeaf_type, type-datatype_const, bLeaf : !>[A : $tType]: A > black(A)).
+tff(bBranch_type, type-datatype_const, rBranch : !>[A : $tType]: (red(A) * red(A)) > black(A)).
 </pre>
 
 <h3>ADTs and Higher-Order Logic</h3>
@@ -251,9 +254,9 @@ datatype 'a expr =
 */
 
 thf(expr_type, type-datatype, expr : $tType > $tType).
-thf(eVar_type, type-datatype-constructor, eVar : !>[A : $tType]: A > expr(A)).
-thf(eApp_type, type-datatype-constructor, eApp : !>[A : $tType]: (expr(A) * expr(A)) > expr(A)).
-thf(eLam_type, type-datatype-constructor, eLam : !>[A : $tType]: (A > expr(A)) > expr(A)).
+thf(eVar_type, type-datatype_constructor, eVar : !>[A : $tType]: A > expr(A)).
+thf(eApp_type, type-datatype_constructor, eApp : !>[A : $tType]: (expr(A) * expr(A)) > expr(A)).
+thf(eLam_type, type-datatype_constructor, eLam : !>[A : $tType]: (A > expr(A)) > expr(A)).
 </pre>
 
 <h3 id="GADTs">Generalized ADTs</h3>
@@ -265,8 +268,8 @@ We see no reason to forbid this in TPTP, but note that system support is likely 
 ADTs can also be dependently-typed, incluing the well-known 'vector' example.
 <pre>
 tff(vec_type, type-datatype, vec : (nat * $tType) > $tType).
-tff(nil_type, type-datatype-constructor, nil : !>[A : $tType]: vec(zero, A)).
-tff(cons_type, type-datatype-constructor, cons : !>[N : nat, A : $tType]: (A * vec(N, A)) > vec(succ(N), A)).
+tff(nil_type, type-datatype_constructor, nil : !>[A : $tType]: vec(zero, A)).
+tff(cons_type, type-datatype_constructor, cons : !>[N : nat, A : $tType]: (A * vec(N, A)) > vec(succ(N), A)).
 </pre>
 <b>TODO</b> check this with Cezary?
 

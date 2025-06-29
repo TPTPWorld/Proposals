@@ -9,19 +9,19 @@ by Petra Hozzov&aacute;, Geoff Sutcliffe, and Michael Rawson.
 <hr>
 
 <h2>Background</h2>
-<em>Algebraic data types</em> (ADTs, see also: <em>term algebras</em>, <em>inductive data types</em>, and <em>Herbrand universes</em>) are sorts with a specific interpretation.
+<em>Algebraic data types</em> (ADTs, see also: <em>term algebras</em>, <em>inductive data types</em>, and <em>Herbrand universes</em>. Not to be confused with <a href="https://en.wikipedia.org/wiki/Abstract_data_type">Abstract Data Types</a>.) are sorts with a specific interpretation.
 Members of the sort are built from a fixed set of user-provided <em>constructors</em>.
 ADTs are useful for representing objects from functional programming such as lists or trees, and also from mathematics, such as the natural numbers.
-See elsewhere [<a href="#KRV">KRV</a>, <a href="#BPR">BPR</a>] for more background material on ADTs in the context of ATP.
+See elsewhere [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=KRV17">KRV17</a>, <a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=BPR18">BPR18</a>] for more background material on ADTs in the context of ATP.
 
 <h3>Examples</h3>
 The natural numbers 0, 1, 2, 3... can be defined as a sort where every term is either
 <ul>
- <li>zero, or
- <li>S(n), where n is itself a natural number.
+ <li><code>zero</code>, or
+ <li><code>succ(N)</code>, where N is itself a natural number.
 </ul>
 <p>
-S could be read as "successor", n + 1, so that 0 is defined as 0, 1 as S(0), 2 as S(1) = S(S(0)), and so on.
+<code>succ</code> could be read as "successor", N + 1, so that 0 is defined as <code>zero</code>, 1 as <code>succ(zero)</code>, 2 as <code>succ(succ(zero))</code>, and so on.
 
 <p>
 In a similar way, lists can be defined as either the nil list or a cons cell containing an element and the tail of a list.
@@ -80,7 +80,7 @@ We draw attention to the fact that <code>pred</code> is a <code>type</code>, not
 At present such testers and destructors are user-provided, but a future proposal may require the system to define these automatically.
 
 <p>
-With this, we can already give a conjecture that is only provable with ADT semantics.
+With this, we can already give a conjecture that is provable only with ADT semantics.
 <pre>
 tff(all_nats_zero_or_succ, conjecture, ![X : nat]: is_zero(X) | is_succ(X)).
 </pre>
@@ -111,18 +111,18 @@ tff(nat2int_succ, type, ![X : nat]: nat2int(succ(X)) = nat2int(X) + 1).
 <b>TODO</b> more examples with e.g. HOL, FOOL, non-classical?
 
 <h3>The <code>type-datatype</code> Role</h3>
-A new ADT sort <code>a</code> can be introduced in the same way as an uninterpreted sort, i.e. a <code>type</code> declaration that declares <code>a : $tType</code>.
+A new ADT sort <code>a_type</code> can be introduced in the same way as an uninterpreted sort, i.e. a <code>type</code> declaration that declares <code>a_type : $tType</code>.
 However, the <code>type-datatype</code> role is used to signal the intended semantics.
-Systems should process this in the same way as a <code>type</code> declaration, but flag <code>a</code> as an ADT internally.
+Systems should process this in the same way as a <code>type</code> declaration, but flag <code>a_type</code> as an ADT internally.
 ADTs can be polymorphic, and this is also supported in TPTP by declaring a type constructor:
 <pre>
 tff(list_type, type-datatype, list : $tType > $tType).
 </pre>
 
 <h3>The <code>type-datatype-constructor</code> Role</h3>
-A new ADT constructor <code>c</code> can be introduced in the same way as a function, i.e. a <code>type</code> declaration mapping into <code>a</code>.
+A new ADT constructor <code>constr</code> can be introduced in the same way as a function, i.e. a <code>type</code> declaration mapping into <code>a_type</code>.
 However, the <code>type-datatype-constructor</code> role is used to signal the intended semantics.
-Systems should process this in the same way as a <code>type</code> declaration, but flag <code>c</code> as an ADT constructor for <code>a</code> internally.
+Systems should process this in the same way as a <code>type</code> declaration, but flag <code>constr</code> as an ADT constructor for <code>a_type</code> internally.
 Polymorphism works naturally:
 <pre>
 tff(nil_type, type-datatype-constructor, nil : !>[A : $tType]: A > list(A)).
@@ -194,7 +194,7 @@ in ascending order of preference. ;-)
 
 <h2>Problems and Systems</h2>
 <p>
-Problems can be imported from existing libraries, including TIP [<a href="#CJRS">CJRS</a>] and Vampire's inductive benchmarks [???]. ITP systems are likely to produce ADT inputs if the language supports it.
+Problems can be imported from existing libraries, including TIP [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=CJ+15">CJ+15</a>] and Vampire's <a href="https://github.com/vprover/inductive_benchmarks">inductive benchmarks</a>. ITP systems are likely to produce ADT inputs if the language supports it.
 
 <p>
 Systems are presently more sparse. Vampire supports much of this proposal already, but will need adapting for the new syntax. Some SMT solvers support a theory of data types, including Z3 or cvc5.
@@ -273,11 +273,3 @@ tff(cons_type, type-datatype-constructor, cons : !>[N : nat, A : $tType]: (A * v
 <h3>Codatatypes</h3>
 Codatatypes are a similar concept and will likely use similar syntax in a future proposal.
 Systems that implement codatatypes as an extension should use the datatype syntax as a starting point to minimise later effort.
-
-<hr>
-<h2>Bibliography</h2>
-<ul>
- <li id="KRV">Kov&aacute;cs, Robillard and Voronkov. <cite>Coming to Terms with Quantified Reasoning</cite>, POPL 2017
- <li id="BPR">Blanchette, Peltier, Robillard. <cite>Superposition with datatypes and codatatypes</cite>, IJCAR 2018
- <li id="CJRS">Claessen, Johansson, Ros&eacute;n, and Smallbone. <cite>TIP: Tons of Inductive Problems</cite>, CICM 2015.
-</ul>

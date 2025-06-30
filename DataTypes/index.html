@@ -107,7 +107,7 @@ tff(all_nats_zero_or_succ, conjecture, ![X : nat]: is_zero(X) | is_succ(X)).
 </pre>
 <p>
 This relies on the theorem prover reasoning that all natural numbers are either zero or the 
-successor a natural number.
+successor of a natural number.
 Similarly:
 <pre>
 tff(no_cyclic_nats, conjecture, ~?[X : nat]: X = succ(X)).
@@ -133,9 +133,14 @@ tff(add_commutative,conjecture,
 Finally, the above conjecture requires the theorem prover to reason inductively.
 It is of course possible to combine ADTs with other parts of TPTP such as arithmetic:
 <pre>
-tff(nat2int_type, type, nat2int : nat > int).
-tff(nat2int_zero, type, nat2int(zero) = 0).
-tff(nat2int_succ, type, ![X : nat]: nat2int(succ(X)) = nat2int(X) + 1).
+tff(nat2int_type,type,
+    nat2int: nat > $int ).
+
+tff(nat2int_zero,type,
+    nat2int(zero) = 0 ).
+
+tff(nat2int_succ,type,
+    ! [X: nat] : ( nat2int(succ(X)) = $sum(nat2int(X),1) ) ).
 </pre>
 <b>TODO</b> more examples with e.g. HOL, FOOL, non-classical?
 

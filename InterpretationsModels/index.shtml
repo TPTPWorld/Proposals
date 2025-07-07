@@ -464,6 +464,7 @@ The types of the symbols and the types of the domain must be given.
 <PRE>
 <!--#include file="ModelExamples/TFF_Finite_Fine.s"-->
 </PRE>
+<A NAME="SeparateDomains">
 <P>
 If you baulk at using the same type for domains elements as terms (and it does get murky,
 e.g., when quantification over only the domain elements is intended, e.g., in 

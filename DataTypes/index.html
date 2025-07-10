@@ -185,7 +185,7 @@ tff(who_do_I_belong_to, type-datatype_constructor, confused : !>[X : $tType]: X)
 
 Type variables should generally be repeated verbatim in the constructors of polymorphic ADTs:
 <pre>
-/* Below corresponds to Coq
+/* Below corresponds to Rocq
 Inductive sum (A B:Type) : Type :=
   | inl : A -> sum A B
   | inr : B -> sum A B.

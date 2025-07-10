@@ -98,9 +98,9 @@ examples of errors that can be avoided by shallow type checking.
 This provides a valuable sanity check for users, especially considering the complexity that
 problems in DHOL forms can reach.
 
-<H3>Syntax of TPTP Dependently Typed Higher-order Form (DTF) </H3>
+<H3>Syntax of TPTP Dependently Typed Higher-order Form (DHF) </H3>
 
-The syntax of DTF requires next to no change to the already established TPTP language BNF.
+The syntax of DHF requires next to no change to the already established TPTP language BNF.
 The TPTP language already defines the <TT>!&gt;</TT> binder for types.
 This is currently only used for polymorphism e.g.,
 <TT>cons&nbsp;:&nbsp;!>[A:&nbsp;$tType]:&nbsp;(A&nbsp;&gt;&nbsp;(list&nbsp;@&nbsp;A)&nbsp;&gt;&nbsp;(list&nbsp;@&nbsp;&nbsp;A))</TT>
@@ -115,7 +115,7 @@ dependent type: <TT>a&nbsp;@&nbsp;t1&nbsp;@&nbsp;...&nbsp;@&nbsp;tm</TT>.
 In polymorphic problems the variable list is prepended with their type variables, which may appear
 in the same binder.
 
-<H3> An Example Problem in DTF </H3>
+<H3> An Example Problem in DHF </H3>
 
 The following example formalizes the base case of the inductive proof that 
 append on fixed-length lists is associative.
@@ -221,13 +221,13 @@ thf(list_app_assoc_base,conjecture,
 <LI> DLash 1.11
      <UL>
      <LI> As an ATP system
-     <LI> As a DTF type checker
+     <LI> As a DHF type checker
      <LI> Available in <A HREF="https://tptp.org/cgi-bin/SystemOnTPTP">SystemOnTPTP</A>
      </UL>
 <LI> DT2H2X 1.8.4
      <UL>
      <LI> As an ATP system
-     <LI> As a DTF type checker
+     <LI> As a DHF type checker
      <LI> Available in <A HREF="https://tptp.org/cgi-bin/SystemOnTPTP">SystemOnTPTP</A>
      </UL>
 <LI> TPTP Utils (by Alex Steen)

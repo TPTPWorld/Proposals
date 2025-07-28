@@ -282,6 +282,9 @@ However, there are some interesting corners that merit further discussion.
 Some ADT theorems may require the system to employ inductive reasoning, or similar techniques.
 Neither TPTP syntax nor semantics make any reference to this: induction is a system-level technique 
 that is independent of ADTs (and indeed may be applied to other theories or even plain logic).
+Reminder: Any complete calculus for a logic without datatypes, but that can use induction, e.g., 
+a FOF calculus that can use induction for proofs over Peano numbers, remains complete without 
+induction.
 Systems that use induction should report induction schemata, in the same way as theory axioms 
 in proofs.
 

@@ -46,6 +46,17 @@ The sort <em>A</em> is inhabited only by terms induced by these constructors.
 Each term is distinct from any other.
 <em>A</em> must be non-empty, as usual.
 
+<!-- ------------------------------------------------------------------------------------- -->
+<h3>Properties</h3>
+
+The definition leads to several well-known properties, including the popular [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=KRV17">KRV17</a>] scheme:
+<ul>
+ <li><em>domain closure</em>: every element is constructed from one of the constructors
+ <li><em>distinctness</em>: terms with different constructors are never equal to each other
+ <li><em>injectivity</em>: constructors are injective functions
+ <li><em>acyclicity</em>: no term can be a strict subterm of itself
+</ul>
+
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h2>Proposal</h2>
 
@@ -234,10 +245,9 @@ in the same file.
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>Checking for Inhabited Sorts</h3>
 
-Systems should check that ADT sorts are inhabited, otherwise any reported results are likely 
-nonsense.
-If a sort turns out to be uninhabited, the system should report 
-<code>SZS status SemanticError</code> with a suitable message.
+ADT sorts <b>must</b> have at least one inhabitant, otherwise all bets are off and systems are allowed to be unsound, incomplete, or both.
+Systems are unlikely to check this in all cases, as checking inhabitation is hard in the presence of e.g. polymorphism (TODO Jasmin refs).
+Systems <b>may</b> report that an ADT sorts is uninhabited, reporting <code>SZS status SemanticError</code> with a suitable message.
 For example, both types in
 <pre>
 tff(void_type, type-datatype, void : $tType).
@@ -246,7 +256,9 @@ tff(list_type, type-datatype, list : $tType > $tType).
 %----whoops, forgot nil
 tff(cons_type, type-datatype_constructor, cons : !>[A : $tType]: (A * list(A)) > list(A)).
 </pre>
-should trigger an error.
+may (or may not) trigger an error.
+Users should therefore ensure that their ADT sorts are inhabited.
+Problems in the TPTP library only declare inhabited ADTs.
 
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>Breakage of Existing Systems</h3>
@@ -269,6 +281,10 @@ either <TT>ADT</TT> or <TT>NAT</TT>
 Problems can be imported from existing libraries, including TIP [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=CJ+15">CJ+15</a>] and Vampire's <a href="https://github.com/vprover/inductive_benchmarks">inductive benchmarks</a>. ITP systems are likely to produce ADT inputs if the language supports it.
 <p>
 Systems are presently more sparse. Vampire supports much of this proposal already, but will need adapting for the new syntax. Some SMT solvers support a theory of data types, including Z3 and cvc5.
+
+<h2>Not Included</h2>
+This proposal deliberately does not include co-datatypes and nice-to-have features such as testers and selectors.
+These may well be proposed in future, but to keep this proposal manageable the scope is limited.
 
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h2>Advanced Topics</h2>

@@ -1,3 +1,32 @@
+%------------------------------------------------------------------------------
+% File     : TBA000^1 : TPTP v10.0.0. Released v10.0.0.
+% Domain   : TBA
+% Problem  : TBA
+% Version  : Especial.
+% English  :
+
+% Refs     : [RRB23] Rothgang et al. (2023), Theorem Proving in Dependently
+% Source   : [TPTP]
+% Names    :
+
+% Status   : Theorem
+% Rating   : ? v10.0.0
+% Syntax   : Number of formulae    :   25 (  12 unt;  10 typ;   0 def)
+%            Number of atoms       :   14 (  14 equ;   0 cnn)
+%            Maximal formula atoms :    2 (   0 avg)
+%            Number of connectives :  131 (   3   ~;   0   |;   0   &; 121   @)
+%                                         (   0 <=>;   7  =>;   0  <=;   0 <~>)
+%            Maximal formula depth :   12 (   4 avg)
+%            Number of types       :    3 (   2 usr)
+%            Number of type decls  :   10 (   0 !>P;   4 !>D)
+%            Number of type conns  :   11 (  11   >;   0   *;   0   +;   0  <<)
+%            Number of symbols     :    9 (   8 usr;   2 con; 0-4 aty)
+%            Number of variables   :   41 (   0   ^;  36   !;   0   ?;  41   :)
+%                                         (   5  !>;   0  ?*;   0  @-;   0  @+)
+% SPC      : TH0_THM_NEQ_ARI
+
+% Comments :
+%------------------------------------------------------------------------------
 thf(elem_type,type,
     elem: $tType ).
 
@@ -111,3 +140,4 @@ thf(list_rev_invol,conjecture,
     ! [N: nat,L: list @ N] :
       ( ( rev @ N @ ( rev @ N @ L ) )
       = L ) ).
+%------------------------------------------------------------------------------

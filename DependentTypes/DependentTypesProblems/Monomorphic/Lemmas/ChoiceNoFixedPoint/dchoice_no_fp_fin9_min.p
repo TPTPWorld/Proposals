@@ -1,3 +1,32 @@
+%------------------------------------------------------------------------------
+% File     : TBA000^1 : TPTP v10.0.0. Released v10.0.0.
+% Domain   : TBA
+% Problem  : TBA
+% Version  : Especial.
+% English  :
+
+% Refs     : [RRB23] Rothgang et al. (2023), Theorem Proving in Dependently
+% Source   : [TPTP]
+% Names    :
+
+% Status   : Theorem
+% Rating   : ? v10.0.0
+% Syntax   : Number of formulae    :   11 (   3 unt;   7 typ;   1 def)
+%            Number of atoms       :    6 (   6 equ;   0 cnn)
+%            Maximal formula atoms :    2 (   1 avg)
+%            Number of connectives :   70 (   3   ~;   0   |;   0   &;  66   @)
+%                                         (   0 <=>;   1  =>;   0  <=;   0 <~>)
+%            Maximal formula depth :    5 (   3 avg)
+%            Number of types       :    1 (   1 usr)
+%            Number of type decls  :    7 (   0 !>P;   2 !>D)
+%            Number of type conns  :    4 (   4   >;   0   *;   0   +;   0  <<)
+%            Number of symbols     :    7 (   6 usr;   1 con; 0-2 aty)
+%            Number of variables   :   10 (   1   ^;   6   !;   0   ?;  10   :)
+%                                         (   2  !>;   0  ?*;   0  @-;   1  @+)
+% SPC      : TH0_THM_NEQ_ARI
+
+% Comments :
+%------------------------------------------------------------------------------
 thf(nat_type, type, nat: $tType).
 thf(zero_type,type, zero: nat).
 thf(suc_type, type, suc: nat > nat).
@@ -15,3 +44,4 @@ thf(nofp_type, type, (nofp : ((fin @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (
 thf(nofp_def, definition, (nofp = (^ [X: (fin @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ zero))))))))))] : (@+ [Y: (fin @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ zero))))))))))] : (X != Y))))).
 
 thf(dchoice_nofp_fin9, conjecture, (! [X:(fin @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ (suc @ zero))))))))))] : ((nofp @ X) != X))).
+%------------------------------------------------------------------------------

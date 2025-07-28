@@ -1,3 +1,32 @@
+%------------------------------------------------------------------------------
+% File     : TBA000^1 : TPTP v10.0.0. Released v10.0.0.
+% Domain   : TBA
+% Problem  : TBA
+% Version  : Especial.
+% English  :
+
+% Refs     : [RRB23] Rothgang et al. (2023), Theorem Proving in Dependently
+% Source   : [TPTP]
+% Names    :
+
+% Status   : Theorem
+% Rating   : ? v10.0.0
+% Syntax   : Number of formulae    :   13 (   4 unt;   8 typ;   0 def)
+%            Number of atoms       :    6 (   6 equ;   0 cnn)
+%            Maximal formula atoms :    2 (   1 avg)
+%            Number of connectives :  240 (   0   ~;   0   |;   0   &; 239   @)
+%                                         (   0 <=>;   1  =>;   0  <=;   0 <~>)
+%            Maximal formula depth :    9 (   5 avg)
+%            Number of types       :    1 (   1 usr)
+%            Number of type decls  :    8 (   3 !>P;   2 !>D)
+%            Number of type conns  :    9 (   9   >;   0   *;   0   +;   0  <<)
+%            Number of symbols     :    8 (   7 usr;   1 con; 0-5 aty)
+%            Number of variables   :   27 (   0   ^;  21   !;   0   ?;  27   :)
+%                                         (   6  !>;   0  ?*;   0  @-;   0  @+)
+% SPC      : TH0_THM_NEQ_ARI
+
+% Comments :
+%------------------------------------------------------------------------------
 thf(nat_type,type,
     nat: $tType ).
 
@@ -52,3 +81,4 @@ thf(list_app_assoc_indstep2,conjecture,
         = ( cons @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ ( plus @ ( plus @ M @ M2 ) @ M3 ) @ X @ ( app @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ ( plus @ M @ M2 ) @ M3 @ ( app @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ M @ M2 @ L @ L2 ) @ L3 ) ) )
      => ( ( app @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ ( suc @ M ) @ ( plus @ M2 @ M3 ) @ ( cons @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ M @ X @ L ) @ ( app @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ M2 @ M3 @ L2 @ L3 ) )
         = ( app @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ ( suc @ ( plus @ M @ M2 ) ) @ M3 @ ( cons @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ ( plus @ M @ M2 ) @ X @ ( app @ (list @ (list @ nat @ (suc @ zero)) @ (suc @ zero)) @ M @ M2 @ L @ L2 ) ) @ L3 ) ) ) ).
+%------------------------------------------------------------------------------

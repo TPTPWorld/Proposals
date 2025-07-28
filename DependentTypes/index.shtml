@@ -209,7 +209,7 @@ thf(list_app_assoc_base,conjecture,
      <LI> Lemmas that can be used to help solving complete problems
      </UL>
 <LI> <A HREF="DependentTypesProblems/">Browse</A> the problems.
-<LI> <A HREF="DependentTypesProblems.tgz">Download</A> a <TT>.tgz</TT> of all the problems.
+<LI> <A HREF="DHFProblems.tgz">Download</A> a <TT>.tgz</TT> of all the problems.
 <LI> <A HREF="DependentTypesResults.csv">Results from DLash and DT2H2X</A> as a <TT>.csv</TT>
 </UL>
 

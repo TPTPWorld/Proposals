@@ -62,11 +62,10 @@ An example of a TPI command formula is
     tpi(1,execute,'SZS_STATUS' = 'E---1.6/eprover --auto --cpu-limit=$getargv(0) --tstp-format $getgroups(tpi)').
 </PRE>
 <P>
-Using non-terminals from the <A HREF="http://tptp.org/TPTP/SyntaxBNF.html">TPTP syntax</A>,
-each <EM>Command</EM> is an <TT>&lt;atomic_word></TT>, and <EM>CommandDetails</EM> is either a 
-<TT>&lt;proposition></TT>, a
-<TT>&lt;defined_infix_formula></TT> in the form of an equality, or a
-<TT>&lt;fol_infix_unary>.</TT> in the form of an inequality.
+Using non-terminals from the <A HREF="https://tptp.org/UserDocs/TPTPLanguage/SyntaxBNF.html">
+TPTP syntax</A>, each <EM>Command</EM> is an <TT>&lt;atomic_word></TT>, and <EM>CommandDetails</EM> 
+is either a <TT>&lt;proposition></TT>, a <TT>&lt;defined_infix_formula></TT> in the form of an 
+equality, or a <TT>&lt;fol_infix_unary>.</TT> in the form of an inequality.
 This use of existing TPTP syntax makes it easy to modify an existing parser
 for the TPTP language to read TPI commands.
 The <EM>Source</EM> and <EM>UsefulInfo</EM> are optional as usual.

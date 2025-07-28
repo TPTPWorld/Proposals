@@ -351,18 +351,13 @@ dx.doi.org
 <H2>Representation of FOF Finite Interpretations</H2>
 
 Consider the following FOF problem from the
-<A HREF="https://tptp.org/UserDocs/QuickGuide/FiniteInterpretations.html">
+<A HREF="https://tptp.org/UserDocs/QuickGuide/Interpretations.shtml">
 TPTP Format for Finite Interpretations</A> in the TPTP Quick Guide.
 It is CounterSatisfiable, i.e., there is a model for the axioms and negated conjecture.
 <PRE>
 <!--#include file="ModelExamples/FOF_Finite.p"-->
 </PRE>
-A weakness of the format for the finite interpretation presented in the
-<A HREF="https://tptp.org/UserDocs/QuickGuide/FiniteInterpretations.html">
-TPTP Format for Finite Interpretations</A> in the TPTP Quick Guide
-is that the format relies on the formulae names (all the same) to link the three
-components of the interpretation, which is not allowed in the TPTP world.
-In the new format these are merged into a single annotated formula with the role
+Here is a model in the new format, in a single annotated formula with the role
 <TT>interpretation</TT>:
 <PRE>
 <!--#include file="ModelExamples/FOF_Finite.s"-->

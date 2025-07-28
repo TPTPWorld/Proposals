@@ -1,3 +1,32 @@
+%------------------------------------------------------------------------------
+% File     : TBA000^1 : TPTP v10.0.0. Released v10.0.0.
+% Domain   : TBA
+% Problem  : TBA
+% Version  : Especial.
+% English  :
+
+% Refs     : [RRB23] Rothgang et al. (2023), Theorem Proving in Dependently
+% Source   : [TPTP]
+% Names    :
+
+% Status   : Theorem
+% Rating   : ? v10.0.0
+% Syntax   : Number of formulae    :   18 (   7 unt;   9 typ;   0 def)
+%            Number of atoms       :    7 (   7 equ;   0 cnn)
+%            Maximal formula atoms :    1 (   0 avg)
+%            Number of connectives :  104 (   0   ~;   0   |;   2   &;  99   @)
+%                                         (   0 <=>;   3  =>;   0  <=;   0 <~>)
+%            Maximal formula depth :   11 (   5 avg)
+%            Number of types       :    2 (   1 usr)
+%            Number of type decls  :    9 (   0 !>P;   6 !>D)
+%            Number of type conns  :    9 (   9   >;   0   *;   0   +;   0  <<)
+%            Number of symbols     :    9 (   8 usr;   1 con; 0-3 aty)
+%            Number of variables   :   37 (   0   ^;  29   !;   0   ?;  37   :)
+%                                         (   8  !>;   0  ?*;   0  @-;   0  @+)
+% SPC      : TH0_THM_NEQ_ARI
+
+% Comments :
+%------------------------------------------------------------------------------
 thf(nat_type, type, nat: $tType).
 thf(zero_type,type, zero: nat).
 thf(suc_type, type, suc: nat > nat).
@@ -33,3 +62,4 @@ thf(r_0, axiom, ![M:nat]: (![F:(fin @ M)]: (r @ M @ zero @ F) = F)).
 thf(r_s, axiom, ![M:nat, N:nat]: (![F:(fin @ M)]: ((r @ M @ (suc @ N) @ F) = (fs @ (plus @ M @ N) @ (r @ M @ N @ F))))).
 
 thf(l_r_neq, conjecture, ![M:nat, N:nat]: (![P:(fin @ N), Q:(fin @ M)]: ((l @ N @ M @ P) = (r @ M @ N @ Q)))).
+%------------------------------------------------------------------------------

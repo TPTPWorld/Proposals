@@ -211,9 +211,8 @@ the <code>datatype</code> subrole to signal the ADT semantics.
 Systems should process this in the same way as a <code>type</code> declaration, but internally
 flag the type as an ADT.
 For example:
-MICHAEL IS THIS A MONOMORPHIC EXAMPLE FOR A LIST OF $int.
 <pre>
-tff(list_type, type-datatype, list : $int > $tType).
+tff(int_list_type, type-datatype, int_list : $tType).
 </pre>
 
 ADTs can be polymorphic, and this is also supported in TPTP by declaring a type constructor:
@@ -230,10 +229,9 @@ the <code>datatype_constructor</code> subrole to signal the ADT semantics.
 Systems should process this in the same way as a <code>type</code> declaration, but internally
 flag the symbol as an ADT constructor.
 For example:
-MICHAEL IS THIS A MONOMORPHIC EXAMPLE FOR A LIST OF $int.
 <pre>
-tff(nil_type, type-datatype_constructor, nil : $int > list($int)).
-tff(cons_type, type-datatype_constructor, cons : ( $int * list($int) ) > list($int)).
+tff(int_nil_type, type-datatype_constructor, int_nil : int_list).
+tff(int_cons_type, type-datatype_constructor, int_cons : ( $int * int_list ) > int_list).
 </pre>
 
 Polymorphism works naturally:
@@ -302,7 +300,7 @@ all the <TT>datatype_constructor</TT>s.
 ADTs <b>must</b> have at least one inhabitant, otherwise all bets are off and systems are allowed
 to be unsound, incomplete, or both.
 Systems are unlikely to check this in all cases, as checking inhabitation is hard in the presence
-of, e.g., polymorphism [<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=Gun93">Gun93</A>, <A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=TPB12">TPB12</A>].
+of, e.g., polymorphism with nested datatypes [<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=Gun93">Gun93</A>, <A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=TPB12">TPB12</A>].
 Systems should report that an ADT sort is uninhabited with <code>SZS status SemanticError</code> 
 and a suitable message.  
 For example, both types in:

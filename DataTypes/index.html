@@ -299,10 +299,10 @@ all the <TT>datatype_constructor</TT>s.
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>Checking for Inhabited Sorts</h3>
 
-ADTs <b>must</b> have at least one inhabitant, otherwise all bets are off and systems are allowed 
+ADTs <b>must</b> have at least one inhabitant, otherwise all bets are off and systems are allowed
 to be unsound, incomplete, or both.
-Systems are unlikely to check this in all cases, as checking inhabitation is hard in the presence 
-of, e.g., polymorphism (TODO Jasmin refs).
+Systems are unlikely to check this in all cases, as checking inhabitation is hard in the presence
+of, e.g., polymorphism [<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=Gun93">Gun93</A>, <A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=TPB12">TPB12</A>].
 Systems should report that an ADT sort is uninhabited with <code>SZS status SemanticError</code> 
 and a suitable message.  
 For example, both types in:

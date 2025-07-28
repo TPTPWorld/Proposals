@@ -263,6 +263,9 @@ in ascending order of preference. ;-)
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h2>Problems and Systems</h2>
 
+However, a new tag will be added to the SPC of problems in the TPTP library that use ADTs,
+either <TT>ADT</TT> or <TT>NAT</TT>
+<P>
 Problems can be imported from existing libraries, including TIP [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=CJ+15">CJ+15</a>] and Vampire's <a href="https://github.com/vprover/inductive_benchmarks">inductive benchmarks</a>. ITP systems are likely to produce ADT inputs if the language supports it.
 <p>
 Systems are presently more sparse. Vampire supports much of this proposal already, but will need adapting for the new syntax. Some SMT solvers support a theory of data types, including Z3 and cvc5.
@@ -279,11 +282,6 @@ However, there are some interesting corners that merit further discussion.
 Some ADT theorems may require the system to employ inductive reasoning, or similar techniques.
 Neither TPTP syntax nor semantics make any reference to this: induction is a system-level technique 
 that is independent of ADTs (and indeed may be applied to other theories or even plain logic).
-However, a new tag will be added to the SPC of problems in the TPTP library that are thought to 
-require induction.
-<b>TODO</b> how precisely?
-This flag will be removed if a non-inductive proof is found.
-<b>TODO</b> perhaps it makes more sense to have a "no induction needed" flag?
 Systems that use induction should report induction schemata, in the same way as theory axioms 
 in proofs.
 

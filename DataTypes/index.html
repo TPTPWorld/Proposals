@@ -74,7 +74,7 @@ Consider the natural numbers as defined above.
 <pre>
 tff(nat_type, type-datatype, nat : $tType).
 tff(zero_type, type-datatype_constructor, zero : nat).
-tff(successor_type, type-datatype_constructor, succ : nat > nat).
+tff(succ_type, type-datatype_constructor, succ : nat > nat).
 </pre>
 <b>TODO</b> consider shorter role names: <code>type-adt</code> and <code>type-adtc</code>?
 <p>
@@ -108,14 +108,14 @@ tff(succ_is_succ,axiom,
     ! [X: nat] : is_succ(succ(X)) ).
 
 %----get the predecessor of a number, if it exists
-tff(predecessor_type,type,
-    predecessor: nat > nat ).
+tff(pred_type,type,
+    pred: nat > nat ).
 
-tff(predecessor_succecessor,axiom,
-    ! [X: nat] : ( predecessor(succecessor(X)) = X ) ).
+tff(pred_succ,axiom,
+    ! [X: nat] : ( pred(succ(X)) = X ) ).
 </pre>
 <p>
-Note that <code>predecessor</code> is a <code>type</code>, not a 
+Note that <code>pred</code> is a <code>type</code>, not a 
 <code>type-datatype_constructor</code>, i.e., it is a uninterpreted function, not part of the ADT.
 At present testers and destructors are provided by the user, but a future proposal might add
 defined predicates to add these automatically.

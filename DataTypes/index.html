@@ -224,7 +224,7 @@ tff(list_type, type-datatype, list : $tType > $tType).
 <h3>The <code>type-datatype_constructor</code> Role</h3>
 
 ADT constructors are introduced in the same way as an uninterpreted function, i.e. a 
-<code>type</code> declaration that declares the sinature of the constructor, and extends it with
+<code>type</code> declaration that declares the signature of the constructor, and extends it with
 the <code>datatype_constructor</code> subrole to signal the ADT semantics.
 Systems should process this in the same way as a <code>type</code> declaration, but internally
 flag the symbol as an ADT constructor.
@@ -285,7 +285,7 @@ tff(inr_type_003,type-datatype_constructor,
       !>[A: $tType,B: $tType] : ( A > sum(B,A) ) ).
 </pre>
 
-Deviating from this is not necessarily an error (see <a href="#GADTs">Generalized ADTs</a> below) 
+Renaming or instantiating sort variables in the range of a constructor is not necessarily an error (see <a href="#GADTs">Generalized ADTs</a> below) 
 and systems that do not support such deviations should report 
 <code>SZS status Inappropriate</code>.
 <P>
@@ -301,7 +301,7 @@ ADTs <b>must</b> have at least one inhabitant, otherwise all bets are off and sy
 to be unsound, incomplete, or both.
 Systems are unlikely to check this in all cases, as checking inhabitation is hard in the presence
 of, e.g., polymorphism with nested datatypes [<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=Gun93">Gun93</A>, <A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=TPB12">TPB12</A>].
-Systems should report that an ADT sort is uninhabited with <code>SZS status SemanticError</code> 
+If a system does detect that a sort is uninhabited, it should report <code>SZS status SemanticError</code> 
 and a suitable message.  
 For example, both types in:
 <pre>
@@ -349,12 +349,10 @@ However, there are some interesting corners that merit further discussion.
 
 Some ADT theorems might require the system to employ inductive reasoning, or similar techniques.
 Neither TPTP syntax nor semantics make any reference to this: induction is a system-level technique 
-that is independent of ADTs (and might be applied to other theories or even plain logic).
-Reminder: Any complete calculus for a logic without datatypes, but that can use induction, e.g., 
-a FOF calculus that can use induction for proofs over Peano numbers, remains complete without 
-induction.
-Systems that use induction should report induction schemata, in the same way as theory axioms 
-in proofs.
+that is independent of ADTs (and might be applied in a non-ADT context).
+
+Reminder for Geoff: there are some problems expressible in first-order syntax that are not "plain" first-order theorems but are theorems <b>with additional (theory) semantics</b>, like 2 + 2 = 4.
+Systems that use induction should report induction schemata, in the same way as theory axioms in proofs.
 
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>ADTs and Higher-Order Logic</h3>

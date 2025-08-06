@@ -7,13 +7,14 @@
 <body align=JUSTIFY>
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h1>Algebraic Data Types</h1>
-by Petra Hozzov&aacute;, Geoff Sutcliffe, and Michael Rawson.
+by Geoff Sutcliffe, Michael Rawson, and Petra Hozzov&aacute;.
 
 <!--
-Geoff's thoughts for people to ask for opinion:
+Geoff and Michael's thoughts for people to ask for opinion:
 Jasmin & MartinD, Dimitry Traytel, Andrei Paskevich
 Guillaume Bury, David Cok, Viktor Kuncak
 Andrei Popescu
+Simon Guilloud, Sankalp Ghambir, Florian Rabe
 -->
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h2>Background</h2>
@@ -295,7 +296,7 @@ Mutually recursive ADTs must be declared contiguously, first the <TT>datatype</T
 all the <TT>datatype_constructor</TT>s.
 
 <!-- ------------------------------------------------------------------------------------- -->
-<h3>Checking for Inhabited Sorts</h3>
+<h3 id="inhabitation">Checking for Inhabited Sorts</h3>
 
 ADTs <b>must</b> have at least one inhabitant, otherwise all bets are off and systems are allowed
 to be unsound, incomplete, or both.
@@ -383,6 +384,27 @@ thf(eLam_type,type-datatype_constructor,
     eLam: 
       !>[A: $tType] : ( ( A > expr(A) ) > expr(A) ) ).
 </pre>
+
+However, not all such datatypes are meaningful [Paulson98] and some may introduce inconsistencies or surprising results. Consider
+
+<pre>
+/*
+Below corresponds loosely to (illegal) Rocq
+
+Inductive dodgy :=
+  bites : (dodgy -> Prop) -> dodgy.
+*/
+
+thf(dodgy_type, type-datatype, dodgy : $tType).
+thf(dont_trust_it_bites, type-datatype-constructor, bites : (dodgy > $o) > dodgy).
+</pre>
+
+With the standard semantics for higher-order logic, this declaration alone has no models, as there would then be a bijection between <tt>dodgy</tt> and <tt>dodgy > $o</tt>.
+In the same spirit as <a href="#inhabitation">sort inhabitation</a>, users should not supply such declarations, and systems may behave strangely if they do. Systems may choose to check for these, perhaps implementing a condition such as <em>strict positivity</em>.
+Problems in the TPTP library declare only well-behaved higher-order datatypes.
+
+<p>
+<b>Thanks to <a href="https://simonguilloud.ch/">Simon Guilloud</a>, <a href="https://people.epfl.ch/sankalp.gambhir">Sankalp Gambhir</a> and others at EPFL for raising this concern and producing the example!</b>
 
 <!-- ------------------------------------------------------------------------------------- -->
 <h3 id="GADTs">Generalized ADTs</h3>

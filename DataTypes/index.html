@@ -7,7 +7,7 @@
 <body align=JUSTIFY>
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h1>Algebraic Data Types</h1>
-by Geoff Sutcliffe, Michael Rawson, and Petra Hozzov&aacute;.
+by Michael Rawson, and Petra Hozzov&aacute;, Geoff Sutcliffe, 
 
 <!--
 Geoff and Michael's thoughts for people to ask for opinion:
@@ -19,10 +19,17 @@ Simon Guilloud, Sankalp Ghambir, Florian Rabe
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h2>Background</h2>
 
-<em>Algebraic data types</em> (ADTs, see also: <em>term algebras</em>, <em>inductive data types</em>, and <em>Herbrand universes</em>. Not to be confused with <a href="https://en.wikipedia.org/wiki/Abstract_data_type">Abstract Data Types</a>.) are sorts with a specific interpretation.
+<em>Algebraic data types</em> (ADTs, see also: <em>term algebras</em>, <em>inductive data 
+types</em>, and <em>Herbrand universes</em>. 
+Not to be confused with <a href="https://en.wikipedia.org/wiki/Abstract_data_type">
+Abstract Data Types</a>.) are sorts with a specific interpretation.
 Members of the sort are built from a fixed set of user-provided <em>constructors</em>.
-ADTs are useful for representing objects from functional programming such as lists or trees, and also from mathematics, such as the natural numbers.
-See elsewhere [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=KRV17">KRV17</a>, <a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=BPR18">BPR18</a>] for more background material on ADTs in the context of ATP.
+ADTs are useful for representing objects from functional programming such as lists or trees, and 
+also from mathematics, such as the natural numbers.
+See elsewhere 
+[<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=KRV17">KRV17</a>,
+ <a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=BPR18">BPR18</a>] for more 
+background material on ADTs in the context of ATP.
 
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>Definition</h3>
@@ -37,7 +44,8 @@ Each term is distinct from any other.
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>Properties</h3>
 
-The definition leads to several well-known properties, including the popular [<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=KRV17">KRV17</a>] scheme:
+The definition leads to several well-known properties, including the popular 
+[<a href="https://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=KRV17">KRV17</a>] scheme:
 <ul>
  <li><em>domain closure</em>: every element is constructed from one of the constructors
  <li><em>distinctness</em>: terms with different constructors are never equal to each other
@@ -60,7 +68,8 @@ In a similar way, lists can be defined as either the nil list or a cons cell con
 and the tail of a list.
 This is a natural example of a polymorphic datatype, as the element sort is not provided.
 <p>
-ADTs are often (but not always) self-referential, in the sense that larger terms are built from smaller terms of the same sort and an appropriate constructor.
+ADTs are often (but not always) self-referential, in the sense that larger terms are built from 
+smaller terms of the same sort and an appropriate constructor.
 
 <hr> <!-- ------------------------------------------------------------------------------------- -->
 <h2>Proposal by Example</h2>
@@ -352,8 +361,10 @@ Some ADT theorems might require the system to employ inductive reasoning, or sim
 Neither TPTP syntax nor semantics make any reference to this: induction is a system-level technique 
 that is independent of ADTs (and might be applied in a non-ADT context).
 
-Reminder for Geoff: there are some problems expressible in first-order syntax that are not "plain" first-order theorems but are theorems <b>with additional (theory) semantics</b>, like 2 + 2 = 4.
-Systems that use induction should report induction schemata, in the same way as theory axioms in proofs.
+Reminder for Geoff: there are some problems expressible in first-order syntax that are not "plain" 
+first-order theorems but are theorems <b>with additional (theory) semantics</b>, like 2 + 2 = 4.
+Systems that use induction should report induction schemata, in the same way as theory axioms in 
+proofs.
 
 <!-- ------------------------------------------------------------------------------------- -->
 <h3>ADTs and Higher-Order Logic</h3>
@@ -385,7 +396,9 @@ thf(eLam_type,type-datatype_constructor,
       !>[A: $tType] : ( ( A > expr(A) ) > expr(A) ) ).
 </pre>
 
-However, not all such datatypes are meaningful [Paulson98] and some may introduce inconsistencies or surprising results. Consider
+However, not all such datatypes are meaningful 
+[<A HREF="http://tptp.org/cgi-bin/SeeTPTP?Category=BibTeX&File=Pau00">Pau00</A>] and some may 
+introduce inconsistencies or surprising results. Consider
 
 <pre>
 /*

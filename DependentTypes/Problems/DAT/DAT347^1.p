@@ -1,0 +1,68 @@
+%------------------------------------------------------------------------------
+% File     : DAT347^1 : TPTP v9.2.0. Released v9.2.0.
+% Domain   : Data Structures
+% Problem  : Head of a list with first element 0 is 0
+% Version  : Especial.
+% English  : Introduces the unfailing head function on fixed length lists of 
+%            length >= 1 and states that the head of a list with first element 
+%            0 is 0.
+
+% Refs     : [RRB23] Rothgang et al. (2023), Theorem Proving in Dependently
+%          : [Rot25] Rothgang (2025), Email to Geoff Sutcliffe
+% Source   : [Rot25]
+% Names    : ChoiceList/dchoice_list_hd.p [Rot25]
+
+% Status   : Theorem
+% Rating   : ? v9.2.0
+% Syntax   : Number of formulae    :    9 (   2 unt;   7 typ;   0 def)
+%            Number of atoms       :    3 (   3 equ;   0 cnn)
+%            Maximal formula atoms :    1 (   1 avg)
+%            Number of connectives :   18 (   0   ~;   0   |;   0   &;  18   @)
+%                                         (   0 <=>;   0  =>;   0  <=;   0 <~>)
+%            Maximal formula depth :    4 (   3 avg)
+%            Number of types       :    1 (   1 usr)
+%            Number of type decls  :    7 (   0 !>P;   2 !>D)
+%            Number of type conns  :    5 (   5   >;   0   *;   0   +;   0  <<)
+%            Number of symbols     :    7 (   6 usr;   2 con; 0-3 aty)
+%            Number of variables   :    6 (   0   ^;   3   !;   0   ?;   6   :)
+%                                         (   2  !>;   0  ?*;   0  @-;   1  @+)
+% SPC      : DH0_THM_EQU_NAR
+
+% Comments :
+%------------------------------------------------------------------------------
+thf(nat_type,type,
+    nat: $tType ).
+
+thf(zero_type,type,
+    zero: nat ).
+
+thf(suc_type,type,
+    suc: nat > nat ).
+
+thf(list_type,type,
+    list: nat > $tType ).
+
+thf(nil_type,type,
+    nil: list @ zero ).
+
+thf(cons_type,type,
+    cons: 
+      !>[N: nat] : ( nat > ( list @ N ) > ( list @ ( suc @ N ) ) ) ).
+
+thf(hd_type,type,
+    hd: 
+      !>[LENMINUSONE: nat] : ( ( list @ ( suc @ LENMINUSONE ) ) > nat ) ).
+
+thf(hd,axiom,
+    ! [LEN: nat,H: nat,L: list @ LEN] :
+      ( ( hd @ LEN @ ( cons @ LEN @ H @ L ) )
+      = H ) ).
+
+thf(c,conjecture,
+    ( ( hd @ zero
+      @ @+[X: list @ ( suc @ zero )] :
+          ( ( hd @ zero @ X )
+          = zero ) )
+    = zero ) ).
+
+%------------------------------------------------------------------------------

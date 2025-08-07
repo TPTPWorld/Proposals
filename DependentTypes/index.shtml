@@ -194,6 +194,7 @@ thf(list_app_assoc_base,conjecture,
 <H2> Problems </H2>
 
 <UL>
+<!--
 <LI> The problems provided by Daniel and Cezary have been separated into three groups:
      <UL>
      <LI> Test problems designed to test particular aspects of reasoning with dependent types
@@ -208,9 +209,9 @@ thf(list_app_assoc_base,conjecture,
      <LI> Complete problems
      <LI> Lemmas that can be used to help solving complete problems
      </UL>
-<LI> <A HREF="DependentTypesProblems/">Browse</A> the problems.
-<LI> <A HREF="DHFProblems.tgz">Download</A> a <TT>.tgz</TT> of all the problems.
-<LI> <A HREF="DependentTypesResults.csv">Results from DLash and DT2H2X</A> as a <TT>.csv</TT>
+-->
+<LI> <A HREF="Problems/">Browse</A> the problems.
+<LI> <A HREF="Problems.tgz">Download</A> a <TT>.tgz</TT> of all the problems.
 </UL>
 
 <P>

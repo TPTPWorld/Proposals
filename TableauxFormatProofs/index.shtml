@@ -89,15 +89,14 @@ Additional requirements are:
 <P>
 The TPTP format recognizes six inference rules, which are described below.
 The inference record of each annotated formula records the name of the rule used, the SZS status
-of the inferred formula wrt its parents, the path from the root to the node above, and the
-inference parents.
+of the inferred formula wrt its parents, the parent node, and the inference parents.
 The SZS status and parent information makes it possible to use semantic verification of each
-inference, and the path information makes it easy to reconstruct the tableau.
+inference, and the parent records make it easy to reconstruct the tableau.
 The point at which a variable becomes instantiated can optionally be recorded with a <TT>bind()</TT>
 record, e.g.,
 <PRE>
 cnf(t4,plain,              p(c) | ~ q(c),
-    inference(extension,[status(thm),path([t2:2,t1:1]),bind(X,c)],[c3]) ).
+    inference(extension,[status(thm),parent(t2:2),bind(X,c)],[c3]) ).
 </PRE>
 notes that the variable <TT>X</TT> in <TT>t2</TT> is bound to <TT>c</TT> (assuming
 variables have been renamed apart so that it is clear that the <TT>X</TT> is in <TT>t2</TT>).
@@ -105,8 +104,7 @@ variables have been renamed apart so that it is clear that the <TT>X</TT> is in 
 <H3>The Inference Rules</H3>
 <STRONG><TT>start</TT>:</STRONG> The initial clause below the root node.
 For example, in the running example <TT>t1</TT> starts the tableau.
-The path to this point is recorded as <TT>[0:0]</TT>, indicating that the node above is the
-root node.
+The parent is recorded as <TT>0:0</TT>, indicating that the node above is the root node.
 The logical parent of <TT>t1</TT> is recorded as <TT>[c1]</TT>.
 The inference has status <TT>thm</TT>, i.e., <TT>t1</TT> is a logical consequence of its
 parent.
@@ -115,7 +113,7 @@ parent.
 <STRONG><TT>extension</TT>:</STRONG> The standard tableau extension rule.
 For example, in the running example <TT>t2</TT> extends from the first literal
 <TT>q(b)</TT> of <TT>t1</TT> to the 1st literal <TT>~q(b)</TT> of <TT>c2</TT>.
-The path to this point is recorded as <TT>[t1:1,0:0]</TT>.
+The parent is recorded as <TT>t1:1</TT>.
 The logical parent of <TT>t2</TT> is recorded as <TT>[c2]</TT>.
 The inference has status <TT>thm</TT>, i.e., <TT>t2</TT> is a logical consequence of its parent.
 <P>
@@ -123,7 +121,7 @@ The inference has status <TT>thm</TT>, i.e., <TT>t2</TT> is a logical consequenc
 extension.
 For example, in the running example <TT>t3</TT> closes the branch of the contradiction
 between <TT>q(b)</TT> and <TT>~q(b)</TT> in the extension to <TT>t2</TT>.
-The path to this point is recorded as <TT>[t2:1,t1:1,0:0]</TT>.
+The parent is recorded as <TT>t2:1</TT>.
 The logical parents of <TT>t3</TT> are recorded as <TT>[t2:1,t1:1]</TT>, meaning the 1st
 literal of <TT>t2</TT> and the 1st literal of <TT>t1</TT>.
 The inference has status <TT>thm</TT>, i.e., <TT>t3</TT> is a logical consequence of its
@@ -136,7 +134,7 @@ between the 2nd literal <TT>~q(b)</TT> of <TT>t6</TT> and the 1st literal
 <TT>q(b)</TT> of <TT>t1</TT>.
 In the tableau of the running example this is denoted by the dotted arrow from <TT>q(b)</TT>
 to <TT>t8</TT>.
-The path to this point is recorded as <TT>[t6:2,t4:2,t2:2,t1:1,0:0]</TT>.
+The parent is recorded as <TT>t6:2</TT>.
 The logical parents of <TT>t8</TT> are recorded as <TT>[t6:2,t1:1]</TT>, meaning the 2nd
 literal of <TT>t6</TT> and the 1st literal of <TT>t1</TT>.
 The inference has status <TT>thm</TT>, i.e., <TT>t8</TT> is a logical consequence of its
@@ -147,7 +145,7 @@ For example, in the running example <TT>l1</TT> is the lemma <TT>p(c)</TT> creat
 when the branch rooted at <TT>t2:2</TT> is closed.
 The lemma is the negation of the 2nd literal <TT>~p(c)</TT> of <TT>t2</TT>.
 Note that the role of the annotated formula records it as a <TT>lemma</TT>.
-The path to this point is recorded as <TT>[t2:2,t1:1,0:0]</TT>.
+The parent is recorded as <TT>t2:2</TT>.
 In the tableau of the running example this is denoted by the solid right arrow from 
 <TT>t2:2</TT> to <TT>l1</TT>.
 As the node <TT>t1:1</TT> is used in a reduction in closing the branch, the lemma is
@@ -163,7 +161,7 @@ and <TT>t12</TT> is the <TT>connection</TT> that closes the branch down to <TT>t
 In the tableau of the running example this is denoted by the dashed arrow from <TT>l1</TT> to
 <TT>t11:1</TT>.
 The lemma <TT>l1</TT> can be used here because <TT>9:2</TT> is below <TT>t1:1</TT>.
-The path to this point is recorded as <TT>[t11:1,t9:2,t2:3,t1:1,0:0]</TT>.
+The parent is recorded as <TT>t11:1</TT>.
 The logical parent of <TT>t11</TT> is recorded as <TT>[l1:1]</TT>, meaning the 1st literal
 <TT>p(c)</TT> of <TT>l1</TT>.
 The inference has status <TT>thm</TT>, i.e., <TT>t11:1</TT> is a logical consequence of its
@@ -207,8 +205,8 @@ are naturally inapplicable.
 Structural verification of a tableau proof requires checking:
 <UL>
 <LI> All inference parents exist, in particular that the specified literals exist.
-<LI> The <TT>path</TT> records define an acyclic DAG, without contradictions in the paths.
-<LI> All paths start at the root <TT>0:0</TT> node.
+<LI> The <TT>parent</TT> records define an acyclic DAG.
+<LI> All paths formed by a sequence of parent records lead to the root <TT>0:0</TT> node.
 <LI> The tableau is closed, i.e., every branch ends at a <TT>$false</TT> formula.
 <LI> All <TT>lemma_extension</TT> steps use lemmas that are below the specified node in the 
 tableau.
